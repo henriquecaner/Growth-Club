@@ -15,7 +15,7 @@
 - §5 — Marca provisória (nome canônico, nomenclatura de formatos)
 - §10.2 — Escopo da fase Marca
 
-**Tempo estimado:** 2-3 semanas de trabalho concentrado (com designer freela ou Henrique solo). Se solo, estender para 3-4 semanas.
+**Tempo estimado:** **3-5 semanas** com designer freela dedicado · **5-7 semanas** se Henrique executar solo. Checkpoint de metade-do-caminho ao fim do Chunk 2 (visual system travado). Estimativa revisada após review independente do plano (v1.0 subestimava o Chunk 2).
 
 **Handoff output:** brand book v1 commitado em git + arquivos Figma exportados + assets SVG/PNG em `brand/assets/` + posicionamento textual em `brand/brand-book.md`. Pronto pra consumir na próxima fase (Site).
 
@@ -93,30 +93,76 @@ git commit -m "brand(marca): lock canonical name and usage rules"
 
 (Hero, Outlaw, Magician, Regular Guy, Lover, Jester, Caregiver, Ruler, Creator, Innocent, Sage, Explorer — qualquer referência, ex. Mark & Pearson "The Hero and the Outlaw")
 
-- [ ] **Step 2: Pré-selecionar 2-3 que fazem sentido**
+- [ ] **Step 2: Aplicar filtro obrigatório do posicionamento §3.2**
 
-Hipóteses fortes baseadas no posicionamento:
+O arquétipo escolhido precisa **reforçar simultaneamente** os três componentes do ângulo (business plan §3.2):
+- Execução > Teatro
+- Ponte entre silos
+- Tech-first (IA/Automação) atrelado a outcome
+
+Qualquer arquétipo que contradiga um dos três fica vetado. Ex.: "Ruler" (controle, autoridade top-down) contradiz "mesa de canto inclusiva — do CEO ao dev, do growth ao quebrado". "Innocent" contradiz "sem teatro" (ingenuidade não é atributo).
+
+- [ ] **Step 3: Pré-selecionar 2-3 que fazem sentido**
+
+Hipóteses fortes baseadas no posicionamento (já filtradas pelo Step 2):
 - **Outlaw / Rebel** — contrarian ao teatro, bandeira pirata, "não vai pro feed"
 - **Sage** — ponte entre silos, curadoria com número, regra editorial
 - **Regular Guy** — "mesa de canto de um pub", inclusivo ("do CEO ao dev, do growth ao quebrado")
 
-- [ ] **Step 3: Escolher primário + secundário**
+- [ ] **Step 4: Escolher primário + secundário**
 
-Escolher 1 primário (60% da identidade) + 1 secundário (30-40%). Documentar racional.
+Escolher 1 primário (60% da identidade) + 1 secundário (30-40%). Documentar racional. **Checar novamente** contra o filtro do Step 2 — a combinação final reforça os 3 componentes do ângulo?
 
-- [ ] **Step 4: Destilar um ton-anchor de 5-7 palavras**
+- [ ] **Step 5: Destilar um ton-anchor de 5-7 palavras**
 
 Ex.: "Franco, com número, sem palco, com cerveja." — serve como régua rápida pra qualquer peça.
 
-- [ ] **Step 5: Validação**
+- [ ] **Step 6: Validação**
 
 Critério: se alguém escrever um post que não case com o ton-anchor, dá pra apontar "não é nosso tom" sem subjetividade.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 git add brand/decisions/03-arquetipo-e-tom.md
 git commit -m "brand(marca): set primary/secondary archetypes and ton-anchor"
+```
+
+### Task 1.4: Arquitetura de marcas-filhas (sub-grupos WhatsApp)
+
+**Files:**
+- Create: `brand/decisions/04-arquitetura-de-marcas.md`
+
+Contexto: hoje a Community WhatsApp tem 7 sub-grupos (AI LIKE A PRO, Meetups de Growth, PLG BR, Growth Mafia, CLG BR, além do core). A spec §9.1 lista "consolidação dos 7 sub-grupos WhatsApp" como decisão Fase 1 e §9.2 R6 registra como risco (fragmentação dilui narrativa vs. consolidar aliena usuários). Essa decisão afeta **naming**, **voice** e **logo derivadas** — por isso entra como fundação (Chunk 1), antes do visual.
+
+- [ ] **Step 1: Mapear cada sub-grupo em uma tabela**
+
+Para cada um dos 7: nome, # membros, nível de atividade, tema, quem modera, sobrepõe com core?
+
+- [ ] **Step 2: Classificar cada um em uma das 4 ações**
+
+- **Promove a marca-filha oficial** (vira produto nomeado tipo "AI LIKE A PRO" — o workshop é marca-filha, o sub-grupo também pode ser)
+- **Consolida no core** (arquiva o sub-grupo, migra membros ativos pro core)
+- **Mantém como sub-canal temático** (reduz autonomia, vira extensão do core)
+- **Arquiva** (inativo demais pra justificar manutenção)
+
+- [ ] **Step 3: Regra de naming pra marcas-filhas**
+
+Se algo vira marca-filha (ex: "AI LIKE A PRO", "Growth Mafia"), definir a regra de lockup: `Growth Club · [MARCA-FILHA]` ou `[MARCA-FILHA] by Growth Club` ou outra forma. Input crítico para Task 2.3 (logo) — variações precisam acomodar marcas-filhas.
+
+- [ ] **Step 4: Plano de comunicação aos membros**
+
+Se sub-grupo for arquivado/consolidado, como comunicar. Quando. Com qual texto.
+
+- [ ] **Step 5: Validação**
+
+Critério: plano de comunicação pronto pra enviar · naming regra testada em 3 marcas-filhas (AI LIKE A PRO + outras 2) · sem ambiguidade.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add brand/decisions/04-arquitetura-de-marcas.md
+git commit -m "brand(marca): arquitetura de marcas-filhas + consolidação sub-grupos"
 ```
 
 ---
@@ -151,9 +197,11 @@ Toda combinação texto/fundo precisa passar WCAG AA (4.5:1 pra texto normal).
 
 Tabela com: nome da cor, HEX, RGB, CMYK, quando usar, quando evitar.
 
-- [ ] **Step 5: Validação**
+- [ ] **Step 5: Validação objetiva**
 
-Critério: paleta funciona em digital (site, social, newsletter), impresso (pôster de meetup), e em fundos dark + light. Teste ao lado de marcas competidoras (G4, Cactus, Gaveler, Growth Leaders) — o Growth Club se destaca ou se confunde?
+Dois testes obrigatórios:
+1. **Aplicabilidade multi-contexto:** paleta funciona em digital (site, social, newsletter), impresso (pôster de meetup A3), e em fundos dark + light. Fazer mockup real de 3 peças antes de aprovar.
+2. **Teste de diferenciação (anti-gosto):** mostrar 5 swatches SEM logo/nome (o do Growth Club + 4 competidores — G4, Cactus, Gaveler, Growth Leaders) para **5 membros ativos do grupo core**; pedir pra identificarem qual é o do Growth Club. **Pass:** ≥ 3 acertos em 5. Abaixo disso, redesenhar.
 
 - [ ] **Step 6: Commit**
 
@@ -212,12 +260,38 @@ git commit -m "brand(visual): typography system v1"
 - Create: `brand/assets/logo/growth-club-monochrome-white.svg`
 - Create: `brand/visual/logo-guidelines.md`
 
-- [ ] **Step 1: Desenhar lockup primário**
+**⚠️ Nota de granularidade:** Esta task envolve trabalho criativo de designer, não se executa em "2-5 min por step". Cada step abaixo representa uma **sessão de design** (1-8 horas) com critério claro de passagem. Tempo estimado total: **1-2 semanas de designer freela dedicado** (ou 2-3 semanas se Henrique solo com aprendizado).
 
-Baseado na decisão da Task 1.1 (bandeira pirata fate). Combinação símbolo + wordmark.
+- [ ] **Step 1a: Moodboard de referências (2-3 direções visuais)**
+
+Coletar 15-30 referências (não só logos — capas de revista, signage, merchandising, álbuns) organizadas em 2-3 direções distintas. Ex:
+- Direção A: "Pirata analógico" (punk rock, DIY, xilogravura)
+- Direção B: "Editorial sóbrio" (The Economist, NYT, New Yorker)
+- Direção C: "Tech moderno" (Notion, Linear, Vercel)
+
+Critério de passagem: moodboard apresentável, capturando energia distinta em cada direção.
+
+- [ ] **Step 1b: Escolher direção final**
+
+Comparar as 3 direções contra o arquétipo escolhido na Task 1.3 e decisão da bandeira pirata (Task 1.1). Escolher 1. Documentar racional de por que as outras 2 foram descartadas.
+
+- [ ] **Step 1c: Primeiro sketch/rascunho (3-5 propostas)**
+
+Dentro da direção escolhida, gerar 3-5 primeiros rascunhos de lockup. Pode ser em papel, Figma sketchy, Procreate. Não polir — só explorar a forma.
+
+Critério de passagem: 3-5 rascunhos com diferenças visíveis de abordagem (não variações cosméticas).
+
+- [ ] **Step 1d: Rounds de refinamento (2-3 iterações)**
+
+Escolher 1-2 dos rascunhos pra refinar. Cada round deve ter feedback explícito (o que mudou, por quê). Critério de fim de rounds: Henrique olha e fala "é esse" sem ressalva significativa.
+
+- [ ] **Step 1e: Finalização em vetor**
+
+Versão final em SVG/Illustrator limpa: curvas otimizadas, traçados corretos, exportável sem perda.
 
 - [ ] **Step 2: Gerar variações obrigatórias**
 
+Cada variação como arquivo SVG separado:
 - Horizontal (símbolo + wordmark ao lado)
 - Vertical (símbolo em cima, wordmark embaixo)
 - Icon-only (símbolo isolado — avatar)
@@ -232,15 +306,19 @@ Regra de espaço mínimo em volta do logo. Tamanho mínimo em digital (px) + imp
 
 5 exemplos explícitos do que NÃO fazer (esticar, girar, mudar cor, colocar em fundo ruim, etc.).
 
-- [ ] **Step 5: Validação**
+- [ ] **Step 5: Lockup para marcas-filhas (consumir Task 1.4)**
 
-Critério: logo funciona em 16x16 (favicon), 40x40 (avatar LinkedIn), 2000x1000 (pôster de meetup), impresso em 1x1cm sem perder legibilidade.
+Aplicar a regra de naming de marcas-filhas (definida em Task 1.4) ao logo: gerar 1-2 exemplos de lockup com marca-filha. Ex.: `Growth Club · AI LIKE A PRO`.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 6: Validação**
+
+Critério: logo funciona em 16x16 (favicon), 40x40 (avatar LinkedIn), 2000x1000 (pôster de meetup), impresso em 1x1cm sem perder legibilidade. Teste real feito antes de commit.
+
+- [ ] **Step 7: Commit**
 
 ```bash
 git add brand/assets/logo/ brand/visual/logo-guidelines.md
-git commit -m "brand(visual): logo system v1 (primary + 5 variations)"
+git commit -m "brand(visual): logo system v1 (primary + 5 variations + marca-filha)"
 ```
 
 ---
@@ -465,29 +543,61 @@ git add brand/templates/newsletter/
 git commit -m "brand(templates): newsletter header + signature + footer"
 ```
 
-### Task 4.3: Kit de componentes Site (handoff pra fase Site)
+### Task 4.3: Kit de handoff para fase Site (v1 = base; v2 nasce na fase Site)
+
+**Escopo explícito v1:** design tokens + componentes base + componentes de conteúdo específicos Growth Club + responsive breakpoints. O refinamento avançado (states detalhados, animações, edge cases) sai na fase Site junto do design do produto em si. Essa delimitação evita inflação desta task.
 
 **Files:**
 - Create: `brand/templates/site/component-kit.fig` (Figma file — handoff)
-- Create: `brand/templates/site/component-spec.md` (documentação textual)
+- Create: `brand/templates/site/design-tokens.md`
+- Create: `brand/templates/site/component-spec.md`
 
-- [ ] **Step 1: Componentes base**
+- [ ] **Step 1: Design tokens**
 
-Buttons (primary, secondary, destructive), Cards (content, pricing, testimonial), Nav (desktop + mobile), Hero block, Form inputs (email + select + checkbox), Footer.
+Documentar tokens semânticos consumidos por todos os componentes:
+- **Spacing scale** (4, 8, 12, 16, 24, 32, 48, 64, 96 px — ou escala modular equivalente)
+- **Border radius** (0, 4, 8, 12, 24, full)
+- **Shadow** (xs, sm, md, lg — com valores box-shadow)
+- **Motion** (duration: 150ms rápido, 250ms médio, 400ms lento; easing: ease-out default)
+- **Breakpoints responsive** (mobile < 640px, tablet 640-1024px, desktop 1024-1440px, wide > 1440px)
 
-- [ ] **Step 2: Guia de uso em markdown**
+Cada token vira variável Figma + documentado em markdown.
 
-Para cada componente: quando usar, quando NÃO usar, variações, regras de hierarquia.
+- [ ] **Step 2: Componentes base (8 essenciais)**
 
-- [ ] **Step 3: Validação**
+Com states mínimos (default, hover, disabled, loading):
+1. Buttons — primary / secondary / ghost / destructive
+2. Inputs — text / email / select / checkbox / radio
+3. Cards — container genérico com padding + radius + shadow do token
+4. Nav — desktop horizontal + mobile hamburger
+5. Hero block — versão com imagem e versão com apenas texto
+6. Form groups — label + input + help text + error text
+7. Footer — padrão para todas as páginas
+8. Toast/alerts — success / warning / error / info
 
-Critério: ao iniciar a fase Site, o designer/dev consome esse kit e constrói as páginas sem recorrer a estimativas ad-hoc.
+- [ ] **Step 3: Componentes de conteúdo específicos Growth Club**
 
-- [ ] **Step 4: Commit**
+Peças que só fazem sentido neste produto (a fase Site vai precisar no Day 1):
+1. **Playbook card** (título + autor + tags + tempo de leitura + CTA "ler")
+2. **Benchmark card** (métrica + setor + número + timestamp + fonte)
+3. **Member card** (avatar + nome + cargo + empresa + tags de skills + link LinkedIn)
+4. **Founder Member badge** (ícone + label — marca pra quem é FM)
+5. **Meetup card** (imagem + episódio `S1E1` + cidade + data + botão "tirar ingresso")
+6. **Tier comparison card** (Growth Hacker vs Growth Hacker Master — features)
+
+- [ ] **Step 4: Guia de uso em markdown**
+
+Para cada componente (base + específico): quando usar, quando NÃO usar, variações, regras de hierarquia, anatomia visual (quais tokens consome).
+
+- [ ] **Step 5: Validação de handoff**
+
+Critério: designer/dev da fase Site pega o Figma + design-tokens.md + component-spec.md e, **sem chamar o Henrique**, monta o mockup da landing page inteira. Se travar por falta de componente, o kit está incompleto — voltar a este chunk.
+
+- [ ] **Step 6: Commit**
 
 ```bash
 git add brand/templates/site/
-git commit -m "brand(templates): site component kit for handoff to fase Site"
+git commit -m "brand(templates): site handoff kit v1 (tokens + base + content-specific)"
 ```
 
 ---
@@ -557,7 +667,69 @@ git add brand/brand-book-v1.pdf
 git commit -m "brand(book): PDF export of brand book v1"
 ```
 
-### Task 5.3: Post-execution sync
+### Task 5.3: Export pack (favicons, OG images, touch-icons)
+
+**Files:**
+- Create: `brand/assets/exports/favicon.ico`
+- Create: `brand/assets/exports/favicon-16x16.png`
+- Create: `brand/assets/exports/favicon-32x32.png`
+- Create: `brand/assets/exports/apple-touch-icon.png` (180x180)
+- Create: `brand/assets/exports/android-chrome-192x192.png`
+- Create: `brand/assets/exports/android-chrome-512x512.png`
+- Create: `brand/assets/exports/og-image.png` (1200x630)
+- Create: `brand/assets/exports/logo@1x.png` `@2x.png` `@3x.png` (raster para fallback)
+
+- [ ] **Step 1: Exportar favicons a partir do logo icon-only**
+
+Ferramentas: Figma, RealFaviconGenerator, ou manual via export em cada dimensão.
+
+- [ ] **Step 2: Gerar OG-image padrão (1200x630)**
+
+Imagem para preview em redes sociais (LinkedIn, Twitter, Facebook). Versão padrão do Growth Club + 1-2 templates editáveis pra posts específicos (Meetup, Founder Members, etc.).
+
+- [ ] **Step 3: Gerar PNGs em 1x/2x/3x do logo**
+
+Para uso em emails (que não rendam SVG direito) e plataformas terceiras.
+
+- [ ] **Step 4: Validação**
+
+Critério: colocar o site em `localhost` de teste simulado; favicon aparece no tab; OG image aparece em teste de preview do LinkedIn (usar LinkedIn Post Inspector ou similar).
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add brand/assets/exports/
+git commit -m "brand(assets): export pack (favicons + touch-icons + OG + PNG fallbacks)"
+```
+
+### Task 5.4: Propagar regras textuais para CONVENTIONS.md
+
+**Files:**
+- Modify: `.specs/project/CONVENTIONS.md`
+
+Contexto: o `CLAUDE.md` trata `.specs/project/CONVENTIONS.md` como fonte de verdade pra regras que sobrevivem além de cada fase. Naming, glossário e regras de uso da marca precisam estar lá pra próximas fases (Site, conteúdo, futuros planos) não reinventarem.
+
+- [ ] **Step 1: Adicionar seção "Brand naming"**
+
+Copiar/referenciar de `brand/decisions/02-nome-canonico.md`:
+- Nome canônico
+- Variantes permitidas
+- Regra de uso da palavra "evento" (§3.3)
+- Regra de naming de Meetups (`Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO]`)
+- Regra de naming de marcas-filhas (definida em Task 1.4)
+
+- [ ] **Step 2: Adicionar seção "Voice glossário"**
+
+Copiar/referenciar de `brand/voice/glossario.md` — termos preferidos + evitados.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add .specs/project/CONVENTIONS.md
+git commit -m "docs(specs): propagate brand naming + voice rules to CONVENTIONS.md"
+```
+
+### Task 5.5: Post-execution sync
 
 **Files:**
 - Modify: `.specs/project/STATE.md`
@@ -565,11 +737,11 @@ git commit -m "brand(book): PDF export of brand book v1"
 
 - [ ] **Step 1: Adicionar ADR-002 em STATE.md**
 
-Registrar: Marca Brief v1 aprovado, commit hash, decisões principais (arquétipo, fate da bandeira pirata).
+Registrar: Marca Brief v1 aprovado, commit hash, decisões principais (arquétipo, fate da bandeira pirata, arquitetura de marcas-filhas).
 
 - [ ] **Step 2: Atualizar ROADMAP.md**
 
-Marcar Fase 1 sub-item "Brand brief entregue" como DONE.
+Marcar Fase 1 sub-item "Brand brief entregue" como DONE. Atualizar sprint log.
 
 - [ ] **Step 3: Commit**
 
@@ -602,8 +774,11 @@ Cada chunk produz **um conjunto de commits auditável**. Ao fim de cada chunk, r
 
 - [ ] `brand/brand-book.md` existe e está completo
 - [ ] `brand/brand-book-v1.pdf` existe
-- [ ] Pelo menos 5 variações de logo em `brand/assets/logo/`
-- [ ] Paleta, tipografia, voice & tone documentados
+- [ ] Pelo menos 5 variações de logo em `brand/assets/logo/` + lockup pra marcas-filhas
+- [ ] Export pack completo em `brand/assets/exports/` (favicons, touch-icons, OG)
+- [ ] Paleta (com teste objetivo de diferenciação passado), tipografia, voice & tone documentados
 - [ ] Templates pelo menos pro meetup + newsletter prontos
-- [ ] STATE.md + ROADMAP.md atualizados
+- [ ] Site handoff kit (tokens + componentes base + componentes específicos Growth Club)
+- [ ] Decisão sobre arquitetura de marcas-filhas tomada e comunicada aos membros
+- [ ] STATE.md + ROADMAP.md + CONVENTIONS.md atualizados
 - [ ] Todos os commits auditáveis no git
