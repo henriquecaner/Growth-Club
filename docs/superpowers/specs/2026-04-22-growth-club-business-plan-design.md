@@ -1,11 +1,13 @@
 # Business Plan Design — Growth Club
 
-**Versão:** 1.0 (draft)
+**Versão:** 1.1 (draft — após primeira rodada de revisão independente)
 **Data:** 2026-04-22
 **Autor:** Henrique Caner (com assistência de Claude)
-**Status:** 🟡 Em revisão pelo autor
+**Status:** 🟡 Em revisão — iteração 2
 
 > **Contexto:** Este documento é o design do business plan da **profissionalização** do Growth Club. Não é o executivo final — é a especificação que destrava as próximas fases (Marca e Site). Decisões marcadas como **deferidas** são explícitas e têm gatilho de retomada registrado.
+
+**Changelog resumido v1.0 → v1.1:** correções de 15 issues apontadas em revisão independente — sensibilidade de conversão na Fase 3, aritmética da cota Founder Members (split 25 + 75 = 100), P&L por linha com tickets e custos declarados, nova §11 "Estrutura Legal e Operacional", riscos R9 (plataforma) e R10 (LGPD), priorização Must-have/Nice-to-have + plano B na Fase 1, checklist de readiness com critérios objetivos, medição de overlap Substack ↔ Community.
 
 ---
 
@@ -34,14 +36,16 @@
 
 Em 22 de abril de 2026, o Growth Club já opera com tração orgânica relevante:
 
-| Ativo | Plataforma | Tamanho | Idade |
-|---|---|---|---|
-| Substack `brgrowthclub.substack.com` | Substack | **2.261 assinantes** | Desde 2019 |
-| Comunidade "THE GROWTH CLUB" | WhatsApp Communities | **715 membros · 7 grupos** | Em atividade |
-| Grupo core "GROWTH CLUB" | WhatsApp | **391 membros · 31 online** | Núcleo ativo |
-| Sub-grupos temáticos | WhatsApp | AI LIKE A PRO, Meetups de Growth, PLG BR, Growth Mafia, CLG BR | Em atividade |
-| Meetups realizados | Presencial | **10+ desde 2015** (incluindo edição no auditório da CRMBonus) | 11 anos de histórico |
-| Produto standalone | Workshop | **AI LIKE A PRO** — ao menos 1 edição já rodada | Recente |
+| Ativo | Plataforma | Tamanho | Idade | Destino pós-Fase-1 |
+|---|---|---|---|---|
+| Substack `brgrowthclub.substack.com` | Substack | **2.261 assinantes** | Desde 2019 | URL mantida · nome editorial migra para "Growth Club" |
+| Comunidade "THE GROWTH CLUB" | WhatsApp Communities | **715 membros · 7 grupos** | Em atividade | Renomear para "Growth Club" · decisão sobre consolidação dos 7 grupos na Fase 1 |
+| Grupo core "GROWTH CLUB" | WhatsApp | **391 membros · 31 online** | Núcleo ativo | Mantido como core · nome "Growth Club" |
+| Sub-grupos temáticos | WhatsApp | AI LIKE A PRO, Meetups de Growth, PLG BR, Growth Mafia, CLG BR | Em atividade | Decisão Fase 1 (consolidar / manter / arquivar) |
+| Meetups realizados | Presencial | **10+ desde 2015** (incluindo edição no auditório da CRMBonus) | 11 anos de histórico | Catalogados como "Era Pré-S1" |
+| Produto standalone | Workshop | **AI LIKE A PRO** — ao menos 1 edição já rodada | Recente | Marca-filha oficial do Growth Club |
+
+**⚠️ Entregável da Fase 1:** medir **overlap entre Substack (emails) e Comunidade WhatsApp (telefones↔emails)** via cross-check. Baseline real de "emails únicos consolidados" é o número que vale, não soma bruta (2.261 + 715 pode ter 30-50% de overlap).
 
 ### 2.2 Métricas qualitativas do Substack
 
@@ -159,7 +163,7 @@ Três componentes operáveis:
 | F4 | Q&A mensal ao vivo com grande nome | Ao vivo pra pagantes, replay público |
 | F5 | AMA mensal async com grande nome | Idem F4 |
 | F6 | Aulas gravadas (biblioteca crescente) | Alimentada pelos lives + produções próprias |
-| F7 | **Aulas ao vivo com desafios de membros** | ⭐ Mecanismo-chave do ângulo "Execução > Teatro" |
+| F7 | **Aulas ao vivo com desafios de membros** | ⭐ Mecanismo-chave do ângulo "Execução > Teatro". **Cadência:** mensal. **Formato:** 60-90min ao vivo; gravação alimenta F6. **Custo estimado/sessão:** R$ 500-1.200 (edição + gravação + facilitador horista) |
 | F8 | Apoio à recolocação | Coaching + rede de empresas parceiras |
 
 #### Meetups / Encontros (transversais)
@@ -216,44 +220,65 @@ Três mecanismos substituem o "hot-seat" originalmente considerado (e descartado
 
 ## 6. Modelo de Receita
 
-### 6.1 Fontes de receita
+### 6.1 Fontes de receita — P&L simplificado por linha
 
-| Fonte | Ativa em | Volume estimado ano 1 (Fase 1-2) |
-|---|---|---|
-| Meetups (ticket individual) | Fase 1 (imediato) | R$ 120-180k bruto · R$ 60-120k líquido |
-| Workshops high-ticket (AI LIKE A PRO) | Fase 1 | R$ 225k bruto · R$ 125-145k líquido |
-| Patrocínio de Livecast (agência parceira) | Fase 1-2 | R$ 60-120k líquido (a confirmar contrato) |
-| Founder Members (cota única de 100) | Fase 1-2 (gatilho) | ~R$ 178-237k upfront (dependendo do desconto) |
-| Growth Hacker Master (membership R$ 990) | Fase 3 (ano 2+) | ~R$ 198k no 1º ano (estimativa: 200 pagantes) |
+**Premissas declaradas (alvos, não compromissos):**
 
-**Receita total Fase 1-2 (pré-Master):** ~R$ 400-600k/ano — cobre operação sem depender de membership recorrente.
-**Receita total Fase 3 em diante:** R$ 600k+ com camada de recorrência crescente.
+- **Ticket Meetup:** R$ 120 early-bird / R$ 180 full · **média blended ~R$ 140-150**
+- **Ticket Workshop (AI LIKE A PRO style):** R$ 2.500 early / R$ 4.500 full · **média blended ~R$ 3.500-3.750**
+- **Lotação média Meetup:** 180 pax (venue 200-250 com 75-90% fill rate)
+- **Lotação média Workshop:** 30 pax
+- **Imposto:** 6-14% dependendo do regime tributário (ver §11 — deferido)
+- **Pró-labore Henrique:** deferido (ver §11) — não entra no custo operacional até definição
+- **CAC:** TBD — não há funil de ads rodando ainda. **Gatilho de medição: Fase 2, após 30 dias de ads ativos.**
+
+**Projeção por linha (ano 1 da Fase 2 = S1/2026):**
+
+| Linha | Volume | Preço médio | Receita bruta | Custos (ballpark) | Líquido estimado |
+|---|---|---|---|---|---|
+| Meetups (6/ano × 180 pax) | 1.080 pax | R$ 140 | R$ 151k | Venue R$ 4-6k/evt · F&B R$ 2-4k/evt · Produção R$ 1-2k/evt · Gateway 4% · Imposto ~14% → **R$ 8-12k/meetup** | **R$ 76-91k** |
+| Workshops (2/ano × 30 pax) | 60 pax | R$ 3.750 | R$ 225k | Venue 2 dias R$ 15-25k · Catering R$ 5-8k · Produção R$ 8-12k · Gateway 4% · Imposto ~14% → **R$ 40-60k/workshop** | **R$ 105-145k** |
+| Patrocínio Livecast (agência parceira) | 1 cota/temporada | — | R$ 80-150k (a negociar) | Edição/produção paga pelo patrocinador · custo próprio baixo | **R$ 60-120k** |
+| Founder Members · cota parcial (Barte, 25 pax) | 25 | R$ 2.079 (R$ 2.970 com 30% off) | R$ 52k upfront | Gateway 4% · Imposto ~14% | **~R$ 42k** |
+| Founder Members · cota restante (pós-checklist, 75 pax) | 75 | R$ 2.079 | R$ 156k upfront | Gateway 4% · Imposto ~14% | **~R$ 125k** |
+| Growth Hacker Master (Fase 3, ano 1) | ver §7.4 (cenário central 3%) | R$ 990 | R$ 119k | Gateway 4% · Imposto ~14% | **~R$ 95k** |
+
+**Totais estimados (cenário central):**
+
+- **Fase 1-2 (pré-Master):** R$ 400-520k **líquido/ano**, *antes de pró-labore e CAC declarados*
+- **Fase 3 em diante:** empilha R$ 95k+ de recorrência crescente
+
+**⚠️ Disclaimer:** estes são projeções com premissas declaradas, não compromissos. Requerem validação com dados reais dos primeiros Meetups e Workshops sob novo branding. Os custos listados são *ballpark* — P&L definitivo exige negociação real de venue + gateway + estrutura tributária definida.
 
 ### 6.2 Estrutura dos Founder Members
 
 | Parâmetro | Valor |
 |---|---|
-| Cota máxima | **100 pessoas** — acabou, acabou, não reabre |
+| **Cota máxima total** | **100 pessoas** — acabou, acabou, não reabre |
+| **Cota parcial (Barte S1E1)** | **25 pessoas** (abertas in loco / dias imediatos ao evento; prioridade para quem esteve presente) |
+| **Cota restante (pós-checklist)** | **75 pessoas** (liberadas quando gatilho estiver verde) |
 | Duração equivalente | ~3 anos de membership |
 | Preço base de cálculo | R$ 990 × 3 = R$ 2.970 |
-| Desconto (deferido) | 20%, 30% ou 40% — decidir na oferta |
-| Receita upfront esperada | R$ 178k-237k |
+| **Desconto-alvo (recomendação)** | **30% → R$ 2.079** (deferido: decisão final na oferta — faixa 20/30/40%) |
+| Receita upfront cota parcial (25 pax) | ~R$ 52k |
+| Receita upfront cota restante (75 pax) | ~R$ 156k |
+| **Receita upfront total (cenário central)** | **~R$ 208k** |
 | Pagamento (deferido) | À vista / parcelado — decidir na oferta |
-| Benefício principal | Acesso vitalício ao Master + reconhecimento público + potencial revshare |
-| Revshare (deferido) | Modalidade a definir (referral fee / revenue share / profit share). **Exige contrato escrito ANTES do 1º assinar.** |
+| Benefício principal | Acesso vitalício ao Master + reconhecimento público + revshare |
+| **Revshare — faixa-alvo** | **Pool de 5-10% do lucro líquido anual, distribuído proporcionalmente à atividade de referral comprovada** (indicações que convertem). Modalidade exata (referral fee ou profit share) deferida para redação do contrato. **Exige contrato escrito ANTES do 1º Founder Member assinar.** |
 
-**Cota parcial no Barte:** 20-30 das 100 vagas abrem durante / nos dias imediatos ao Meetup Growth SP S1E1. Quem esteve presente tem prioridade de acesso. Criação de urgência orgânica: "vocês que estiveram aqui hoje são os primeiros a saber."
+**Aritmética travada:** 25 (parcial, Fase 1) + 75 (restante, Fase 2) = 100 (cota total). Não ultrapassa.
 
-**Gatilho de lançamento do restante da cota (checklist de readiness):**
+**Gatilho de lançamento do restante da cota — checklist objetivo:**
 
-- [ ] Newsletter publicada por ≥ 8 semanas consecutivas sem falha
-- [ ] Livecast rodando com convidados confirmados pelos próximos 60 dias
-- [ ] Funil de ads rodando com CAC mensurável
-- [ ] Playbooks / Benchmarks / Diretório abertos publicados (ao menos v0)
-- [ ] Mínimo de **N inscrições grátis/semana consistentes** (N a calibrar — sugestão inicial: 50-100/semana)
-- [ ] **Contrato de revshare pronto e revisado juridicamente**
+- [ ] **Newsletter:** 8 edições publicadas em 8 semanas calendário, open rate médio ≥ 25%, ≥ 1 case numérico verificável por edição
+- [ ] **Livecast:** rodando com convidados confirmados pelos próximos 60 dias (agenda em, no mínimo, 8 semanas à frente)
+- [ ] **Funil de ads:** rodando com CAC mensurável há ≥ 30 dias (dataset mínimo para validar unit economics)
+- [ ] **Conteúdo aberto:** Playbooks v0 (≥ 3 peças) + Benchmarks v0 (≥ 1 categoria) + Diretório v0 publicados
+- [ ] **Ritmo de aquisição:** média móvel 4 semanas ≥ **75 novos Growth Hackers/semana** (fixado como baseline; revisável em v1.2 com dados reais)
+- [ ] **Contrato de revshare** redigido e revisado juridicamente
 
-Quando os 6 itens estiverem verdes, abre-se o restante da oferta de Founder Members (70-80 vagas restantes).
+Quando os 6 itens estiverem verdes, abre-se o restante da cota (75 vagas).
 
 ### 6.3 Como o Barte alimenta o modelo
 
@@ -272,27 +297,43 @@ Isso transforma o evento em:
 
 Descrita no §2. Ativos orgânicos vivos, marca fragmentada, monetização não-ativada.
 
-### 7.2 FASE 1 — Consolidação e Public Launch (maio-junho/2026)
+### 7.2 FASE 1 — Consolidação e Public Launch (maio-junho/2026, ~6 semanas)
 
 **Objetivo:** unificar a marca, lançar site, ancorar relançamento público no **Meetup Growth SP · S1E1 · Barte**.
 
-**Entregáveis:**
-- Site `growthclub.pro` ao ar com: landing + formulário de aplicação + thank-you page
-- Substack rebatizado editorialmente para "Growth Club" (sai "BR Growth Club")
-- Comunidade no WhatsApp / app consolidada sob "Growth Club" (padronizar o nome sem "THE")
-- Régua editorial do grupo (S1) implementada com mensagem clara
-- Playbooks / Benchmarks / Diretório abertos **v0** publicados (versão enxuta)
-- Meetup da Barte enquadrado como **S1E1** com comunicação "lançamento oficial"
-- **Política: ingresso comprado = Growth Hacker automático** (fluxo automatizado: compra → email capture → add Substack + comunidade WhatsApp + email de onboarding)
-- Sequência de onboarding automatizada para novos Growth Hackers
-- **Abertura da cota parcial de Founder Members (20-30 vagas) no evento**
+#### Entregáveis MUST-HAVE (não-negociáveis)
 
-**Métricas de saída da Fase 1:**
-- Site e funil operantes
-- 150-250 ingressos vendidos para o Barte S1E1
-- Base grátis consolidada ≥ 3.000 pessoas
-- 0 variantes de nome em circulação
-- 20-30 Founder Members convertidos no evento
+1. Site `growthclub.pro` ao ar: landing + formulário de aplicação + thank-you page
+2. **Automação ingresso → membership**: compra de ingresso → email capture → add ao Substack + Community WhatsApp + sequência de onboarding. **Testado ponta-a-ponta ≥ 2 semanas antes do Barte** (ver R7)
+3. Substack rebatizado editorialmente para "Growth Club" (URL mantém, nome muda)
+4. Comunidade WhatsApp/app padronizada sob "Growth Club" (sai "THE")
+5. Régua editorial do grupo (S1) ativada com mensagem pública
+6. Meetup da Barte enquadrado como **Meetup Growth SP · S1E1** com comunicação "relançamento oficial"
+7. **Oferta de Founder Members cota parcial (25 vagas)** redigida, com contrato de revshare já revisado juridicamente
+8. **Medição de overlap Substack ↔ Community** (baseline oficial de emails únicos)
+9. Opt-in/LGPD (ver R10): checkbox de consentimento por canal no checkout do ingresso; Política de Privacidade publicada com o site
+
+#### Entregáveis NICE-TO-HAVE (degradam sem bloquear)
+
+10. Playbooks v0 (mínimo 3 peças)
+11. Benchmarks v0 (mínimo 1 categoria, ex. CAC SaaS B2B Brasil)
+12. Diretório v0 (perfil básico dos primeiros membros)
+13. Consolidação visual/narrativa dos 7 sub-grupos WhatsApp
+
+#### Plano B (se slip > 2 semanas do Barte)
+
+- **Corte:** Benchmarks v0 e Diretório v0 → empurrados para Fase 2
+- **Mantém:** Playbooks v0 (valor SEO + aquisição orgânica justifica o esforço)
+- **Inegociável:** Must-have 1-9 — sem eles, o Barte como "relançamento oficial" não se sustenta
+
+#### Métricas de saída da Fase 1
+
+- Site e funil operantes, testados ponta-a-ponta
+- **150-250 ingressos vendidos** para o Barte S1E1
+- Base grátis consolidada em **emails únicos ≥ 2.500** (ajustado: assumindo overlap de ~30% entre os 2.261 Substack + 715 Community)
+- **0 variantes de nome** em circulação pública
+- **25 Founder Members** convertidos (cota parcial cheia)
+- **R$ 42k+ de receita líquida upfront** de Founder Members no Barte
 
 ### 7.3 FASE 2 — Crescimento ordenado (junho/2026 — junho/2027)
 
@@ -309,17 +350,30 @@ Descrita no §2. Ativos orgânicos vivos, marca fragmentada, monetização não-
 - Decisões de marca visual tomadas (handoff para fase de Marca/Site v2)
 
 **Métricas de saída da Fase 2:**
-- 5.000 - 10.000 Growth Hackers grátis
-- WAU cross-canal ≥ 40%
-- 80-100 Founder Members convertidos (cota total de 100)
-- Patrocínio do livecast com contrato assinado
-- Operação auto-sustentada (receita cobre custo + pró-labore)
+- 5.000 - 10.000 Growth Hackers grátis (**emails únicos consolidados**)
+- WAU cross-canal ≥ 40% (medido pelo analytics v1)
+- **100 Founder Members convertidos** (cota total — parcial 25 do Barte + restante 75 pós-checklist)
+- Patrocínio do Livecast com contrato assinado
+- CAC alvo declarado e LTV/CAC projetado
+- Operação auto-sustentada (receita cobre custo + pró-labore definido em §11)
 
 ### 7.4 FASE 3 — Lock e monetização recorrente (junho/2027+)
 
 **Objetivo:** ativar Growth Hacker Master (R$ 990/ano), consolidar posição de referência.
 
-**Entregáveis:**
+#### Cálculo explícito de conversão (com sensibilidade)
+
+```
+base grátis × WAU% × conversão% = pagantes Growth Hacker Master no 1º ano
+
+Cenário conservador (2%):  10.000 × 40% × 2% =  80 pagantes · R$  79k/ano
+Cenário central (3%):       10.000 × 40% × 3% = 120 pagantes · R$ 119k/ano  ← alvo operacional
+Cenário otimista (5%):      10.000 × 40% × 5% = 200 pagantes · R$ 198k/ano
+```
+
+O **cenário central (3%)** é o **alvo operacional** deste design. O otimista (5%) entra como upside/aspiração, não como compromisso. O conservador (2%) define o piso aceitável — abaixo disso, modelo precisa ser revisto antes de escalar.
+
+#### Entregáveis:
 - Migração de conteúdo premium (F2, F3, F4, F5, F6, F7, F8) para trás do paywall
 - Plano de comunicação do "trancar" rodado (aviso prévio ≥ 90 dias; benefícios grandfathered para muito-engajados)
 - Ofertas de conversão (desconto de lançamento, bundles com workshops, etc.)
@@ -384,6 +438,8 @@ Checklist de 6 itens detalhado em §6.2. Abre-se o restante da cota (70-80 vagas
 | **R6** | Fragmentação dos 7 sub-grupos atuais. Manter todos pode diluir a narrativa; consolidar pode alienar usuários. | Decisão explícita na Fase 1, comunicada aos membros com contexto. Possível modelo: grupo core + 2-3 sub-canais temáticos oficiais, resto arquivado. |
 | **R7** | Fluxo de aquisição via ingresso do meetup depende de automação confiável. Se a integração ingresso → membership falhar no dia do Barte, a promessa quebra. | Testar fluxo ponta-a-ponta com 2-3 semanas de antecedência. Ter operador humano de backup no dia. |
 | **R8** | Inflação de base grátis com membros não-engajados após Barte. Comprou ingresso por curiosidade, nunca participa. Pode deprimir WAU 40%. | Sequência de onboarding forte, check-ins semanais, mecanismo de arquivamento para inativos após X meses. |
+| **R9** | **Dependência de plataformas de terceiros** (Substack + Meta/WhatsApp). Mudança de ToS, ban, rate-limit de convites ou remoção do grupo evapora o ativo. Hoje não há plano de portabilidade. | **Export periódico da lista Substack** (CSV com emails, mensal). **Espelho em ESP próprio** (Mailchimp / Beehiiv / ActiveCampaign) a partir da Fase 1 — todo novo membro vai simultaneamente pro Substack E pro ESP espelho. **Decisão antecipada** da ferramenta do grupo privado na Fase 1 (§9.1). |
+| **R10** | **Compliance LGPD.** Fluxo "ingresso → add automático em Substack + WhatsApp + email" sem consentimento explícito por canal viola LGPD (finalidade + base legal). Risco de ANPD e de reclamação pública. | **Checkbox de opt-in por canal** no checkout do ingresso (separado: email mkt, WhatsApp community, dados para diretório/matching). **Política de Privacidade** publicada junto com o site. **Termo de Uso** da comunidade. Revisão jurídica antes do Barte. |
 
 ---
 
@@ -416,6 +472,51 @@ Este design é **versionado**. Mudanças estruturais geram `v2`, `v3`, etc. Quan
 
 ---
 
+## 11. Estrutura Legal e Operacional (deferida com placeholder)
+
+Business plan maduro precisa fechar a pilha de decisões que aqui ficam **deferidas com gatilho**. Nenhuma dessas decisões bloqueia a Fase 1 em si, mas **todas precisam estar tomadas antes do primeiro Founder Member assinar contrato** (para mitigar R4 — passivo jurídico de revshare).
+
+### 11.1 Estrutura societária
+
+- [ ] **Pessoa jurídica emissora de nota:** MEI / ME / LTDA / S.A. (definir)
+- [ ] **Razão social e CNPJ:** registrar
+- [ ] **Composição societária:** Henrique sozinho? Sócios? Quotas?
+
+### 11.2 Regime tributário
+
+- [ ] **Enquadramento:** Simples Nacional (anexos III/V) / Presumido / Real
+- [ ] **CNAE principal:** atividade a registrar (ex.: 8599-6/99 "atividades de ensino não especificadas" + 9329-8/99 "outras atividades de recreação")
+- [ ] **Carga tributária estimada:** 6% (Simples anexo III) a 20%+ (Real)
+
+### 11.3 Operadores nomeados por função
+
+| Função | Nome | Status |
+|---|---|---|
+| Editorial (Substack + newsletter + posts) | Henrique Caner | Ativo |
+| Eventos (booking + venue + produção dos Meetups/Workshops) | A definir (Henrique + freelancer?) | Deferido |
+| Financeiro / Jurídico | A definir (contador + advogado externo?) | Deferido |
+| Membership / Comunidade (moderação + onboarding) | Henrique Caner | Ativo (Fase 1) |
+| Patrocínio / Comercial | A definir | Deferido |
+| Produção de livecast / vídeo | Agência parceira (patrocínio) | Confirmado (a contratualizar) |
+
+### 11.4 Pró-labore e ponto de equilíbrio
+
+- [ ] **Pró-labore mínimo do Henrique:** a definir (sugestão-baseline: R$ 10-15k/mês a partir da Fase 2, quando receita estiver consolidada)
+- [ ] **Ponto de equilíbrio operacional:** calcular após pró-labore + custos declarados em §6.1
+- [ ] **Runway pré-receita recorrente:** o caixa acumulado de Meetups + Workshops + Founder Members precisa cobrir os meses até a Fase 3 (Master). Modelar em planilha separada como anexo ao business plan.
+
+### 11.5 Contratos e instrumentos jurídicos (checklist antes do Barte)
+
+- [ ] **Contrato de Founder Member** — com cláusula explícita de revshare (pool 5-10% do lucro líquido, distribuição por atividade de referral comprovada)
+- [ ] **Contrato de Patrocínio de Livecast** — com brief editorial anti-contaminação (o que o patrocinador pode e não pode pautar)
+- [ ] **Termos de Uso da Comunidade** (regras, banimento, confidencialidade/Chatham House)
+- [ ] **Política de Privacidade** (LGPD — ver R10)
+- [ ] **Contrato de prestação de serviços** para freelancers de conteúdo / produção de evento
+
+**Gatilho de retomada desta seção:** semana 1 da Fase 1, o Henrique deve agendar reunião com contador + advogado para fechar itens 11.1-11.5. Sem isso, a oferta de Founder Member ofertada no Barte fica em risco jurídico (R4).
+
+---
+
 ## Apêndice A — Histórico de decisões desta sessão de brainstorming
 
 1. Escolha por decomposição em 3 projetos: Business Plan → Marca → Site (ordem lógica)
@@ -436,3 +537,28 @@ Este design é **versionado**. Mudanças estruturais geram `v2`, `v3`, etc. Quan
 16. Workshop high-ticket "AI LIKE A PRO" reabsorvido como linha recorrente
 17. Formato dos meetups: `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]`
 18. S1 = 2026; edições pré-2026 = "Era Pré-S1"
+
+---
+
+## Apêndice B — Changelog
+
+### v1.1 — 2026-04-22 (após primeira rodada de revisão independente)
+
+Issues resolvidas:
+- **Consistência §7.3 vs §8.3 + determinismo de conversão** → §7.4 ganhou cálculo explícito com sensibilidade 2%/3%/5%
+- **Aritmética da cota Founder Members** → travada em 25 (Barte) + 75 (pós-checklist) = 100
+- **Custos não modelados + ticket meetup não declarado + sanidade workshop** → §6.1 reescrito com P&L por linha, tickets declarados, custos ballpark
+- **Estrutura societária/tributária/operadores ausente** → nova §11
+- **Checklist "8 semanas sem falha" subjetivo** → redefinido com critério objetivo (open rate ≥ 25%, case numérico por edição)
+- **N inscrições/semana não fixado** → baseline 75/semana (MA4)
+- **Risco plataforma não listado** → R9 adicionado (export periódico, espelho em ESP próprio)
+- **Risco LGPD não listado** → R10 adicionado (opt-in por canal, Política de Privacidade)
+- **Meta "≥ 3.000 consolidada" sem baseline de overlap** → ajustada para "emails únicos ≥ 2.500" com medição de overlap como entregável Fase 1
+- **F7 sem operação descrita** → cadência mensal + custo estimado R$ 500-1.200/sessão
+- **Revshare sem base de cálculo** → faixa-alvo 5-10% do lucro líquido em pool, distribuição por atividade de referral
+- **Fase 1 otimista sem plano B** → priorização Must-have / Nice-to-have + regra "slip > 2 semanas corta Benchmarks e Diretório"
+- **Brand inconsistency na tabela §2.1** → coluna "Destino pós-Fase-1" adicionada
+
+### v1.0 — 2026-04-22 (versão inicial pós-brainstorming)
+
+Versão saída direto da sessão de brainstorming de 22/04/2026. 10 seções + Apêndice A com histórico de decisões.
