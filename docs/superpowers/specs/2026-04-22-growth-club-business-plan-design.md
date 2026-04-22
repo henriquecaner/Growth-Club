@@ -1,13 +1,13 @@
 # Business Plan Design — Growth Club
 
-**Versão:** 1.1 (draft — após primeira rodada de revisão independente)
+**Versão:** 1.2 (revisão independente aprovada · pronto para revisão do autor humano)
 **Data:** 2026-04-22
 **Autor:** Henrique Caner (com assistência de Claude)
-**Status:** 🟡 Em revisão — iteração 2
+**Status:** 🟢 Approved pela revisão independente · aguardando aprovação do autor
 
 > **Contexto:** Este documento é o design do business plan da **profissionalização** do Growth Club. Não é o executivo final — é a especificação que destrava as próximas fases (Marca e Site). Decisões marcadas como **deferidas** são explícitas e têm gatilho de retomada registrado.
 
-**Changelog resumido v1.0 → v1.1:** correções de 15 issues apontadas em revisão independente — sensibilidade de conversão na Fase 3, aritmética da cota Founder Members (split 25 + 75 = 100), P&L por linha com tickets e custos declarados, nova §11 "Estrutura Legal e Operacional", riscos R9 (plataforma) e R10 (LGPD), priorização Must-have/Nice-to-have + plano B na Fase 1, checklist de readiness com critérios objetivos, medição de overlap Substack ↔ Community.
+**Changelog resumido:** v1.0 → v1.1 (15 issues da primeira revisão endereçadas) → v1.2 (3 referências stale harmonizadas na segunda revisão). Ver Apêndice B pro detalhe completo.
 
 ---
 
@@ -332,8 +332,8 @@ Descrita no §2. Ativos orgânicos vivos, marca fragmentada, monetização não-
 - **150-250 ingressos vendidos** para o Barte S1E1
 - Base grátis consolidada em **emails únicos ≥ 2.500** (ajustado: assumindo overlap de ~30% entre os 2.261 Substack + 715 Community)
 - **0 variantes de nome** em circulação pública
-- **25 Founder Members** convertidos (cota parcial cheia)
-- **R$ 42k+ de receita líquida upfront** de Founder Members no Barte
+- **25 Founder Members** convertidos (alvo: cota parcial 25/25 cheia no Barte; floor aceitável: ≥ 15 conversões)
+- **~R$ 42k de receita líquida upfront** de Founder Members (alvo com cota parcial cheia; varia proporcionalmente se floor)
 
 ### 7.3 FASE 2 — Crescimento ordenado (junho/2026 — junho/2027)
 
@@ -380,9 +380,11 @@ O **cenário central (3%)** é o **alvo operacional** deste design. O otimista (
 - Biblioteca de aulas gravadas (F6) robusta
 - Operação estabilizada com time mínimo (creator solo + freelancer de conteúdo + booking de meetup)
 
-**Métricas de saída da Fase 3:**
-- 200+ pagantes Growth Hacker Master (5% da WAU de 4k)
-- Receita recorrente anual ≥ R$ 200k somada às outras fontes
+**Métricas de saída da Fase 3 (ano 1 do Master):**
+- **Alvo operacional (cenário central 3%):** 120+ pagantes Growth Hacker Master · ~R$ 119k/ano
+- **Upside (cenário otimista 5%):** 200+ pagantes · ~R$ 198k/ano
+- **Piso aceitável (cenário conservador 2%):** 80 pagantes · ~R$ 79k/ano (abaixo disso, revisar modelo antes de escalar)
+- Receita recorrente anual ≥ R$ 100k no ano 1 (alvo central) · crescendo via renovação + novas entradas
 - LTV/CAC ≥ 3 (benchmark de viabilidade de comunidade paga)
 
 ---
@@ -399,7 +401,7 @@ O **cenário central (3%)** é o **alvo operacional** deste design. O otimista (
 
 ### 8.2 Gatilho de abertura do restante dos Founder Members
 
-Checklist de 6 itens detalhado em §6.2. Abre-se o restante da cota (70-80 vagas) quando todos os itens estiverem verdes.
+Checklist de 6 itens detalhado em §6.2. Abre-se o restante da cota (**75 vagas**) quando todos os itens estiverem verdes.
 
 ### 8.3 Gatilho de Growth Hacker Master (lock)
 
@@ -541,6 +543,32 @@ Business plan maduro precisa fechar a pilha de decisões que aqui ficam **deferi
 ---
 
 ## Apêndice B — Changelog
+
+### v1.1 — 2026-04-22 (após primeira rodada de revisão independente)
+
+Issues resolvidas:
+- **Consistência §7.3 vs §8.3 + determinismo de conversão** → §7.4 ganhou cálculo explícito com sensibilidade 2%/3%/5%
+- **Aritmética da cota Founder Members** → travada em 25 (Barte) + 75 (pós-checklist) = 100
+- **Custos não modelados + ticket meetup não declarado + sanidade workshop** → §6.1 reescrito com P&L por linha, tickets declarados, custos ballpark
+- **Estrutura societária/tributária/operadores ausente** → nova §11
+- **Checklist "8 semanas sem falha" subjetivo** → redefinido com critério objetivo (open rate ≥ 25%, case numérico por edição)
+- **N inscrições/semana não fixado** → baseline 75/semana (MA4)
+- **Risco plataforma não listado** → R9 adicionado (export periódico, espelho em ESP próprio)
+- **Risco LGPD não listado** → R10 adicionado (opt-in por canal, Política de Privacidade)
+- **Meta "≥ 3.000 consolidada" sem baseline de overlap** → ajustada para "emails únicos ≥ 2.500" com medição de overlap como entregável Fase 1
+- **F7 sem operação descrita** → cadência mensal + custo estimado R$ 500-1.200/sessão
+- **Revshare sem base de cálculo** → faixa-alvo 5-10% do lucro líquido em pool, distribuição por atividade de referral
+- **Fase 1 otimista sem plano B** → priorização Must-have / Nice-to-have + regra "slip > 2 semanas corta Benchmarks e Diretório"
+- **Brand inconsistency na tabela §2.1** → coluna "Destino pós-Fase-1" adicionada
+
+### v1.2 — 2026-04-22 (harmonização pós-iteração 2 da revisão)
+
+Correções de consistência interna apontadas na iteração 2:
+- §7.4 métricas de saída: alinhadas aos cenários 2%/3%/5% (antes era "200+ / 5%" fixo, contradizendo o alvo central declarado)
+- §8.2: "70-80 vagas" → "75 vagas" (harmonizar com §6.2)
+- §7.2 métrica de saída: receita Founder Members marcada como "alvo" com floor aceitável declarado
+
+**Status:** revisão independente Approved · pronto para revisão do autor humano.
 
 ### v1.1 — 2026-04-22 (após primeira rodada de revisão independente)
 
