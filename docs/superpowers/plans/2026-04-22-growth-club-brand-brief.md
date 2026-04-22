@@ -262,6 +262,8 @@ git commit -m "brand(visual): typography system v1"
 
 **⚠️ Nota de granularidade:** Esta task envolve trabalho criativo de designer, não se executa em "2-5 min por step". Cada step abaixo representa uma **sessão de design** (1-8 horas) com critério claro de passagem. Tempo estimado total: **1-2 semanas de designer freela dedicado** (ou 2-3 semanas se Henrique solo com aprendizado).
 
+**⚠️ Dependência:** Step 5 ("Lockup para marcas-filhas") **consome a decisão da Task 1.4**. Não inicie Step 5 antes da Task 1.4 estar fechada no Chunk 1, ou o lockup vai precisar ser refeito.
+
 - [ ] **Step 1a: Moodboard de referências (2-3 direções visuais)**
 
 Coletar 15-30 referências (não só logos — capas de revista, signage, merchandising, álbuns) organizadas em 2-3 direções distintas. Ex:
@@ -617,7 +619,8 @@ Seções:
 1. Manifesto (longa + curta)
 2. Posicionamento (do business plan §3.2)
 3. Não-negociáveis culturais (§3.3)
-4. Arquétipo e ton-anchor (Chunk 1)
+4. Arquétipo e ton-anchor (Chunk 1, Task 1.3)
+4b. Arquitetura de marcas-filhas (Chunk 1, Task 1.4) — decisão fundacional com impacto em logo e naming
 5. Sistema visual (Chunk 2)
 6. Voice & Tone (Chunk 3)
 7. Templates por formato (Chunk 4)
