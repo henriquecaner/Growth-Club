@@ -90,9 +90,9 @@ Régua rápida de 5-7 palavras pra qualquer peça. Escolher UM como definitivo.
 4. "Mesa de canto. Número no copo. Sem palco." — bonito, mas 3 fragmentos em vez de frase
 5. "Execução primeiro. Cerveja depois. LinkedIn, quando sobrar." — longo, mas captura hierarquia de valores
 
-**Minha recomendação: opção 1.** Funciona como régua editorial (é curto) e cobre os 3 arquétipos (Outlaw "franco, sem palco"; Sage "com número"; Regular Guy "com cerveja"). Escolha final é tua.
+**Minha recomendação: opção 1.** Funciona como régua editorial (é curto) e cobre os 3 arquétipos (Outlaw "franco, sem palco"; Sage "com número"; Regular Guy "com cerveja").
 
-**Decisão final:** [ESCOLHE 1-5 ou escreve o teu]
+**Decisão final travada (2026-04-22):** `"Franco, com número, sem palco, com cerveja."` ✅
 
 ---
 
