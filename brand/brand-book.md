@@ -6,8 +6,6 @@ last_updated: 2026-04-27
 authors: Henrique Caner
 ---
 
-# Growth Club — Brand Book v1
-
 > **Mesa de canto de um pub. Growth de verdade. Stack de verdade. Sem teatro.**
 
 Este brand book é o **menu** da marca: traz as decisões travadas, regras operáveis e onde encontrar cada arquivo-fonte detalhado. Use-o como ponto de partida; quando precisar de detalhe (ex: tabela de contraste WCAG, exemplos comparativos de tom, racional completo de arquétipo), siga os links pros arquivos do diretório `brand/`.
