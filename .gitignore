@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Claude Code — estado local não compartilhável
+.claude/worktrees/
+.claude/settings.local.json
+
+# Sessão local de memória/logs (recriado pelo runtime)
+.remember/
+
+# Stack futuro (quando tivermos código)
+node_modules/
+dist/
+build/
+.next/
+.env
+.env.local
+.env.*.local
+*.log
+__pycache__/
+*.pyc
+.cache/
+.DS_Store?
+Thumbs.db

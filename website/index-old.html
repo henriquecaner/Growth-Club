@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meetup Growth + IA | The Next Level</title>
+
+    <!-- Fonts Premium: Outfit (Display) & Plus Jakarta Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#030014', // Ultra dark purple/black
+                            accent: '#7000FF', // Electric Purple
+                            neon: '#00F0FF', // Cyber Blue
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #2a8af6 0%, #a853ba 50%, #e92a67 100%)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 15s linear infinite',
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scroll': 'scroll 20s linear infinite',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: .5 }
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for Glossy/Glass effects */
+        body {
+            background-color: #030014;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #7000FF;
+            outline: none;
+            box-shadow: 0 0 15px rgba(112, 0, 255, 0.3);
+        }
+
+        .glass-panel:hover {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* Spotlight Effect Logic */
+        .spotlight-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Typography & Decor */
+        .text-glow {
+            text-shadow: 0 0 40px rgba(112, 0, 255, 0.5);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #030014;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-left-color: #00F0FF;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Toast Animation */
+        .toast-enter {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .toast-enter-active {
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toast-exit {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-exit-active {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Sold Out Stamp */
+        .sold-out-stamp {
+            border: 2px solid #ef4444;
+            color: #ef4444;
+            padding: 4px 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 2px;
+            transform: rotate(-15deg);
+            display: inline-block;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-brand-accent selection:text-white">
+
+    <!-- Ambient Background Lights (Parallax Enabled) -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="parallax-bg absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-purple-600/20 rounded-full blur-[120px] animate-pulse will-change-transform"
+            data-speed="0.05"></div>
+        <div class="parallax-bg absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-blue-600/20 rounded-full blur-[120px] animate-pulse will-change-transform"
+            style="animation-delay: 2s;" data-speed="0.08"></div>
+    </div>
+
+    <!-- Sticky Nav with Blur -->
+    <nav class="fixed w-full z-50 top-0 left-0 border-b border-white/5 bg-[#030014]/70 backdrop-blur-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2">
+                <div class="w-3 h-3 bg-brand-neon rounded-full shadow-[0_0_10px_#00F0FF]"></div>
+                GROWTH<span class="text-white">CLUB</span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#agenda"
+                    class="hover:text-white hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)] transition-all duration-300">Agenda</a>
+                <a href="#community"
+                    class="hover:text-brand-neon hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)] transition-all duration-300 flex items-center gap-1">Community</a>
+                <a href="#speakers"
+                    class="hover:text-white hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)] transition-all duration-300">Speakers</a>
+            </div>
+
+            <a href="#tickets"
+                class="relative group px-6 py-2 rounded-full bg-white text-black font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-slate-100 hidden md:block shadow-lg hover:shadow-brand-neon/50">
+                <span class="relative z-10">Get Tickets</span>
+                <div
+                    class="absolute inset-0 bg-brand-neon opacity-0 group-hover:opacity-10 transition-opacity duration-300 mix-blend-overlay">
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+
+        <!-- Animated Ring in Background (Parallax Layer 1 - Slow) -->
+        <div class="absolute z-0 opacity-30 parallax-bg will-change-transform" data-speed="0.2">
+            <div class="w-[600px] h-[600px] border border-white/10 rounded-full animate-spin-slow dashed-border"></div>
+        </div>
+
+        <!-- Floating Elements for Depth (Parallax Layer 2 - Medium) -->
+        <div class="absolute top-1/4 left-10 w-4 h-4 bg-brand-neon rounded-full blur-[2px] opacity-40 parallax-bg will-change-transform"
+            data-speed="0.4"></div>
+        <div class="absolute bottom-1/3 right-20 w-8 h-8 bg-brand-accent rounded-full blur-[4px] opacity-30 parallax-bg will-change-transform"
+            data-speed="0.3"></div>
+
+        <!-- Foreground Elements (Parallax Layer 3 - Fast) -->
+        <div class="absolute top-20 right-1/4 w-2 h-2 bg-white rounded-full opacity-20 parallax-bg will-change-transform"
+            data-speed="0.6"></div>
+
+        <div class="container mx-auto px-6 z-10 text-center relative">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-brand-neon mb-8 reveal">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-neon opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-neon"></span>
+                </span>
+                EDITION 03: S?O PAULO
+            </div>
+
+            <h1
+                class="text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tighter mb-6 reveal delay-100">
+                <span class="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">GROWTH</span>
+                <span
+                    class="block text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-neon text-glow transform hover:scale-[1.02] transition-transform duration-500 cursor-default">INTELLIGENCE</span>
+            </h1>
+
+            <p
+                class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 reveal delay-200 font-light leading-relaxed">
+                Zero teoria. 100% Hiper-Automa?o. <br>
+                O encontro definitivo para l¡deres B2B que pararam de brincar com IA e comearam a escalar.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center reveal delay-300">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-brand-neon via-brand-accent to-brand-neon rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse">
+                    </div>
+                    <a href="#tickets"
+                        class="relative w-full md:w-auto px-10 py-5 bg-white text-black font-bold rounded-lg hover:bg-slate-100 transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95 shadow-xl">
+                        GARANTIR MEU INGRESSO AGORA <i data-lucide="arrow-right"
+                            class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div
+            class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+            <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+            <i data-lucide="arrow-down" size="16"></i>
+        </div>
+    </header>
+
+    <!-- NEW FEATURE: INFINITE LOGO MARQUEE -->
+    <div class="relative py-10 bg-[#030014] border-y border-white/5 overflow-hidden z-20">
+        <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#030014] to-transparent z-10"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#030014] to-transparent z-10"></div>
+
+        <p class="text-center text-xs text-slate-500 uppercase tracking-[0.2em] mb-6">Empresas presentes nas edi?es
+            anteriores</p>
+
+        <div
+            class="flex animate-scroll w-max gap-12 items-center opacity-40 hover:opacity-80 transition-opacity duration-500">
+            <!-- Set 1 -->
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="triangle"
+                    size="24"></i> Vercel</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="hexagon"
+                    size="24"></i> Linear</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="circle-dashed"
+                    size="24"></i> OpenAI</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="box" size="24"></i>
+                Dropbox</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="credit-card"
+                    size="24"></i> Stripe</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="cloud" size="24"></i>
+                Salesforce</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="slack" size="24"></i>
+                Slack</span>
+
+            <!-- Set 2 (Duplicate for infinity) -->
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="triangle"
+                    size="24"></i> Vercel</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="hexagon"
+                    size="24"></i> Linear</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="circle-dashed"
+                    size="24"></i> OpenAI</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="box" size="24"></i>
+                Dropbox</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="credit-card"
+                    size="24"></i> Stripe</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="cloud" size="24"></i>
+                Salesforce</span>
+            <span class="text-2xl font-display font-bold flex items-center gap-2"><i data-lucide="slack" size="24"></i>
+                Slack</span>
+        </div>
+    </div>
+
+    <!-- BENTO GRID STATS / WHY -->
+    <section class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]">
+
+                <!-- Main Value Prop -->
+                <div
+                    class="md:col-span-2 md:row-span-2 glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden spotlight-card group reveal">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-brand-accent/20 blur-[80px] rounded-full group-hover:bg-brand-accent/30 transition-colors duration-500">
+                    </div>
+                    <i data-lucide="cpu" class="text-white w-12 h-12 mb-6"></i>
+                    <h3 class="text-3xl font-display font-bold mb-4">MQLs Reais.<br>N?o Alucina?es.</h3>
+                    <p class="text-slate-400 text-lg leading-relaxed">
+                        Esquea o "hype". Vamos abrir o cap das opera?es que usam IA para gerar receita de verdade.
+                        Frameworks prontos para copiar e colar na sua opera?o B2B.
+                    </p>
+                    <div class="mt-8 flex gap-2">
+                        <span class="px-3 py-1 rounded-full border border-white/10 text-xs text-slate-300">ABM Esc
+                            lavel</span>
+                        <span class="px-3 py-1 rounded-full border border-white/10 text-xs text-slate-300">Predictive
+                            Sales</span>
+                    </div>
+                </div>
+
+                <!-- Stat 1 -->
+                <div
+                    class="md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-center spotlight-card reveal delay-100">
+                    <p class="text-sm text-slate-400 uppercase tracking-widest mb-2">P£blico Multidisciplinar</p>
+                    <div class="text-3xl font-display font-bold text-white mb-2">Growth Elite</div>
+                    <p class="text-xs text-brand-neon leading-tight">Marketing, Vendas, CS, Product, Analytics &
+                        Founders.</p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div
+                    class="md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-center spotlight-card reveal delay-200 relative overflow-hidden">
+                    <!-- Animated gradient bg -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <p class="text-sm text-slate-400 uppercase tracking-widest mb-2">Data</p>
+                    <div class="text-5xl font-display font-bold text-white">18.12</div>
+                    <p class="text-xs text-slate-400 mt-2">SalesClube, SP</p>
+                </div>
+
+                <!-- Social Proof -->
+                <div
+                    class="md:col-span-2 md:row-span-1 glass-panel rounded-3xl p-8 flex items-center gap-6 spotlight-card reveal delay-300">
+                    <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center shrink-0">
+                        <i data-lucide="quote" class="text-brand-neon"></i>
+                    </div>
+                    <div>
+                        <p class="text-lg italic text-slate-200">"N?o confie na nossa palavra, confie nos reviews da
+                            maior comunidade de Growth do Brasil."</p>
+                        <p class="text-sm text-slate-500 mt-2 font-bold">? Membro da Comunidade</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- IMMERSIVE AGENDA & AI MATCHER -->
+    <section id="agenda" class="py-24 relative border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                <h2
+                    class="text-5xl md:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-600">
+                    The<br>Lineup
+                </h2>
+                <div class="text-right">
+                    <p class="text-brand-neon font-mono">17:30 ? 23:59</p>
+                    <p class="text-slate-400">Deep Dives & Networking</p>
+                </div>
+            </div>
+
+            <!-- NEW LINEAR AGENDA TIMELINE -->
+            <div class="relative max-w-4xl mx-auto space-y-8">
+                <!-- Vertical Line (Left aligned for easy scanning) -->
+                <div
+                    class="absolute left-[19px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-brand-neon via-brand-accent to-transparent z-0">
+                </div>
+
+                <!-- Item 1: Welcome -->
+                <div class="relative pl-16 group reveal">
+                    <!-- Dot -->
+                    <div
+                        class="absolute left-3 top-6 w-4 h-4 bg-[#030014] border-2 border-brand-neon rounded-full group-hover:scale-125 group-hover:bg-brand-neon transition-all z-10 box-content shadow-[0_0_10px_rgba(0,240,255,0.5)]">
+                    </div>
+
+                    <div
+                        class="glass-panel p-6 rounded-2xl border border-white/5 group-hover:border-brand-neon/50 transition-all">
+                        <div class="flex flex-col md:flex-row gap-6 md:items-center">
+                            <div class="min-w-[100px]">
+                                <span class="block text-3xl font-display font-bold text-white">17:30</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Esquenta</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <i data-lucide="beer" size="18" class="text-yellow-400"></i>
+                                    <h3 class="text-xl font-bold text-white">Welcome Breja + Comida</h3>
+                                </div>
+                                <p class="text-slate-400 text-sm">Chegue cedo, faa conex?es e aproveite o open food
+                                    antes do conte£do comear.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Abertura -->
+                <div class="relative pl-16 group reveal">
+                    <div
+                        class="absolute left-3 top-6 w-4 h-4 bg-[#030014] border-2 border-slate-500 rounded-full group-hover:scale-125 group-hover:bg-slate-500 transition-all z-10 box-content">
+                    </div>
+
+                    <div
+                        class="glass-panel p-6 rounded-2xl border border-white/5 group-hover:border-slate-500/50 transition-all">
+                        <div class="flex flex-col md:flex-row gap-6 md:items-center">
+                            <div class="min-w-[100px]">
+                                <span class="block text-3xl font-display font-bold text-white">18:15</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Intro</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <i data-lucide="mic-2" size="18" class="text-slate-300"></i>
+                                    <h3 class="text-xl font-bold text-white">Abertura Oficial</h3>
+                                </div>
+                                <p class="text-slate-400 text-sm">Kick-off do evento e apresenta?o dos patrocinadores.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Painel 1 -->
+                <div class="relative pl-16 group reveal">
+                    <div
+                        class="absolute left-3 top-6 w-4 h-4 bg-[#030014] border-2 border-brand-neon rounded-full group-hover:scale-125 group-hover:bg-brand-neon transition-all z-10 box-content shadow-[0_0_15px_#00F0FF]">
+                    </div>
+
+                    <div
+                        class="glass-panel p-8 rounded-2xl border border-brand-neon/20 group-hover:border-brand-neon/80 transition-all bg-brand-neon/5">
+                        <div
+                            class="absolute top-0 right-0 px-3 py-1 bg-brand-neon text-black text-xs font-bold rounded-bl-xl">
+                            DESTAQUE</div>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="min-w-[100px]">
+                                <span
+                                    class="block text-3xl font-display font-bold text-brand-neon text-glow">18:30</span>
+                                <span class="text-xs text-slate-400 uppercase tracking-widest font-bold">Painel
+                                    01</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-white mb-2">Agentes de IA para Conte£dos</h3>
+                                <p class="text-slate-300 mb-4">Como escalar a produ?o criativa sem perder a relevncia
+                                    tcnica. Frameworks de agentes autnomos para Copy e Design.</p>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="text-xs px-2 py-1 rounded border border-brand-neon/30 text-brand-neon bg-brand-neon/10">Marketing</span>
+                                    <span
+                                        class="text-xs px-2 py-1 rounded border border-white/10 text-slate-400">Automa?o</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: Painel 2 -->
+                <div class="relative pl-16 group reveal">
+                    <div
+                        class="absolute left-3 top-6 w-4 h-4 bg-[#030014] border-2 border-brand-accent rounded-full group-hover:scale-125 group-hover:bg-brand-accent transition-all z-10 box-content shadow-[0_0_15px_#7000FF]">
+                    </div>
+
+                    <div
+                        class="glass-panel p-8 rounded-2xl border border-brand-accent/20 group-hover:border-brand-accent/80 transition-all bg-brand-accent/5">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="min-w-[100px]">
+                                <span
+                                    class="block text-3xl font-display font-bold text-brand-accent text-glow">20:00</span>
+                                <span class="text-xs text-slate-400 uppercase tracking-widest font-bold">Painel
+                                    02</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-white mb-2">Agentes de IA para Prospec?o</h3>
+                                <p class="text-slate-300 mb-4">Personaliza?o automatizada em escala. Como usar IA para
+                                    pesquisar leads e escrever cold mails que convertem.</p>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="text-xs px-2 py-1 rounded border border-brand-accent/30 text-brand-accent bg-brand-accent/10">Vendas
+                                        B2B</span>
+                                    <span
+                                        class="text-xs px-2 py-1 rounded border border-white/10 text-slate-400">Outbound</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: Happy Hour -->
+                <div class="relative pl-16 group reveal">
+                    <div
+                        class="absolute left-3 top-6 w-4 h-4 bg-[#030014] border-2 border-yellow-400 rounded-full group-hover:scale-125 group-hover:bg-yellow-400 transition-all z-10 box-content shadow-[0_0_15px_yellow]">
+                    </div>
+
+                    <div
+                        class="glass-panel p-6 rounded-2xl border border-white/5 group-hover:border-yellow-400/50 transition-all">
+                        <div class="flex flex-col md:flex-row gap-6 md:items-center">
+                            <div class="min-w-[100px]">
+                                <span class="block text-3xl font-display font-bold text-white">21:30</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Closing</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <i data-lucide="music" size="18" class="text-yellow-400"></i>
+                                    <h3 class="text-xl font-bold text-white">Happy Hour + Comida</h3>
+                                </div>
+                                <p class="text-slate-400 text-sm">Networking intenso com DJ e encerramento oficial s
+                                    23:59.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: COMMUNITY POWERHOUSE -->
+    <section id="community" class="py-24 relative overflow-hidden bg-gradient-to-b from-[#030014] to-brand-accent/5">
+        <!-- Floating orbs -->
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-neon/10 rounded-full blur-[100px] animate-pulse">
+        </div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[100px] animate-pulse"
+            style="animation-delay: 1s"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-neon font-mono text-sm mb-4 block tracking-widest uppercase">The
+                    Ecosystem</span>
+                <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">
+                    A #1 Comunidade de Growth<br>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon to-brand-accent">Multidisciplinar
+                        do Brasil</span>
+                </h2>
+                <p class="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed">
+                    Somos remotos, criativos, gentis e engajados. Invista energia em seu crescimento ao lado de
+                    Founders, VPs, CMOs e especialistas que est?o transformando o mercado.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Talentos -->
+                <div
+                    class="glass-panel p-8 rounded-3xl relative overflow-hidden group hover:bg-white/5 transition-all reveal delay-100">
+                    <div
+                        class="absolute -top-10 -right-10 w-32 h-32 bg-brand-neon/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <i data-lucide="users" class="text-brand-neon w-10 h-10 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-3">Encontre Talentos</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Alcance pessoas em nosso canal de contrata?o. Seja para um consultor pontual ou um funcion rio
+                        full-time, a elite do mercado est aqui.
+                    </p>
+                </div>
+
+                <!-- Card 2: Conte£do -->
+                <div
+                    class="glass-panel p-8 rounded-3xl relative overflow-hidden group hover:bg-white/5 transition-all reveal delay-200 border-brand-accent/30">
+                    <div
+                        class="absolute -top-10 -right-10 w-32 h-32 bg-brand-accent/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <i data-lucide="book-open" class="text-brand-accent w-10 h-10 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-3">Conte£do Denso</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Curadoria di ria e compartilhamento de conhecimento replic vel. Newsletters, Lives Semanais e
+                        AMAs com os melhores do mundo.
+                    </p>
+                </div>
+
+                <!-- Card 3: Vibe -->
+                <div
+                    class="glass-panel p-8 rounded-3xl relative overflow-hidden group hover:bg-white/5 transition-all reveal delay-300">
+                    <div
+                        class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <i data-lucide="heart" class="text-yellow-400 w-10 h-10 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-3">Vibe ?nica</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Novo ou avanado, t¡mido ou extrovertido. Nossos membros possuem ideias semelhantes e
+                        diferentes. Somos uma comunidade agn¢stica onde a troca  real.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center reveal">
+                <p class="text-slate-500 text-sm">Este meetup  um dos nossos "picos encontros ocasionais" para criar
+                    laos e mem¢rias.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI TOOL: BOSS CONVINCER -->
+    <section id="ai-tools" class="py-24 bg-gradient-to-b from-brand-accent/5 to-[#030014] border-t border-white/5">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <span class="text-brand-accent font-mono text-sm mb-2 block">AI POWERED TOOL</span>
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Desbloqueie seu Budget ??</h2>
+            <p class="text-slate-400 mb-12 max-w-xl mx-auto">
+                Precisa aprovar o ingresso com o CFO ou seu L¡der? Preencha os dados e nossa IA vai escrever um e-mail
+                irrecus vel focado em ROI.
+            </p>
+
+            <div class="glass-panel p-8 rounded-3xl text-left relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs text-slate-400 uppercase font-bold mb-2">Seu Cargo</label>
+                        <input type="text" id="userRole" placeholder="Ex: Head de Marketing"
+                            class="glass-input w-full p-3 rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 uppercase font-bold mb-2">Principal Obje?o</label>
+                        <select id="userObjection" class="glass-input w-full p-3 rounded-lg bg-black cursor-pointer">
+                            <option value="Sem budget dispon¡vel">"Estamos sem budget"</option>
+                            <option value="Custo muito alto">"Muito caro (R$197)"</option>
+                            <option value="Falta de tempo">"Equipe muito ocupada"</option>
+                            <option value="D£vida sobre o retorno">"Isso vai trazer resultado?"</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="generateJustification()"
+                    class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-brand-neon hover:text-black transition-all duration-300 hover:scale-105 shadow-lg flex justify-center items-center gap-2 group mb-6">
+                    <i data-lucide="sparkles" class="text-brand-accent group-hover:text-black"></i>
+                    <span id="genBtnText">Gerar E-mail de Justificativa ?</span>
+                    <div id="genLoader" class="loader border-slate-600 hidden"></div>
+                </button>
+
+                <div id="emailResult" class="hidden">
+                    <div class="bg-black/50 p-6 rounded-xl border border-white/10 relative">
+                        <button onclick="copyEmail()"
+                            class="absolute top-4 right-4 text-xs text-slate-400 hover:text-white hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)] flex items-center gap-1 bg-white/10 px-2 py-1 rounded transition-all duration-300">
+                            <i data-lucide="copy" size="12"></i> Copiar
+                        </button>
+                        <h4 class="text-slate-500 text-xs uppercase font-bold mb-3">Rascunho Gerado:</h4>
+                        <div id="emailContent"
+                            class="text-slate-300 text-sm whitespace-pre-wrap leading-relaxed font-mono min-h-[100px]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKETS / PRICING -->
+    <section id="tickets" class="py-24 relative overflow-hidden pb-32">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-radial from-brand-accent/10 to-transparent opacity-50"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+
+            <!-- Redesigned Virada de Lote Warning (Quantity Based) -->
+            <div class="max-w-3xl mx-auto mb-16 reveal">
+                <div
+                    class="bg-red-500/10 border border-red-500/50 rounded-xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 animate-pulse-glow shadow-[0_0_30px_rgba(239,68,68,0.2)]">
+                    <div class="flex items-center gap-4 flex-1">
+                        <div class="bg-red-500 text-white p-3 rounded-lg animate-pulse-fast">
+                            <i data-lucide="ticket" size="24"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight">LOTE 1 QUASE NO FIM</h3>
+                            <p class="text-red-300 text-sm">O preo sobe automaticamente ao atingir 40 vendas.</p>
+                        </div>
+                    </div>
+
+                    <div class="text-right min-w-[200px]">
+                        <div class="text-2xl font-mono font-bold text-white tracking-widest mb-1">
+                            <span class="text-red-500">32</span>/40 VENDIDOS
+                        </div>
+                        <div class="w-full bg-red-900/30 rounded-full h-3 border border-red-500/30 overflow-hidden">
+                            <!-- 32/40 = 80% width -->
+                            <div class="bg-red-500 h-full rounded-full w-[80%] shadow-[0_0_10px_#ef4444]"></div>
+                        </div>
+                        <p class="text-xs text-red-300 mt-2 text-right font-bold">Restam apenas 8 vagas neste valor</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-5xl font-display font-bold mb-4">Escolha seu Passe</h2>
+                <p class="text-slate-400">O retorno sobre investimento  imediato.</p>
+            </div>
+
+            <!-- Side-by-Side Pricing Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-center">
+
+                <!-- Card 1: Past (Early Bird - SOLD OUT) -->
+                <div
+                    class="glass-panel p-8 rounded-3xl opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 relative order-2 md:order-1 scale-90 md:hover:scale-95">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                        <div class="sold-out-stamp">ESGOTADO</div>
+                    </div>
+                    <h3 class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Early Bird</h3>
+                    <div class="flex items-baseline mb-2 opacity-50">
+                        <span
+                            class="text-4xl font-display font-bold text-white line-through decoration-red-500/50 decoration-4">R$
+                            197</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-6 font-mono">20/20 Vendidos</p>
+
+                    <button disabled
+                        class="w-full py-3 rounded-lg border border-slate-700 text-slate-500 font-bold text-sm cursor-not-allowed mt-4">
+                        Esgotado
+                    </button>
+                </div>
+
+                <!-- Card 2: Current (Lote 1 - ACTIVE) -->
+                <div
+                    class="glass-panel p-1 rounded-3xl relative transform md:scale-105 shadow-[0_0_50px_rgba(112,0,255,0.2)] z-10 order-1 md:order-2">
+                    <div
+                        class="absolute -inset-[1px] bg-gradient-to-r from-brand-neon via-brand-accent to-brand-neon rounded-3xl opacity-50 blur-sm animate-pulse-glow">
+                    </div>
+                    <div
+                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-accent text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg whitespace-nowrap z-20">
+                        ?? Lote Atual
+                    </div>
+
+                    <div class="bg-[#0a0a0a] rounded-[22px] p-8 h-full relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <h3 class="text-brand-neon text-sm font-bold uppercase tracking-widest mb-2">Lote 01
+                                </h3>
+                                <span
+                                    class="bg-red-500/20 text-red-400 text-[10px] font-bold px-2 py-1 rounded animate-pulse">ACABANDO</span>
+                            </div>
+
+                            <div class="flex items-baseline mb-2">
+                                <span class="text-sm text-slate-500 line-through mr-3">R$ 297</span>
+                                <span class="text-5xl font-display font-bold text-white">R$ 227</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mb-8 font-mono">
+                                <span class="text-white font-bold">32</span> de 40 ingressos vendidos
+                            </p>
+                        </div>
+
+                        <div>
+                            <a href="#"
+                                class="block w-full py-4 rounded-xl bg-white text-black font-bold text-center hover:bg-slate-200 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-white/20">
+                                GARANTIR POR R$ 227
+                            </a>
+                            <p class="text-[10px] text-center mt-3 text-slate-500">Pagamento seguro via Sympla/Stripe
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Future (Lote 2 - NEXT) -->
+                <div
+                    class="glass-panel p-8 rounded-3xl border-slate-800 relative order-3 md:order-3 scale-90 md:hover:scale-95 transition-all">
+                    <div class="absolute top-4 right-4 text-slate-600">
+                        <i data-lucide="lock" size="20"></i>
+                    </div>
+                    <h3 class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Lote 02</h3>
+                    <div class="flex items-baseline mb-2">
+                        <span class="text-4xl font-display font-bold text-slate-500">R$ 297</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-6 font-mono">Pr¢ximos 60 ingressos</p>
+
+                    <p class="text-xs text-red-400 mb-6">Preo sobe assim que o Lote 1 esgotar.</p>
+
+                    <button disabled
+                        class="w-full py-3 rounded-lg bg-white/5 text-slate-500 font-bold text-sm cursor-not-allowed border border-white/5 mt-4">
+                        Bloqueado
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12 opacity-50">
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Lote 3 (Final): R$ 387</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ accordion (Minimalist) -->
+    <section class="py-20 bg-black">
+        <div class="container mx-auto px-6 max-w-2xl">
+            <h2 class="text-2xl font-display font-bold mb-8 text-center text-slate-500">FAQ</h2>
+            <div class="space-y-4">
+                <details class="group border-b border-white/10 pb-4 cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-medium text-slate-200 list-none group-hover:text-brand-neon transition-colors">
+                        O que est incluso no ingresso?
+                        <span class="transition-transform group-open:rotate-180"><i
+                                data-lucide="chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-400 mt-4 text-sm leading-relaxed">
+                        Tudo. Acesso ao conte£do, networking facilitado e a experincia gastronmica completa (pizza +
+                        open bar durante o happy hour).
+                    </p>
+                </details>
+                <details class="group border-b border-white/10 pb-4 cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-medium text-slate-200 list-none group-hover:text-brand-neon transition-colors">
+                        Preciso de NF para a empresa.
+                        <span class="transition-transform group-open:rotate-180"><i
+                                data-lucide="chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-400 mt-4 text-sm leading-relaxed">
+                        Sim, emitimos NF para todos os ingressos. Tambm fornecemos uma carta de justificativa de ROI
+                        caso precise aprovar o budget.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 bg-[#030014] pb-32 md:pb-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-2xl font-display font-bold tracking-tighter flex items-center justify-center gap-2 mb-6">
+                <div class="w-3 h-3 bg-white rounded-full"></div>
+                GROWTH<span class="text-white">CLUB</span>
+            </div>
+            <p class="text-slate-600 text-sm">? 2025 SalesClube. Powered by The Growth Community.</p>
+        </div>
+    </footer>
+
+    <!-- NEW FEATURE: STICKY MOBILE CTA -->
+    <div
+        class="fixed bottom-0 left-0 w-full bg-[#0a0a0a]/90 backdrop-blur-lg border-t border-white/10 p-4 z-50 md:hidden flex justify-between items-center shadow-2xl">
+        <div>
+            <p class="text-[10px] text-red-400 font-bold uppercase tracking-wide animate-pulse">?ltimas Vagas</p>
+            <div class="flex items-baseline gap-2">
+                <span class="text-lg font-bold text-white">R$ 197</span>
+                <span class="text-xs text-slate-500 line-through">R$ 387</span>
+            </div>
+        </div>
+        <a href="#tickets"
+            class="bg-white text-black font-bold px-6 py-3 rounded-full text-sm hover:bg-slate-200 transition-all duration-300 hover:scale-105">
+            Comprar Agora
+        </a>
+    </div>
+
+    <!-- NEW FEATURE: TOAST NOTIFICATION -->
+    <div id="toast"
+        class="fixed top-24 right-6 bg-brand-accent text-white px-6 py-4 rounded-xl shadow-2xl transform translate-y-full opacity-0 pointer-events-none transition-all duration-300 z-[60] flex items-center gap-3">
+        <i data-lucide="check-circle" size="20"></i>
+        <div>
+            <h4 class="font-bold text-sm">Sucesso!</h4>
+            <p class="text-xs text-white/80">E-mail copiado para a rea de transferncia.</p>
+        </div>
+    </div>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        lucide.createIcons();
+
+        // Gemini API Configuration
+        const apiKey = ""; // Will be provided by runtime
+
+        async function callGemini(prompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }]
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error('API Error');
+
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error(error);
+                return "Erro ao conectar com a IA. Tente novamente.";
+            }
+        }
+
+        // --- TYPEWRITER EFFECT UTILITY ---
+        function typeWriter(text, elementId, speed = 10) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = ""; // Limpa antes de comear
+            let i = 0;
+
+            // Se o elemento tiver children (ex: o span do resultado), precisamos tratar diferente
+            // Para simplificar, vamos assumir que injetamos texto puro ou HTML simples
+
+            function type() {
+                if (i < text.length) {
+                    // Tratar tags HTML simples (n?o quebrar no meio de uma tag)
+                    if (text.substring(i, i + 4) === "<br>") {
+                        element.innerHTML += "<br>";
+                        i += 4;
+                    } else if (text[i] === '<') {
+                        // Avana at fechar a tag (simplificado)
+                        let tag = "";
+                        while (text[i] !== '>' && i < text.length) {
+                            tag += text[i];
+                            i++;
+                        }
+                        tag += '>';
+                        i++;
+                        element.innerHTML += tag;
+                    } else {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                    }
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // --- TOAST UTILITY ---
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-full', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-full', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- FEATURE 2: Justification Email ---
+        async function generateJustification() {
+            const role = document.getElementById('userRole').value || "Profissional de Growth";
+            const objection = document.getElementById('userObjection').value;
+
+            const btnText = document.getElementById('genBtnText');
+            const loader = document.getElementById('genLoader');
+            const emailResult = document.getElementById('emailResult');
+            const emailContent = document.getElementById('emailContent');
+
+            btnText.classList.add('hidden');
+            loader.classList.remove('hidden');
+            emailResult.classList.add('hidden');
+
+            const prompt = `
+                Atue como um diretor de vendas snior. Escreva um e-mail muito curto (max 100 palavras) e persuasivo de um [${role}] para seu chefe justificando a aprova?o do ingresso para o evento 'Growth + IA Meetup' em S?o Paulo (18/Dez).
+                Preo do ingresso: R$197.
+                Obje?o principal do chefe que deve ser combatida: "${objection}".
+                Argumentos chave: ROI imediato, Networking com C-Levels e aprendizado pr tico de automa?o.
+                Tom: Profissional, direto e focado em lucro. Sem sauda?es genricas longas.
+            `;
+
+            const response = await callGemini(prompt);
+
+            emailResult.classList.remove('hidden');
+            // Scroll suave at o resultado se necess rio
+
+            typeWriter(response, "emailContent", 10);
+
+            btnText.classList.remove('hidden');
+            loader.classList.add('hidden');
+        }
+
+        function copyEmail() {
+            const text = document.getElementById('emailContent').innerText;
+            navigator.clipboard.writeText(text);
+            showToast(); // Usando a nova notifica?o
+        }
+
+        // Spotlight Effect Mouse Tracking
+        document.addEventListener('mousemove', e => {
+            const cards = document.getElementsByClassName('spotlight-card');
+            for (const card of cards) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            }
+        });
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            document.querySelectorAll('.parallax-bg').forEach(el => {
+                const speed = el.getAttribute('data-speed');
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Reveal on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
