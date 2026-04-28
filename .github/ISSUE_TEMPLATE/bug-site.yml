@@ -1,0 +1,75 @@
+name: 🛠️ Bug no site `growthclub.pro`
+description: Algo quebrou ou tá esquisito no site oficial da comunidade
+title: "[bug-site] "
+labels: ["bug-site"]
+assignees:
+  - henriquecaner
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar. Antes de continuar, verifica se já tem issue aberta sobre o mesmo problema.
+
+        > **Régua editorial:** mesmo bug pede pra ser descrito com **número** quando faz sentido (tempo de carregamento, número de cliques, posição da quebra). Vide [CONTRIBUTING](../CONTRIBUTING.md).
+
+  - type: input
+    id: page
+    attributes:
+      label: Página afetada
+      description: URL completa onde o problema aparece
+      placeholder: https://growthclub.pro/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: O que aconteceu?
+      description: Descreve o comportamento observado, com número quando possível (ex "demorou 12s pra carregar", "form não submete em 3 tentativas")
+      placeholder: |
+        - Acessei a página /meetups/barte-s1e1
+        - Cliquei em "Aplicar"
+        - O formulário ficou em loading 12s e depois deu erro 500
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: O que era esperado?
+      placeholder: |
+        Form deveria submeter em < 2s e redirecionar pra /obrigado
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Dispositivo / browser
+      options:
+        - Desktop · Chrome
+        - Desktop · Safari
+        - Desktop · Firefox
+        - Desktop · Edge
+        - Mobile · iOS Safari
+        - Mobile · Android Chrome
+        - Outro (especifica abaixo)
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot ou vídeo (opcional)
+      description: Cole imagem direto aqui (Ctrl+V) ou vídeo (Loom, etc.)
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmações
+      options:
+        - label: Procurei issues abertas e fechadas — esse bug não tá registrado
+          required: true
+        - label: Não tô compartilhando dado pessoal/sensível meu nem de terceiros
+          required: true

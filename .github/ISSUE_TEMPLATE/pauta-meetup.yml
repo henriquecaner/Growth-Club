@@ -1,0 +1,74 @@
+name: 🎤 Sugestão de pauta de meetup
+description: Tema com hipótese clara e número que justifica
+title: "[pauta] "
+labels: ["pauta-meetup"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Pauta de meetup boa = tema com hipótese + número visto rodar + pessoa que poderia compartilhar.
+
+        Se você ainda tá só com a *vontade* de discutir um tema, vale mais abrir uma [Discussion](https://github.com/growthclub-pro/Growth-Club/discussions) primeiro pra refinar.
+
+  - type: input
+    id: tema
+    attributes:
+      label: Tema (frase de hipótese)
+      description: Hipótese específica, não tema vago. Mau exemplo "IA em growth"; bom exemplo "Por que 80% dos setups de outbound com Clay+Apollo+n8n não saem do POC"
+      placeholder: 'Por que [hipótese específica] em [contexto]'
+    validations:
+      required: true
+
+  - type: textarea
+    id: numero
+    attributes:
+      label: Que número justifica esse tema?
+      description: Você viu rodar? Onde? Qual o ganho/perda mensurável?
+      placeholder: |
+        Vi em 3 operações B2B (R$ 50M-200M ARR): CAC outbound caiu 40-55% com Clay+Apollo+n8n bem orquestrado, mas só em 1 das 3 sustentou após 90 dias. As outras 2 voltaram ao baseline. Tema é "o que separou as 3?".
+    validations:
+      required: true
+
+  - type: input
+    id: speaker
+    attributes:
+      label: Quem poderia falar sobre isso?
+      description: Pessoa específica (com link LinkedIn) que carrega esse caso. Pode ser você mesmo.
+      placeholder: "@[Linkedin] · [empresa] · [cargo]"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cidade
+    attributes:
+      label: Cidade aplicável
+      multiple: true
+      options:
+        - SP (próximo: Barte S1E1, jun/2026)
+        - RJ (S1E2 ou S1E3 a definir)
+        - BH
+        - POA
+        - Online / Livecast
+    validations:
+      required: true
+
+  - type: textarea
+    id: fora-da-mesa
+    attributes:
+      label: O que NÃO devia entrar nessa pauta
+      description: Se você já viu essa discussão virar palestra de palco, sinaliza o que cortar
+      placeholder: |
+        Cortar tutorial de Clay/Apollo passo-a-passo (todo mundo já viu no LinkedIn). Foco em "operação real, com número".
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmações
+      options:
+        - label: A pauta tem número (não é só "achei interessante")
+          required: true
+        - label: A pessoa sugerida carrega o caso (não é só seguidor da área)
+          required: true
+        - label: Eu li o [CODE_OF_CONDUCT](../CODE_OF_CONDUCT.md) e a pauta cabe na régua editorial
+          required: true

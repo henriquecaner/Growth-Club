@@ -1,0 +1,71 @@
+name: 🎨 Melhoria em template (newsletter, LinkedIn, e-mail, meetup)
+description: Sugestão de ajuste/novo template aplicado à identidade da marca
+title: "[template] "
+labels: ["melhoria-template"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Templates da comunidade vivem em `brand/templates/` (em construção pela Founder Crew #2).
+
+        Antes de sugerir, dá uma olhada em [`brand/visual/`](../brand/visual/) (paleta, tipografia, logo direction) e [`brand/voice/dos-and-donts.md`](../brand/voice/dos-and-donts.md).
+
+  - type: dropdown
+    id: canal
+    attributes:
+      label: Canal afetado
+      options:
+        - Newsletter (Substack)
+        - LinkedIn (carrossel ou post estático)
+        - E-mail marketing (welcome / nurture)
+        - Banner de Meetup
+        - Corte de livecast (vertical 9:16)
+        - Outro (especifica abaixo)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de mudança
+      options:
+        - Ajuste em template existente
+        - Template novo
+        - Correção de inconsistência de marca
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto / problema
+      description: Por que essa mudança é necessária? Que número ou observação você tem?
+      placeholder: |
+        Exemplo: o template de carrossel LinkedIn atual tem 8 slides, mas a média de carrosséis de growth na linha do tempo é 5-6 (analisei 30 do mês). Cortar pra 6 vai melhorar leitura mobile e provavelmente engajamento (não isolado, mas ligado a salvar/compartilhar).
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Proposta concreta
+      description: O que você sugere mudar ou adicionar
+      placeholder: |
+        Cortar slide 7 e 8 (CTAs duplicados); mover CTA único pro slide 6 com fundo de cor primária da paleta.
+
+  - type: textarea
+    id: referencia
+    attributes:
+      label: Referência (opcional)
+      description: Imagem, link, ou template de outra fonte que ilustre
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmações
+      options:
+        - label: Confere com a paleta + tipografia atual em `brand/visual/`
+          required: true
+        - label: Não usa palavra vetada (alavancar, disruptar, revolucionar, etc. — vide [CONVENTIONS.md](../.specs/project/CONVENTIONS.md))
+          required: true

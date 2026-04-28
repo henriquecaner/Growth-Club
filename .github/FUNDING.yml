@@ -1,0 +1,20 @@
+# Sponsor button do GitHub. Aparece em destaque no topo da página do repo.
+# Documentação: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+
+# Plataformas oficiais suportadas:
+# github (GitHub Sponsors), patreon, open_collective, ko_fi, tidelift, community_bridge,
+# liberapay, issuehunt, otechie, buy_me_a_coffee, custom (URLs livres, até 4)
+
+# Comentado por enquanto — Growth Club não monetiza via sponsor de open source.
+# Os caminhos de "apoiar" são:
+#   1. Assinar a newsletter (Substack)
+#   2. Pagar ingresso de meetup
+#   3. Patrocinar livecast (B2B)
+#   4. Quando abrir: virar Growth Hacker Master (anuidade)
+
+# github: [henriquecaner]
+# buy_me_a_coffee: henriquecaner
+
+custom:
+  - https://brgrowthclub.substack.com
+  - https://growthclub.pro
