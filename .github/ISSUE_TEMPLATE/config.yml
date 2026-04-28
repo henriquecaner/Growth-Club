@@ -1,22 +1,22 @@
 blank_issues_enabled: false
 
 contact_links:
-  - name: 💬 Compartilhar caso com número (Discussions)
+  - name: Compartilhar caso com número (Discussions)
     url: https://github.com/growthclub-pro/Growth-Club/discussions/new?category=show-and-number
-    about: Caso real com pelo menos um número. Não use Issues — usa Discussions na categoria "Show & Number".
+    about: Caso real com pelo menos um número. Não usa Issues. Vai pra Discussions na categoria "Show & Number".
 
-  - name: ☕ Pedir ajuda com pipeline (Discussions)
+  - name: Pedir ajuda com pipeline (Discussions)
     url: https://github.com/growthclub-pro/Growth-Club/discussions/new?category=pipeline-help
-    about: Tá enroscado em algum problema de operação? Pede ajuda na mesa. Mas vem com número de baseline.
+    about: Tá enroscado em algum problema de operação? Pede ajuda na mesa, com número de baseline.
 
-  - name: 📰 Assinar a newsletter (Substack · 2.261 subs)
+  - name: Assinar a newsletter (Substack, 2.261 subs)
     url: https://brgrowthclub.substack.com
     about: Cadência semanal pública. Não tem porta de entrada melhor pra Growth Club.
 
-  - name: 🤝 Quero ser Founder Crew (DM no LinkedIn)
+  - name: Quero ser Founder Crew (DM no LinkedIn)
     url: https://linkedin.com/in/henriquecaner
-    about: 3 cadeiras Era Pré-S1 abertas (Frontend / Designer+Vídeo / Community-GitHub). Termos em STATE.md AD-002.
+    about: 3 cadeiras Era Pré-S1 abertas (Frontend, Designer+Vídeo, Community-GitHub). Termos em STATE.md AD-002.
 
-  - name: 🍺 Próximo Meetup Growth SP · S1E1 · Barte (jun/2026)
-    url: https://growthclub.pro
-    about: Lista de aplicação aqui (em breve). Ingresso = membership Growth Hacker free + acesso à comunidade WhatsApp.
+  - name: Próximo Meetup Growth SP · S1E1 · Barte (jun/2026)
+    url: https://tally.so/r/BzLJO4
+    about: Lista de espera real. Ingresso vem com membership Growth Hacker free e acesso à comunidade WhatsApp.

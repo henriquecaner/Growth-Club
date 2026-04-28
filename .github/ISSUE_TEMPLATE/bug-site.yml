@@ -1,4 +1,4 @@
-name: 🛠️ Bug no site `growthclub.pro`
+name: Bug no site growthclub.pro
 description: Algo quebrou ou tá esquisito no site oficial da comunidade
 title: "[bug-site] "
 labels: ["bug-site"]
@@ -11,7 +11,7 @@ body:
       value: |
         Obrigado por reportar. Antes de continuar, verifica se já tem issue aberta sobre o mesmo problema.
 
-        > **Régua editorial:** mesmo bug pede pra ser descrito com **número** quando faz sentido (tempo de carregamento, número de cliques, posição da quebra). Vide [CONTRIBUTING](../CONTRIBUTING.md).
+        > Régua editorial: bug pede pra ser descrito com número quando faz sentido (tempo de carregamento, número de cliques, posição da quebra). Vide [CONTRIBUTING](../CONTRIBUTING.md).
 
   - type: input
     id: page
@@ -26,11 +26,11 @@ body:
     id: what-happened
     attributes:
       label: O que aconteceu?
-      description: Descreve o comportamento observado, com número quando possível (ex "demorou 12s pra carregar", "form não submete em 3 tentativas")
+      description: Descreve o comportamento observado, com número quando possível. Ex "demorou 12s pra carregar", "form não submete em 3 tentativas".
       placeholder: |
-        - Acessei a página /meetups/barte-s1e1
-        - Cliquei em "Aplicar"
-        - O formulário ficou em loading 12s e depois deu erro 500
+        - Acessei a página /meetups/barte-s1e1.
+        - Cliquei em "Aplicar".
+        - O formulário ficou em loading 12s e depois deu erro 500.
     validations:
       required: true
 
@@ -39,21 +39,21 @@ body:
     attributes:
       label: O que era esperado?
       placeholder: |
-        Form deveria submeter em < 2s e redirecionar pra /obrigado
+        Form deveria submeter em < 2s e redirecionar pra /obrigado.
     validations:
       required: true
 
   - type: dropdown
     id: device
     attributes:
-      label: Dispositivo / browser
+      label: Dispositivo e browser
       options:
-        - Desktop · Chrome
-        - Desktop · Safari
-        - Desktop · Firefox
-        - Desktop · Edge
-        - Mobile · iOS Safari
-        - Mobile · Android Chrome
+        - Desktop, Chrome
+        - Desktop, Safari
+        - Desktop, Firefox
+        - Desktop, Edge
+        - Mobile, iOS Safari
+        - Mobile, Android Chrome
         - Outro (especifica abaixo)
     validations:
       required: true
@@ -62,14 +62,14 @@ body:
     id: screenshot
     attributes:
       label: Screenshot ou vídeo (opcional)
-      description: Cole imagem direto aqui (Ctrl+V) ou vídeo (Loom, etc.)
+      description: Cole imagem direto aqui (Ctrl+V) ou vídeo (Loom, etc.).
 
   - type: checkboxes
     id: confirm
     attributes:
       label: Confirmações
       options:
-        - label: Procurei issues abertas e fechadas — esse bug não tá registrado
+        - label: Procurei issues abertas e fechadas. Esse bug não tá registrado.
           required: true
-        - label: Não tô compartilhando dado pessoal/sensível meu nem de terceiros
+        - label: Não tô compartilhando dado pessoal ou sensível meu, nem de terceiros.
           required: true

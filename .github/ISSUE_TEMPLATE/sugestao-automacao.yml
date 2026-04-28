@@ -1,4 +1,4 @@
-name: ⚙️ Sugestão de automação útil (GitHub Actions, integração, repo)
+name: Sugestão de automação útil (GitHub Actions, integração, repo)
 description: Ideia pra automatizar algo que faria a operação da comunidade economizar tempo ou ganhar visibilidade
 title: "[automação] "
 labels: ["automacao"]
@@ -9,14 +9,14 @@ body:
       value: |
         Repo da comunidade pode (e deve) usar GitHub Actions criativamente. Este template é pra você sugerir uma automação útil.
 
-        Régua editorial vale aqui também: a automação tem que mover **um número** (tempo de operação, visibilidade, qualidade de comunicação). Sem dado, vira teatro de tooling.
+        Régua editorial vale aqui também: a automação tem que mover um número (tempo de operação, visibilidade, qualidade de comunicação). Sem dado, vira teatro de tooling.
 
   - type: input
     id: ideia
     attributes:
       label: Ideia em uma frase
       description: O que a automação faz?
-      placeholder: 'Auto-comentar em issues novos com "valeu pelo case, qual o número que moveu?" se o issue não tiver dígito'
+      placeholder: 'Auto-comentar em issues novos com "valeu pelo case, qual o número que moveu?" se o issue não tiver dígito.'
     validations:
       required: true
 
@@ -24,7 +24,7 @@ body:
     id: numero
     attributes:
       label: Que número essa automação move?
-      description: Tempo economizado, taxa de issue/PR no padrão, frequência de retorno, visibilidade
+      description: Tempo economizado, taxa de issue ou PR no padrão, frequência de retorno, visibilidade.
       placeholder: |
         Hoje uns 30% dos issues são abertos sem número. Mantenedor gasta ~5 min cada respondendo cordialmente. Auto-comentário cortaria 70% dessa fricção e padronizaria a régua publicamente.
     validations:
@@ -34,11 +34,11 @@ body:
     id: stack
     attributes:
       label: Stack sugerida
-      description: GitHub Actions + qual ação? Workflow custom? Integração externa (Slack, Substack, etc.)?
+      description: GitHub Actions com qual ação? Workflow custom? Integração externa (Slack, Substack, etc.)?
       placeholder: |
-        - Trigger: `issues.opened`
-        - Action: regex no body procurando dígito
-        - Se sem dígito: auto-comment + label `precisa-numero`
+        - Trigger: `issues.opened`.
+        - Action: regex no body procurando dígito.
+        - Se sem dígito: auto-comment e label `precisa-numero`.
 
   - type: dropdown
     id: complexity
@@ -46,23 +46,23 @@ body:
       label: Complexidade estimada
       options:
         - Trivial (1 workflow YAML, < 30 linhas)
-        - Médio (workflow + action customizada simples)
+        - Médio (workflow com action customizada simples)
         - Complexo (integração com sistema externo, segredo, manutenção)
 
   - type: textarea
     id: risco
     attributes:
-      label: Riscos / efeitos colaterais
+      label: Riscos e efeitos colaterais
       description: Falsos positivos? Spam? Custo? Privacidade?
       placeholder: |
-        Falso positivo: issue legítimo com número escrito por extenso ("vinte por cento") seria flagged. Aceitável — o autor pode editar.
+        Falso positivo. Issue legítimo com número escrito por extenso ("vinte por cento") seria flagged. Aceitável, o autor pode editar.
 
   - type: checkboxes
     id: confirm
     attributes:
       label: Confirmações
       options:
-        - label: A automação move um número mensurável (não é "ficaria mais bonito")
+        - label: A automação move um número mensurável (não é "ficaria mais bonito").
           required: true
-        - label: Não acessa dado privado de membro nem expõe segredo
+        - label: Não acessa dado privado de membro nem expõe segredo.
           required: true

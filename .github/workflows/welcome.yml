@@ -22,20 +22,18 @@ jobs:
 
             Antes de avançar, três coisas:
 
-            1. **Régua editorial nº 1:** *Se não tem número, não é Growth Club.* Se tua issue não tem dígito (CAC, %, tempo, conversão, qualquer métrica), provavelmente vai virar redirecionamento cordial — *"bota o dado que isso moveu, aí vira thread."*
+            1. Régua editorial nº 1: *Se não tem número, não é Growth Club.* Se tua issue não tem dígito (CAC, %, tempo, conversão, qualquer métrica), provavelmente vai virar redirecionamento cordial. *"Bota o dado que isso moveu, aí vira thread."*
 
-            2. **Lê o [CONTRIBUTING](.github/CONTRIBUTING.md) e o [CODE_OF_CONDUCT](.github/CODE_OF_CONDUCT.md).** São curtos. O pacto editorial vale aqui.
+            2. Lê o [CONTRIBUTING](.github/CONTRIBUTING.md) e o [CODE_OF_CONDUCT](.github/CODE_OF_CONDUCT.md). São curtos. O pacto editorial vale aqui.
 
-            3. **Se for caso/discussão (não bug operacional),** prefere [Discussions](https://github.com/growthclub-pro/Growth-Club/discussions). Issues servem pra coisa rastreável; conversa de operação tem palco próprio.
-
-            🍺
+            3. Se for caso ou discussão (não bug operacional), prefere [Discussions](https://github.com/growthclub-pro/Growth-Club/discussions). Issues servem pra coisa rastreável. Conversa de operação tem palco próprio.
           pr-message: |
             Boa, primeiro PR no repo. Bora.
 
             Antes do review:
 
-            1. **Régua editorial:** o PR cabe em "Franco, com número, sem palco, com cerveja"? Se sim, segue.
-            2. **Naming:** confere [`CONVENTIONS.md`](.specs/project/CONVENTIONS.md) (palavras vetadas: `alavancar`, `disruptar`, `revolucionar`, `engajamento` solto). Naming dos tiers (`Growth Hacker`, `Founder Member`, `Growth Hacker Master`) é exato — sem tradução, sem abreviação.
-            3. **Voice em copy:** se mexeu em `brand/voice/**` ou em copy do site, abre espaço pra revisão do mantenedor (sem merge automático).
+            1. Régua editorial: o PR cabe em "Franco, com número, sem palco, com cerveja"? Se sim, segue.
+            2. Naming: confere [`CONVENTIONS.md`](.specs/project/CONVENTIONS.md) (palavras vetadas: `alavancar`, `disruptar`, `revolucionar`, `engajamento` solto). Naming dos tiers (`Growth Hacker`, `Founder Member`, `Growth Hacker Master`) é exato. Sem tradução, sem abreviação.
+            3. Voice em copy: se mexeu em `brand/voice/**` ou em copy do site, abre espaço pra revisão do mantenedor (sem merge automático).
 
-            Review fica entre 1 e 5 dias úteis pra PR pequeno. Se for grande, é melhor abrir issue/discussion antes.
+            Review fica entre 1 e 5 dias úteis pra PR pequeno. Se for grande, é melhor abrir issue ou discussion antes.
