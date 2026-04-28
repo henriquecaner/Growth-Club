@@ -6,17 +6,34 @@
 
 <br>
 
-[![Newsletter](https://img.shields.io/badge/Substack-2.261_subs_desde_2019-FF6719?style=for-the-badge&logo=substack&logoColor=white)](https://brgrowthclub.substack.com)
-[![Comunidade](https://img.shields.io/badge/WhatsApp-715_membros-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](#como-sentar-na-mesa)
-[![Meetups](https://img.shields.io/badge/Meetups-10%2B_realizados_desde_2015-1f1f1f?style=for-the-badge)](#meetup-growth-sp--s1--e1--barte)
-[![Próximo](https://img.shields.io/badge/Próximo_Meetup-jun%2F2026_·_Barte_SP-c00000?style=for-the-badge)](#meetup-growth-sp--s1--e1--barte)
+**A maior comunidade multidisciplinar de Growth B2B do Brasil — desde 2015.**
 
 <br>
 
-**11 anos rodando informal. Agora profissionalizando.**<br>
-Comunidade brasileira de operadores de Growth B2B — founders, CROs, growth leads, devs que fazem growth, analystas, CS.
+[![Newsletter](https://img.shields.io/badge/Substack-2.261_subs_desde_2019-FF6719?style=for-the-badge&logo=substack&logoColor=white)](https://brgrowthclub.substack.com)
+[![Comunidade](https://img.shields.io/badge/WhatsApp-715_membros-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](#como-sentar-na-mesa)
+[![Core](https://img.shields.io/badge/Core-391_operadores-1f1f1f?style=for-the-badge)](#a-bandeira)
+[![Meetups](https://img.shields.io/badge/Meetups-10%2B_desde_2015-c00000?style=for-the-badge)](#meetup-growth-sp--s1--e1--barte)
+
+<br>
+
+Operadores de **marketing**, **vendas**, **sucesso de clientes**, **analytics**, **produtos** e **founders**.<br>
+Do CEO ao dev. Do growth ao quebrado.
+
+<br>
+
+[**Assinar a newsletter** (free, semanal)](https://brgrowthclub.substack.com) · [**Próximo meetup**](#meetup-growth-sp--s1--e1--barte) · [**Founder Crew aberto**](#founder-crew--3-cadeiras-abertas-era-pré-s1)
 
 </div>
+
+---
+
+> **Para onde olhar primeiro, conforme quem é você:**<br>
+> [Membro novo (chegou agora) →](docs/community/start-here.md) ·
+> [Investidor →](docs/investors/) ·
+> [Patrocinador →](docs/sponsors/) ·
+> [Quero ser Founder Crew →](docs/crew/founder-crew-faq.md) ·
+> [Build in public →](CHANGELOG.md)
 
 ---
 
@@ -32,6 +49,21 @@ Comunidade brasileira de operadores de Growth B2B — founders, CROs, growth lea
 
 > [!NOTE]
 > **Régua editorial nº 1.** *Se não tem número, não é Growth Club.* Vale dentro do clube, nos meetups, na newsletter, neste repositório.
+
+---
+
+## Quem ergueu a bandeira
+
+**Henrique Caner** — operador de Growth B2B, fundador da Level Tech.
+
+- **Newsletter no Substack** desde 2019 · 2.261 assinantes
+- **10+ Meetups Growth** organizados e curados na rua desde 2015 · `Era Pré-S1`
+- **`AI LIKE A PRO by Growth Club`** — workshops high-ticket de IA aplicada a operações de growth
+- **Histórico em operações B2B brasileiras** carregando meta com IA, automação e ferramentas modernas
+
+[LinkedIn](https://linkedin.com/in/henriquecaner) · [Newsletter](https://brgrowthclub.substack.com)
+
+> **Última atividade pública:** [CHANGELOG.md](CHANGELOG.md) tem o log de decisões e execuções da comunidade (build-in-public). Pra ler conteúdo recente, [Substack](https://brgrowthclub.substack.com).
 
 ---
 
