@@ -8,6 +8,9 @@
 # Sessão local de memória/logs (recriado pelo runtime)
 .remember/
 
+# Contratos financeiros sensíveis — não publicar (Acordos Founder Crew, NDAs, valores comerciais)
+docs/contracts/
+
 # Stack futuro (quando tivermos código)
 node_modules/
 dist/
