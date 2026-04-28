@@ -1,5 +1,5 @@
-name: 🎨 Melhoria em template (newsletter, LinkedIn, e-mail, meetup)
-description: Sugestão de ajuste/novo template aplicado à identidade da marca
+name: Melhoria em template (newsletter, LinkedIn, e-mail, meetup)
+description: Sugestão de ajuste ou novo template aplicado à identidade da marca
 title: "[template] "
 labels: ["melhoria-template"]
 
@@ -18,7 +18,7 @@ body:
       options:
         - Newsletter (Substack)
         - LinkedIn (carrossel ou post estático)
-        - E-mail marketing (welcome / nurture)
+        - E-mail marketing (welcome ou nurture)
         - Banner de Meetup
         - Corte de livecast (vertical 9:16)
         - Outro (especifica abaixo)
@@ -39,10 +39,10 @@ body:
   - type: textarea
     id: contexto
     attributes:
-      label: Contexto / problema
+      label: Contexto e problema
       description: Por que essa mudança é necessária? Que número ou observação você tem?
       placeholder: |
-        Exemplo: o template de carrossel LinkedIn atual tem 8 slides, mas a média de carrosséis de growth na linha do tempo é 5-6 (analisei 30 do mês). Cortar pra 6 vai melhorar leitura mobile e provavelmente engajamento (não isolado, mas ligado a salvar/compartilhar).
+        Exemplo: o template de carrossel LinkedIn atual tem 8 slides, mas a média de carrosséis de growth na linha do tempo é 5-6 (analisei 30 do mês). Cortar pra 6 vai melhorar leitura mobile e provavelmente o salvamento e compartilhamento (não isolados, mas ligados ao formato).
     validations:
       required: true
 
@@ -52,7 +52,7 @@ body:
       label: Proposta concreta
       description: O que você sugere mudar ou adicionar
       placeholder: |
-        Cortar slide 7 e 8 (CTAs duplicados); mover CTA único pro slide 6 com fundo de cor primária da paleta.
+        Cortar slides 7 e 8 (CTAs duplicados). Mover CTA único pro slide 6 com fundo de cor primária da paleta.
 
   - type: textarea
     id: referencia
@@ -65,7 +65,7 @@ body:
     attributes:
       label: Confirmações
       options:
-        - label: Confere com a paleta + tipografia atual em `brand/visual/`
+        - label: Confere com a paleta e tipografia atuais em `brand/visual/`.
           required: true
-        - label: Não usa palavra vetada (alavancar, disruptar, revolucionar, etc. — vide [CONVENTIONS.md](../.specs/project/CONVENTIONS.md))
+        - label: Não usa palavra vetada (alavancar, disruptar, revolucionar, etc.). Vide [CONVENTIONS.md](../.specs/project/CONVENTIONS.md).
           required: true
