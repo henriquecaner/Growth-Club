@@ -93,7 +93,7 @@ Detalhe completo em §7.4 do business plan design.
 
 ## Sprint Log
 
-### Sprint 1 — 2026-04-28
+### Sprint 2 — 2026-04-28
 **Focus:** Founder Crew design + Founder Member parking
 **Status:** [DONE]
 - [x] Conversa estruturada sobre recrutamento via WhatsApp (5 tensões T1-T5 mapeadas e fechadas)
@@ -113,3 +113,18 @@ Detalhe completo em §7.4 do business plan design.
 - [x] 2 iterações de revisão independente → Approved
 - [x] Memórias persistentes salvas (projeto + usuário + feedback de estilo de trabalho)
 - [x] AD-001 registrado
+
+### Sprint 1 — 2026-04-27
+**Focus:** Marca v1 — entrega parcial (Chunks 1, 3, 5-textual; Chunk 2 visual proposto; logo SVG e Chunk 4 templates seguem pendentes)
+**Status:** [PARTIAL] — Fase 1 segue aberta
+- [x] Chunks 1 (decisões) e 3 (voice) validados como completos em arquivos do disco
+- [x] `brand/brand-book.md` consolidado (11 seções, sintetiza voice + visual + decisões com links às fontes)
+- [x] `.specs/project/CONVENTIONS.md` criado (Brand naming + Voice glossário propagados)
+- [x] Export pack v0 — 9 PNGs + favicon.ico + README — derivados da bandeira pirata atual via sips/magick
+- [x] `brand/brand-book-v1.pdf` gerado (pandoc + Chrome headless), com Archivo Black + Inter + paleta aplicados
+- [x] ADR-002 registrado em `STATE.md`
+- [ ] Logo SVG final em produção (Figma solo, ~2 semanas) — Steps 1c-1e do Chunk 2 pendentes
+- [ ] Eyedropper exato do verde-água da bandeira atual
+- [ ] Teste blind da paleta com 5 membros do core (≥3/5 acertos)
+- [ ] Templates Chunk 4 (meetup, newsletter, site handoff kit) — não iniciado
+- [ ] Quando logo SVG final sair: substituir 10 assets em `brand/assets/exports/` + regenerar PDF (ADR-003)

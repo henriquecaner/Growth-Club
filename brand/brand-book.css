@@ -1,0 +1,197 @@
+/* Growth Club brand book — print stylesheet
+   Paleta + tipografia das decisões locked. */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --growth-black: #0A0A0A;
+  --pirate-teal: #4FB3A5;
+  --pub-cream: #F5F1E8;
+  --smoke-gray: #8B847E;
+  --amber-beer: #D4A24C;
+  --brick-red: #B84A3E;
+}
+
+@page {
+  size: A4;
+  margin: 22mm 18mm 22mm 18mm;
+}
+
+html, body {
+  background: var(--pub-cream);
+  color: var(--growth-black);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 175mm;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  color: var(--growth-black);
+  letter-spacing: -0.5%;
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
+  line-height: 1.05;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 28pt;
+  letter-spacing: -1%;
+  margin-top: 0;
+  border-bottom: 4px solid var(--growth-black);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 18pt;
+  margin-top: 1.6em;
+  border-bottom: 1px solid var(--smoke-gray);
+  padding-bottom: 0.25em;
+}
+
+h3 {
+  font-size: 14pt;
+  color: var(--pirate-teal);
+}
+
+h4 {
+  font-size: 11pt;
+  letter-spacing: 0;
+}
+
+p, ul, ol {
+  margin: 0.6em 0;
+}
+
+blockquote {
+  border-left: 4px solid var(--pirate-teal);
+  padding: 0.4em 0 0.4em 0.9em;
+  margin: 1em 0;
+  color: var(--growth-black);
+  background: rgba(79, 179, 165, 0.08);
+  font-style: normal;
+}
+
+blockquote p {
+  margin: 0.3em 0;
+}
+
+blockquote strong {
+  color: var(--growth-black);
+}
+
+code {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 9pt;
+  background: rgba(10, 10, 10, 0.06);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+
+pre {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  background: var(--growth-black);
+  color: var(--pub-cream);
+  padding: 0.9em 1.1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 9pt;
+  line-height: 1.5;
+  page-break-inside: avoid;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+
+thead {
+  background: var(--growth-black);
+  color: var(--pub-cream);
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5em 0.7em;
+  border-bottom: 1px solid var(--smoke-gray);
+  vertical-align: top;
+}
+
+th {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  letter-spacing: 1%;
+  text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(139, 132, 126, 0.08);
+}
+
+a {
+  color: var(--growth-black);
+  text-decoration: underline;
+  text-decoration-color: var(--pirate-teal);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--smoke-gray);
+  margin: 2em 0;
+}
+
+strong {
+  font-weight: 700;
+}
+
+/* Frontmatter table at top of doc (rendered by pandoc as a definition list) */
+dl {
+  background: rgba(10, 10, 10, 0.04);
+  padding: 0.7em 1em;
+  border-left: 3px solid var(--pirate-teal);
+  font-size: 9.5pt;
+}
+
+dt {
+  font-weight: 700;
+  margin-top: 0.4em;
+}
+
+dd {
+  margin: 0.2em 0 0.4em 0.9em;
+  color: var(--smoke-gray);
+}
+
+/* Status emojis bigger for readability */
+li {
+  margin: 0.3em 0;
+}
+
+/* Avoid awkward breaks */
+table, blockquote, pre {
+  page-break-inside: avoid;
+}
+
+h1, h2 {
+  page-break-after: avoid;
+}

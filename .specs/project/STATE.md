@@ -186,6 +186,41 @@ Quando os 3 critérios estiverem verdes, reavaliar formato e relançar (ou desca
 
 ---
 
+### ADR-002: Marca v1 — entrega parcial (Chunks 1, 3, 5-textual)
+**Date:** 2026-04-27
+**Status:** Accepted
+**Context:** Após validação profunda dos arquivos da marca, ficou claro que (a) Voice (Chunk 3) já estava 100% pronto — `manifesto.md`, `dos-and-donts.md`, `tom-por-canal.md`, `glossario.md` completos; (b) Decisão 04 (arquitetura de marcas-filhas) foi aceita pragmaticamente sem decompor todos os sub-grupos — `AI LIKE A PRO` é a única marca-filha v1, demais grupos seguem arquivados de fato; (c) Chunk 2 (visual) tem propostas escritas + paleta, tipografia e direção do logo travadas, mas o logo SVG final ainda precisa ser executado em Figma (Steps 1c-1e, ~2 semanas solo).
+
+Henrique optou por destravar o handoff de marca **agora** sem esperar o logo SVG final, gerando assets v0 (placeholder) a partir da bandeira pirata atual (`brand/decisions/01-bandeira-pirata-evidencia/pirate-flag-3.png`).
+
+**Decision:** Marca v1 entregue parcialmente. Brand book consolidado em md + pdf publicáveis; export pack v0 com 9 PNGs + favicon.ico marcados como placeholder; CONVENTIONS.md criado com Brand naming + Voice glossário operacionais. Logo SVG final permanece em produção; templates do Chunk 4 não iniciados.
+
+**Status real por Chunk da marca:**
+- Chunk 1 (decisões): ✅ travado (decisões 01–04, com 04 aceita em skeleton)
+- Chunk 2 (visual): 🔄 propostas + decisões locked; logo SVG final em produção (Figma solo)
+- Chunk 3 (voice): ✅ completo (4 arquivos)
+- Chunk 4 (templates): 📋 não iniciado (meetup, newsletter, site handoff kit)
+- Chunk 5 (brand book): ✅ textual + PDF + export pack v0 entregues; assets finais aguardam logo SVG
+
+**Consequences:**
+- Destrava handoff de marca pra patrocinadores, parceiros e Fase 1 (Site) sem aguardar o logo SVG final.
+- Quando o logo final sair, será sessão de follow-up curta: substituir os 10 arquivos em `brand/assets/exports/` + regenerar PDF + remover marca `v0-placeholder` do README. Será registrado em **ADR-003**.
+- Fase 1 do `ROADMAP.md` permanece **aberta** — `Brand brief entregue` não foi marcado como `[x]` porque templates Chunk 4 + logo SVG seguem pendentes.
+- `CONVENTIONS.md` agora é fonte de verdade pra naming + glossário em fases futuras (Site, conteúdo, marketing) — não reinventar.
+
+**Artefatos entregues nesta sessão (commits):**
+- `brand(book): consolidated brand book v1 (markdown)` — `brand/brand-book.md`
+- `docs(specs): propagate brand naming + voice rules to CONVENTIONS.md` — `.specs/project/CONVENTIONS.md`
+- `brand(assets): export pack v0 placeholder (favicons + OG + PNG fallbacks)` — `brand/assets/exports/`
+- `brand(book): PDF export of brand book v1 (placeholder logo)` — `brand/brand-book-v1.pdf` + `.html` + `.css`
+
+**Alternatives considered:**
+- Esperar logo SVG final antes de empacotar brand book — descartado: atrasa handoff pra Fase 1 sem ganho real, já que substituir os 10 PNGs depois é trivial.
+- Não gerar PDF até logo final — descartado: o PDF textual com tipografia + paleta aplicadas tem valor independente do logo (aplicação visual do sistema decidido em peça real).
+- Decompor marcas-filhas formalmente (Decisão 04 completa) — descartado: única marca-filha de fato é AI LIKE A PRO; trabalho cerimonial nos demais sub-grupos.
+
+---
+
 ## Active Blockers
 
 Nenhum.
