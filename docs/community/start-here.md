@@ -57,8 +57,12 @@ Se você carrega responsabilidade por crescer alguma coisa em B2B, **tem um luga
 
 **Próximo:** [Meetup Growth SP · S1 · E1 · Barte (jun/2026)](../../README.md#meetup-growth-sp--s1--e1--barte) — Revenue Operations com IA
 
+**[→ Entrar na lista de espera (Tally)](https://tally.so/r/BzLJO4)**
+
 **Como funciona:**
-- Ingresso = automatic enrollment como **Growth Hacker** (tier free de membership) + acesso à comunidade WhatsApp + lugar no jantar pós-meetup
+- **Lista de espera ativa** — capacidade da Barte é limitada, cadastros entram em fila por ordem. Quando lote abrir, você é convocado pela posição (e-mail + WhatsApp) e tem **48h** pra confirmar e pagar.
+- **Quem entra antes pega lote mais barato.** Sem promessa de garantia — fila respeitada na ordem.
+- Ingresso confirmado vem com membership `Growth Hacker` (tier free do clube) + acesso à comunidade WhatsApp + lugar no jantar pós-meetup
 - Cidades que rotacionam: SP, RJ, BH, POA (S1 começa em SP, próximas em definição)
 - Cadência: ~2 meses entre meetups
 

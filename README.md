@@ -88,9 +88,15 @@ Do CEO ao dev. Do growth ao quebrado.
 **Tema:** Revenue Operations com IA — não o que você viu no LinkedIn, o que realmente tá rodando em pipeline<br>
 **Quem senta na mesa:** quem entrega na semana
 
-> Ingresso = membership Growth Hacker (free) + acesso à comunidade WhatsApp + lugar no jantar pós-meetup.
+> **Ingresso** vem com membership `Growth Hacker` (tier free do clube) + acesso à comunidade WhatsApp + lugar no jantar pós-meetup. **Acesso é pago em lote** — valor anunciado na convocação da fila.
 
-🍺 **[Lista de aplicação aqui em breve.](https://growthclub.pro)** Site em construção pela Founder Crew (vide abaixo).
+### 🍺 Entrar na lista de espera
+
+**[→ Lista de espera (Tally form)](https://tally.so/r/BzLJO4)**
+
+**Como funciona:** capacidade limitada da Barte. Cadastros entram em fila por ordem. Quando lote abrir, você é convocado pela posição na lista (e-mail + WhatsApp) e tem **48h** pra confirmar e pagar. Quem entra antes pega lote mais barato.
+
+> Site oficial `growthclub.pro` em construção pela Founder Crew (vide abaixo). A lista de espera roda no Tally enquanto o site não sobe.
 
 ---
 
