@@ -33,7 +33,10 @@ Do CEO ao dev. Do growth ao quebrado.
 > [Investidor →](docs/investors/) ·
 > [Patrocinador →](docs/sponsors/) ·
 > [Quero ser Founder Crew →](docs/crew/founder-crew-faq.md) ·
-> [Build in public →](CHANGELOG.md)
+> [Build in public →](CHANGELOG.md) ·
+> [Brand book →](brand/README.md) ·
+> [Decisões registradas (ADRs) →](.specs/project/STATE.md) ·
+> [Mapa do `docs/` →](docs/README.md)
 
 ---
 
@@ -228,18 +231,27 @@ Detalhe: [`brand/voice/dos-and-donts.md`](brand/voice/dos-and-donts.md) · [`.sp
 ```text
 Growth-Club/
 ├── README.md                          ← você está aqui
-├── .specs/project/                    ← decisões públicas (STATE, ROADMAP, STACK, CONVENTIONS)
-├── brand/                             ← marca em construção
-│   ├── decisions/                     ← bandeira-pirata, nome canônico, arquétipo, marcas-filhas
+├── CHANGELOG.md                       ← build-in-public log
+├── SECURITY.md                        ← política de segurança (LGPD, vulnerabilidades, SLA)
+├── CLAUDE.md                          ← instruções de operação pro Claude (interno)
+├── .specs/project/                    ← decisões locked (STATE, ROADMAP, STACK, CONVENTIONS, ARCHITECTURE)
+├── .agents/                           ← rules, skills (brain, debugging, Humanizer, etc.), workflows
+├── .github/                           ← issue templates, código de conduta, CONTRIBUTING, profile, workflows
+├── brand/                             ← marca viva (vide brand/README.md)
+│   ├── decisions/                     ← bandeira-pirata, nome canônico, arquétipo, marcas-filhas (locked)
 │   ├── visual/                        ← paleta, tipografia, logo direction
-│   ├── voice/                         ← manifesto (3 versões), do's and don'ts, tom por canal
-│   ├── templates/                     ← (em construção pela Founder Crew #2)
+│   ├── voice/                         ← manifesto (3 versões), do's and don'ts, tom por canal, glossário
+│   ├── templates/                     ← templates aplicados (executor: Founder Crew #2)
+│   ├── assets/                        ← logos, swatches, export pack (v0 placeholder)
 │   └── brand-book.md                  ← consolidação viva
-├── docs/superpowers/specs/            ← Business Plan v1.2 (aprovado, 2026-04-22)
-├── docs/superpowers/plans/            ← Brand Brief Plan v1.2 (aprovado)
-├── docs/community/                    ← estratégia de visibilidade, playbooks v0
-├── website/                           ← (em construção pela Founder Crew #1)
-└── .github/                           ← issue templates, código de conduta, contribuição
+├── docs/                              ← documentação curada por audiência (vide docs/README.md)
+│   ├── community/                     ← onboarding pra membros, régua editorial, visibilidade
+│   ├── crew/                          ← FAQ pra Founder Crew, template de subpágina autoral
+│   ├── investors/                     ← carta do founder, métricas, FAQ, time
+│   ├── sponsors/                      ← media kit, audience breakdown, política
+│   ├── superpowers/                   ← specs e plans (Business Plan v1.2, Brand Brief)
+│   └── legacy/                        ← documentos históricos preservados
+└── website/                           ← em construção pela Founder Crew #1 (vide website/README.md)
 ```
 
 Por que tá tudo aberto: transparência radical (decisão registrada em [`STATE.md` AD-005](.specs/project/STATE.md)). Mostrar como o sausage é feito é o que o clube prega. Único arquivo escondido: contratos financeiros (`docs/contracts/`).

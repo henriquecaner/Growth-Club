@@ -161,8 +161,55 @@ Régua rápida (5-7 palavras). Se uma peça não cabe nesse anchor, não é Grow
 
 ---
 
+## Naming de arquivos e pastas
+
+Convenção pra nomes de arquivos e diretórios no repositório.
+
+### Pastas
+
+- **kebab-case** sempre. Ex: `docs/community/`, `brand/visual/`, `docs/superpowers/specs/`.
+- Sem espaços. Sem CamelCase. Sem snake_case.
+- Sem maiúsculas (exceto pelos diretórios convencionais `.github/`, `.specs/`, `.agents/`).
+
+### Arquivos markdown
+
+- **kebab-case** pra nomes compostos: `start-here.md`, `audience-breakdown.md`, `founder-crew-faq.md`, `crew-pages-template.md`.
+- **UPPERCASE permitido** pra arquivos canônicos do GitHub e do projeto que seguem convenção universal: `README.md`, `CHANGELOG.md`, `SECURITY.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE`, `FAQ.md` (quando standalone).
+- Sem espaços nos nomes (impacta URLs do GitHub).
+- Sem acentos (`paleta-primaria.md`, não `paleta-primária.md`).
+
+### Brand decisions
+
+- Prefixo numérico zero-padded de 2 dígitos: `01-`, `02-`, `03-`, `04-`.
+- Ex: `brand/decisions/03-arquetipo-e-tom.md`.
+
+### ADRs
+
+- Vivem em `.specs/project/STATE.md` (append-only, não em arquivo separado).
+- Identificadas como `AD-001`, `AD-002`, etc. Nunca renumeradas.
+
+### Specs e plans gerados via skills
+
+- Prefixo de data ISO: `YYYY-MM-DD-slug-do-doc.md`.
+- Ex: `docs/superpowers/specs/2026-04-22-growth-club-business-plan-design.md`.
+
+### Imagens e assets
+
+- kebab-case + sufixo descritivo. Ex: `bandeira-pirata-v0-1024.png`, `logo-master-svg.svg`.
+- Versionamento explícito quando aplicável (`-v0`, `-v1`, etc.).
+
+### O que evitar
+
+- Nomes com espaço (quebra URLs e cria confusão em git/cli).
+- Maiúscula no meio de arquivos não-canônicos (`MyFile.md`, `Founder_Crew_FAQ.md`).
+- Acentos (compatibilidade frágil em sistemas externos).
+- Sufixos como `-final`, `-final2`, `-real-final` (use versionamento explícito ou git).
+
+---
+
 ## Histórico de mudanças
 
 | Data | Versão | Mudança | ADR |
 |---|---|---|---|
-| 2026-04-27 | v1.0 | Criação inicial — Brand naming + Voice glossário (post Chunk 5 textual) | ADR-002 |
+| 2026-04-27 | v1.0 | Criação inicial. Brand naming e voice glossário (post Chunk 5 textual). | ADR-002 |
+| 2026-04-28 | v1.1 | Adiciona seção "Naming de arquivos e pastas". | (this commit) |

@@ -40,24 +40,30 @@ This is **not** a greenfield scaffold. The project is mid-execution on the **Mar
 Growth-Club/
 ├── CLAUDE.md                              ← you are here
 ├── .agents/rules/                         ← operating contract (universal-agent-rules, engineering-laws)
-├── .agents/skills/                        ← brain, code-review, debugging, testing + _template
+├── .agents/skills/                        ← brain, code-review, debugging, testing, Humanizer + _template
 ├── .agents/workflows/                     ← global-workflow, post-execution-sync
 ├── .claude/settings.json                  ← frontend-design + superpowers plugins enabled
 ├── .specs/project/                        ← STACK/ARCHITECTURE/CONVENTIONS/STATE/ROADMAP (STATE is append-only)
-├── brand/                                 ← brand work in progress
+├── README.md                              ← public showcase / vitrine
+├── CHANGELOG.md                           ← build-in-public log (mirror filtered of STATE.md)
+├── SECURITY.md                            ← security policy (Phase 1)
+├── brand/                                 ← brand work in progress (see brand/README.md for map)
 │   ├── decisions/                         ← 01 bandeira-pirata, 02 nome-canonico, 03 arquetipo+tom (LOCKED),
 │   │                                       04 marcas-filhas (skeleton — pending user input)
 │   ├── visual/                            ← paleta-primaria, tipografia, logo-moodboard (direction 3 recommended)
 │   ├── voice/                             ← manifesto (3 versões), dos-and-donts, tom-por-canal, glossario
 │   ├── templates/                         ← empty — Chunk 4 will populate (newsletter/linkedin/email/livecast)
-│   └── assets/                            ← empty — logo vectors, palette swatches, export pack to come
-├── docs/superpowers/
-│   ├── specs/2026-04-22-growth-club-business-plan-design.md    ← business plan v1.2 APPROVED
-│   ├── plans/2026-04-22-growth-club-brand-brief.md             ← brand brief plan v1.2 APPROVED
-│   ├── plans/2026-04-22-growth-club-brand-brief-solo-guide.md  ← companion solo execution guide
-│   └── master-prompt-growth-club-cowork.md                     ← portable context for Claude Cowork/other UIs
-├── Visão do Projeto.md                    ← user's original long-form vision doc (reference; not source of truth)
-└── website/                               ← empty placeholder for eventual capture site
+│   └── assets/                            ← v0 placeholder — logo vectors, palette swatches, export pack
+├── docs/                                  ← curated docs by audience (see docs/README.md for map)
+│   ├── community/                         ← onboarding pra membros, régua editorial, visibility strategy
+│   ├── crew/                              ← FAQ pra Founder Crew, template de subpágina autoral
+│   ├── investors/                         ← founder letter, metrics, FAQ, team
+│   ├── sponsors/                          ← media kit, audience breakdown, política de não-contaminação
+│   ├── superpowers/                       ← specs/plans (Business Plan v1.2 APPROVED, Brand Brief v1.2)
+│   └── legacy/                            ← archived: visao-original.md, design-original.md
+├── .github/                               ← CODE_OF_CONDUCT, CONTRIBUTING, ISSUE_TEMPLATE, PR template, profile, workflows
+└── website/                               ← em construção pela Founder Crew #1 (ver website/README.md)
+    └── legacy/index-old.html              ← versão antiga do site (preservada)
 ```
 
 ## Locked (non-negotiable) decisions
