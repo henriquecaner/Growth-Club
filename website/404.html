@@ -3,26 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 — Growth Club</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" href="/assets/images/favicon.ico">
+  <title>404 — Growth Club</title>
+
+  <link rel="icon" href="/assets/images/logo-mark.svg">
+
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-  <gc-header></gc-header>
-  <main class="container container-narrow section section-lg" style="text-align: center;">
-    <h1 style="font-size: var(--fs-display-l);">Esse link saiu do clube.</h1>
-    <p style="font-size: var(--fs-body-lg); color: var(--fg-tertiary); margin-top: var(--space-5);">Ou nunca esteve aqui.</p>
 
-    <div class="cluster" style="justify-content: center; margin-top: var(--space-10);">
-      <a href="/" class="btn btn-secondary">Voltar pra home</a>
-      <a href="/membro" class="btn btn-primary">Entrar no clube</a>
-    </div>
+  <gc-header current=""></gc-header>
+
+  <main>
+
+    <section class="hero-sub">
+      <div class="wrap">
+        <span class="kicker">404 · página não encontrada</span>
+        <h1 class="page-title">Esse link saiu do <em>clube.</em></h1>
+        <p class="page-lede">Ou nunca esteve aqui. URL inválida, página removida, link que envelheceu. Tudo bem — o resto da comunidade continua no ar.</p>
+      </div>
+    </section>
+
+    <section class="article">
+      <div class="wrap" style="max-width: 720px;">
+        <div class="hero-ctas" style="margin-top: 32px; justify-content: center;">
+          <a class="btn primary" href="/">Voltar pra home <i data-lucide="arrow-up-right"></i></a>
+          <a class="btn ghost" href="/membro">Tornar-se membro</a>
+        </div>
+      </div>
+    </section>
+
   </main>
+
   <gc-footer></gc-footer>
+
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  </script>
 </body>
 </html>

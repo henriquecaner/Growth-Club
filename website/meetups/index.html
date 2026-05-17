@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Meetups — Growth Club</title>
-  <meta name="description" content="Próximos meetups do Growth Club e histórico de 10+ edições desde 2015.">
+  <meta name="description" content="Meetups presenciais com convidado abrindo case com número aberto. Desde 2015 em São Paulo.">
 
   <link rel="canonical" href="https://growthclub.pro/meetups">
-  <link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="icon" href="/assets/images/logo-mark.svg">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Meetups — Growth Club">
-  <meta property="og:description" content="Próximos meetups do Growth Club e histórico de 10+ edições desde 2015.">
+  <meta property="og:description" content="Onde a comunidade se encontra.">
   <meta property="og:url" content="https://growthclub.pro/meetups">
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
 
@@ -27,30 +29,45 @@
 
   <main>
 
-    <section class="hero">
-      <div class="container">
-        <h1>Onde a comunidade se encontra.</h1>
-        <p>Meetups presenciais. Sem palco vazio. Com cerveja.</p>
+    <section class="hero-sub">
+      <div class="wrap">
+        <div class="crumb">
+          <a href="/">Home</a><span class="sep">/</span><span class="curr">Meetups</span>
+        </div>
+        <span class="kicker">Meetups · Mesa de canto</span>
+        <h1 class="page-title">Onde a comunidade <em>se encontra.</em></h1>
+        <p class="page-lede">Meetups presenciais com convidado abrindo case com número aberto, plateia perguntando sem suavizar, cerveja pagando conversa que não cabe na talk. Desde 2015. Sem palco iluminado, sem painel patrocinado-disfarçado-de-conteúdo.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <h2>Próximo</h2>
-        <article class="card" style="margin-top: var(--space-5);">
-          <p class="subgroup-label">15 de junho de 2026 · São Paulo</p>
-          <h3 style="font-size: var(--fs-h3); margin-top: var(--space-2);">Meetup Growth SP · S1 · E1 · Revenue Operations com IA</h3>
-          <p>Patrocinado por Barte. Tema técnico: RevOps com IA aplicada — stack, número, casos.</p>
-          <a href="/meetups/sp-s1e1-barte" class="btn btn-primary" style="margin-top: var(--space-4);">Ver detalhes e inscrição</a>
-        </article>
+      <div class="wrap">
+
+        <span class="eye-label" style="display: block; margin-bottom: 16px;">/ PRÓXIMO MEETUP</span>
+        <div style="background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 48px 40px; margin-bottom: 64px; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: radial-gradient(circle, var(--accent-amber-glow) 0%, transparent 60%); pointer-events: none;"></div>
+          <span class="kicker" style="margin-top: 0;">15 jun 2026 · São Paulo</span>
+          <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg-primary); margin-bottom: 16px; max-width: 22ch;">Meetup Growth SP · S1 · E1<br><em style="color: var(--accent-amber); font-style: normal;">Revenue Operations com IA</em></h2>
+          <p style="color: var(--fg-secondary); font-size: 17px; line-height: 1.6; margin-bottom: 24px; max-width: 58ch;">Patrocinado por Barte. Tema técnico: RevOps com IA aplicada — stack, número, casos reais. Convidado abrindo case com número aberto. Q&amp;A sem suavizar. Cerveja pagando o resto.</p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="/meetups/sp-s1e1-barte">Ver detalhes <i data-lucide="arrow-up-right"></i></a>
+            <a class="btn ghost" href="/membro">Entrar pra fila</a>
+          </div>
+        </div>
+
+        <span class="eye-label" style="display: block; margin-bottom: 16px;">/ HISTÓRICO</span>
+        <h2 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 16px;">10+ meetups <em style="color: var(--accent-amber); font-style: normal;">desde 2017.</em></h2>
+        <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 24px; max-width: 60ch;">Edições antigas com tema, cidade e número de presentes (incompleto — alguns registros se perderam ao longo dos 11 anos).</p>
+        <a class="btn ghost" href="/meetups/historico">Ver histórico completo <i data-lucide="arrow-up-right"></i></a>
+
       </div>
     </section>
 
-    <section class="section section-alt">
-      <div class="container">
-        <h2>Histórico</h2>
-        <p>10+ edições desde 2015 em SP, RJ e outras cidades.</p>
-        <a href="/meetups/historico" class="btn btn-secondary" style="margin-top: var(--space-4);">Ver histórico completo</a>
+    <section class="cta-inline">
+      <div class="wrap">
+        <h2>Entra na fila <em>do próximo.</em></h2>
+        <p>Inscrição pra meetup é prioritária pra quem já está na newsletter. Inscrição aberta em breve pro S1E1 Barte.</p>
+        <a class="btn primary" href="/membro">Tornar-se membro <i data-lucide="arrow-up-right"></i></a>
       </div>
     </section>
 
@@ -60,5 +77,10 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  </script>
 </body>
 </html>

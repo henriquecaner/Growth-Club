@@ -3,39 +3,64 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bem-vindo ao Clube — Growth Club</title>
-  <meta name="description" content="Você está no Growth Club. Próximos passos abaixo.">
   <meta name="robots" content="noindex">
+  <title>Você está no clube — Growth Club</title>
 
-  <link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="icon" href="/assets/images/logo-mark.svg">
 
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
 
-  <gc-header current="membro"></gc-header>
+  <gc-header current=""></gc-header>
 
-  <main class="container container-narrow section section-lg" style="text-align: center;">
-    <h1>Você está no clube.</h1>
-    <p style="font-size: var(--fs-body-lg); color: var(--fg-tertiary); margin-top: var(--space-5);">Recebemos seu email. Próximos passos:</p>
+  <main>
 
-    <ol style="text-align: left; max-width: 28rem; margin: var(--space-8) auto; padding-left: var(--space-5); line-height: 2;">
-      <li>Confirma a inscrição no email do Substack (caixa de spam às vezes pega).</li>
-      <li>Em até 48h, te mandamos convite separado pro Community WhatsApp.</li>
-      <li>Próximo meetup é o <a href="/meetups/sp-s1e1-barte">Meetup Growth SP S1E1 Barte</a> em jun/2026 — vem.</li>
-    </ol>
+    <section class="hero-sub">
+      <div class="wrap">
+        <div class="crumb">
+          <a href="/">Home</a><span class="sep">/</span><a href="/membro">Tornar-se membro</a><span class="sep">/</span><span class="curr">Obrigado</span>
+        </div>
+        <span class="kicker">Inscrição confirmada</span>
+        <h1 class="page-title">Você está no <em>clube.</em></h1>
+        <p class="page-lede">Recebemos seu email. Newsletter quinzenal vai cair na sua caixa em até 14 dias. Próximos passos abaixo.</p>
+      </div>
+    </section>
 
-    <div class="cluster" style="justify-content: center; margin-top: var(--space-8);">
-      <a href="/" class="btn btn-secondary">Voltar pra home</a>
-      <a href="/meetups" class="btn btn-primary">Ver próximos meetups</a>
-    </div>
+    <section class="article">
+      <div class="wrap" style="max-width: 720px;">
+        <article class="prose" style="max-width: 100%;">
+          <section style="border-top: 0; padding-top: 0;">
+            <div class="s-num">PRÓXIMOS PASSOS</div>
+            <h2>O que <em>vai acontecer.</em></h2>
+            <p><strong>1. Confirmação Substack</strong> — em até 5 minutos chega um email do Substack pedindo pra confirmar. Clica e tá feito. Sem confirmação, você não entra na lista.</p>
+            <p><strong>2. Convite WhatsApp Community</strong> — em até 7 dias úteis você recebe um link pessoal pra entrar na Community. Triagem leve pra manter a régua.</p>
+            <p><strong>3. Próximo meetup</strong> — Meetup Growth SP · S1 · E1 · Barte (jun/2026). Vai abrir inscrição em breve. Você fica sabendo primeiro pela newsletter.</p>
+          </section>
+        </article>
+
+        <div class="hero-ctas" style="margin-top: 48px; justify-content: center;">
+          <a class="btn primary" href="/">Voltar pra home <i data-lucide="arrow-up-right"></i></a>
+          <a class="btn ghost" href="/meetups">Ver próximos meetups</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <gc-footer></gc-footer>
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  </script>
 </body>
 </html>

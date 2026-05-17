@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Newsletter — Growth Club</title>
-  <meta name="description" content="Newsletter Growth Club no Substack. Semanal pública + quinzenal paga em 2027.">
-  <link rel="canonical" href="https://growthclub.pro/recursos/newsletter">
-  <link rel="icon" href="/assets/images/favicon.ico">
+  <meta name="description" content="Newsletter quinzenal no Substack. 2.261 operadores de growth B2B já lêem. Sem boost, sem swap.">
 
-  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://growthclub.pro/recursos/newsletter">
+  <link rel="icon" href="/assets/images/logo-mark.svg">
+
+  <meta property="og:type" content="article">
   <meta property="og:title" content="Newsletter — Growth Club">
-  <meta property="og:description" content="Newsletter Growth Club no Substack. Semanal pública + quinzenal paga em 2027.">
+  <meta property="og:description" content="Quinzenal deep. 2.261 inscritos.">
   <meta property="og:url" content="https://growthclub.pro/recursos/newsletter">
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
@@ -19,40 +20,82 @@
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
+
   <gc-header current="recursos"></gc-header>
 
   <main>
 
-    <section class="hero">
-      <div class="container container-narrow">
-        <h1>Newsletter Growth Club</h1>
-        <p>Semanal pública. Quinzenal paga em 2027. ~2.261 operadores lêem.</p>
+    <section class="hero-sub">
+      <div class="wrap">
+        <div class="crumb">
+          <a href="/">Home</a><span class="sep">/</span><a href="/recursos/newsletter">Recursos</a><span class="sep">/</span><span class="curr">Newsletter</span>
+        </div>
+        <span class="kicker">Newsletter · Substack quinzenal</span>
+        <h1 class="page-title">Newsletter <em>quinzenal deep.</em></h1>
+        <p class="page-lede">2.261 operadores de growth B2B já lêem. Quinzenal, com 1 case real, 1 benchmark, 1 link da semana. Sem boost, sem swap de lista, sem pop-up agressivo. Régua editorial #1 aplicada: se não tem número, não entra.</p>
+        <div class="meta-row">
+          <span>FREQUÊNCIA · <b>QUINZENAL</b></span>
+          <span>PLATAFORMA · <b>SUBSTACK</b></span>
+          <span>INSCRITOS · <b>2.261</b></span>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container container-narrow">
-        <p>[PITCH_NEWSLETTER — 2-3 parágrafos. O que é, qual é a régua, como nasceu, o que a pessoa ganha. Cita exemplos de issues anteriores.]</p>
+      <div class="wrap" style="max-width: 880px;">
 
-        <form class="form-newsletter" data-substack-url="https://growthclub.substack.com/subscribe" style="margin-top: var(--space-6);">
-          <input type="email" name="email" placeholder="seu@email.com" required aria-label="Seu email">
-          <button type="submit" class="btn btn-primary">Assinar grátis</button>
-        </form>
+        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 24px;">O que entra <em style="color: var(--accent-amber); font-style: normal;">em cada edição.</em></h2>
 
-        <label class="field-checkbox" style="margin-top: var(--space-4);">
-          <input type="checkbox" name="lgpd-opt-in" required>
-          <span>Concordo em receber a newsletter. Você pode sair quando quiser. <a href="/privacidade">Política de Privacidade</a>.</span>
-        </label>
+        <ul class="stack" style="--space: 20px; list-style: none; padding: 0; margin-bottom: 48px;">
+          <li><strong style="color: var(--fg-primary);">1 case real com número aberto</strong> — operador da comunidade abrindo movimento concreto (CAC, payback, conversão, retenção) com antes-e-depois auditável.</li>
+          <li><strong style="color: var(--fg-primary);">1 benchmark privado</strong> — recortes do banco de dados informal da comunidade (benchmark de pricing, conversão por canal, salário senior+, etc).</li>
+          <li><strong style="color: var(--fg-primary);">1 link da semana</strong> — leitura externa que vale o seu tempo. Não é dump de RSS — é curadoria com nota editorial.</li>
+          <li><strong style="color: var(--fg-primary);">Convite editorial</strong> — pergunta aberta da edição. Resposta da comunidade entra na edição seguinte com crédito.</li>
+        </ul>
+
+        <div style="background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 40px 32px; margin-bottom: 48px;">
+          <span class="eye-label" style="display: block; margin-bottom: 16px;">/ INSCRIÇÃO GRÁTIS</span>
+          <h3 style="font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--fg-primary); margin-bottom: 12px;">Entra na lista <em style="color: var(--accent-amber); font-style: normal;">agora.</em></h3>
+          <p style="color: var(--fg-secondary); font-size: 15px; line-height: 1.55; margin-bottom: 24px;">Próxima edição em até 14 dias. Sem spam, sem boost, sem swap de lista. Cancela quando quiser.</p>
+
+          <form class="form-newsletter" data-substack-url="https://growthclub.substack.com/subscribe">
+            <input type="email" name="email" placeholder="seu@email.com" required aria-label="Email">
+            <button type="submit" class="btn primary">Quero a newsletter <i data-lucide="arrow-up-right"></i></button>
+            <label class="field-checkbox" style="flex-basis: 100%; margin-top: 12px;">
+              <input type="checkbox" name="lgpd-opt-in" required>
+              <span>Autorizo o envio de newsletter editorial. Posso revogar a qualquer momento. <a href="/lgpd">Ver direitos LGPD</a>.</span>
+            </label>
+          </form>
+        </div>
+
+        <p style="color: var(--fg-tertiary); font-size: 14px; line-height: 1.6;">Já lê pelo Substack direto? <a href="https://growthclub.substack.com" target="_blank" rel="noopener">growthclub.substack.com</a>.</p>
+
+      </div>
+    </section>
+
+    <section class="cta-inline">
+      <div class="wrap">
+        <h2>Pega a régua <em>em tempo real.</em></h2>
+        <p>Newsletter é o canal mais antigo da comunidade. Tudo que rola na Community e nos meetups passa por aqui primeiro.</p>
+        <a class="btn primary" href="#" onclick="document.querySelector('.form-newsletter input').focus(); return false;">Cadastrar email <i data-lucide="arrow-up-right"></i></a>
       </div>
     </section>
 
   </main>
 
   <gc-footer></gc-footer>
+
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script src="/assets/js/newsletter-form.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  </script>
 </body>
 </html>
