@@ -22,7 +22,7 @@ Spec de design do site oficial do Growth Club em `growthclub.pro`. Site público
 
 **`/sobre`** também é single page com anchors: história + manifesto integrado + Founder Crew + imprensa.
 
-**Bloqueador crítico de go-live:** **ADR-007 precisa ser formalizada** no `STATE.md` antes do site ir ao ar, registrando os compromissos operacionais de Mentorias quinzenais, Desafios mensais e as 3 frentes B2B (job board, hunting, mentoria B2B). Sem ADR registrada, o site fala de produtos sem dono operacional — fere o ton-anchor "sem teatro".
+**Bloqueador crítico de go-live:** **ADR-008 precisa ser formalizada** no `STATE.md` antes do site ir ao ar, registrando os compromissos operacionais de Mentorias quinzenais, Desafios mensais e as 3 frentes B2B (job board, hunting, mentoria B2B). Sem ADR registrada, o site fala de produtos sem dono operacional — fere o ton-anchor "sem teatro".
 
 **Stack** fica em aberto pra escolha do Founder Crew #1 (frontend), com guardrails do `website/README.md` (deploy Vercel/Netlify, hosting ≤ R$ 200/mês).
 
@@ -192,8 +192,8 @@ Footer bottom: `© 2015–2026 Growth Club · CNPJ Level Tech [a inserir] · Man
 - Livecast semanal patrocinado
 
 **Programas de membros:**
-- Mentorias quinzenais ⚠️ ADR-007
-- Desafios mensais com premiação ⚠️ ADR-007
+- Mentorias quinzenais ⚠️ ADR-008
+- Desafios mensais com premiação ⚠️ ADR-008
 - Grupos WhatsApp por interesse
 
 **Conteúdo editorial:**
@@ -315,9 +315,9 @@ Cada arquivo MDX/JSON contém:
 1. **HERO** — "Comunidade pra empresas que querem encontrar, contratar e patrocinar quem faz growth de verdade"
 2. **PROVA SOCIAL B2B** — Logos de empresas que já patrocinaram livecast/meetup + 1 número marcante (ex: "23 empresas patrocinaram nos últimos 24 meses")
 3. **PATROCINAR** (`#patrocinio`) — Media kit resumo · formatos (livecast, meetup, newsletter, eventos) · preços indicativos · CTA "Falar com a gente"
-4. **VAGAS** (`#vagas`) ⚠️ — Pitch pra empresa anunciar vaga · form/CTA "Anunciar vaga" · ⚠️ pende ADR-007. Na v1, **não é job board com feed dinâmico** — é pitch comercial estático com CTA pra anunciar (vaga única é publicada manualmente pelo Henrique como post-test).
-5. **HUNTING** (`#hunting`) ⚠️ — Pitch consultivo (busca dirigida de senior+) · CTA "Agendar diagnóstico" · ⚠️ pende ADR-007
-6. **MENTORIA** (`#mentoria`) ⚠️ — Pitch + mentores do core · formatos (sprint de 1 mês, advisory contínuo) · CTA "Conversar com mentor" · ⚠️ pende ADR-007
+4. **VAGAS** (`#vagas`) ⚠️ — Pitch pra empresa anunciar vaga · form/CTA "Anunciar vaga" · ⚠️ pende ADR-008. Na v1, **não é job board com feed dinâmico** — é pitch comercial estático com CTA pra anunciar (vaga única é publicada manualmente pelo Henrique como post-test).
+5. **HUNTING** (`#hunting`) ⚠️ — Pitch consultivo (busca dirigida de senior+) · CTA "Agendar diagnóstico" · ⚠️ pende ADR-008
+6. **MENTORIA** (`#mentoria`) ⚠️ — Pitch + mentores do core · formatos (sprint de 1 mês, advisory contínuo) · CTA "Conversar com mentor" · ⚠️ pende ADR-008
 7. **POLÍTICA DE NÃO-CONTAMINAÇÃO** — Bloco explícito (R3 do business plan)
 8. **CTA CONTATO COMERCIAL** — `parceiros@growthclub.pro` ou form
 
@@ -555,7 +555,7 @@ Toda copy do site passa por:
 
 | ID | Bloqueador | Resolução | Owner |
 |----|-----------|-----------|-------|
-| B-01 | **ADR-007 não registrada** em `STATE.md` formalizando Mentorias quinzenais, Desafios mensais, Job board, Hunting, Mentoria B2B | Sessão de design específica + ADR escrita | Henrique |
+| B-01 | **ADR-008 não registrada** em `STATE.md` formalizando Mentorias quinzenais, Desafios mensais, Job board, Hunting, Mentoria B2B | Sessão de design específica + ADR escrita | Henrique |
 | B-02 | Logo SVG final não entregue (Chunk 2 da marca) | Steps 1c-1e em Figma | Henrique |
 | B-03 | Founder Crew #1 (frontend) não preenchido | AD-002 — recrutamento WhatsApp aberto | Henrique |
 | B-04 | Acordo de Founder Crew não revisado/assinado | `docs/contracts/acordo-founder-crew.md` → revisão pelo "Claude Revisa" → assinatura via Google Docs | Henrique |
@@ -585,7 +585,7 @@ Lista de propostas e questões que apareceram na sessão de brainstorming e fica
 | TBD-01 | Adicionar "Breakdowns públicos" como card em Conteúdos que produzimos | Sugestão minha (Claude), ainda não validada | Henrique |
 | TBD-02 | Adicionar "Benchmark anual" como card em Conteúdos que produzimos | Sugestão minha (Claude), ainda não validada. Já consta como entregável em business plan §7.2. | Henrique |
 | TBD-03 | Adicionar "Playbooks" e "Diretório de operadores" como conteúdos | Sugestão minha (Claude), ainda não validada. Constam como entregáveis em business plan §7.2. | Henrique |
-| TBD-04 | Stack tecnológica final | Crew #1 escolhe dentro dos guardrails (§5.5) | Crew #1 |
+| ~~TBD-04~~ ✅ | ~~Stack tecnológica final~~ | **RESOLVIDA em AD-007 (2026-05-17):** HTML5 semântico + Modern CSS (com nesting nativo) sem framework. Sem build step. Hospedagem: Cloudflare Pages. Executor: Henrique. | — |
 | TBD-05 | Plataforma de aulas externa | Vimeo Showcase, Hotmart, Heartbeat, etc. — decisão urgente quando 1ª aula for gravar | Crew #1 + Henrique |
 | TBD-06 | Form backend pós-Tally | Manter Tally, mudar pra Formspree, ou próprio | Crew #1 |
 | TBD-07 | Analytics platform | Proposta: Plausible. Crew #1 pode contestar. | Crew #1 |
@@ -604,15 +604,15 @@ Lista de propostas e questões que apareceram na sessão de brainstorming e fica
 
 1. Henrique revisa este spec — pode pedir ajustes (gera v1.1 do spec)
 2. Quando aprovado, Henrique sinaliza pra avançar pra etapa de **writing-plans**
-3. ADR registrada em `.specs/project/STATE.md` como **AD-006 — aprovação deste spec**. Compromissos operacionais novos (Mentorias / Desafios / B2B) ficam pra **AD-007** quando forem formalizados.
-4. `STATE.md` atualizado com novo blocker B-01 (ADR-007 pendente)
+3. ADR registrada em `.specs/project/STATE.md` como **AD-006 — aprovação deste spec**. Compromissos operacionais novos (Mentorias / Desafios / B2B) ficam pra **AD-008** quando forem formalizados.
+4. `STATE.md` atualizado com novo blocker B-01 (ADR-008 pendente)
 5. `ROADMAP.md` Fase 1 atualizado com referência a este spec
 
 ### 10.2 Pré-requisitos pré-plan (que o plan vai precisar)
 
 Antes de invocar **superpowers:writing-plans**, recomenda-se:
 - Founder Crew #1 preenchido (`AD-002` recrutamento)
-- ADR-007 registrada formalizando compromissos operacionais novos
+- ADR-008 registrada formalizando compromissos operacionais novos
 - Stack escolhida e documentada em `.specs/project/STACK.md`
 - Logo SVG final entregue (Chunk 2 da marca)
 - Conteúdo concreto §6.4 pelo menos 60% escrito
@@ -650,7 +650,7 @@ Trail das decisões tomadas durante a sessão de brainstorming em **2026-05-17**
 6. **`/membro` formato:** Caminho único free (não tabela de tiers)
 7. **Densidade home:** Híbrida (7 seções) inicial, expandida pra 9 seções após adições do usuário
 8. **Conteúdos que produzimos:** Lista do usuário (7 itens) + adições minhas como TBD (3 itens)
-9. **Como ajudamos profissionais e empresas:** Aceito como compromisso, abre ADR-007
+9. **Como ajudamos profissionais e empresas:** Aceito como compromisso, abre ADR-008
 10. **Patrocinadores → Empresas:** `/patrocinadores` consolidado dentro de `/empresas`
 11. **`/sobre` fusão:** Manifesto + Crew + Imprensa tudo em `/sobre` single page com anchors
 12. **`/empresas` fusão:** 4 ofertas em single page com anchors `#patrocinio` `#vagas` `#hunting` `#mentoria`
@@ -663,5 +663,5 @@ Trail das decisões tomadas durante a sessão de brainstorming em **2026-05-17**
 ### v1.0 — 2026-05-17 (inicial, pós-brainstorming)
 - Documento criado a partir da sessão de brainstorming com superpowers:brainstorming
 - Aguarda review humano antes de avançar pra writing-plans
-- ⚠️ 6 bloqueadores de go-live catalogados em §8.1 (incluindo ADR-007 pendente)
+- ⚠️ 6 bloqueadores de go-live catalogados em §8.1 (incluindo ADR-008 pendente)
 - 13 decisões TBD catalogadas em §9

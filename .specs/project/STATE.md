@@ -7,6 +7,38 @@
 
 ## Recent Decisions (ADR)
 
+### AD-007: Stack escolhida pro site v1 — HTML5 semântico + Modern CSS, sem framework
+**Date:** 2026-05-17
+**Status:** Accepted
+
+**Context:** O spec do site (AD-006) deferiu deliberadamente a escolha de stack ao Founder Crew #1 (TBD-04 em §9 do spec). Ao avançar pra etapa de writing-plans, ficou claro que sem stack o plan ficaria sem caminhos de arquivo exatos e sem código exato — violando regras do skill. Henrique optou por destravar a decisão pessoalmente em vez de aguardar o Crew, dado que o Crew #1 ainda não foi preenchido (AD-002 recrutamento aberto desde 2026-04-28).
+
+**Decision:** Stack v1 do site:
+
+1. **HTML5 semântico** — sem framework JS (Next/Astro/SvelteKit/etc.). Arquivos `.html` estáticos por página, sem build step.
+2. **Modern CSS** com nesting nativo (suportado em todos os majores browsers desde 2023). Sem PostCSS, sem Sass, sem TailwindCSS na v1. CSS custom em arquivo único `styles.css` (ou modular por página se ficar grande).
+3. **JavaScript vanilla** quando necessário (form do newsletter com redirect pré-preenchido pro Substack, scrollspy de anchors em `/sobre` e `/empresas`, etc.). Sem framework JS, sem build.
+4. **Hospedagem: Cloudflare Pages.** Substitui Vercel/Netlify mencionados em `website/README.md`. Push pra Git = deploy automático. CDN global, free tier confortável, melhor latência LATAM.
+5. **Executor da v1: Henrique.** Crew #1 (frontend, vibe coder) entra depois pra evoluir/manter, não pra fazer a v1 do zero.
+
+**Consequences:**
+- Destrava a etapa de writing-plans imediatamente.
+- TBD-04 do spec do site marcada como RESOLVIDA.
+- `.specs/project/STACK.md` (atualmente placeholder) precisa ser atualizada com decisão real.
+- `website/README.md` precisa ser atualizado (Vercel/Netlify → Cloudflare Pages).
+- Trade-off aceito: sem template engine = header/footer duplicados em cada arquivo HTML. Pra ~20 páginas é gerenciável; se virar 50+ vale considerar Eleventy ou similar (uma dependência só, opcional).
+- CSS nesting nativo pode quebrar em browsers muito velhos (pré-2023) — alinhado com tom-anchor "Franco" (não otimizar pra long tail de IE/Safari velho).
+- Quando Crew #1 entrar e quiser migrar pra framework (Astro/Next/SvelteKit), abre nova ADR — não é decisão perpétua.
+- Henrique como executor: plan vai ser escrito em segunda pessoa direta ("você cria o arquivo X com este código"), não "Crew #1 deve…".
+
+**Alternatives considered:**
+- **Astro** (SSG com MDX nativo) — descartado: Henrique optou por simplicidade radical (sem build step) e quer aprender CSS moderno na prática.
+- **Next.js / SvelteKit** — descartado: overkill pra site estático, complexidade desnecessária pra v1.
+- **Eleventy** (SSG sem framework, 1 dependência) — descartado pra v1, considerado pra v2 se duplicação de header/footer pesar.
+- **Esperar Crew #1 preencher** — descartado: bloqueia a etapa de writing-plans indefinidamente; Henrique pode entregar v1 enquanto recrutamento corre.
+
+---
+
 ### AD-006: Spec do site v1 aprovado — `growthclub.pro`
 **Date:** 2026-05-17
 **Status:** Accepted
