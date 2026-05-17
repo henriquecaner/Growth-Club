@@ -1,0 +1,18 @@
+{
+  "mode": "meetup",
+  "meetup": {
+    "slug": "sp-s1e1-barte",
+    "nome_canonico": "Meetup Growth SP · S1 · E1 · Revenue Operations com IA",
+    "data_iso": "2026-06-15",
+    "data_display": "15 de junho de 2026",
+    "local": "Barte HQ · São Paulo · SP",
+    "cta_url": "/meetups/sp-s1e1-barte",
+    "cta_label": "Quero ir"
+  },
+  "livecast_fallback": {
+    "titulo": "Como dobrar SQL em 60 dias sem aumentar CAC — episódio piloto",
+    "url": "https://youtube.com/watch?v=PLACEHOLDER",
+    "thumb": "/assets/images/livecast-thumb-placeholder.jpg",
+    "duracao": "47 min"
+  }
+}

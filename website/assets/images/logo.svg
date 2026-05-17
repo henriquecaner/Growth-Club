@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="img" aria-label="Growth Club">
+  <rect width="120" height="40" fill="transparent"/>
+  <text x="0" y="29" font-family="Archivo Black, Inter, system-ui, sans-serif" font-weight="900" font-size="28" fill="#111">GC</text>
+  <text x="44" y="29" font-family="Inter, system-ui, sans-serif" font-weight="600" font-size="16" fill="#111">Growth Club</text>
+</svg>

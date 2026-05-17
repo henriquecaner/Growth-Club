@@ -1,1 +1,12 @@
 /* Page-specific styles. Adicionado conforme cada página é construída. */
+
+/* Home */
+.section-alt { background: var(--color-bg-alt); }
+
+#slot-dinamico {
+  text-align: center;
+
+  & h2 { margin-top: var(--sp-3); margin-bottom: var(--sp-3); }
+  & p { color: var(--color-fg-muted); }
+  & .btn { margin-top: var(--sp-5); }
+}
