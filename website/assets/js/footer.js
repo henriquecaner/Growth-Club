@@ -22,6 +22,7 @@ class GcFooter extends HTMLElement {
                 <li><a href="/meetups">Próximo meetup</a></li>
                 <li><a href="/recursos/livecast">Livecast</a></li>
                 <li><a href="/recursos/workshops">Workshops</a></li>
+                <li><a href="/ai-like-a-pro/">AI LIKE A PRO</a></li>
               </ul>
             </div>
 
