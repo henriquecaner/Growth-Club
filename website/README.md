@@ -44,3 +44,28 @@ Site antigo (`index-old.html`) preservado pra histórico. Vai ser substituído p
 ---
 
 Mantenedor: Henrique Caner. Última atualização: 2026-04-28.
+
+## Stack e Deploy (AD-007, 2026-05-17)
+
+- **Stack:** HTML5 semântico + Modern CSS + JavaScript vanilla. Sem build step. Sem `node_modules`.
+- **Hosting:** Cloudflare Pages.
+- **Deploy:** push pra branch `main` dispara rebuild automático em ~30s.
+- **Domínio:** `growthclub.pro`.
+
+### Rodar localmente
+
+```bash
+python3 -m http.server 8080
+# ou
+npx serve .
+```
+
+Abra `http://localhost:8080` no browser.
+
+### Adicionar nova edição de meetup
+
+1. Copie `meetups/sp-s1e1-barte.html` pra `meetups/<slug-nova-edicao>.html`.
+2. Substitua todos os campos marcados com `[CAMPO]` pelos dados da nova edição.
+3. Adicione um card no `meetups/index.html` linkando pra nova edição.
+4. Commit + push.
+
