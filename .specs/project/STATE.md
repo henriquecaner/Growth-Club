@@ -1,11 +1,43 @@
 # STATE: Growth Club
-**Last Updated:** 2026-04-28
+**Last Updated:** 2026-05-17
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-006: Spec do site v1 aprovado — `growthclub.pro`
+**Date:** 2026-05-17
+**Status:** Accepted
+
+**Context:** Após Marca v1 (parcial) entregue em ADR-002 (2026-04-27), próxima fase do roadmap (Site `growthclub.pro`) precisava de design doc antes de qualquer linha de código. Sessão de brainstorming estruturado com skill `superpowers:brainstorming` foi conduzida em 2026-05-17 (Henrique + Claude) cobrindo: escopo (visão final, sem timeline v1), arquitetura de informação, login interno (rejeitado), CTA primário do hero, conteúdo da home, fusão de sub-páginas em single-page com anchors (Sobre e Empresas).
+
+**Decision:** Spec aprovado em `docs/superpowers/specs/2026-05-17-growth-club-site-design.md` (v1.0). Pontos travados:
+
+1. **Site público, vitrine, sem login interno.** Redirects pra plataformas externas (Substack, plataforma de aulas TBD, WhatsApp, YouTube/LinkedIn).
+2. **Top-nav (7 itens):** Home · Sobre · Recursos ▾ · Meetups ▾ · Empresas · Tornar-se Membro · Contato.
+3. **19+ rotas/anchors** no inventário (Home + Sobre single-page + 5 sub-Recursos + Meetups hub + LP `[slug]` + Histórico + Empresas single-page + Membro + Contato + 4 legais + 404).
+4. **`/sobre` fundida em single-page:** história + manifesto + Founder Crew + imprensa com anchors `#manifesto`, `#crew`, `#imprensa`.
+5. **`/empresas` fundida em single-page:** 4 ofertas B2B com anchors `#patrocinio`, `#vagas`, `#hunting`, `#mentoria`. Substitui ideia anterior de `/patrocinadores` solo.
+6. **Hero estático com CTA único** "Tornar-se Membro" → `/membro` + ganchos distribuídos em 9 seções na home. Slot dinâmico na seção 7 resolve sazonalidade do meetup.
+7. **`/membro` é caminho único free** (Growth Hacker). Master "em breve 2027" como bloco discreto. Founder Member parqueado (AD-003) não aparece.
+8. **Stack livre escolha do Crew #1** dentro dos guardrails de `website/README.md` (Vercel/Netlify, ≤ R$ 200/mês hosting).
+9. **Analytics proposta:** Plausible (privacy-first, cookieless).
+10. **6 bloqueadores de go-live** catalogados na §8.1 do spec; **13 decisões TBD** na §9 (suas propostas pra depois).
+
+**Consequences:**
+- Destrava handoff pra etapa de plan (próxima invocação: `superpowers:writing-plans`).
+- Cria novo bloqueador formal **B-01: ADR-007 pendente** — Mentorias quinzenais, Desafios mensais, Job board, Hunting, Mentoria B2B foram aceitos como compromissos no spec mas precisam de ADR formalizando dono operacional, cadência, mecânica antes do go-live.
+- `ROADMAP.md` Fase 1 atualizado refletindo spec como entregável pré-build.
+- Site só vai ao ar quando Founder Crew #1 preenchido + ADR-007 registrada + conteúdo concreto §6.4 do spec produzido + logo SVG final entregue + páginas legais juridicamente revistas.
+
+**Alternatives considered:**
+- Decompor em múltiplos specs (Home + Membro + Empresas separados) — descartado: site é v1 coeso, não vale fragmentar.
+- Definir stack agora — descartado: respeita autoridade do Crew #1 + guardrails em `website/README.md`.
+- Manter `/sobre/manifesto`, `/sobre/crew`, `/sobre/imprensa` separadas — descartado pelo Henrique durante a sessão (preferência por single-page consolidada).
+
+---
 
 ### AD-005: Transparência financeira radical com Founder Crew
 **Date:** 2026-04-28

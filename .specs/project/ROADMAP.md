@@ -1,5 +1,5 @@
 # ROADMAP: Growth Club
-**Last Updated:** 2026-04-28
+**Last Updated:** 2026-05-17
 
 > **AI CONTEXT:** High-level project milestones and timeline. Update status as features progress. Source of truth para detalhes: `docs/superpowers/specs/2026-04-22-growth-club-business-plan-design.md`.
 
@@ -42,6 +42,9 @@ Detalhe completo em §7.2 do business plan design.
 - [ ] Brand brief entregue (sub-projeto "Marca")
 - [ ] **3 Founder Crew assinados** (Frontend, Designer+Vídeo, Community Manager-GitHub) — meta: até 2026-05-15
 - [ ] **Acordo de Founder Crew redigido e revisado juridicamente** (caminho B, sem equity) — meta: até 2026-05-10, antes da 1ª assinatura
+- [x] **Spec do site v1 aprovado (AD-006, 2026-05-17)** — `docs/superpowers/specs/2026-05-17-growth-club-site-design.md`. 6 bloqueadores de go-live catalogados + 13 TBD. Próxima etapa: `superpowers:writing-plans`.
+- [ ] **AD-007 registrada** formalizando Mentorias quinzenais, Desafios mensais, Job board, Hunting, Mentoria B2B (bloqueador B-01 do spec do site)
+- [ ] Plan de implementação do site escrito (`superpowers:writing-plans`) — meta: pós spec aprovado, antes do Crew #1 começar build
 - [ ] Site `growthclub.pro` no ar (sub-projeto "Site", executor: Founder Crew #1) — meta: até 2026-05-31
 - [ ] Identidade aplicada em ≥3 templates (executor: Founder Crew #2) — meta: até 2026-06-15
 - [ ] Repositório público no GitHub com README de venda (executor: Founder Crew #3) — meta: ≥10 stars até Barte S1E1
@@ -92,6 +95,17 @@ Detalhe completo em §7.4 do business plan design.
 ---
 
 ## Sprint Log
+
+### Sprint 3 — 2026-05-17
+**Focus:** Design doc do site `growthclub.pro` (sub-projeto Site, Fase 1)
+**Status:** [DONE] — spec aprovado, aguarda writing-plans
+- [x] Sessão de brainstorming estruturado com `superpowers:brainstorming` (Henrique + Claude)
+- [x] Visual Companion utilizado pra mapas de IA, wireframes de home e mockups de páginas críticas
+- [x] AD-006 registrada (spec aprovado)
+- [x] 6 bloqueadores de go-live catalogados em §8.1 do spec
+- [x] 13 decisões TBD catalogadas em §9 do spec
+- [x] `STATE.md` e `ROADMAP.md` sincronizados
+- [ ] Plan de implementação (próxima sessão com `superpowers:writing-plans`)
 
 ### Sprint 2 — 2026-04-28
 **Focus:** Founder Crew design + Founder Member parking
