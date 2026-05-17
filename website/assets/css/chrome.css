@@ -1,26 +1,28 @@
-/* Header e footer — shared chrome */
+/* Header e footer — shared chrome (AD-008) */
 
 .gc-header {
   position: sticky;
   top: 0;
-  z-index: var(--z-header);
-  background: color-mix(in oklab, var(--color-bg) 92%, transparent);
+  z-index: var(--z-sticky);
+  background: color-mix(in oklab, var(--bg-base) 92%, transparent);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--border-subtle);
 
   & .gc-header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--sp-5);
-    padding-block: var(--sp-3);
+    gap: var(--space-5);
+    padding-block: var(--space-3);
   }
 
   & .gc-logo {
     font-family: var(--font-display);
-    font-size: var(--fs-md);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h5);
     text-decoration: none;
-    color: var(--color-fg);
+    color: var(--fg-primary);
+    letter-spacing: var(--ls-tight);
 
     & svg, & img { height: 1.5rem; vertical-align: middle; }
   }
@@ -28,34 +30,35 @@
   & nav {
     display: flex;
     align-items: center;
-    gap: var(--sp-5);
+    gap: var(--space-5);
 
     & a {
       text-decoration: none;
-      font-size: var(--fs-sm);
-      color: var(--color-fg-muted);
-      transition: color var(--t-fast);
+      font-size: var(--fs-body-sm);
+      color: var(--fg-secondary);
+      font-weight: var(--fw-medium);
+      transition: color var(--dur-fast) var(--ease-out);
 
-      &:hover, &[aria-current="page"] { color: var(--color-fg); }
+      &:hover, &[aria-current="page"] { color: var(--fg-primary); }
     }
   }
 
   & .gc-nav-cta {
-    background: var(--color-accent);
-    color: #0a0a0a;
-    padding: var(--sp-2) var(--sp-4);
+    background: var(--accent-amber);
+    color: var(--fg-inverse);
+    padding: var(--space-2) var(--space-4);
     border-radius: var(--radius-sm);
-    font-weight: 700;
-    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
 
-    &:hover { background: color-mix(in oklab, var(--color-accent) 90%, white); }
+    &:hover { background: var(--accent-amber-bright); color: var(--fg-inverse); }
   }
 
   & .gc-mobile-toggle {
     display: none;
     background: transparent;
-    border: 1px solid var(--color-border);
-    padding: var(--sp-2);
+    border: 1px solid var(--border-default);
+    color: var(--fg-primary);
+    padding: var(--space-2);
     border-radius: var(--radius-sm);
     cursor: pointer;
   }
@@ -71,53 +74,55 @@
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--color-bg);
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--sp-5);
+      background: var(--bg-base);
+      border-bottom: 1px solid var(--border-default);
+      padding: var(--space-5);
       align-items: flex-start;
     }
   }
 }
 
 .gc-footer {
-  background: var(--color-bg-alt);
-  border-top: 1px solid var(--color-border);
-  padding-block: var(--sp-10) var(--sp-6);
-  margin-top: var(--sp-16);
+  background: var(--bg-void);
+  border-top: 1px solid var(--border-default);
+  padding-block: var(--space-12) var(--space-6);
+  margin-top: var(--space-16);
 
   & .gc-footer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-    gap: var(--sp-6);
+    gap: var(--space-6);
   }
 
   & .gc-footer-col {
     & h4 {
-      font-size: var(--fs-sm);
+      font-family: var(--font-mono);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-medium);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-fg-muted);
-      margin-bottom: var(--sp-3);
+      letter-spacing: var(--ls-loud);
+      color: var(--fg-tertiary);
+      margin-bottom: var(--space-3);
     }
 
     & ul { list-style: none; padding: 0; }
-    & li { margin-block: var(--sp-1); }
+    & li { margin-block: var(--space-1); }
     & a {
       text-decoration: none;
-      color: var(--color-fg-muted);
-      font-size: var(--fs-sm);
-      transition: color var(--t-fast);
+      color: var(--fg-secondary);
+      font-size: var(--fs-body-sm);
+      transition: color var(--dur-fast) var(--ease-out);
 
-      &:hover { color: var(--color-fg); }
+      &:hover { color: var(--fg-primary); }
     }
   }
 
   & .gc-footer-bottom {
-    margin-top: var(--sp-8);
-    padding-top: var(--sp-5);
-    border-top: 1px solid var(--color-border);
-    font-size: var(--fs-xs);
-    color: var(--color-fg-muted);
+    margin-top: var(--space-8);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--fs-caption);
+    color: var(--fg-tertiary);
     text-align: center;
   }
 }
