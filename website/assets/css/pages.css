@@ -10,3 +10,32 @@
   & p { color: var(--color-fg-muted); }
   & .btn { margin-top: var(--sp-5); }
 }
+
+/* /sobre + /empresas anchor nav */
+.anchor-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding-block: var(--sp-4);
+  border-block: 1px solid var(--color-border);
+  margin-bottom: var(--sp-6);
+  position: sticky;
+  top: 4rem;
+  z-index: 50;
+  background: color-mix(in oklab, var(--color-bg) 95%, transparent);
+  backdrop-filter: blur(8px);
+
+  & a {
+    text-decoration: none;
+    font-size: var(--fs-sm);
+    color: var(--color-fg-muted);
+    padding: var(--sp-1) var(--sp-3);
+    border-radius: var(--radius-sm);
+    transition: color var(--t-fast), background var(--t-fast);
+
+    &:hover, &[aria-current] {
+      color: var(--color-fg);
+      background: var(--color-bg-alt);
+    }
+  }
+}
