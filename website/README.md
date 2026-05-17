@@ -4,7 +4,7 @@
 >
 > Em construção pelo Founder Crew #1 (Frontend, vibe coder).
 
-Status: vazio (a `legacy/` guarda o site antigo HTML enquanto o novo não sobe).
+Status: setup inicial em andamento (Cloudflare Pages config + estrutura de pastas). `legacy/` preserva o site antigo durante a transição. Setup pendente: conexão do repo no dashboard Cloudflare + apontamento DNS (ver Steps 1.6/1.7 do plano).
 
 ---
 
