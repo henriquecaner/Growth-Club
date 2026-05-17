@@ -1,0 +1,12 @@
+<svg width="97" height="97" viewBox="0 0 97 97" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder mark — Growth Club monogram. Final mark (bandeira pirata evoluída) pending Figma. -->
+  <rect x="0" y="0" width="97" height="97" rx="14" fill="#0A0A0A"/>
+  <text x="48.5" y="68"
+        font-family="'Satoshi', 'Arial Black', sans-serif"
+        font-weight="900"
+        font-size="68"
+        letter-spacing="-3"
+        text-anchor="middle"
+        fill="#F5F1E8">g</text>
+  <circle cx="78" cy="64" r="5.5" fill="#D4A24C"/>
+</svg>
