@@ -7,6 +7,51 @@
 
 ## Recent Decisions (ADR)
 
+### AD-011: Refino de copy home/membro/empresas v2 — cluster analysis aplicado
+**Date:** 2026-05-18
+**Status:** Accepted
+
+**Context:** Site v1 foi pro ar em 2026-05-17 (AD-006/007) com Design System AD-008 aplicado. Em revisão pelo Henrique, três páginas centrais — home, membro, empresas — falharam no teste de leitura por 3 failure modes: (a) jargão interno indecifrável (régua editorial #1, ton-anchor, mesa de canto, Era Pré-S1, Outlaw+Sage), (b) Outlaw sem Sage — bashing sem número comparativo que sustente, (c) value prop fraco — CTA da home levava ao Substack sem nunca explicar por que dar o email.
+
+Durante a execução do refino (Bloco B do plan), entrou input adicional via relatório `docs/research/private/2026-05-18-cluster-analysis-whatsapp-cadastros.md` (cluster analysis de 551 cadastros WhatsApp). 8 descobertas mudaram a forma de aplicar os refinos, especialmente: (i) ICP não é único, são 3 sobrepostos (Marketing/Growth 55% + Vendas/RevOps 30% + Founders 8%); (ii) léxico nativo dominante é diferente de jargão growth ("geração de demanda" 26x, "máquina de vendas" 6x, "previsibilidade" 3x, "vendas consultivas" 10x); (iii) 35,6% (196 pessoas) é Master-likely heurístico; (iv) 31,6% (174 pessoas) marcou "Oferecer Serviços" — risco infomercial latente que precisa de Code of Conduct visível.
+
+**Decision:** Refino editorial cirúrgico aplicado nas 3 páginas seguindo:
+- Spec `2026-05-18-copy-refino-home-membro-empresas-design.md` v1.1 (commit `d45c78e`) com 4 decisões do Henrique consolidadas no review;
+- Plan v2 `2026-05-18-copy-refino-home-membro-empresas.md` (commit `0584a0c`) que incorporou os achados do cluster analysis (Task 5.5 nova + reescrita das Tasks 6, 7, 8, 10, 13, 16, 17).
+
+4 decisões consolidadas no review da spec (decisão Henrique 2026-05-18):
+1. Hero da home: CTA primário **mantém "Tornar-se membro"**.
+2. Form Substack signup **removido de todas as páginas**. Captação acontece exclusivamente em `/membro` via form de entrevista (campos/handler em sub-projeto separado). Hero da home sem form embutido.
+3. Bloco "Edição típica" da home **cortado**.
+4. `/empresas` **mantém os 5 blocos** originais; refino bloco a bloco, sem colapsar.
+
+Mudanças materiais sobrepostas pelo cluster analysis:
+- Hero da home reconhece **3 ICPs sobrepostos** (marketing + vendas consultivas + RevOps/geração de demanda) em vez de só growth.
+- Bullets de benefício de `/membro` **mapeados por persona** (não features genéricas).
+- Master 2027 ganha **argumento de preço** comparando com R$ 200-500/mês de ferramenta SaaS.
+- Hunting de `/empresas` ganha **tese-frase pra founders** ("Você é founder e precisa de senior+ B2B?").
+- Mentoria B2B usa **léxico vibe-coder** ("agentes, automação, fluxos").
+- Frame editorial de `/membro` reposicionado de "cadastro grátis 1-clique" pra "candidatura com triagem leve" — tier continua free (Growth Hacker), triagem é qualitativa.
+
+**Consequences:**
+- 18 commits de copy/JS/validação aplicados em sequência granular (revert por bloco possível).
+- Handler `assets/js/newsletter-form.js` desativado (tag comentada em ambas as páginas). Arquivo mantido no disco pra possível reutilização no sub-projeto futuro.
+- Site live em `growthclub.pro` via Cloudflare Pages (`wrangler pages deploy`, preview URL `361d139a.growth-club.pages.dev`).
+- **Sub-projeto separado pendente:** form de entrevista em `/membro` — Henrique vai passar campos, perguntas, handler de submit e destino dos dados em sessão futura. Placeholder "FORM ABRE EM BREVE" comunica o estágio.
+- **Implicações do cluster analysis pra outras frentes (registradas como follow-up, não escopo desta ADR):**
+  - Business Plan v1.2 §3 ICP, §5 sizing, §6 pricing, §10 R-11, §11 Code of Conduct (todas tem novas evidências do dataset);
+  - 95% dos cadastros vieram em junho/2025 via LinkedIn do Henrique — canal único de aquisição comprovado, sem cadência sustentada;
+  - Métrica de sucesso primária: candidaturas/semana via /membro nas 4 semanas pós-deploy vs baseline pré-refino (alvo ≥20% de subida).
+
+**Alternatives considered:**
+- Manter form Substack signup direto em `/membro` (descartado em decisão #2 do review — frame de candidatura é mais coerente com Outlaw+Sage + filtro cultural anti-infomercial).
+- Colapsar `/empresas` de 5 pra 3 blocos (descartado em decisão #4 — sinaliza ambição/escopo total).
+- Adicionar bloco "Edição típica" na home com case representativo (descartado em decisão #3 — evita risco de case fabricado).
+- Trocar CTA primário pra "Receber a próxima edição" (descartado em decisão #1 — com form de triagem, "Tornar-se membro" volta a fazer sentido literal).
+- Re-spec formal v1.2 incorporando cluster analysis antes de executar plan (descartado em favor de Caminho 2: input incremental ao plan v1 via Task 5.5 + reescrita de new_strings, sem reverter Bloco A).
+
+---
+
 ### AD-010: Pivô do AI LIKE A PRO — página de interesse in-site + LP de checkout em repo separado
 **Date:** 2026-05-18
 **Status:** Accepted (refina AD-009)

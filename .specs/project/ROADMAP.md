@@ -96,6 +96,22 @@ Detalhe completo em §7.4 do business plan design.
 
 ## Sprint Log
 
+### Sprint 4 — 2026-05-18
+**Focus:** Refino editorial de home/membro/empresas v2 (cluster analysis aplicado)
+**Status:** [DONE] — deploy em produção, AD-011 registrada
+- [x] Spec do refino escrita (`2026-05-18-copy-refino-...md` v1.0)
+- [x] Spec consolidada com 4 decisões do Henrique no review (v1.1, commit `d45c78e`)
+- [x] Plan de implementação escrito + atualizado v2 com cluster analysis input (commit `0584a0c`)
+- [x] 21 tasks executadas em commits granulares (18 commits totais)
+- [x] Cluster analysis de 551 cadastros incorporado mid-execution via Task 5.5 + reescrita de Tasks 6/7/8/10/13/16/17
+- [x] Render validado nas 3 páginas, console limpo, zero referências a form-newsletter
+- [x] Handler `newsletter-form.js` desativado em home e membro
+- [x] Deploy via `wrangler pages deploy website --project-name growth-club --branch main` (preview `361d139a.growth-club.pages.dev`)
+- [x] AD-011 registrada em STATE.md, Sprint 4 em ROADMAP.md, entry em CHANGELOG.md
+- [ ] **Sub-projeto pendente:** form de entrevista em /membro (campos + handler + destino dos dados) — aguarda Henrique passar os campos
+- [ ] **Métrica pós-deploy** (janela 4 semanas): candidaturas/semana via /membro vs baseline pré-refino, alvo ≥20% de subida
+- [ ] **Follow-up cluster analysis:** atualizar BP v1.2 §3 (3 ICPs), §5 (sizing realista 300-500 Master 24m), §6 (considerar tier R$ 397), §10 (R-11 cenários 15/20/25% conversão), §11 (Code of Conduct operacional)
+
 ### Sprint 3 — 2026-05-17
 **Focus:** Design doc do site `growthclub.pro` (sub-projeto Site, Fase 1)
 **Status:** [DONE] — spec aprovado, aguarda writing-plans

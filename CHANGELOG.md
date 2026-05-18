@@ -6,6 +6,22 @@
 
 ---
 
+## 2026-05-18 · AD-011 · Refino de copy home/membro/empresas v2 — cluster analysis aplicado
+
+Refino editorial cirúrgico nas 3 páginas centrais do site (home, membro, empresas). Frame de entrada na comunidade reposicionado de "cadastro grátis 1-clique pra newsletter Substack" pra "candidatura com triagem leve em form de entrevista" — tier continua free (Growth Hacker), triagem é qualitativa. Pull do form Substack signup de todas as páginas; placeholder "FORM ABRE EM BREVE" segura o lugar até o sub-projeto separado definir campos, perguntas e handler.
+
+Mid-execution entrou input adicional via cluster analysis de 551 cadastros WhatsApp (`docs/research/private/2026-05-18-cluster-analysis-whatsapp-cadastros.md`). 8 descobertas mudaram a copy: a base não é "growth puro" — são 3 ICPs sobrepostos (marketing/growth 55%, vendas consultivas/RevOps 30%, founders 8%). Léxico nativo dominante ("geração de demanda" 26x, "máquina de vendas" 6x, "previsibilidade" 3x) entrou na lede da home, nos bullets de benefício do /membro (cada bullet agora nomeia uma persona em vez de listar feature genérica) e na hero do /empresas. Master 2027 ganhou argumento de preço comparando com R$ 200-500/mês de ferramenta SaaS — base no heurístico de 35,6% Master-likely.
+
+Outras decisões consolidadas: CTA primário da home mantém "Tornar-se membro"; bloco "Edição típica" da home cortado; /empresas mantém 5 blocos com refino individual; tese-frase pra founders no Hunting ("Você é founder e precisa de senior+ B2B?"); léxico vibe-coder na Mentoria B2B ("agentes, automação, fluxos").
+
+Por quê: copy v1 estava com 3 failure modes (jargão interno indecifrável, Outlaw sem Sage com bashing sem número que sustente, value prop fraco). O refino combina os 3 vetores (jargão→demonstração, bashing→comparativo com número, value prop fraco→outcome concreto por persona) com a evidência empírica do dataset. 18 commits granulares, deploy via `wrangler pages deploy`.
+
+Sub-projeto separado pendente: form de entrevista em /membro (campos, perguntas, handler, destino dos dados). Métrica primária pós-deploy: candidaturas/semana via /membro nas 4 semanas pós-deploy vs baseline pré-refino, alvo ≥20% de subida.
+
+Referência: [`STATE.md` AD-011](.specs/project/STATE.md) · [spec](docs/superpowers/specs/2026-05-18-copy-refino-home-membro-empresas-design.md) · [plan](docs/superpowers/plans/2026-05-18-copy-refino-home-membro-empresas.md).
+
+---
+
 ## 2026-05-18 · AD-010 · Pivô do AI LIKE A PRO — interest page in-site
 
 Refina o AD-009 do dia anterior. A LP paga (R$ 397, InfinitePay) continua independente no repo `github.com/henriquecaner/ai-like-a-pro`, com brand própria. Foi adicionada agora uma página de interesse dentro do site principal em `/ai-like-a-pro/`, no Growth Club Design System, com form Tally pra lista da próxima turma.
