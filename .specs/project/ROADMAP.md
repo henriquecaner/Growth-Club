@@ -44,9 +44,9 @@ Detalhe completo em §7.2 do business plan design.
 - [ ] **Acordo de Founder Crew redigido e revisado juridicamente** (caminho B, sem equity) — meta: até 2026-05-10, antes da 1ª assinatura
 - [x] **Spec do site v1 aprovado (AD-006, 2026-05-17)** — `docs/superpowers/specs/2026-05-17-growth-club-site-design.md`. 6 bloqueadores de go-live catalogados + 13 TBD. Próxima etapa: `superpowers:writing-plans`.
 - [ ] **AD-007 registrada** formalizando Mentorias quinzenais, Desafios mensais, Job board, Hunting, Mentoria B2B (bloqueador B-01 do spec do site)
-- [ ] Plan de implementação do site escrito (`superpowers:writing-plans`) — meta: pós spec aprovado, antes do Crew #1 começar build
-- [ ] Site `growthclub.pro` no ar (sub-projeto "Site", executor: Founder Crew #1) — meta: até 2026-05-31
-- [ ] Identidade aplicada em ≥3 templates (executor: Founder Crew #2) — meta: até 2026-06-15
+- [x] **Plan de implementação do site escrito (2026-05-17)** — `docs/superpowers/plans/`. Stack travada em AD-007.
+- [x] **Site `growthclub.pro` no ar (2026-05-18, AD-006/007)** — 17 páginas em produção via Cloudflare Pages. Executor revisado: **Henrique** (Crew #1 entra depois pra evoluir/manter). Antecipa meta original (era 2026-05-31).
+- [x] **Identidade aplicada em ≥3 templates (2026-05-17, AD-008)** — Growth Club Design System publicado em `brand/system/` com 35+ preview cards, 5 templates IG/LinkedIn, ui_kit do site. Executor revisado: **Henrique** (adaptação do Level Design System). Antecipa meta original (era 2026-06-15).
 - [ ] Repositório público no GitHub com README de venda (executor: Founder Crew #3) — meta: ≥10 stars até Barte S1E1
 - [ ] Automação ingresso → membership testada ≥ 2 semanas antes do Barte
 - [ ] Substack rebatizado editorialmente para "Growth Club"
