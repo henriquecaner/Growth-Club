@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>Social — LinkedIn Banner (1584×396)</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.frame {
+  width: 1584px;
+  height: 396px;
+  min-width: 1584px;
+  min-height: 396px;
+  max-width: 1584px;
+  max-height: 396px;
+  background: var(--bg-base);
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+/* Gradient backdrop */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero);
+  opacity: 0.4;
+}
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 880px;
+}
+.headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: var(--fg-primary);
+  text-wrap: balance;
+}
+.headline em {
+  color: var(--accent-violet);
+  font-style: normal;
+}
+.sub {
+  font-family: var(--font-body);
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--fg-secondary);
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.logo {
+  height: 72px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+}
+.pill {
+  background: var(--accent-violet);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="content">
+    <div class="left">
+      <h1 class="headline">Arquitetura de receita <em>sob medida</em>.</h1>
+      <p class="sub">IA + automação + estratégia. Um sistema que gera pipeline previsível.</p>
+    </div>
+    <div class="right">
+      <img src="../assets/logo-black.svg" alt="Growth Club" class="logo">
+      <div class="pill">growthclub.pro</div>
+    </div>
+  </div>
+</div>
+</body></html>

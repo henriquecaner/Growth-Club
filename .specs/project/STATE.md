@@ -1,11 +1,121 @@
 # STATE: Growth Club
-**Last Updated:** 2026-05-17
+**Last Updated:** 2026-05-18
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-010: Pivô do AI LIKE A PRO — página de interesse in-site + LP de checkout em repo separado
+**Date:** 2026-05-18
+**Status:** Accepted (refina AD-009)
+
+**Context:** AD-009 (2026-05-17) determinou que o AI LIKE A PRO viraria projeto independente, com a pasta `website/ai-like-a-pro/` movida pra fora do site principal e a hospedagem em sub-path resolvida via Workers Routes / multi-deploy no Cloudflare. Ao longo do mesmo dia, ficou claro que essa arquitetura tinha dois custos: (i) configuração operacional no dashboard do Cloudflare ainda pendente, e (ii) ausência completa de uma página de captação dentro do site principal, deixando o footer link `/ai-like-a-pro/` apontando pra um endereço sem fallback até o multi-deploy ficar de pé.
+
+A alternativa surgiu naturalmente: criar uma **página de interesse in-site** no domínio principal usando o Growth Club Design System (AD-008), com form Tally pra lista da próxima turma, e manter a **LP de checkout pago** (com InfinitePay, brand própria, R$ 397) no repo separado, em URL distinta. Os dois ativos passam a coexistir com papéis diferentes.
+
+**Decision:**
+
+1. **`website/ai-like-a-pro/index.html` permanece no site principal** como página de captação de interesse pra próxima turma. Brand alinhada ao AD-008 (gc-header, gc-footer, tokens canônicos). Form: Tally (`tally.so/r/BzLJO4`). Sem checkout — função é encher a lista da próxima turma.
+
+2. **A LP de checkout pago em `~/Documents/GitHub/ai-like-a-pro/`** (repo separado) continua sendo a fonte da venda real (R$ 397, InfinitePay). Deploy continua independente. Quando turma estiver aberta, a página de interesse no site principal aponta pra ela.
+
+3. **Workers Routes / multi-deploy desnecessário em Fase 1.** O footer link `/ai-like-a-pro/` resolve direto pela página in-site. A LP de checkout pode ficar em sub-path do repo separado (ex.: `growthclub.pro/turmas/ai-like-a-pro/` via deploy futuro) ou em URL temporária do próprio Pages do repo separado.
+
+4. **Cross-promo permanece:** interest page in-site → LP de checkout quando turma abre; LP de checkout → WhatsApp Community pós-compra. Dois ativos, um funil.
+
+**Consequences:**
+- Footer link do site principal nunca fica quebrado, mesmo sem config extra de Cloudflare.
+- AI LIKE A PRO ganha presença permanente dentro do site principal (SEO + descoberta orgânica), independente de turma aberta.
+- A pasta `website/ai-like-a-pro/` no repo principal NÃO é nested git repo — é só uma rota a mais, com 1 arquivo HTML, sem subprojeto.
+- Pendência operacional do AD-009 ("configurar Workers Routes") deixa de existir nessa forma; vira "decidir URL futura da LP de checkout pública" — tarefa adiada pra quando próxima turma abrir.
+- AD-009 §3 (pasta movida pra fora) está parcialmente revisada: a pasta separada continua existindo pra LP de checkout, mas a presença no repo principal foi reintroduzida com propósito diferente.
+
+**Alternatives considered:**
+- **Manter AD-009 literalmente e configurar Workers Routes agora** — descartado: trabalho operacional pra resolver um problema (footer link quebrado) que tem solução mais simples in-site, e Workers Routes força acoplamento entre os dois deploys.
+- **Embed do form Tally direto em `/recursos/workshops.html`** — descartado: workshops é hub de múltiplos formatos; AI LIKE A PRO merece página dedicada com seu próprio SEO (`growthclub.pro/ai-like-a-pro/`) pra SERP.
+- **Subdomínio dedicado `ailikeapro.growthclub.pro`** — descartado em AD-009 e mantém-se descartado: fragmenta SEO sem ganho.
+
+---
+
+### AD-009: AI LIKE A PRO formalizado como produto pago independente
+**Date:** 2026-05-17
+**Status:** Accepted
+
+**Context:** Henrique já vendeu R$ 3 mil (~7 alunos × R$ 397) em duas turmas do workshop "AI LIKE A PRO" (Antigravity + Claude para não-devs). Existe LP completa em produção em repo separado (`github.com/henriquecaner/ai-like-a-pro`) com stack própria (HTML5 + Vanilla JS + Cloudflare Pages Functions + InfinitePay + Google Sheets + Resend), checkout integrado, success page, LGPD modals e SEO próprio. A LP estava clonada como pasta nested em `website/ai-like-a-pro/` dentro do site principal — fonte de confusão (repo git dentro de repo git) e risco operacional.
+
+**Decision:**
+
+1. **AI LIKE A PRO permanece como projeto independente.** Repo `github.com/henriquecaner/ai-like-a-pro` continua source-of-truth do produto. Stack própria (Vite + Functions + InfinitePay) preservada. Brand independente — **não migrado** pro Growth Club Design System AD-008 na v1, pra preservar conversão validada de R$ 397/aluno.
+
+2. **Hospedagem em sub-path `growthclub.pro/ai-like-a-pro/`.** Configuração Cloudflare via Workers Routes ou multi-deploy (a ser configurada pelo Henrique no dashboard). SEO consolida no domínio principal, brand do AI LIKE A PRO mantém visual próprio.
+
+3. **Pasta movida pra `~/Documents/GitHub/ai-like-a-pro/`** (fora do site principal) pra eliminar nested git repo. Site principal já não tem mais a pasta — versionamento limpo.
+
+4. **Integração no site principal:**
+   - `<gc-footer>` ganha link "AI LIKE A PRO" na coluna Recursos apontando pra `/ai-like-a-pro/`.
+   - `website/recursos/workshops.html` substitui placeholder `[PITCH_AILIKEAPRO]` por copy real com validação numérica (R$ 397 · Turma 2 · R$ 3 mil vendidos) + CTA pra LP.
+
+5. **Posicionamento no business plan v1.2:** AI LIKE A PRO se encaixa como **Workshop high-ticket** (§6.1 — receita orgânica recorrente). Próximo passo: registrar receita real nos relatórios de transparência financeira (AD-005) quando relatório DRE da Comunidade entrar em ciclo regular.
+
+**Consequences:**
+- Site principal e AI LIKE A PRO ficam visualmente desalinhados (brand v1 do workshop ≠ AD-008 do site). Aceito como trade-off pra preservar tração.
+- Quando o Henrique tiver banda, migração visual pro AD-008 fica como item futuro (não bloqueia operação).
+- Cross-promo direta entre os dois canais: site principal envia tráfego pra LP, LP envia confirmados pra Community WhatsApp (via post-checkout email).
+- Repo separado mantém disciplina de deploy independente: AI LIKE A PRO pode ter Turma N+1 sem mexer no site principal.
+- Workers Routes ou multi-deploy precisa ser configurado antes do `/ai-like-a-pro/` resolver em produção. Até lá, link do site principal pode quebrar — flag como pendência operacional.
+
+**Alternatives considered:**
+- **Migrar tudo pro design system AD-008 agora** — descartado: risco de quebrar conversão validada + custo de refactor sem ganho operacional.
+- **Subdomínio `ailikeapro.growthclub.pro`** — descartado pelo user em favor de sub-path (SEO consolidado no domínio principal).
+- **Domínio próprio (`ailikeapro.com.br`)** — descartado: custo + fragmentação SEO sem benefício claro em Fase 1.
+- **Adicionar como git submodule do Growth-Club** — descartado: overhead de manutenção, complica deploys do site principal.
+
+---
+
+### AD-008: Adoção do Growth Club Design System (adaptado do Level) + migração tipográfica Archivo Black → Satoshi
+**Date:** 2026-05-17
+**Status:** Accepted
+
+**Context:** Henrique trouxe o **Level Design System** (sistema de design completo da outra empresa dele, Level Tech) em `brand-adapt/Level Design System - new/` solicitando adaptação pra Growth Club. O sistema é robusto: tokens CSS dual-theme (light-first + dark sections opt-in), fontes self-hosted (Satoshi + Roboto), 30+ preview cards, 5 templates IG/LinkedIn prontos, ui_kit de site institucional, e uma skill agent (`level-design`) pra Claude Code. Reutilizar a engenharia evita reinventar a roda e economiza ~2 semanas de trabalho de design system from-scratch.
+
+Conflito identificado: o Level usa **Satoshi** como display+body, mas o Growth Club tinha decidido **Archivo Black + Inter + JetBrains Mono** em `brand/visual/tipografia.md` (decisão 2.2 do brand brief plan). Manter Archivo Black exigiria recalibrar todos os tokens de letter-spacing e line-height (Archivo Black tem métrica condensada muito diferente de Satoshi), refazer todos os 30+ preview cards, e perder a flexibilidade de variable font.
+
+**Decision:**
+
+1. **Adotar o Growth Club Design System** em `brand-adapt/Growth Club Design System/` como fonte canônica de tokens visuais, adaptado do Level Design System mantendo: filosofia light-first + dark section opt-in, scale tipográfica, motion, radii, spacing, semantic type roles, OpenType features (`tnum`, `cv01`, `ss01`).
+
+2. **Substituições aplicadas (Level → Growth Club):**
+   - `--accent-violet #5522FA` → `--accent-amber #D4A24C` (Amber Beer, primário/CTA — locked em paleta-primaria.md)
+   - `--accent-mint #00B470/#00F59B` → `--accent-teal #4FB3A5` (Pirate Teal, secundário — locked em decisão 01-B bandeira pirata)
+   - `--bg-base #F5F5F5` (cinza frio) → `#F5F1E8` (Pub Cream — "luz de pub", locked)
+   - `--fg-primary #1A1A1A` → `#0A0A0A` (Growth Black — locked)
+   - `--color-danger` mantido em Brick Red `#B84A3E` (locked)
+   - Logos: placeholders SVG textuais "growth club." com ponto Amber até logo final do Figma sair (Task 2.3 do brand brief plan pending).
+
+3. **Migração tipográfica:** Satoshi (variable, eixo 300-900) **substitui** Archivo Black como display + body do Growth Club. Roboto continua como mono. Decisão `brand/visual/tipografia.md` (Task 2.2 do brand brief) marcada parcialmente **SUPERSEDED por AD-008** no que tange à fonte display escolhida.
+
+4. **Aliases legados preservados** no CSS (`--accent-violet*` → `--accent-amber*`, `--accent-mint*` → `--accent-teal*`) pra que os 30+ preview cards herdados do Level renderizem sem refactor imediato. Código novo deve usar nomes diretos.
+
+5. **Filosofia "Dark = section, não tema" mantida.** Pub Cream em 95% do conteúdo, Growth Black só em hero/CTA-final/depoimento/capa de slide.
+
+**Consequences:**
+- Destrava produção imediata de assets (newsletter covers, IG/LinkedIn posts, pôster de meetup) sem esperar Founder Crew #2 (designer).
+- Sistema instalável como skill Claude Code (`growth-club-design`) — qualquer agente futuro pode invocar e gerar peças on-brand.
+- `brand/visual/tipografia.md` precisa de update marcando AD-008 como superseder (a fazer manualmente fora do escopo desta ADR).
+- Decisão 2.2 do brand brief plan vai ser referenciada como "parcialmente revisada" no próximo update do plan.
+- Inter continua válida como fallback em emails (Outlook quebra com Satoshi self-hosted, conforme nota em `tipografia.md`).
+- Logo final ainda pendente do Figma — `assets/logo-*.svg` são placeholders e devem ser substituídos zero-touch quando o vetor sair.
+- Trade-off aceito: variable font self-hosted (~280KB) é maior que Google Fonts CDN, mas dá controle total e elimina dependência externa.
+
+**Alternatives considered:**
+- **Manter Archivo Black + Inter + JetBrains Mono e recalibrar todos os tokens do Level** — descartado: ~1 semana de trabalho de recalibração, perde variable font flexibility, sem ganho prático.
+- **Construir design system do zero pra GC** — descartado: ~2 semanas adicionais, sem reutilizar engenharia já testada do Level.
+- **Adotar Tailwind ou design system pronto (Vercel Geist, Catalyst)** — descartado: Level já tem identidade alinhada (light-first, no-line, brutalist-tonal, voz operador) que casa filosoficamente com GC, e adaptação foi viável.
+- **Esperar Founder Crew #2 (designer) chegar** — descartado: bloqueia produção de assets indefinidamente; Henrique optou por destravar agora.
+
+---
 
 ### AD-007: Stack escolhida pro site v1 — HTML5 semântico + Modern CSS, sem framework
 **Date:** 2026-05-17

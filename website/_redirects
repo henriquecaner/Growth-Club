@@ -1,0 +1,10 @@
+# Cloudflare Pages — redirects/rewrites
+# Formato: source destination status
+
+# Subpastas que servem o arquivo único equivalente
+/membro/         /membro.html        200
+/empresas/       /empresas.html      200
+/sobre/          /sobre.html         200
+/contato/        /contato.html       200
+
+# Trailing slash normalization é automático no Cloudflare Pages

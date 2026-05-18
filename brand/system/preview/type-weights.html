@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Type — Weights</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 24px 28px; gap: 12px; justify-content: space-between; }
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  flex: 1;
+  align-items: stretch;
+}
+.box {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+.aa {
+  font-family: var(--font-display);
+  font-size: 44px;
+  line-height: 1;
+  color: var(--fg-primary);
+  letter-spacing: -0.04em;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--fg-tertiary);
+  letter-spacing: 0.04em;
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 6px;
+}
+.meta b { color: var(--fg-secondary); font-weight: 500; }
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>SATOSHI · WEIGHTS IN USE</span><b>4 WEIGHTS</b></div>
+  <div class="row">
+    <div class="box">
+      <span class="aa" style="font-weight: 400;">Aa</span>
+      <div class="meta"><span>Regular</span><b>400</b></div>
+    </div>
+    <div class="box">
+      <span class="aa" style="font-weight: 500;">Aa</span>
+      <div class="meta"><span>Medium</span><b>500</b></div>
+    </div>
+    <div class="box">
+      <span class="aa" style="font-weight: 700;">Aa</span>
+      <div class="meta"><span>Bold</span><b>700</b></div>
+    </div>
+    <div class="box">
+      <span class="aa" style="font-weight: 900;">Aa</span>
+      <div class="meta"><span>Black</span><b>900</b></div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

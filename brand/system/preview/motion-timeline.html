@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Motion</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 14px; }
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+.grid { flex: 1; display: grid; grid-template-columns: 100px 1fr 120px; gap: 2px 16px; align-items: center; }
+.row { display: contents; }
+.row > * {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.row:last-child > * { border-bottom: none; }
+.tok {
+  font-family: var(--font-mono); font-size: 10px; color: var(--fg-primary);
+  font-weight: 500;
+}
+.dur {
+  font-family: var(--font-mono); font-size: 9px; color: var(--accent-mint);
+}
+.track {
+  position: relative;
+  height: 24px;
+  background: var(--bg-sunken);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.dot {
+  position: absolute; top: 50%; left: 0;
+  width: 16px; height: 16px; background: var(--accent-violet);
+  border-radius: 50%; transform: translateY(-50%);
+  box-shadow: 0 0 12px var(--accent-violet-glow);
+}
+.dot.instant { animation: slide 0.08s var(--ease-out) infinite alternate; }
+.dot.fast    { animation: slide 0.16s var(--ease-out) infinite alternate; }
+.dot.med     { animation: slide 0.24s var(--ease-out) infinite alternate; }
+.dot.slow    { animation: slide 0.40s var(--ease-out) infinite alternate; }
+.dot.spring  { animation: spring 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate; }
+.dot.linear  { animation: slide 0.5s var(--ease-linear) infinite alternate; }
+@keyframes slide { to { left: calc(100% - 16px); } }
+@keyframes spring { to { left: calc(100% - 16px); } }
+
+.use {
+  font-family: var(--font-body); font-size: 10px; color: var(--fg-tertiary);
+  line-height: 1.4;
+}
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>MOTION · DURATIONS + EASINGS LIVE</span><b>TIMELINE</b></div>
+  <div class="grid">
+    <span class="tok">instant</span>
+    <div class="track"><div class="dot instant"></div></div>
+    <span class="dur">80ms · out</span>
+
+    <span class="tok">fast</span>
+    <div class="track"><div class="dot fast"></div></div>
+    <span class="dur">160ms · out</span>
+
+    <span class="tok">med</span>
+    <div class="track"><div class="dot med"></div></div>
+    <span class="dur">240ms · out</span>
+
+    <span class="tok">slow</span>
+    <div class="track"><div class="dot slow"></div></div>
+    <span class="dur">400ms · out</span>
+
+    <span class="tok">linear</span>
+    <div class="track"><div class="dot linear"></div></div>
+    <span class="dur">500ms · linear</span>
+
+    <span class="tok">spring</span>
+    <div class="track"><div class="dot spring"></div></div>
+    <span class="dur">900ms · spring</span>
+  </div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+    <span class="use"><b style="color: var(--fg-primary);">instant</b> — toggle, checkbox, seleção de chip.</span>
+    <span class="use"><b style="color: var(--fg-primary);">fast</b> — hover, focus ring, tooltip.</span>
+    <span class="use"><b style="color: var(--fg-primary);">med</b> — modal open/close, sheet, drawer.</span>
+    <span class="use"><b style="color: var(--fg-primary);">slow</b> — transição de tela, route change.</span>
+    <span class="use"><b style="color: var(--fg-primary);">linear</b> — loading bar, progress contínuo.</span>
+    <span class="use"><b style="color: var(--fg-primary);">spring</b> — sucesso, celebração, entry de feedback.</span>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

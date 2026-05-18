@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Colors — Primary</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 10px; }
+.row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; flex: 1; }
+.sw {
+  border-radius: 8px;
+  padding: 10px 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 70px;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+.sw .tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  line-height: 1.2;
+}
+.sw .hex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.light-hex, .dark-hex { display: none; }
+[data-theme="light"] .light-hex { display: revert; }
+[data-theme="dark"] .dark-hex { display: revert; }
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.meta b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="meta"><span>ACCENTS · BRAND</span><b>VIOLET · MINT</b></div>
+  <div class="row">
+    <div class="sw" style="background: var(--accent-violet); color: #fff;">
+      <span class="tag">VIOLET · CTA</span>
+      <span class="hex">#D4A24C</span>
+    </div>
+    <div class="sw" style="background: var(--accent-violet-bright); color: #fff;">
+      <span class="tag">BRIGHT · HOVER</span>
+      <span class="hex">#E5B45D</span>
+    </div>
+    <div class="sw" style="background: var(--accent-violet-dim); color: #fff;">
+      <span class="tag">DIM · PRESS</span>
+      <span class="hex">#B88838</span>
+    </div>
+    <div class="sw" style="background: var(--accent-violet-soft); color: var(--accent-violet); border: 1px solid var(--accent-violet-glow);">
+      <span class="tag">SOFT · 10%</span>
+      <span class="hex light-hex">α 0.10</span>
+      <span class="hex dark-hex">α 0.14</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="sw" style="background: var(--accent-mint); color: var(--fg-inverse);">
+      <span class="tag">MINT</span>
+      <span class="hex light-hex">#4FB3A5</span>
+      <span class="hex dark-hex">#5FC9BB</span>
+    </div>
+    <div class="sw" style="background: var(--accent-mint-bright); color: var(--fg-inverse);">
+      <span class="tag">BRIGHT · HOVER</span>
+      <span class="hex light-hex">#6FC4B7</span>
+      <span class="hex dark-hex">#82D8CC</span>
+    </div>
+    <div class="sw" style="background: var(--accent-mint-dim); color: var(--fg-inverse);">
+      <span class="tag">DIM · PRESS</span>
+      <span class="hex light-hex">#3A8F84</span>
+      <span class="hex dark-hex">#3A8F84</span>
+    </div>
+    <div class="sw" style="background: var(--accent-mint-soft); color: var(--accent-mint); border: 1px solid var(--accent-mint-glow);">
+      <span class="tag">SOFT</span>
+      <span class="hex light-hex">α 0.10</span>
+      <span class="hex dark-hex">α 0.12</span>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

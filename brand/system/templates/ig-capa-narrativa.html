@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>IG — Capa narrativa</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html, body { margin: 0; padding: 0; background: #16140F; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+}
+.frame {
+  width: 540px; height: 675px; /* 1080x1350 @ 0.5 */
+  position: relative; overflow: hidden;
+  background: #0A0A0A;
+  color: #fff;
+  display: flex; flex-direction: column;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+/* subtle grid + glow */
+.frame::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.frame::after {
+  content: ""; position: absolute;
+  top: -120px; right: -120px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(212, 162, 76,0.40) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative; z-index: 2;
+  flex: 1; display: flex; flex-direction: column;
+  padding: 48px 44px;
+}
+.top { display: flex; justify-content: space-between; align-items: flex-start; }
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 24px; width: auto; display: block; }
+
+.meta {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-align: right;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.meta b { color: var(--accent-mint); font-weight: 500; }
+
+/* Headline */
+.headline-block {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  gap: 18px;
+}
+.eyebrow {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent-mint);
+  display: inline-flex; align-items: center; gap: 12px; width: fit-content;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent-mint); }
+h1 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 62px; line-height: 0.96; letter-spacing: -0.045em;
+  color: #fff;
+  max-width: 10ch;
+  margin: 0;
+}
+h1 em { color: var(--accent-mint); font-style: normal; }
+.lede {
+  font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  color: rgba(255,255,255,0.72);
+  max-width: 32ch;
+  margin-top: 6px;
+}
+
+/* Bottom */
+.bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+.swipe {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #fff;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.swipe svg { width: 14px; height: 14px; }
+.counter {
+  font-family: var(--font-mono); font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em;
+}
+.counter b { color: #fff; font-weight: 500; }
+
+/* Caption under frame */
+.caption {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 40px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="inner">
+    <div class="top">
+      <span class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+      <div class="meta"><span>MEETUP · MAIO/26</span><b>01/07</b></div>
+    </div>
+    <div class="headline-block">
+      <span class="eyebrow">Comunidade B2B Growth · desde 2015</span>
+      <h1>Se não tem<br/>número, <em>não é Growth Club.</em></h1>
+      <p class="lede">A mesa de canto pros operadores que entregam. 2.261 subs na newsletter, 715 ativos no WhatsApp, 10+ meetups. Sem palco. Com cerveja.</p>
+    </div>
+    <div class="bottom">
+      <span class="swipe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Arrasta pro próximo
+      </span>
+      <span class="counter"><b>01</b> / 07</span>
+    </div>
+  </div>
+</div>
+<span class="caption">Instagram Post · 1080×1350 · preview 0.5×</span>
+</body></html>

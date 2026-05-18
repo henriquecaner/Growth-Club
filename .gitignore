@@ -1,9 +1,15 @@
 # macOS
 .DS_Store
+.DS_Store?
+Thumbs.db
 
 # Claude Code — estado local não compartilhável
 .claude/worktrees/
 .claude/settings.local.json
+
+# Cloudflare Wrangler — caches locais de dev/deploy (recriados pelo CLI)
+.wrangler/
+**/.wrangler/
 
 # Sessão local de memória/logs (recriado pelo runtime)
 .remember/
@@ -26,5 +32,3 @@ build/
 __pycache__/
 *.pyc
 .cache/
-.DS_Store?
-Thumbs.db

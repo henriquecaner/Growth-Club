@@ -1,8 +1,8 @@
 # Brand · Growth Club
 
-> Mapa do brand book vivo. Decisões locked, identidade visual em construção, voice consolidado, templates pendentes.
+> Mapa do brand book vivo. Estratégia (Markdown) + implementação (CSS/HTML/SVG) sob uma raiz só.
 
-Status: Chunk 1 (decisões) e Chunk 3 (voice) consolidados. Chunk 2 (visual) em iteração. Chunk 4 (templates) pendente até logo SVG final.
+A pasta `brand/` é a **fonte de verdade única** sobre a marca Growth Club. Strategy fica em Markdown nas pastas `decisions/`, `visual/`, `voice/`. Implementação técnica vive em `system/`. Quando há conflito de tokens (cor, tipografia), **o código em `system/colors_and_type.css` vence o Markdown** — os specs visuais (`visual/paleta-primaria.md`, `visual/tipografia.md`) carregam banners de SUPERSEDED quando aplicável.
 
 ---
 
@@ -10,12 +10,25 @@ Status: Chunk 1 (decisões) e Chunk 3 (voice) consolidados. Chunk 2 (visual) em 
 
 | Pasta ou arquivo | O que tem | Status |
 |---|---|---|
-| [`brand-book.md`](brand-book.md) | Consolidação viva do brand book em 1 doc só. Sintetiza voice, visual e decisões com links pras fontes. | Atualizado em 2026-04-27 |
 | [`decisions/`](decisions/) | 4 decisões locked: bandeira pirata, nome canônico, arquétipo + ton-anchor, arquitetura de marcas-filhas. | Travadas |
-| [`visual/`](visual/) | Paleta primária, tipografia, logo direction (moodboard). Logo SVG final ainda em produção (Figma). | Em iteração |
+| [`visual/`](visual/) | Paleta primária (com banner de rebalanceamento AD-008), tipografia (com banner SUPERSEDED AD-008), logo direction (moodboard + prompts Canva/Nano-Banana). | Em iteração; logo SVG final pending Figma |
 | [`voice/`](voice/) | Manifesto (3 versões), do's and don'ts, tom por canal, glossário. Pacto editorial. | Travado |
-| [`templates/`](templates/) | Templates aplicados (newsletter, LinkedIn, e-mail, banners, cortes de livecast). | Pendente, executor: Founder Crew #2 |
-| [`assets/`](assets/) | Logos exportados, swatches de paleta, export pack. | v0 placeholder, substitui quando logo SVG final sair |
+| [`system/`](system/) | **Growth Club Design System** — implementação técnica. Tokens CSS, fontes Satoshi+Roboto self-hosted, 35+ preview cards, 5 templates IG/LinkedIn, ui_kit do site institucional, skill `growth-club-design` invocável via Claude Code. | Adotado em AD-008 (2026-05-17), base adaptada do Level Design System |
+| [`legacy/`](legacy/) | Brand book v1 textual (HTML+PDF+MD+CSS) — Chunk 5 do brand brief plan, arquivado quando `system/` se tornou fonte canônica. | Arquivado em 2026-05-17 |
+| [`assets/`](assets/) | Slot pra exports finais de canais externos (favicon, OG image, logo PNG). `exports/` tem v0 placeholders gerados da bandeira pirata; dirs vazias `logo/` e `palette/` foram removidas em 2026-05-17. Função distinta de `system/assets/` (placeholders SVG do design system). Ver `assets/README.md`. | v0 placeholders, regenerar quando logo final sair |
+
+---
+
+## Source-of-truth — quando algo conflita
+
+| Tópico | Vence |
+|---|---|
+| Tokens de cor (HEX, RGB, distribuição) | `system/colors_and_type.css` |
+| Tipografia (família, pesos, tracking, line-height) | `system/colors_and_type.css` + `system/fonts/` |
+| Componentes visuais (cards, botões, gradientes) | `system/preview/*` + `system/ui_kits/*` |
+| Voz e tom (DO/DON'T, manifesto, glossário) | `voice/*` (Markdown ainda é fonte canônica — o card `system/preview/voice-tone.html` é showcase derivado) |
+| Decisões estratégicas (arquétipo, nome, bandeira pirata) | `decisions/*` |
+| Logo (arte vetorial) | **TBD** — `system/assets/*.svg` são placeholders até vetor final do Figma sair |
 
 ---
 
@@ -23,25 +36,27 @@ Status: Chunk 1 (decisões) e Chunk 3 (voice) consolidados. Chunk 2 (visual) em 
 
 | Intenção | Vai pra |
 |---|---|
-| "Quero o resumo da marca em uma leitura" | [`brand-book.md`](brand-book.md) |
+| "Quero gerar uma peça (post, capa, slide, landing)" | `system/SKILL.md` ou `system/README.md` — invoca a skill `growth-club-design` ou abre os preview cards |
 | "Quero ver o manifesto" | [`voice/manifesto.md`](voice/manifesto.md) |
 | "Quero entender o tom" | [`voice/dos-and-donts.md`](voice/dos-and-donts.md) e [`voice/tom-por-canal.md`](voice/tom-por-canal.md) |
-| "Quero ver paleta e tipografia" | [`visual/paleta-primaria.md`](visual/paleta-primaria.md) e [`visual/tipografia.md`](visual/tipografia.md) |
+| "Quero ver paleta e tipografia" | `system/colors_and_type.css` (canônica) + [`visual/paleta-primaria.md`](visual/paleta-primaria.md) e [`visual/tipografia.md`](visual/tipografia.md) (strategy) |
 | "Quero entender por que tem bandeira pirata" | [`decisions/01-bandeira-pirata.md`](decisions/01-bandeira-pirata.md) |
 | "Quero entender o nome canônico" | [`decisions/02-nome-canonico.md`](decisions/02-nome-canonico.md) |
 | "Quero entender arquétipo e tom" | [`decisions/03-arquetipo-e-tom.md`](decisions/03-arquetipo-e-tom.md) |
 | "Quero entender marcas-filhas (AI LIKE A PRO)" | [`decisions/04-arquitetura-de-marcas.md`](decisions/04-arquitetura-de-marcas.md) |
-| "Quero exportar logo pra usar em peça" | [`assets/`](assets/) (v0 placeholder, vai ter v1 quando logo final sair) |
+| "Quero rodar o design system local" | `cd brand/system && npm run dev` |
+| "Quero ler o brand book antigo (v1 textual)" | [`legacy/`](legacy/) — só por curiosidade histórica, está superseder |
 
 ---
 
 ## Decisões travadas (não-negociáveis)
 
 1. **Nome canônico:** `Growth Club` (informal), `The Growth Club` (formal). `BR Growth Club` aposentado.
-2. **Arquétipo:** Outlaw + Sage.
+2. **Arquétipo:** Outlaw (60%) + Sage (30%) + Regular Guy (10% tempero).
 3. **Ton-anchor:** *"Franco, com número, sem palco, com cerveja."*
 4. **Régua editorial nº 1:** *Se não tem número, não é Growth Club.*
 5. **Princípio fundacional:** queremos a maior comunidade, não o maior evento. A palavra "evento" não aparece sozinha.
+6. **Paleta + tipografia em produção:** Pub Cream `#F5F1E8` + Growth Black `#0A0A0A` + Amber Beer `#D4A24C` (CTA primário) + Pirate Teal `#4FB3A5` (acento secundário) + Smoke Gray `#8B847E` (metadados) + Brick Red `#B84A3E` (alerts). Tipografia: Satoshi + Roboto Mono. Adotado via AD-008.
 
 Trespassar essas decisões exige ADR explícita em [`../.specs/project/STATE.md`](../.specs/project/STATE.md).
 
@@ -53,6 +68,14 @@ Convenções completas (incluindo meetup naming, marcas-filhas, tiers de membro)
 
 ---
 
+## Histórico de unificação
+
+- **2026-04-22:** Brand brief plan v1.2 aprovado. Chunks 1–3 produzidos como drafts em `brand/decisions/`, `brand/visual/`, `brand/voice/`.
+- **2026-04-28:** Brand book v1 textual produzido como `brand-book-v1.html/pdf/md/css` na raiz do `brand/`.
+- **2026-05-17:** Growth Club Design System (adaptado do Level Design System) introduzido. AD-008 documenta migração tipográfica e rebalanceamento de paleta. Pasta `brand-adapt/` removida; conteúdo promovido para `brand/system/`. Brand book v1 textual movido para `brand/legacy/`. Esta consolidação encerra a duplicidade de fontes de verdade entre `brand-adapt/` e `brand/`.
+
+---
+
 > *Marca séria começa pelo manifesto. Fim do palco.*
 
-Mantenedor: Henrique Caner. Última atualização: 2026-04-28.
+Mantenedor: Henrique Caner. Última atualização: 2026-05-17.

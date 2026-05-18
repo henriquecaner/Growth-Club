@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Gradients</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 10px; }
+.row { flex: 1; display: flex; gap: 8px; min-height: 0; }
+.g {
+  flex: 1;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  border: 1px solid var(--border-default);
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--fg-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>SIGNATURE GRADIENTS</span><b>3 CANONICAL</b></div>
+  <div class="row">
+    <div class="g" style="background: var(--gradient-hero);">
+      <span class="label">01 / HERO</span>
+      <span class="name">Radial purple × mint</span>
+    </div>
+    <div class="g" style="background: var(--gradient-purple-fade);">
+      <span class="label">02 / PURPLE FADE</span>
+      <span class="name">135° purple → base</span>
+    </div>
+    <div class="g" style="background: var(--gradient-architect);">
+      <span class="label">03 / ARCHITECT</span>
+      <span class="name">Purple → navy → green</span>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

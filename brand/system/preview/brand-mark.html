@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Brand Mark</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 22px 28px; gap: 14px; justify-content: space-between; }
+.hero {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+  min-height: 0;
+}
+.mark-box {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+.mark-box img { max-width: 80%; max-height: 80%; object-fit: contain; }
+.meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.meta h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: -0.04em;
+  color: var(--fg-primary);
+  line-height: 1.05;
+}
+.meta h2 em { font-style: normal; color: var(--accent-mint); }
+.meta p {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--fg-secondary);
+  max-width: 60ch;
+}
+.rules {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.rule {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-tertiary);
+  display: flex;
+  gap: 8px;
+}
+.rule::before { content: "→"; color: var(--accent-mint); }
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>MARK · MONOGRAM PLACEHOLDER</span><b>FINAL ARTWORK PENDING FIGMA</b></div>
+  <div class="hero">
+    <div class="mark-box"><img src="../assets/logo-mark.svg" alt="Growth Club mark placeholder" /></div>
+    <div class="meta">
+      <h2>Monogram <em>g.</em> Ponto Amber.</h2>
+      <p>Placeholder textual enquanto o vetor final (bandeira pirata evoluída — decisão 01-B locked) sai do Figma. O ponto Amber depois do <em>g</em> antecipa o motivo da marca: <em>"com cerveja"</em> do ton-anchor. Quando a arte oficial chegar, substitui mantendo o mesmo nome de arquivo.</p>
+      <div class="rules">
+        <span class="rule">Favicon, avatar Substack/WhatsApp, marca d'água</span>
+        <span class="rule">Logo é arte — em texto, escrever Growth Club</span>
+        <span class="rule">Área de respiro: 1× a altura do monogram em cada lado</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

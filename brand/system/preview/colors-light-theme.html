@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-no-split><head><meta charset="utf-8"><title>Colors — Light Theme</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 24px 28px; gap: 14px; background: var(--bg-base); }
+.grid-bg { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.sw {
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--border-default);
+  min-height: 0;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--fg-primary);
+  letter-spacing: -0.01em;
+}
+.hex {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-secondary);
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.meta b { color: var(--accent-violet); font-weight: 500; }
+.accents { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+.acc {
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 72px;
+}
+.acc .tag { opacity: 0.85; }
+.acc .hex { font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="meta"><span>LIGHT THEME (DEFAULT) · NEUTRAL GREY + SOFT-BLACK TEXT</span><b>:root</b></div>
+
+  <div class="grid-bg">
+    <div class="sw" style="background: var(--bg-void);">
+      <span class="tag">VOID</span>
+      <div>
+        <div class="name">bg-void</div>
+        <div class="hex">#E5E5E5</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-sunken);">
+      <span class="tag">SUNKEN</span>
+      <div>
+        <div class="name">bg-sunken</div>
+        <div class="hex">#EEEEEE</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-base);">
+      <span class="tag">BASE</span>
+      <div>
+        <div class="name">bg-base</div>
+        <div class="hex">#F5F5F5</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-raised);">
+      <span class="tag">RAISED</span>
+      <div>
+        <div class="name">bg-raised</div>
+        <div class="hex">#FFFFFF</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--nav-capsule-bg); color: var(--nav-capsule-fg); border-color: transparent;">
+      <span class="tag" style="color: rgba(255,255,255,0.6);">NAV CAPSULE</span>
+      <div>
+        <div class="name" style="color: #fff;">nav-capsule-bg</div>
+        <div class="hex" style="color: rgba(255,255,255,0.7);">#141418</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accents">
+    <div class="acc" style="background: var(--accent-violet); color: #fff;">
+      <span class="tag" style="color: rgba(255,255,255,0.75);">VIOLET · CTA</span>
+      <span class="hex" style="color: #fff;">#D4A24C</span>
+    </div>
+    <div class="acc" style="background: var(--accent-mint); color: #fff;">
+      <span class="tag" style="color: rgba(255,255,255,0.8);">MINT · SECONDARY</span>
+      <span class="hex" style="color: #fff;">#4FB3A5</span>
+    </div>
+    <div class="acc" style="background: var(--accent-violet-soft); color: var(--accent-violet); border: 1px solid var(--accent-violet-glow);">
+      <span class="tag">VIOLET · SOFT 10%</span>
+      <span class="hex">alpha 0.10</span>
+    </div>
+    <div class="acc" style="background: var(--bg-raised); color: var(--fg-primary); border: 1px solid var(--border-default); box-shadow: var(--shadow-raised);">
+      <span class="tag" style="color: var(--fg-tertiary);">CARD · RAISED</span>
+      <span class="hex" style="color: var(--fg-primary);">#FFFFFF · shadow</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;">
+    <div class="sw" style="background: var(--bg-raised);">
+      <span class="tag">FG PRIMARY</span>
+      <div>
+        <div class="name" style="color: var(--fg-primary);">Soft-black</div>
+        <div class="hex" style="color: var(--fg-primary);">#1A1A1A</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-raised);">
+      <span class="tag">FG SECONDARY</span>
+      <div>
+        <div class="name" style="color: var(--fg-secondary); font-weight: 500;">Body text</div>
+        <div class="hex">#3D3D3D</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-raised);">
+      <span class="tag">FG TERTIARY</span>
+      <div>
+        <div class="name" style="color: var(--fg-tertiary); font-weight: 500;">Meta</div>
+        <div class="hex" style="color: var(--fg-tertiary);">#7A7A7A</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-raised);">
+      <span class="tag">BORDER</span>
+      <div>
+        <div class="name" style="color: var(--fg-primary); font-size: 13px;">hairlines</div>
+        <div class="hex">rgba(26,26,26,.12)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

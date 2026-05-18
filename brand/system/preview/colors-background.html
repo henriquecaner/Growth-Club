@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Colors — Background</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 12px; }
+.grid { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; min-height: 0; }
+.sw {
+  border-radius: 6px;
+  padding: 8px 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--border-default);
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--fg-primary);
+  letter-spacing: -0.01em;
+}
+.hex {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--fg-secondary);
+  overflow-wrap: anywhere;
+}
+.light-hex, .dark-hex { display: none; }
+[data-theme="light"] .light-hex { display: revert; }
+[data-theme="dark"] .dark-hex { display: revert; }
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.meta b { color: var(--accent-violet); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="meta"><span>SURFACES · 5 LAYERS</span><b>bg-*</b></div>
+  <div class="grid">
+    <div class="sw" style="background: var(--bg-void);">
+      <span class="tag">VOID</span>
+      <div>
+        <div class="name">bg-void</div>
+        <div class="hex light-hex">#E5E5E5</div>
+        <div class="hex dark-hex">#000000</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-sunken);">
+      <span class="tag">SUNKEN</span>
+      <div>
+        <div class="name">bg-sunken</div>
+        <div class="hex light-hex">#EEEEEE</div>
+        <div class="hex dark-hex">#0D0D10</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-base);">
+      <span class="tag">BASE</span>
+      <div>
+        <div class="name">bg-base</div>
+        <div class="hex light-hex">#F5F5F5</div>
+        <div class="hex dark-hex">#0A0A0A</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-raised);">
+      <span class="tag">RAISED</span>
+      <div>
+        <div class="name">bg-raised</div>
+        <div class="hex light-hex">#FFFFFF</div>
+        <div class="hex dark-hex">#16140F</div>
+      </div>
+    </div>
+    <div class="sw" style="background: var(--bg-overlay);">
+      <span class="tag">OVERLAY</span>
+      <div>
+        <div class="name">bg-overlay</div>
+        <div class="hex light-hex">#FFFFFF</div>
+        <div class="hex dark-hex">#222228</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

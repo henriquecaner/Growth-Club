@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>Social — IG 4:5 (1080×1350)</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.frame {
+  width: 1080px;
+  height: 1350px;
+  min-width: 1080px;
+  min-height: 1350px;
+  max-width: 1080px;
+  max-height: 1350px;
+  background: var(--bg-base);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 72px 64px;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-violet);
+}
+.headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 76px;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: var(--fg-primary);
+  text-wrap: balance;
+}
+.headline em {
+  color: var(--accent-mint);
+  font-style: normal;
+}
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 12px;
+}
+.stat {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-flat);
+}
+.stat .num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent-violet);
+}
+.stat .lbl {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--fg-secondary);
+}
+.footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  height: 40px;
+  width: auto;
+}
+.cta {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--fg-tertiary);
+  letter-spacing: -0.01em;
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="content">
+    <div class="eyebrow">OS NÚMEROS</div>
+    <h1 class="headline">4 reuniões por mês pra <em>25 em 90 dias</em>.</h1>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">200+</div>
+        <div class="lbl">Oportunidades geradas por ano</div>
+      </div>
+      <div class="stat">
+        <div class="num">10:1</div>
+        <div class="lbl">ROI médio alcançado</div>
+      </div>
+      <div class="stat">
+        <div class="num">15%</div>
+        <div class="lbl">Taxa de conversão em fechamento</div>
+      </div>
+      <div class="stat">
+        <div class="num">4→25</div>
+        <div class="lbl">Reuniões qualificadas /mês</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <img src="../assets/logo-black.svg" alt="Growth Club" class="logo">
+    <span class="cta">growthclub.pro</span>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>IG — Framework</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html, body { margin: 0; padding: 0; background: #16140F; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+}
+.frame {
+  width: 540px; height: 675px;
+  position: relative; overflow: hidden;
+  background: #F5F5F5;
+  color: #1A1A1A;
+  display: flex; flex-direction: column;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.inner {
+  flex: 1; display: flex; flex-direction: column;
+  padding: 44px 40px;
+  position: relative;
+}
+.top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 24px; width: auto; display: block; }
+.meta {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #7A7A7A;
+  text-align: right; display: flex; flex-direction: column; gap: 3px;
+}
+.meta b { color: #D4A24C; font-weight: 500; }
+
+.title-block { margin-bottom: 32px; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #D4A24C;
+  display: inline-flex; align-items: center; gap: 12px; margin-bottom: 10px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: #D4A24C; }
+h1 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 34px; line-height: 1.05; letter-spacing: -0.035em;
+  color: #1A1A1A; margin: 0; max-width: 14ch;
+}
+h1 em { color: #D4A24C; font-style: normal; }
+
+/* diagram — 4 nodes linked */
+.diagram {
+  flex: 1; display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  position: relative;
+}
+.node {
+  background: #fff;
+  border: 1px solid rgba(26,26,26,0.1);
+  border-radius: 10px;
+  padding: 18px 18px 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  position: relative;
+  box-shadow: 0 2px 0 rgba(26,26,26,0.04);
+}
+.node .n {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.14em; color: #D4A24C;
+}
+.node h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 17px; line-height: 1.2; letter-spacing: -0.02em;
+  color: #1A1A1A; margin: 0;
+}
+.node p {
+  font-size: 12px; line-height: 1.45;
+  color: #55555A; margin: 0;
+}
+.node.hero {
+  background: #1A1A1A; color: #fff;
+  border-color: #1A1A1A;
+}
+.node.hero h3 { color: #fff; }
+.node.hero p { color: rgba(255,255,255,0.7); }
+.node.hero .n { color: #4FB3A5; }
+
+/* center connector */
+.diagram::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #D4A24C;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 6px #F5F5F5, 0 0 0 7px rgba(212, 162, 76,0.25);
+  z-index: 2;
+}
+
+.bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-top: 18px; margin-top: 16px;
+  border-top: 1px solid rgba(26,26,26,0.08);
+}
+.swipe {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #1A1A1A;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.swipe svg { width: 14px; height: 14px; }
+.counter {
+  font-family: var(--font-mono); font-size: 10px;
+  color: #7A7A7A; letter-spacing: 0.1em;
+}
+.counter b { color: #1A1A1A; font-weight: 500; }
+.caption {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 40px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="inner">
+    <div class="top">
+      <span class="brand"><img src="../assets/logo-black.svg" alt="Growth Club"></span>
+      <div class="meta"><span>FRAMEWORK · MAIO/26</span><b>G4</b></div>
+    </div>
+    <div class="title-block">
+      <span class="eyebrow">A operação do Growth Club</span>
+      <h1>Os <em>4 espaços</em> onde a comunidade acontece.</h1>
+    </div>
+    <div class="diagram">
+      <div class="node hero"><span class="n">01 / NEWSLETTER</span><h3>Curadoria editorial</h3><p>Substack quinzenal. Régua: se não tem número, não vai.</p></div>
+      <div class="node"><span class="n">02 / WHATSAPP</span><h3>Mesa de canto</h3><p>Community com 715 ativos. Pergunta com contexto, resposta com case.</p></div>
+      <div class="node"><span class="n">04 / LIVECAST</span><h3>Debate público</h3><p>Conversa franca com operador convidado. Sem palco, sem agenda escondida.</p></div>
+      <div class="node"><span class="n">03 / MEETUP</span><h3>Encontro presencial</h3><p>10+ meetups realizados. Próximo: Barte SP, jun/2026 — S1E1.</p></div>
+    </div>
+    <div class="bottom">
+      <span class="swipe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Ver cada espaço
+      </span>
+      <span class="counter"><b>03</b> / 07</span>
+    </div>
+  </div>
+</div>
+<span class="caption" style="color: rgba(255,255,255,0.45);">Instagram Post · 1080×1350 · diagrama 2×2 + nó central</span>
+</body></html>

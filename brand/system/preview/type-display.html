@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Type — Display</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 22px 26px; justify-content: space-between; gap: 10px; }
+.big {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--fg-primary);
+}
+.big .dot { color: var(--accent-mint); }
+.big em { font-style: normal; color: var(--accent-mint); }
+.meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.meta b { color: var(--fg-secondary); font-weight: 500; }
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between; gap: 8px;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; white-space: nowrap; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>DISPLAY · HERO</span><b>BLACK · 900</b></div>
+  <div class="big">Se não tem <em>número</em>, não é Growth Club<span class="dot">.</span></div>
+  <div class="meta">
+    <span>SPEC · <b>96/120px</b></span>
+    <span>WEIGHT · <b>900</b></span>
+    <span>TRACK · <b>-0.045em</b></span>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

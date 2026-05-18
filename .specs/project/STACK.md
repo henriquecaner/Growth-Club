@@ -82,6 +82,21 @@ Profissionalização de uma comunidade brasileira de Growth B2B (operadores de g
 | Analytics | Plausible (proposta) | Privacy-first, cookieless. Decisão final aberta no spec (TBD-07). |
 | Aulas (futuro) | TBD — Vimeo Showcase, Hotmart, Heartbeat | Gating fica na plataforma externa, não no site. |
 
+### Sub-projetos paralelos com stacks próprias
+
+O Growth Club tem sub-projetos operacionais com stacks independentes do site v1. **Cada sub-projeto tem repo próprio e ciclo de deploy independente** — o site v1 (HTML estático puro) é o hub central, mas sub-projetos podem evoluir sem coupling.
+
+| Sub-projeto | Repo | Stack | Hospedagem | Função | ADR |
+|-------------|------|-------|------------|--------|-----|
+| Site v1 (hub) | `Growth-Club` (este) | HTML5 + Modern CSS + JS vanilla | Cloudflare Pages · `growthclub.pro` | Hub institucional, conversão e cross-promo | AD-006 / AD-007 |
+| AI LIKE A PRO | `ai-like-a-pro` | HTML5 + Vanilla JS + Cloudflare Pages Functions + InfinitePay + Google Sheets + Resend | Cloudflare Pages · `growthclub.pro/ai-like-a-pro/` (sub-path via Workers Routes) | Workshop pago R$ 397/turma. Receita orgânica recorrente. | AD-009 |
+
+**Princípios pra futuros sub-projetos:**
+- Cada sub-projeto tem repo Git separado quando tem ciclo de deploy independente.
+- Sub-projetos podem ter brand próprio se conversão validada existir (caso AI LIKE A PRO) — migração pro AD-008 é opcional, não obrigatória.
+- Integração via cross-link explícito do site principal: footer + página `/recursos/*` correspondente.
+- Receita de sub-projetos entra no DRE consolidado da Comunidade (AD-005 — transparência financeira radical com Founder Crew).
+
 ### Build & Run Commands
 
 ```bash

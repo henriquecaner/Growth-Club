@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>Social — IG 1:1 (1080×1080)</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.frame {
+  width: 1080px;
+  height: 1080px;
+  min-width: 1080px;
+  min-height: 1080px;
+  max-width: 1080px;
+  max-height: 1080px;
+  background: var(--bg-base);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+/* Grid background */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+}
+.headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 88px;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  color: var(--fg-primary);
+  text-wrap: balance;
+  max-width: 920px;
+}
+.headline em {
+  color: var(--accent-violet);
+  font-style: normal;
+}
+.headline .dot {
+  color: var(--accent-mint);
+}
+.footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  height: 44px;
+  width: auto;
+}
+.cta {
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--fg-tertiary);
+  letter-spacing: -0.01em;
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="content">
+    <div class="eyebrow">COMUNIDADE B2B GROWTH · DESDE 2015</div>
+    <h1 class="headline">Se não tem <em>número</em>, não é Growth Club<span class="dot">.</span></h1>
+  </div>
+  <div class="footer">
+    <img src="../assets/logo-black.svg" alt="Growth Club" class="logo">
+    <span class="cta">growthclub.pro</span>
+  </div>
+</div>
+</body></html>

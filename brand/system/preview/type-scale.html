@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Type — Scale</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 24px; gap: 0; justify-content: space-between; }
+.line {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.line:last-child { border-bottom: none; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.spec {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.sample { color: var(--fg-primary); font-family: var(--font-display); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-default);
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>TYPE SCALE · HEADINGS + BODY</span><b>8 STEPS</b></div>
+  <div class="line"><span class="tag">H1</span><span class="sample" style="font-weight:700; font-size:26px; letter-spacing:-0.02em;">Arquitetura</span><span class="spec">48 · 700</span></div>
+  <div class="line"><span class="tag">H2</span><span class="sample" style="font-weight:700; font-size:22px; letter-spacing:-0.02em;">Pipeline previsível</span><span class="spec">36 · 700</span></div>
+  <div class="line"><span class="tag">H3</span><span class="sample" style="font-weight:700; font-size:18px; letter-spacing:-0.02em;">Sob medida, não de prateleira</span><span class="spec">28 · 700</span></div>
+  <div class="line"><span class="tag">H4</span><span class="sample" style="font-weight:700; font-size:15px;">IA que opera, não que sugere</span><span class="spec">22 · 700</span></div>
+  <div class="line"><span class="tag">H5</span><span class="sample" style="font-weight:500; font-size:13px;">Estratégia de geração de demanda</span><span class="spec">18 · 500</span></div>
+  <div class="line"><span class="tag">BODY LG</span><span class="sample" style="font-family:var(--font-body); font-weight:400; font-size:13px; color:var(--fg-secondary);">Construímos arquiteturas sob medida.</span><span class="spec">18 · 400</span></div>
+  <div class="line"><span class="tag">BODY</span><span class="sample" style="font-family:var(--font-body); font-weight:400; font-size:12px; color:var(--fg-secondary);">Sem SDR, sem prateleira, sem promessa.</span><span class="spec">16 · 400</span></div>
+  <div class="line"><span class="tag">CAPTION</span><span class="sample" style="font-family:var(--font-body); font-weight:400; font-size:11px; color:var(--fg-tertiary);">ATUALIZADO HÁ 2 MIN</span><span class="spec">12 · 400</span></div>
+</div>
+<script src="_split.js"></script>
+</body></html>

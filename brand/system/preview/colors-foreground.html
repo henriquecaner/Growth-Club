@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Colors — Foreground</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 10px; background: var(--bg-base); }
+.grid { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; min-height: 0; }
+.sw {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 7px;
+  padding: 8px 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.big {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.hex {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--fg-tertiary);
+  line-height: 1.3;
+  word-break: break-all;
+}
+.light-hex, .dark-hex { display: none; }
+[data-theme="light"] .light-hex { display: revert; }
+[data-theme="dark"] .dark-hex { display: revert; }
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.meta b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="meta"><span>TEXT · HIERARCHY</span><b>5 ROLES</b></div>
+  <div class="grid">
+    <div class="sw">
+      <span class="tag">PRIMARY</span>
+      <span class="big" style="color: var(--fg-primary);">Aa</span>
+      <span class="hex light-hex">#1A1A1A</span>
+      <span class="hex dark-hex">#FFFFFF</span>
+    </div>
+    <div class="sw">
+      <span class="tag">SECONDARY</span>
+      <span class="big" style="color: var(--fg-secondary);">Aa</span>
+      <span class="hex light-hex">#3D3D3D</span>
+      <span class="hex dark-hex">#C8C8CC</span>
+    </div>
+    <div class="sw">
+      <span class="tag">TERTIARY</span>
+      <span class="big" style="color: var(--fg-tertiary);">Aa</span>
+      <span class="hex light-hex">#7A7A7A</span>
+      <span class="hex dark-hex">#8A8A90</span>
+    </div>
+    <div class="sw">
+      <span class="tag">MUTED</span>
+      <span class="big" style="color: var(--fg-muted);">Aa</span>
+      <span class="hex light-hex">#B8B8B8</span>
+      <span class="hex dark-hex">#4A4A50</span>
+    </div>
+    <div class="sw" style="background: var(--accent-violet);">
+      <span class="tag" style="color: rgba(255,255,255,0.7);">INVERSE</span>
+      <span class="big" style="color: var(--fg-inverse);">Aa</span>
+      <span class="hex light-hex" style="color: rgba(255,255,255,0.8);">#FFFFFF</span>
+      <span class="hex dark-hex" style="color: rgba(255,255,255,0.8);">#0A0A0A</span>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

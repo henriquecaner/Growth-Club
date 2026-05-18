@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Elevation deep</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 14px; }
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+
+.grid { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
+.slot {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 14px 12px 12px;
+  display: flex; flex-direction: column; gap: 8px;
+  min-height: 140px;
+}
+.slot.flat { box-shadow: var(--shadow-flat); }
+.slot.raised { box-shadow: var(--shadow-raised); }
+.slot.overlay { box-shadow: var(--shadow-overlay); }
+.slot.glow-v { box-shadow: var(--glow-violet); border-color: var(--accent-violet); }
+.slot.glow-m { box-shadow: var(--glow-mint); border-color: var(--accent-mint); }
+
+.slot .tag {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+}
+.slot .name {
+  font-family: var(--font-display); font-weight: 900; font-size: 14px;
+  color: var(--fg-primary); letter-spacing: -0.02em;
+}
+.slot .use {
+  font-family: var(--font-body); font-size: 10px; color: var(--fg-tertiary);
+  line-height: 1.45;
+}
+.slot .code {
+  font-family: var(--font-mono); font-size: 9px; color: var(--accent-mint);
+  margin-top: auto;
+}
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>ELEVATION · SHADOWS + GLOWS EXERCISED</span><b>5 ROLES</b></div>
+  <div class="grid">
+    <div class="slot flat">
+      <span class="tag">01 · BASE</span>
+      <span class="name">shadow-flat</span>
+      <span class="use">Cards em repouso. Inset highlight 1px no topo.</span>
+      <span class="code">--shadow-flat</span>
+    </div>
+    <div class="slot raised">
+      <span class="tag">02 · HOVER</span>
+      <span class="name">shadow-raised</span>
+      <span class="use">Elementos que saem do plano. Menus ancorados, dropdowns, toasts.</span>
+      <span class="code">--shadow-raised</span>
+    </div>
+    <div class="slot overlay">
+      <span class="tag">03 · MODAL</span>
+      <span class="name">shadow-overlay</span>
+      <span class="use">Modais e sheets sobre scrim. Drop pesado, alta separação.</span>
+      <span class="code">--shadow-overlay</span>
+    </div>
+    <div class="slot glow-v">
+      <span class="tag">04 · CTA</span>
+      <span class="name">glow-violet</span>
+      <span class="use">Apenas no tema dark. Botão primário ativo, item selecionado.</span>
+      <span class="code">--glow-violet</span>
+    </div>
+    <div class="slot glow-m">
+      <span class="tag">05 · SUCCESS</span>
+      <span class="name">glow-mint</span>
+      <span class="use">Confirmação, status ao-vivo, execução em andamento.</span>
+      <span class="code">--glow-mint</span>
+    </div>
+    <div class="slot" style="background: var(--bg-sunken); box-shadow: none; border-style: dashed;">
+      <span class="tag">00 · INSET</span>
+      <span class="name">sunken</span>
+      <span class="use">Inputs, code blocks, slots de dropzone. Sem sombra externa.</span>
+      <span class="code">--bg-sunken</span>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

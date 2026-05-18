@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>Slide templates</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 14px; }
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+
+.slides { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; }
+.slide-wrap {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.slide-wrap .lbl {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+}
+.slide {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px; overflow: hidden; position: relative;
+  padding: 14px 18px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border: 1px solid var(--border-default);
+  font-family: 'Satoshi', 'Roboto', sans-serif;
+}
+
+/* Slide chrome */
+.s-brand { display: inline-flex; align-items: center; }
+.s-brand img { height: 10px; width: auto; display: block; }
+.s-num {
+  font-family: 'Roboto', sans-serif; font-size: 7px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+
+/* 1 — TITLE */
+.s1 {
+  background: radial-gradient(ellipse at top left, rgba(212, 162, 76,0.45) 0%, transparent 45%),
+              radial-gradient(ellipse at bottom right, rgba(95, 201, 187,0.35) 0%, transparent 45%),
+              linear-gradient(180deg, #0A0A0A 0%, #000000 100%);
+  color: #fff;
+}
+.s1 .h {
+  font-weight: 900; font-size: 20px; line-height: 1; letter-spacing: -0.03em;
+  max-width: 80%;
+}
+.s1 .h em { color: #5FC9BB; font-style: normal; }
+.s1 .meta {
+  font-family: 'Roboto', sans-serif; font-size: 7px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.6);
+}
+
+/* 2 — SECTION */
+.s2 {
+  background: linear-gradient(135deg, #1A0B3D 0%, #0A0A0A 50%, #0A2A1A 100%);
+  color: #fff;
+}
+.s2 .tag {
+  font-family: 'Roboto', sans-serif; font-size: 7px; letter-spacing: 0.15em;
+  color: #5FC9BB;
+}
+.s2 .h {
+  font-weight: 900; font-size: 28px; line-height: 0.95; letter-spacing: -0.04em;
+}
+
+/* 3 — CONTENT */
+.s3 {
+  background: #0A0A0A; color: #fff;
+}
+.s3 .h {
+  font-weight: 900; font-size: 14px; letter-spacing: -0.02em;
+}
+.s3 .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.s3 .col {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.s3 .col .t {
+  font-family: 'Roboto', sans-serif; font-size: 6px; letter-spacing: 0.1em;
+  color: #5FC9BB; text-transform: uppercase;
+}
+.s3 .col .v {
+  font-weight: 500; font-size: 9px; color: #fff; line-height: 1.2;
+}
+
+/* 4 — DATA */
+.s4 {
+  background: #F5F5F5; color: #1A1A1A; border-color: rgba(26,26,26,0.08);
+}
+.s4 .s-num { color: #7A7A7A; }
+.s4 .tag {
+  font-family: 'Roboto', sans-serif; font-size: 7px; letter-spacing: 0.15em;
+  color: #7A7A7A; text-transform: uppercase;
+}
+.s4 .big {
+  font-weight: 900; font-size: 42px; letter-spacing: -0.04em; line-height: 0.9;
+  color: #1A1A1A;
+}
+.s4 .big em { color: #D4A24C; font-style: normal; }
+.s4 .sub {
+  font-weight: 500; font-size: 9px; color: #3D3D3D; max-width: 60%;
+}
+
+/* 5 — CLOSING */
+.s5 {
+  background: linear-gradient(135deg, #D4A24C 0%, #000000 100%);
+  color: #fff;
+}
+.s5 .h {
+  font-weight: 900; font-size: 22px; line-height: 1; letter-spacing: -0.03em;
+}
+.s5 .cta {
+  font-family: 'Satoshi', 'Roboto', sans-serif; font-weight: 500; font-size: 9px;
+  padding: 5px 10px; border-radius: 4px;
+  background: #5FC9BB; color: #0A0A0A; align-self: flex-start;
+}
+
+/* 6 — QUOTE */
+.s6 {
+  background: #0A0A0A; color: #fff;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.s6 .quote {
+  font-weight: 900; font-size: 15px; line-height: 1.15; letter-spacing: -0.02em;
+}
+.s6 .quote::before { content: '"'; color: #5FC9BB; }
+.s6 .quote::after { content: '"'; color: #5FC9BB; }
+.s6 .who {
+  font-family: 'Roboto', sans-serif; font-size: 7px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.6);
+}
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>SLIDE TEMPLATES · 16:9 · KEYNOTE-READY</span><b>6 LAYOUTS</b></div>
+  <div class="slides">
+    <div class="slide-wrap">
+      <span class="lbl">01 · TITLE</span>
+      <div class="slide s1">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;"><span class="s-brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span><span class="s-num">01/24</span></div>
+        <div class="h">Growth B2B em sistema, <em>não em software.</em></div>
+        <div style="display:flex;justify-content:space-between;"><span class="meta">Apresentação institucional</span><span class="meta">Abril · 2026</span></div>
+      </div>
+    </div>
+    <div class="slide-wrap">
+      <span class="lbl">02 · SECTION DIVIDER</span>
+      <div class="slide s2">
+        <span class="s-num" style="color:rgba(255,255,255,0.6);">02/24</span>
+        <div>
+          <div class="tag">— parte 02</div>
+          <div class="h" style="margin-top:6px;">Como<br/>a arquitetura<br/>funciona.</div>
+        </div>
+        <span class="s-brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+      </div>
+    </div>
+    <div class="slide-wrap">
+      <span class="lbl">03 · CONTENT — 3 COLS</span>
+      <div class="slide s3">
+        <div style="display:flex;justify-content:space-between;"><span class="s-brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span><span class="s-num">03/24</span></div>
+        <div class="h">Três camadas do sistema.</div>
+        <div class="cols">
+          <div class="col"><span class="t">01 · FONTE</span><span class="v">Captura de dados de intenção.</span></div>
+          <div class="col"><span class="t">02 · JORNADA</span><span class="v">Fluxos automáticos de aquecimento.</span></div>
+          <div class="col"><span class="t">03 · RELATÓRIO</span><span class="v">Arquitetura viva, revista mensal.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-wrap">
+      <span class="lbl">04 · DATA POINT</span>
+      <div class="slide s4">
+        <div style="display:flex;justify-content:space-between;"><span class="s-brand"><img src="../assets/logo-black.svg" alt="Growth Club"></span><span class="s-num">04/24</span></div>
+        <div>
+          <div class="tag">Pipeline — abril</div>
+          <div class="big">R$ <em>1.28M</em></div>
+        </div>
+        <span class="sub">+24% vs. março · 18 leads hot · ciclo médio 42 dias</span>
+      </div>
+    </div>
+    <div class="slide-wrap">
+      <span class="lbl">05 · CLOSING CTA</span>
+      <div class="slide s5">
+        <div style="display:flex;justify-content:space-between;"><span class="s-brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span><span class="s-num">24/24</span></div>
+        <div class="h">Pronto para mudar<br/>o jogo?</div>
+        <span class="cta">Agendar sessão de arquitetura →</span>
+      </div>
+    </div>
+    <div class="slide-wrap">
+      <span class="lbl">06 · QUOTE</span>
+      <div class="slide s6">
+        <div style="display:flex;justify-content:space-between;"><span class="s-brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span><span class="s-num">12/24</span></div>
+        <div class="quote">Pararam de vender software pra gente. Começaram a construir sistema.</div>
+        <span class="who">— Isabela Ferraz · Head of Growth, Rede Vista</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

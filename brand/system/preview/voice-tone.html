@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Voice & Tone</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 22px 28px; gap: 12px; justify-content: space-between; }
+.grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; min-height: 0; }
+.col {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.col.yes { border-color: var(--accent-teal-glow); }
+.col.no { border-color: rgba(184, 74, 62, 0.35); }
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.col.yes .label { color: var(--accent-teal); }
+.col.no .label { color: var(--color-danger); }
+.quote {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--fg-primary);
+}
+.col.no .quote { color: var(--fg-tertiary); text-decoration: line-through; text-decoration-color: rgba(184,74,62,0.4); }
+.sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-tertiary);
+}
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-teal); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>VOICE · SHOWCASE — FONTE: ../../voice/dos-and-donts.md</span><b>DO · DON'T</b></div>
+  <div class="grid">
+    <div class="col yes">
+      <span class="label">✓ Growth Club</span>
+      <div class="quote">Abre com número antes de narrativa: "CAC caiu de R$ 420 pra R$ 180 em 6 semanas."</div>
+      <div class="quote">Contesta com dado: "Discordo. Minha operação rodou isso 6 meses. Qual foi teu N?"</div>
+      <span class="sub">afirma · número · ironia com carinho · português coloquial</span>
+    </div>
+    <div class="col no">
+      <span class="label">✗ Não Growth Club</span>
+      <div class="quote">10 prompts que mudaram minha vida 🚀</div>
+      <div class="quote">Vamos alavancar a IA pra escalar exponencialmente</div>
+      <span class="sub">guru · alavancar · escalar exponencial · motivacional raso</span>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

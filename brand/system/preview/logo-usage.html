@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Logo Usage</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 22px 28px; gap: 14px; background: var(--bg-base); justify-content: space-between; }
+.row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; flex: 1; }
+.box {
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+.box .tag {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.box img { max-width: 75%; max-height: 75%; object-fit: contain; }
+.dark { background: #0A0A0A; border: 1px solid rgba(255,255,255,0.1); }
+.dark .tag { color: rgba(255,255,255,0.5); }
+.light { background: #fff; border: 1px solid rgba(26,26,26,0.08); }
+.light .tag { color: #666; }
+.hero {
+  background:
+    radial-gradient(ellipse at top left, rgba(212, 162, 76,0.45) 0%, transparent 45%),
+    radial-gradient(ellipse at bottom right, rgba(95, 201, 187,0.35) 0%, transparent 45%),
+    linear-gradient(180deg, #0A0A0A 0%, #000000 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.hero .tag { color: rgba(255,255,255,0.6); }
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>LOGO · USAGE ON SURFACES</span><b>DARK PREFERRED</b></div>
+  <div class="row">
+    <div class="box dark">
+      <span class="tag">PRIMARY · DARK BG</span>
+      <img src="../assets/logo-white.svg" alt="Growth Club branco" />
+    </div>
+    <div class="box hero">
+      <span class="tag">GRADIENT / HERO</span>
+      <img src="../assets/logo-white.svg" alt="Growth Club branco em gradiente" />
+    </div>
+    <div class="box light">
+      <span class="tag">ALT · LIGHT BG</span>
+      <img src="../assets/logo-black.svg" alt="Growth Club preto" />
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

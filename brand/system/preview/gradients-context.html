@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Gradients</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 12px; }
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+.stack { flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.panel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+  padding: 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; overflow: hidden;
+  min-height: 110px;
+}
+.panel.hero { background: var(--gradient-hero); }
+.panel.architect { background: var(--gradient-architect); }
+.panel.violet-fade { background: var(--gradient-purple-fade); }
+.panel.mint-fade { background: var(--gradient-mint-fade); }
+
+.panel .meta {
+  position: absolute; top: 10px; left: 12px;
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  background: var(--bg-base);
+  padding: 3px 6px; border-radius: var(--radius-xs);
+  border: 1px solid var(--border-default);
+}
+.panel .copy {
+  font-family: var(--font-display); font-weight: 900; font-size: 22px;
+  color: var(--fg-primary); letter-spacing: -0.03em; line-height: 1.0;
+  max-width: 320px;
+}
+.panel .copy em { color: var(--accent-mint); font-style: normal; }
+.panel.violet-fade .copy, .panel.mint-fade .copy { color: #fff; }
+.panel.violet-fade .copy em, .panel.mint-fade .copy em { color: #fff; }
+.panel .pos {
+  font-family: var(--font-mono); font-size: 10px; color: var(--fg-tertiary);
+  text-align: right;
+}
+.panel.violet-fade .pos, .panel.mint-fade .pos { color: rgba(255,255,255,0.7); }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>GRADIENTS · APPLIED IN CONTEXT</span><b>4 SURFACES</b></div>
+  <div class="stack">
+    <div class="panel hero">
+      <span class="meta">--gradient-hero</span>
+      <div class="copy">Mude o jogo, <em>não apenas as peças.</em></div>
+      <div class="pos">Landing hero<br/>full-bleed</div>
+    </div>
+    <div class="panel architect">
+      <span class="meta">--gradient-architect</span>
+      <div class="copy">Arquitetura <em>antes</em> de execução.</div>
+      <div class="pos">Section break<br/>premium frame</div>
+    </div>
+    <div class="panel violet-fade">
+      <span class="meta" style="background: rgba(0,0,0,0.3); color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2);">--gradient-purple-fade</span>
+      <div class="copy">Pipeline ativo <em>R$ 1.28M</em></div>
+      <div class="pos">KPI hero<br/>feature card</div>
+    </div>
+    <div class="panel mint-fade">
+      <span class="meta" style="background: rgba(0,0,0,0.3); color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2);">--gradient-mint-fade</span>
+      <div class="copy">18 leads <em>hot</em> hoje</div>
+      <div class="pos">Success moment<br/>empty→full</div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

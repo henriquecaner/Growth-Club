@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>OG social card</title>
+<style>
+html, body { margin: 0; padding: 0; background: #222; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Satoshi', 'Roboto', sans-serif; }
+
+.og {
+  width: 1200px; height: 630px;
+  background: radial-gradient(ellipse at top left, rgba(229,180,93,0.45) 0%, transparent 45%),
+              radial-gradient(ellipse at bottom right, rgba(95,201,187,0.35) 0%, transparent 45%),
+              linear-gradient(180deg, #0A0A0A 0%, #000000 100%);
+  color: #F5F1E8; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 72px;
+  box-sizing: border-box;
+}
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.brand {
+  display: flex; align-items: center;
+  position: relative;
+}
+.brand img { height: 56px; width: auto; display: block; }
+.headline {
+  font-weight: 900; font-size: 96px; line-height: 1; letter-spacing: -0.04em;
+  color: #F5F1E8; max-width: 900px;
+  position: relative;
+}
+.headline em { color: #5FC9BB; font-style: normal; }
+.foot { display: flex; align-items: center; justify-content: space-between; position: relative; }
+.tag {
+  font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(245,241,232,0.7);
+}
+.url {
+  font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 500;
+  color: #E5B45D;
+}
+
+/* Preview scale */
+.preview-wrap {
+  transform: scale(0.55);
+  transform-origin: center;
+  width: 1200px; height: 630px;
+}
+.frame-wrap {
+  width: 680px; height: 360px;
+  display: flex; align-items: center; justify-content: center;
+  background: #000000;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+</style></head>
+<body>
+<div class="frame-wrap">
+  <div class="preview-wrap">
+    <div class="og">
+      <div class="grid-bg"></div>
+      <div class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></div>
+      <h1 class="headline">Se não tem <em>número</em>, não é Growth Club.</h1>
+      <div class="foot">
+        <span class="tag">COMUNIDADE B2B DE GROWTH — DESDE 2015</span>
+        <span class="url">growthclub.pro</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

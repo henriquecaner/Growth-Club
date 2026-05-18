@@ -3,7 +3,21 @@
 **Task:** 2.2 do plano `docs/superpowers/plans/2026-04-22-growth-club-brand-brief.md`
 **Ancoragem:** decisão 03 (Outlaw primário → tipografia pesada com atitude; Sage secundário → legibilidade editorial no body)
 
-> **Status:** proposta v1 pronta pra revisão no Figma.
+> ⚠ **PARCIALMENTE SUPERSEDED por AD-008 (2026-05-17)** — ver `.specs/project/STATE.md`.
+>
+> Ao adotar o `brand/system/` (Growth Club Design System adaptado do Level), a stack tipográfica foi migrada:
+>
+> | Original (este doc) | Em produção (`brand/system/`) | Por quê |
+> |---|---|---|
+> | Archivo Black (display) | **Satoshi Black 900** | Variable font (eixo 300–900) dá mais flexibilidade pra hierarquia fina; self-hosted; calibração de tracking/leading do design system base já testada. |
+> | Inter (body) | **Satoshi 400/500** | Body e display unificados em uma família. Inter mantida como **fallback declarado em email marketing** (Outlook quebra com Satoshi self-hosted). |
+> | JetBrains Mono (code) | **Roboto Mono** | Casa com sistema base; cobre todo o range de uso técnico (eyebrows, métricas tabulares, IDs). |
+>
+> **O que continua valendo deste doc:** princípios de uso (tracking inverso ao tamanho, italic só editorial, mínimo 16px web, hierarquia ≤ 3 tamanhos por peça), distribuição de pesos (Black em display, Medium em UI, Regular em body), regras de instalação web (Google Fonts CDN — **só Inter** agora pra fallback email).
+>
+> **Fonte canônica em produção:** `brand/system/colors_and_type.css` + `brand/system/fonts/`.
+
+> **Status original:** proposta v1 pronta pra revisão no Figma.
 
 ---
 

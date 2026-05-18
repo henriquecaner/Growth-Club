@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>IG — Lista/how-to</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html, body { margin: 0; padding: 0; background: #16140F; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+}
+.frame {
+  width: 540px; height: 675px;
+  position: relative; overflow: hidden;
+  background: #0D0D1F;
+  color: #fff;
+  display: flex; flex-direction: column;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.inner {
+  flex: 1; display: flex; flex-direction: column;
+  padding: 44px 40px;
+  position: relative;
+}
+.top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 24px; width: auto; display: block; }
+
+.meta {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-align: right;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.meta b { color: var(--accent-mint); font-weight: 500; }
+
+.title-block { margin-bottom: 28px; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent-mint);
+  display: inline-flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent-mint); }
+h1 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 38px; line-height: 1.02; letter-spacing: -0.035em;
+  color: #fff; margin: 0; max-width: 16ch;
+}
+h1 em { color: var(--accent-mint); font-style: normal; }
+
+.items { display: flex; flex-direction: column; gap: 2px; flex: 1;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.item {
+  display: grid; grid-template-columns: 44px 1fr;
+  gap: 16px; padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.item .num {
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.14em; color: var(--accent-mint);
+  padding-top: 4px;
+}
+.item h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 18px; line-height: 1.2; letter-spacing: -0.02em;
+  color: #fff; margin: 0 0 4px;
+}
+.item p {
+  font-size: 13px; line-height: 1.5;
+  color: rgba(255,255,255,0.62);
+  margin: 0; max-width: 38ch;
+}
+
+.bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-top: 16px;
+  margin-top: 8px;
+}
+.swipe {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #fff;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.swipe svg { width: 14px; height: 14px; }
+.counter {
+  font-family: var(--font-mono); font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em;
+}
+.counter b { color: #fff; font-weight: 500; }
+.caption {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 40px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="inner">
+    <div class="top">
+      <span class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+      <div class="meta"><span>HOW-TO · ABR/26</span><b>05/07</b></div>
+    </div>
+    <div class="title-block">
+      <span class="eyebrow">Diagnóstico</span>
+      <h1>5 sinais de que sua operação de growth é <em>teatro, não execução</em>.</h1>
+    </div>
+    <div class="items">
+      <div class="item"><span class="num">01</span><div><h3>Post bombou. Pipeline não mexeu.</h3><p>Curtidas no LinkedIn não pagam folha. Engajamento ≠ receita.</p></div></div>
+      <div class="item"><span class="num">02</span><div><h3>Você sabe o resultado de cada canal?</h3><p>Se não consegue dizer o CAC por fonte em 30s, é palco.</p></div></div>
+      <div class="item"><span class="num">03</span><div><h3>O time fala em "jornada", não em número.</h3><p>"Aquecimento", "nutrição", "transformação" — sem métrica atrás, é mantra.</p></div></div>
+      <div class="item"><span class="num">04</span><div><h3>Reunião semanal vira show de slides.</h3><p>Forecast bonito que ninguém olha. Decisão real é no WhatsApp do CEO.</p></div></div>
+      <div class="item"><span class="num">05</span><div><h3>Cases públicos sempre na empresa do amigo.</h3><p>Quando você pede o número de cliente real, "preciso checar com a equipe".</p></div></div>
+    </div>
+    <div class="bottom">
+      <span class="swipe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Tornar-se membro
+      </span>
+      <span class="counter"><b>05</b> / 07</span>
+    </div>
+  </div>
+</div>
+<span class="caption">Instagram Post · 1080×1350 · lista numerada densa</span>
+</body></html>

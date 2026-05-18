@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Radii</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 10px; justify-content: space-between; }
+.row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; flex: 1; }
+.box {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+  min-width: 0;
+}
+.swatch {
+  flex: 1;
+  background: var(--accent-mint);
+  margin-bottom: 6px;
+  min-height: 30px;
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--fg-primary);
+  letter-spacing: -0.01em;
+}
+.px {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--fg-tertiary);
+}
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>RADII · STRUCTURAL · LOW</span><b>6 STEPS</b></div>
+  <div class="row">
+    <div class="box" style="border-radius: 0;"><div class="swatch" style="border-radius: 0;"></div><div class="name">none</div><div class="px">0</div></div>
+    <div class="box" style="border-radius: 2px;"><div class="swatch" style="border-radius: 2px;"></div><div class="name">xs</div><div class="px">2 · chips</div></div>
+    <div class="box" style="border-radius: 4px;"><div class="swatch" style="border-radius: 4px;"></div><div class="name">sm</div><div class="px">4 · inputs</div></div>
+    <div class="box" style="border-radius: 6px;"><div class="swatch" style="border-radius: 6px;"></div><div class="name">md</div><div class="px">6 · buttons</div></div>
+    <div class="box" style="border-radius: 10px;"><div class="swatch" style="border-radius: 10px;"></div><div class="name">lg</div><div class="px">10 · cards</div></div>
+    <div class="box" style="border-radius: 16px;"><div class="swatch" style="border-radius: 16px;"></div><div class="name">xl</div><div class="px">16 · modals</div></div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

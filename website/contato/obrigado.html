@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Recebemos — Growth Club</title>
+
+  <link rel="icon" href="/assets/images/logo-mark.svg">
+
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/chrome.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
+</head>
+<body>
+
+  <gc-header current="contato"></gc-header>
+
+  <main>
+
+    <section class="hero-sub">
+      <div class="wrap">
+        <div class="crumb">
+          <a href="/">Home</a><span class="sep">/</span><a href="/contato">Contato</a><span class="sep">/</span><span class="curr">Obrigado</span>
+        </div>
+        <span class="kicker">Mensagem registrada</span>
+        <h1 class="page-title"><em>Recebemos.</em></h1>
+        <p class="page-lede">Tua mensagem chegou. Te chamamos em até 3 dias úteis pelo canal que você indicou.</p>
+      </div>
+    </section>
+
+    <section class="article">
+      <div class="wrap" style="max-width: 720px;">
+        <article class="prose" style="max-width: 100%;">
+          <section style="border-top: 0; padding-top: 0;">
+            <div class="s-num">ENQUANTO ISSO</div>
+            <h2>O que <em>você pode fazer.</em></h2>
+            <p>A maioria das perguntas é respondida na <a href="/sobre">página Sobre</a> (manifesto + crew + imprensa) ou na <a href="/empresas">página Empresas</a> (patrocínio, vagas, hunting, mentoria). Vale dar uma olhada.</p>
+            <p>Se quer pegar a régua editorial em tempo real: <a href="/membro">assina a newsletter</a>.</p>
+          </section>
+        </article>
+
+        <div class="hero-ctas" style="margin-top: 48px; justify-content: center;">
+          <a class="btn primary" href="/">Voltar pra home <i data-lucide="arrow-up-right"></i></a>
+          <a class="btn ghost" href="/membro">Entrar no clube</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <gc-footer></gc-footer>
+
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/footer.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

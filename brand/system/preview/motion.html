@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Motion</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 22px 28px; gap: 14px; justify-content: space-between; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+.box {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+.box h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  color: var(--fg-primary);
+}
+.track {
+  position: relative;
+  height: 3px;
+  background: var(--border-default);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.track .fill {
+  position: absolute;
+  top: 0; left: 0; height: 100%;
+  background: var(--accent-mint);
+  width: 100%;
+  animation: slide 1.6s infinite var(--ease);
+}
+.e1 { --ease: cubic-bezier(0.2, 0.8, 0.2, 1); }
+.e2 { --ease: cubic-bezier(0.65, 0, 0.35, 1); }
+.e3 { --ease: linear; }
+@keyframes slide {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+.spec {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--fg-tertiary);
+  letter-spacing: 0.04em;
+}
+.dots {
+  display: flex; gap: 4px; margin-top: 4px;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--fg-muted);
+}
+.dot.a { animation: pulse 1.2s infinite; }
+.dot.a:nth-child(2) { animation-delay: 0.2s; }
+.dot.a:nth-child(3) { animation-delay: 0.4s; }
+@keyframes pulse {
+  0%, 100% { background: var(--fg-muted); }
+  50% { background: var(--accent-mint); box-shadow: 0 0 8px var(--accent-mint); }
+}
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>MOTION · PRECISE · FAST · NO BOUNCES</span><b>3 EASINGS · 4 DURATIONS</b></div>
+  <div class="row">
+    <div class="box">
+      <h4>Easing · default out</h4>
+      <div class="track"><div class="fill e1"></div></div>
+      <div class="spec">cubic-bezier(0.2, 0.8, 0.2, 1) · 160ms · UI padrão</div>
+      <div class="track"><div class="fill e2"></div></div>
+      <div class="spec">cubic-bezier(0.65, 0, 0.35, 1) · 240ms · transições</div>
+      <div class="track"><div class="fill e3"></div></div>
+      <div class="spec">linear · loading, progress bars</div>
+    </div>
+    <div class="box">
+      <h4>Pulse · mint glow · 240ms</h4>
+      <div class="dots">
+        <span class="dot a"></span><span class="dot a"></span><span class="dot a"></span>
+      </div>
+      <div class="spec" style="margin-top: 8px;">80ms · instant · focus ring</div>
+      <div class="spec">160ms · fast · hover · botões</div>
+      <div class="spec">240ms · med · menus, drawers</div>
+      <div class="spec">400ms · slow · transições de rota</div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

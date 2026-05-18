@@ -1,0 +1,14 @@
+<svg width="360" height="80" viewBox="0 0 360 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder wordmark — Growth Club final logo pending Figma vector (Task 2.3 brand plan) -->
+  <text x="0" y="60"
+        font-family="'Satoshi', 'Arial Black', sans-serif"
+        font-weight="900"
+        font-size="64"
+        letter-spacing="-3"
+        fill="#0A0A0A">growth club</text>
+  <text x="330" y="60"
+        font-family="'Satoshi', 'Arial Black', sans-serif"
+        font-weight="900"
+        font-size="64"
+        fill="#D4A24C">.</text>
+</svg>
