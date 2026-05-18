@@ -6,6 +6,60 @@
 
 ---
 
+## 2026-05-18 · AD-010 · Pivô do AI LIKE A PRO — interest page in-site
+
+Refina o AD-009 do dia anterior. A LP paga (R$ 397, InfinitePay) continua independente no repo `github.com/henriquecaner/ai-like-a-pro`, com brand própria. Foi adicionada agora uma página de interesse dentro do site principal em `/ai-like-a-pro/`, no Growth Club Design System, com form Tally pra lista da próxima turma.
+
+Por quê: o footer link `/ai-like-a-pro/` precisava resolver sem depender de Workers Routes ou multi-deploy no Cloudflare. A página in-site cobre isso e ainda dá SEO permanente pro workshop, independente de turma aberta.
+
+Referência: [`STATE.md` AD-010](.specs/project/STATE.md).
+
+---
+
+## 2026-05-17 · AD-009 · AI LIKE A PRO formalizado como produto pago independente
+
+O workshop AI LIKE A PRO virou produto formal com R$ 3 mil já vendidos em duas turmas (R$ 397 × ~7 alunos). Continua em repo separado (`github.com/henriquecaner/ai-like-a-pro`), com stack própria (Vite + Cloudflare Functions + InfinitePay + Google Sheets + Resend) e brand v1 preservada. A conversão validada não merece refactor visual ainda. Cross-promo: site principal → LP de checkout → WhatsApp Community.
+
+Por quê: a LP estava clonada como nested git repo dentro de `website/ai-like-a-pro/` no site principal, o que gera confusão de versionamento. Separar a source-of-truth elimina o risco operacional sem perder a integração.
+
+Referência: [`STATE.md` AD-009](.specs/project/STATE.md).
+
+---
+
+## 2026-05-17 · AD-008 · Growth Club Design System adotado
+
+Sistema de design completo em `brand/system/`, adaptado do Level Design System (outra empresa do Henrique). Tokens CSS dual-theme (light-first + dark sections opt-in), Satoshi + Roboto self-hosted, 35+ preview cards, 5 templates IG/LinkedIn, ui_kit do site, e uma skill `growth-club-design` invocável por qualquer agente.
+
+Migração tipográfica: Archivo Black → Satoshi (variable font, eixo 300-900). Paleta rebalanceada: Amber Beer como CTA primário (era acento secundário), Pirate Teal mantém papel de secundário, Pub Cream segue base, Growth Black em hero/CTA-final. Brand book textual v1 (HTML+PDF+MD+CSS) arquivado em `brand/legacy/`.
+
+Por quê: reutilizar engenharia já testada do Level economiza ~2 semanas vs. fazer do zero ou recalibrar todos os tokens pra Archivo Black. E destrava produção imediata de assets (newsletter, IG, LinkedIn, pôster de meetup) sem depender da chegada do Founder Crew #2 (designer).
+
+Referência: [`STATE.md` AD-008](.specs/project/STATE.md) · [Brand system](brand/system/).
+
+---
+
+## 2026-05-17 · AD-007 · Stack do site v1 — HTML5 + Modern CSS + Cloudflare Pages
+
+Sem framework JS. Sem build step. HTML5 semântico em arquivos `.html` estáticos, Modern CSS com nesting nativo (suportado em todos os browsers majores desde 2023), JavaScript vanilla quando necessário (form Substack, scrollspy de anchors, scroll-reveal). Hospedagem: Cloudflare Pages (free tier, CDN global LATAM-friendly, deploy via wrangler).
+
+Por quê: o spec do site (AD-006) tinha deferido a escolha de stack pro Founder Crew #1 (frontend), mas o Crew ainda não foi preenchido. Henrique optou por destravar pessoalmente. Decisão alinhada com a régua editorial "sem teatro": é a stack mais simples que entrega o objetivo, sem ferramenta cerimonial.
+
+Referência: [`STATE.md` AD-007](.specs/project/STATE.md).
+
+---
+
+## 2026-05-17 · AD-006 · Site v1 no ar em growthclub.pro
+
+Site em 17 páginas: home (manifesto + 9 seções + newsletter), sobre, empresas (B2B com 4 anchors), membro (caminho free), contato (Tally), meetups hub + LP S1E1 Barte, 5 recursos (newsletter, aulas, livecast, workshops, comunidade), 4 legais (privacidade, termos, LGPD, CoC), 404.
+
+Componentes: `<gc-header>` + `<gc-footer>` como web components reutilizáveis. Slot dinâmico na home pra rotacionar próximos meetups. Newsletter form redireciona pra Substack pré-preenchido. Sitemap.xml + schema.org Organization. OG image placeholder até logo final sair do Figma.
+
+Por quê: o site era um dos gatilhos de retomada do Founder Member parqueado (AD-003). Sem site no ar, sem captação ativa, sem caminho pra novo membro. Passo crítico antes do Barte S1E1 em jun/2026.
+
+Referência: [`STATE.md` AD-006](.specs/project/STATE.md) · `docs/superpowers/specs/`.
+
+---
+
 ## 2026-04-28 · Estrutura pública do repositório
 
 Publicar o repositório como ativo de marca.
@@ -154,4 +208,4 @@ Catalogados em [`docs/superpowers/specs/2026-04-22-growth-club-business-plan-des
 
 > *Build in public é a única operação coerente com "Sem teatro". Tudo que entra aqui é registrável.*
 
-Última atualização: 2026-04-28. Mantenedor: Henrique Caner.
+Última atualização: 2026-05-18. Mantenedor: Henrique Caner.

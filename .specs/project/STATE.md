@@ -1,11 +1,43 @@
 # STATE: Growth Club
-**Last Updated:** 2026-05-17
+**Last Updated:** 2026-05-18
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-010: Pivô do AI LIKE A PRO — página de interesse in-site + LP de checkout em repo separado
+**Date:** 2026-05-18
+**Status:** Accepted (refina AD-009)
+
+**Context:** AD-009 (2026-05-17) determinou que o AI LIKE A PRO viraria projeto independente, com a pasta `website/ai-like-a-pro/` movida pra fora do site principal e a hospedagem em sub-path resolvida via Workers Routes / multi-deploy no Cloudflare. Ao longo do mesmo dia, ficou claro que essa arquitetura tinha dois custos: (i) configuração operacional no dashboard do Cloudflare ainda pendente, e (ii) ausência completa de uma página de captação dentro do site principal, deixando o footer link `/ai-like-a-pro/` apontando pra um endereço sem fallback até o multi-deploy ficar de pé.
+
+A alternativa surgiu naturalmente: criar uma **página de interesse in-site** no domínio principal usando o Growth Club Design System (AD-008), com form Tally pra lista da próxima turma, e manter a **LP de checkout pago** (com InfinitePay, brand própria, R$ 397) no repo separado, em URL distinta. Os dois ativos passam a coexistir com papéis diferentes.
+
+**Decision:**
+
+1. **`website/ai-like-a-pro/index.html` permanece no site principal** como página de captação de interesse pra próxima turma. Brand alinhada ao AD-008 (gc-header, gc-footer, tokens canônicos). Form: Tally (`tally.so/r/BzLJO4`). Sem checkout — função é encher a lista da próxima turma.
+
+2. **A LP de checkout pago em `~/Documents/GitHub/ai-like-a-pro/`** (repo separado) continua sendo a fonte da venda real (R$ 397, InfinitePay). Deploy continua independente. Quando turma estiver aberta, a página de interesse no site principal aponta pra ela.
+
+3. **Workers Routes / multi-deploy desnecessário em Fase 1.** O footer link `/ai-like-a-pro/` resolve direto pela página in-site. A LP de checkout pode ficar em sub-path do repo separado (ex.: `growthclub.pro/turmas/ai-like-a-pro/` via deploy futuro) ou em URL temporária do próprio Pages do repo separado.
+
+4. **Cross-promo permanece:** interest page in-site → LP de checkout quando turma abre; LP de checkout → WhatsApp Community pós-compra. Dois ativos, um funil.
+
+**Consequences:**
+- Footer link do site principal nunca fica quebrado, mesmo sem config extra de Cloudflare.
+- AI LIKE A PRO ganha presença permanente dentro do site principal (SEO + descoberta orgânica), independente de turma aberta.
+- A pasta `website/ai-like-a-pro/` no repo principal NÃO é nested git repo — é só uma rota a mais, com 1 arquivo HTML, sem subprojeto.
+- Pendência operacional do AD-009 ("configurar Workers Routes") deixa de existir nessa forma; vira "decidir URL futura da LP de checkout pública" — tarefa adiada pra quando próxima turma abrir.
+- AD-009 §3 (pasta movida pra fora) está parcialmente revisada: a pasta separada continua existindo pra LP de checkout, mas a presença no repo principal foi reintroduzida com propósito diferente.
+
+**Alternatives considered:**
+- **Manter AD-009 literalmente e configurar Workers Routes agora** — descartado: trabalho operacional pra resolver um problema (footer link quebrado) que tem solução mais simples in-site, e Workers Routes força acoplamento entre os dois deploys.
+- **Embed do form Tally direto em `/recursos/workshops.html`** — descartado: workshops é hub de múltiplos formatos; AI LIKE A PRO merece página dedicada com seu próprio SEO (`growthclub.pro/ai-like-a-pro/`) pra SERP.
+- **Subdomínio dedicado `ailikeapro.growthclub.pro`** — descartado em AD-009 e mantém-se descartado: fragmenta SEO sem ganho.
+
+---
 
 ### AD-009: AI LIKE A PRO formalizado como produto pago independente
 **Date:** 2026-05-17

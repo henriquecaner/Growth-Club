@@ -26,9 +26,12 @@ This is **not** a greenfield scaffold. The project is mid-execution on the **Mar
 - ✅ **Hospedagem em Level Tech (AD-004, 2026-04-28)** — CNPJ existente (Level Tech, fundada recentemente pelo Henrique) é a Contratante dos contratos Crew. Spin-off futuro com Level Tech como holding.
 - ✅ **Transparência financeira radical (AD-005, 2026-04-28)** — relatórios mensais (1º ano) e trimestrais (depois) pro Founder Crew com DRE da Comunidade, Pool Crew e fração individual.
 - ⏳ **Acordo de Founder Crew** — draft v1 em `docs/contracts/acordo-founder-crew.md`. Aguarda revisão pelo agente Claude Revisa do Henrique. Assinatura via Google Docs (eSignature).
-- ⏳ **Chunk 4** (templates) — pending, depends on logo completion in Figma.
-- ⏳ **Chunk 5** (brand book consolidation) — pending; brand book ativo é onde Founder Crew terão crédito.
-- ⏳ **Site** (capture form + thank-you at `growthclub.pro`) — specs not written yet; separate sub-project after Marca; agora com **executor designado** (Founder Crew nº 1, quando preenchido).
+- ✅ **Growth Club Design System adotado (AD-008, 2026-05-17)** — implementação técnica em `brand/system/` (adaptada do Level Design System). Tokens CSS, fontes Satoshi+Roboto self-hosted, 35+ preview cards, 5 templates IG/LinkedIn prontos, ui_kit do site institucional, skill `growth-club-design` invocável. Migra Archivo Black → Satoshi e rebalanceia Amber pra CTA primário. `brand-adapt/` removido, `brand-book-v1.*` arquivado em `brand/legacy/`.
+- ✅ **Chunk 4** (templates) — substancialmente coberto por `brand/system/templates/` (5 IG/LinkedIn) + `brand/system/preview/newsletter-cover.html` + `brand/system/preview/lp-hero-*`. Falta: templates de email (Founder Crew #2 quando preenchido) e corte de livecast (Founder Crew #2).
+- ✅ **Chunk 5** (brand book consolidation) — substituído pelo `brand/system/README.md` como brand book vivo. Artifacts textuais antigos arquivados em `brand/legacy/`.
+- ✅ **Site v1 no ar (AD-006/007, 2026-05-17)** — `growthclub.pro` em produção no Cloudflare Pages com 17 páginas (home, sobre, empresas, membro, contato, meetups hub + LP S1E1, 5 recursos, 4 legais, 404). Stack HTML5 + Modern CSS + JS vanilla + web components `<gc-header>`/`<gc-footer>`. Design System AD-008 aplicado em todas. Próximo passo: Crew #1 entra pra evoluir/manter.
+- ✅ **AI LIKE A PRO híbrido (AD-009/010, 2026-05-17/18)** — produto pago em repo separado (`github.com/henriquecaner/ai-like-a-pro`, R$ 397, InfinitePay) + página de interesse in-site em `website/ai-like-a-pro/` (form Tally, Growth Club Design System). Footer link `/ai-like-a-pro/` resolve direto pela página in-site, sem Workers Routes.
+- ℹ️ **Cloudflare Pages é direct-upload, não Git-auto-deploy** — projeto `growth-club` (`growthclub.pro` + `growth-club.pages.dev`) sem integração Git. Deploys via `wrangler pages deploy website --project-name growth-club --branch main`. Push pro GitHub não dispara deploy automaticamente.
 - ✅ **Risco R-11 mitigado por absorção consciente:** Henrique decidiu absorver pessoalmente o gap de R$ 51.975. Princípio "sem promessa de dinheiro no curto prazo" se estende à narrativa Crew e à comunicação pública. Não há mitigação ativa de receita upfront.
 - ❌ **Application code** — zero. No `package.json`, no frameworks chosen. `.specs/project/STACK.md` is still placeholder.
 
@@ -47,13 +50,14 @@ Growth-Club/
 ├── README.md                              ← public showcase / vitrine
 ├── CHANGELOG.md                           ← build-in-public log (mirror filtered of STATE.md)
 ├── SECURITY.md                            ← security policy (Phase 1)
-├── brand/                                 ← brand work in progress (see brand/README.md for map)
+├── brand/                                 ← brand book vivo — strategy (Markdown) + implementation (system/). See brand/README.md
 │   ├── decisions/                         ← 01 bandeira-pirata, 02 nome-canonico, 03 arquetipo+tom (LOCKED),
 │   │                                       04 marcas-filhas (skeleton — pending user input)
-│   ├── visual/                            ← paleta-primaria, tipografia, logo-moodboard (direction 3 recommended)
+│   ├── visual/                            ← paleta-primaria (banner rebalanceamento AD-008), tipografia (banner SUPERSEDED AD-008), logo-moodboard, prompts Canva/Nano-Banana
 │   ├── voice/                             ← manifesto (3 versões), dos-and-donts, tom-por-canal, glossario
-│   ├── templates/                         ← empty — Chunk 4 will populate (newsletter/linkedin/email/livecast)
-│   └── assets/                            ← v0 placeholder — logo vectors, palette swatches, export pack
+│   ├── system/                            ← Growth Club Design System (AD-008) — CSS tokens, fontes Satoshi+Roboto self-hosted, 35+ preview cards, templates IG/LinkedIn, ui_kit website, SKILL invocável
+│   ├── legacy/                            ← brand-book v1 textual arquivado (HTML+PDF+MD+CSS) — superseder por system/
+│   └── assets/                            ← slot pra exports finais; system/assets/ tem os placeholders ativos
 ├── docs/                                  ← curated docs by audience (see docs/README.md for map)
 │   ├── community/                         ← onboarding pra membros, régua editorial, visibility strategy
 │   ├── crew/                              ← FAQ pra Founder Crew, template de subpágina autoral
@@ -89,7 +93,7 @@ Work in this repo follows the orchestration pattern defined in `.agents/rules/un
 - `STACK.md` — scope, goals, tech stack (**[CRITICAL]** — still placeholder; stack not chosen)
 - `ARCHITECTURE.md` — authoritative technical reference (**[CRITICAL]** — still placeholder; there's no app yet)
 - `CONVENTIONS.md` — file naming, module pattern, test/commit conventions (not yet populated)
-- `STATE.md` — **append-only** log of ADRs, blockers, risks, lessons. Currently: **AD-001** (Business Plan v1.2) + **AD-002** (Founder Crew categoria nova) + **AD-003** (Founder Member tier parqueado) + **AD-004** (hospedagem em Level Tech CNPJ + plano de spin-off) + **AD-005** (transparência financeira radical com Crew) + **R-11** (cash flow Barte mitigado por absorção) + **L-001** (ativos orgânicos preexistentes) + **L-002** (categoria nova vs adaptar tier). Never overwrite past entries.
+- `STATE.md` — **append-only** log of ADRs, blockers, risks, lessons. Currently: **AD-001** (Business Plan v1.2) + **AD-002** (Founder Crew categoria nova) + **AD-003** (Founder Member tier parqueado) + **AD-004** (hospedagem em Level Tech CNPJ + plano de spin-off) + **AD-005** (transparência financeira radical com Crew) + **AD-006** (spec site v1) + **AD-007** (stack site HTML5+ModernCSS+Cloudflare Pages) + **AD-008** (Growth Club Design System + migração tipográfica Archivo→Satoshi) + **AD-009** (AI LIKE A PRO produto pago independente) + **AD-010** (pivô: interest page in-site + LP de checkout separada) + **R-11** (cash flow Barte mitigado por absorção) + **L-001** (ativos orgânicos preexistentes) + **L-002** (categoria nova vs adaptar tier). Never overwrite past entries.
 - `ROADMAP.md` — 3 phases (Consolidação → Crescimento → Lock), Sprint 0 DONE
 
 Feature-level tasks live under `docs/superpowers/plans/...md` (this is where the brand brief plan lives). When chat conflicts with these documents, **documentation wins**.
@@ -153,8 +157,8 @@ Before picking up work, check the user's most recent explicit direction. Common 
 3. **User polishing Chunks 1–3 drafts** (decisions, visual, voice) — don't rewrite unless asked; collaborate on edits.
 4. **Task 1.4 in plan** (marcas-filhas / sub-grupos WhatsApp) — blocked on user input about 4 sub-groups; don't invent.
 5. **Chunk 2 logo steps 1c–1e** — user executes in Figma; Claude helps with sketches/feedback, not the vector.
-6. **Chunk 4 (templates)** — depends on logo locked. **Executor designado:** Founder Crew nº 2 (designer + vídeo) quando preenchido.
-7. **Chunk 5 (brand book)** — depends on Chunks 2–4 done. Founder Crew aparece em seção "Era Pré-S1" do brand book ativo.
+6. **Chunk 4 (templates)** — substancialmente coberto por `brand/system/templates/` + preview cards. Remanescente (templates de email, cortes de livecast): **Founder Crew #2** quando preenchido.
+7. **Chunk 5 (brand book)** — concluído como `brand/system/README.md` + `brand/README.md` (mapa). Brand book textual v1 arquivado em `brand/legacy/`. Founder Crew aparecerá em seção "Era Pré-S1" quando preenchido.
 8. **Legal/operational §11 of business plan** (CNPJ, regime tributário, revshare contracts) — critical antes do 1º Founder Crew assinar (urgência adicional).
 9. **Site sub-project** — separate spec + plan. **Executor designado:** Founder Crew nº 1 (frontend, vibe coder) quando preenchido. Pode começar em paralelo à Marca.
 10. **GitHub repo profissionalizado** — README de venda da comunidade. **Executor designado:** Founder Crew nº 3 (community manager) quando preenchido.
