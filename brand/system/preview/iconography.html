@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Iconography</title>
+<link rel="stylesheet" href="_base.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+.card { padding: 20px 24px; gap: 10px; justify-content: space-between; }
+.grid { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr); gap: 8px; min-height: 0; }
+.i-box {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 3px;
+  color: var(--fg-secondary);
+}
+.i-box.active {
+  border-color: var(--accent-mint);
+  color: var(--accent-mint);
+  box-shadow: 0 0 0 1px var(--accent-mint-soft);
+}
+.i-box i { width: 18px; height: 18px; display: inline-block; }
+.i-box svg { width: 18px; height: 18px; stroke-width: 1.75; }
+.i-box span {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.02em;
+  color: var(--fg-tertiary);
+  text-align: center;
+}
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+.heading em { font-style: normal; color: var(--color-warning); }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading">
+    <span>ICONS · LUCIDE · 1.75px STROKE · <em>SUBSTITUTION — FLAG TO CLIENT</em></span>
+    <b>20 SAMPLES</b>
+  </div>
+  <div class="grid">
+    <div class="i-box"><i data-lucide="layout-dashboard"></i><span>dashboard</span></div>
+    <div class="i-box active"><i data-lucide="zap"></i><span>automation</span></div>
+    <div class="i-box"><i data-lucide="bar-chart-3"></i><span>pipeline</span></div>
+    <div class="i-box"><i data-lucide="users"></i><span>leads</span></div>
+    <div class="i-box"><i data-lucide="target"></i><span>target</span></div>
+    <div class="i-box"><i data-lucide="brain"></i><span>ai</span></div>
+    <div class="i-box"><i data-lucide="workflow"></i><span>flow</span></div>
+    <div class="i-box"><i data-lucide="settings-2"></i><span>config</span></div>
+    <div class="i-box"><i data-lucide="database"></i><span>data</span></div>
+    <div class="i-box"><i data-lucide="bell"></i><span>alert</span></div>
+    <div class="i-box"><i data-lucide="mail"></i><span>mail</span></div>
+    <div class="i-box"><i data-lucide="phone"></i><span>call</span></div>
+    <div class="i-box"><i data-lucide="calendar"></i><span>schedule</span></div>
+    <div class="i-box"><i data-lucide="arrow-up-right"></i><span>cta</span></div>
+    <div class="i-box"><i data-lucide="trending-up"></i><span>growth</span></div>
+    <div class="i-box"><i data-lucide="filter"></i><span>filter</span></div>
+    <div class="i-box"><i data-lucide="search"></i><span>search</span></div>
+    <div class="i-box"><i data-lucide="file-text"></i><span>report</span></div>
+    <div class="i-box"><i data-lucide="shield-check"></i><span>verified</span></div>
+    <div class="i-box"><i data-lucide="command"></i><span>command</span></div>
+  </div>
+</div>
+<script src="_split.js"></script>
+<script>
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(() => lucide.createIcons(), 0));
+  } else {
+    setTimeout(() => lucide.createIcons(), 0);
+  }
+</script>
+</body></html>

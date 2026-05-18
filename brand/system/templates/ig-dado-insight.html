@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>IG — Dado/insight</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html, body { margin: 0; padding: 0; background: #16140F; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+}
+.frame {
+  width: 540px; height: 675px;
+  position: relative; overflow: hidden;
+  background: #F5F5F5;
+  color: #1A1A1A;
+  display: flex; flex-direction: column;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.inner {
+  flex: 1; display: flex; flex-direction: column;
+  padding: 48px 44px;
+  position: relative;
+}
+.top { display: flex; justify-content: space-between; align-items: flex-start; }
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 24px; width: auto; display: block; }
+
+.meta {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #7A7A7A;
+  text-align: right;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.meta b { color: #4FB3A5; font-weight: 500; }
+
+.center {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  gap: 16px;
+}
+.eyebrow {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #7A7A7A;
+}
+.big {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 200px; line-height: 0.85; letter-spacing: -0.06em;
+  color: #1A1A1A; margin: 0;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.big .unit {
+  font-size: 64px; letter-spacing: -0.03em;
+  color: #1A1A1A;
+}
+.big em { color: #D4A24C; font-style: normal; }
+
+.caption-inner {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: 22px; line-height: 1.25; letter-spacing: -0.02em;
+  color: #1A1A1A; max-width: 22ch;
+}
+.caption-inner em { color: #D4A24C; font-style: normal; font-weight: 700; }
+
+.source {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #7A7A7A;
+  margin-top: 10px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.source::before { content: ""; width: 20px; height: 1px; background: #4FB3A5; }
+
+.bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid rgba(26,26,26,0.08);
+}
+.tag {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #1A1A1A;
+}
+.counter {
+  font-family: var(--font-mono); font-size: 10px;
+  color: #7A7A7A;
+  letter-spacing: 0.1em;
+}
+.counter b { color: #1A1A1A; font-weight: 500; }
+
+.caption {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 40px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="inner">
+    <div class="top">
+      <span class="brand"><img src="../assets/logo-black.svg" alt="Growth Club"></span>
+      <div class="meta"><span>DADO · MAIO/26</span><b>COMUNIDADE</b></div>
+    </div>
+    <div class="center">
+      <span class="eyebrow">Crescimento orgânico — 11 anos</span>
+      <div class="big"><em>2.261</em><span class="unit">·</span><em>715</em></div>
+      <div class="caption-inner">Subs no Substack <em>e</em> ativos no WhatsApp Community. <em>Sem boost pago.</em></div>
+      <span class="source">Growth Club desde 2015 · Profissionalizando em 2026</span>
+    </div>
+    <div class="bottom">
+      <span class="tag">/ COMUNIDADE</span>
+      <span class="counter"><b>04</b> / 07</span>
+    </div>
+  </div>
+</div>
+<span class="caption" style="color: rgba(255,255,255,0.45);">Instagram Post · 1080×1350 · número protagonista</span>
+</body></html>

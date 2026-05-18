@@ -1,0 +1,7 @@
+{
+  "name": "level-design-system",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 8000"
+  }
+}

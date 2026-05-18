@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>LP Hero — Dark Section</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #000;
+  margin: 0;
+  padding: 0;
+}
+/* Dark hero section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero[data-theme="dark"] {
+  background: var(--bg-base);
+  color: var(--fg-secondary);
+}
+/* Grid + gradient backdrop */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+}
+.headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  color: var(--fg-primary);
+  text-wrap: balance;
+}
+.headline em {
+  color: var(--accent-mint);
+  font-style: normal;
+}
+.headline .dot {
+  color: var(--accent-mint);
+}
+.sub {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.5;
+  color: var(--fg-secondary);
+  max-width: 720px;
+  text-wrap: balance;
+}
+.ctas {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+.btn {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 160ms var(--ease-out);
+}
+.btn-primary {
+  background: var(--accent-amber);
+  color: var(--fg-inverse);
+}
+.btn-primary:hover {
+  background: var(--accent-amber-bright);
+  transform: translateY(-1px);
+  box-shadow: var(--glow-amber);
+}
+.btn-ghost {
+  background: rgba(255,255,255,0.06);
+  color: var(--fg-primary);
+  border: 1px solid var(--border-default);
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.10);
+  border-color: var(--border-strong);
+}
+</style></head>
+<body>
+<section class="hero" data-theme="dark">
+  <div class="hero-content">
+    <div class="eyebrow">MEETUP GROWTH SP · S1 · E1 · BARTE · JUN/2026</div>
+    <h1 class="headline">Mesa de canto. Número no copo. <em>Sem palco</em><span class="dot">.</span></h1>
+    <p class="sub">A comunidade brasileira pros operadores de growth B2B que entregam. Newsletter no Substack, WhatsApp com 715 ativos, meetups com case real.</p>
+    <div class="ctas">
+      <a href="#" class="btn btn-primary">Tornar-se membro →</a>
+      <a href="#" class="btn btn-ghost">Garantir vaga no meetup</a>
+    </div>
+  </div>
+</section>
+</body></html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Foto overlay treatment</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-base); color: var(--fg-secondary);
+  font-family: var(--font-body); padding: 56px 40px 96px;
+}
+.head { max-width: 1200px; margin: 0 auto 40px; }
+.head .eye { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-mint); }
+.head h1 { font-family: var(--font-display); font-weight: 900; font-size: 48px; letter-spacing: -0.035em; color: var(--fg-primary); margin: 10px 0 10px; line-height: 1.02; }
+.head p { max-width: 62ch; font-size: 15px; line-height: 1.6; color: var(--fg-tertiary); }
+
+.grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card { display: flex; flex-direction: column; gap: 10px; }
+.tile {
+  position: relative; aspect-ratio: 4/5;
+  border-radius: 8px; overflow: hidden;
+  background: #2A2A35;
+  isolation: isolate;
+}
+.tile .photo {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(135deg, #4a4a5c 0%, #2a2a35 50%, #3a3a48 100%);
+}
+/* "photo" pattern — faux team/event texture using radial circles */
+.tile .photo::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,0.3) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  filter: blur(8px);
+}
+.tile .photo::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+
+/* Meta tag at bottom */
+.tile .tag {
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #fff; background: rgba(0,0,0,0.35); backdrop-filter: blur(8px);
+  padding: 6px 10px; border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 3;
+}
+
+.label { display: flex; justify-content: space-between; align-items: baseline; }
+.label .t { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--fg-secondary); text-transform: uppercase; }
+.label .n { font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); }
+.desc { font-size: 12px; line-height: 1.5; color: var(--fg-tertiary); max-width: 30ch; }
+
+/* === TREATMENTS === */
+
+/* 1. Gradient wash — dark bottom */
+.t-wash .overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(180deg, transparent 0%, transparent 40%, rgba(10,10,12,0.9) 100%);
+}
+.t-wash .copy {
+  position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 3;
+  color: #fff;
+}
+.t-wash .copy h3 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 24px; line-height: 1; letter-spacing: -0.03em; color: #fff;
+}
+.t-wash .copy h3 em { font-style: normal; color: var(--accent-mint); }
+.t-wash .copy .sub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-top: 6px; }
+
+/* 2. Side panel */
+.t-panel .overlay { position: absolute; left: 0; top: 0; bottom: 0; width: 58%; z-index: 2; background: var(--bg-void); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+.t-panel .overlay::after { content: ""; position: absolute; right: -1px; top: 0; bottom: 0; width: 1px; background: var(--accent-mint); }
+.t-panel .overlay h3 { font-family: var(--font-display); font-weight: 900; font-size: 22px; line-height: 1.02; color: #fff; letter-spacing: -0.03em; }
+.t-panel .overlay h3 em { font-style: normal; color: var(--accent-mint); }
+.t-panel .overlay .brand { display: inline-flex; align-items: center; }
+.t-panel .overlay .brand img { height: 18px; width: auto; display: block; }
+.t-panel .overlay .meta { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; color: rgba(255,255,255,0.55); text-transform: uppercase; }
+
+/* 3. Duotone mint */
+.t-duo .photo { filter: grayscale(1) contrast(1.1); }
+.t-duo::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: #4FB3A5; mix-blend-mode: multiply;
+}
+.t-duo::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: #0D0D1F; mix-blend-mode: lighten; opacity: 0.6;
+}
+.t-duo .copy {
+  position: absolute; inset: 0; z-index: 3;
+  padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
+  color: #fff;
+}
+.t-duo .copy .top { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; color: #fff; text-transform: uppercase; }
+.t-duo .copy h3 { font-family: var(--font-display); font-weight: 900; font-size: 26px; line-height: 1; letter-spacing: -0.03em; color: #fff; max-width: 10ch; }
+
+/* 4. Corner stamp */
+.t-stamp .stamp {
+  position: absolute; bottom: 14px; right: 14px; z-index: 3;
+  padding: 14px 16px;
+  background: #F5F5F5; color: #0D0D1F;
+  border-radius: 6px;
+  max-width: 70%;
+}
+.t-stamp .stamp h3 { font-family: var(--font-display); font-weight: 900; font-size: 16px; line-height: 1.1; letter-spacing: -0.02em; }
+.t-stamp .stamp h3 em { font-style: normal; color: #D4A24C; }
+.t-stamp .stamp .sub { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; color: #7A7A7A; margin-top: 4px; text-transform: uppercase; }
+
+/* 5. Full crop + eyebrow only */
+.t-eyebrow .photo::after { background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 40%, transparent 100%); }
+.t-eyebrow .eye {
+  position: absolute; top: 20px; left: 20px; right: 20px; z-index: 3;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.t-eyebrow .eye::before { content: ""; width: 20px; height: 1px; background: var(--accent-mint); }
+
+/* 6. Mint border + tag */
+.t-frame { background: var(--accent-mint); padding: 8px; }
+.t-frame .photo { border-radius: 2px; overflow: hidden; inset: 0; }
+.t-frame .mini {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--accent-mint); color: #0D0D1F;
+  padding: 10px 14px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: baseline;
+  z-index: 3;
+}
+.t-frame .mini b { font-weight: 600; }
+</style></head>
+<body>
+
+<div class="head">
+  <span class="eye">BRAND · FOTO</span>
+  <h1>Overlay treatments</h1>
+  <p>Seis jeitos de aplicar copy sobre foto sem virar banner de supermercado. Usamos fotos reais de time, eventos e cliente — esses placeholders geométricos mostram o crop + overlay + hierarquia. Sempre com: eyebrow mono, headline display, 1 ponto de acento (mint ou violet), margem generosa.</p>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="tile t-wash">
+      <div class="photo"></div>
+      <div class="tag">01 / WASH</div>
+      <div class="overlay"></div>
+      <div class="copy">
+        <h3>Sem palco. <em>Com número.</em></h3>
+        <div class="sub">MANIFESTO · GROWTH CLUB</div>
+      </div>
+    </div>
+    <div class="label"><span class="t">Gradient wash</span><span class="n">legibilidade</span></div>
+    <p class="desc">Gradiente bottom-up para headline sobre foto. Foto limpa no topo, texto forte embaixo.</p>
+  </div>
+
+  <div class="card">
+    <div class="tile t-panel">
+      <div class="photo"></div>
+      <div class="tag">02 / PANEL</div>
+      <div class="overlay">
+        <span class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+        <h3>Time que <em>constrói</em> sistema, não slide.</h3>
+        <span class="meta">BASTIDORES · ABR/26</span>
+      </div>
+    </div>
+    <div class="label"><span class="t">Side panel</span><span class="n">editorial</span></div>
+    <p class="desc">Painel sólido de lado com separador mint. Foto vira "janela" e copy fica num bloco respirando.</p>
+  </div>
+
+  <div class="card">
+    <div class="tile t-duo">
+      <div class="photo"></div>
+      <div class="tag">03 / DUOTONE</div>
+      <div class="copy">
+        <div class="top"><span>EVENTO</span><span>SP · 2026</span></div>
+        <h3>Não é campanha. É <em>infra.</em></h3>
+      </div>
+    </div>
+    <div class="label"><span class="t">Duotone mint</span><span class="n">alto impacto</span></div>
+    <p class="desc">Foto → grayscale → mint multiply + dark lighten. Unifica fotos bagunçadas em peças de marca.</p>
+  </div>
+
+  <div class="card">
+    <div class="tile t-stamp">
+      <div class="photo"></div>
+      <div class="tag">04 / STAMP</div>
+      <div class="stamp">
+        <h3>4→<em>25</em> reuniões/mês.</h3>
+        <div class="sub">Case · SaaS B2B</div>
+      </div>
+    </div>
+    <div class="label"><span class="t">Corner stamp</span><span class="n">case</span></div>
+    <p class="desc">Selo claro num canto. Foto domina, o dado assina. Bom pra case + resultado.</p>
+  </div>
+
+  <div class="card">
+    <div class="tile t-eyebrow">
+      <div class="photo"></div>
+      <div class="tag">05 / EYEBROW</div>
+      <span class="eye">ALEX · HEAD DE GROWTH</span>
+    </div>
+    <div class="label"><span class="t">Eyebrow puro</span><span class="n">perfil/time</span></div>
+    <p class="desc">Só o marcador mono no topo. A foto é a peça. Bom pra perfis de time e lower-thirds.</p>
+  </div>
+
+  <div class="card">
+    <div class="tile t-frame">
+      <div class="photo" style="position: absolute; inset: 8px 8px 44px;"></div>
+      <div class="tag" style="top: 22px; left: 22px;">06 / FRAME</div>
+      <div class="mini">
+        <span>MEETUP GROWTH SP · S1E1</span>
+        <b>BARTE / 12.06.26</b>
+      </div>
+    </div>
+    <div class="label"><span class="t">Mint frame</span><span class="n">evento</span></div>
+    <p class="desc">Borda mint grossa + faixa label embaixo. Identifica peça de evento à distância.</p>
+  </div>
+
+</div>
+</body></html>

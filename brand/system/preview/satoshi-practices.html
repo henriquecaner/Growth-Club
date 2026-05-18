@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>Satoshi — Best practices</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+body { background: var(--bg-base); }
+.card {
+  padding: 28px 32px; gap: 18px;
+  background: var(--bg-base); color: var(--fg-secondary);
+}
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border-default);
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+
+.grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 18px; align-items: start; }
+
+/* a recurring row pattern */
+.row { display: flex; flex-direction: column; gap: 6px; }
+.row-lbl {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.spec {
+  font-family: var(--font-mono); font-size: 10px; color: var(--accent-violet);
+  letter-spacing: 0.04em;
+}
+
+/* Tracking ladder */
+.track-row {
+  display: grid; grid-template-columns: 72px 1fr auto; gap: 16px;
+  padding: 8px 0; align-items: baseline;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.track-row:last-child { border-bottom: none; }
+.track-row .label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; color: var(--fg-tertiary); }
+.track-row .sample { color: var(--fg-primary); font-family: var(--font-display); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.track-row .meta { font-family: var(--font-mono); font-size: 9px; color: var(--fg-muted); white-space: nowrap; }
+
+/* Weight pairing demo */
+.pair {
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--bg-raised);
+  display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; align-items: baseline;
+}
+.pair .pair-h {
+  font-family: var(--font-display); font-weight: 900; font-size: 24px;
+  line-height: 1; letter-spacing: -0.04em; color: var(--fg-primary);
+}
+.pair .pair-h em { color: var(--accent-mint); font-style: normal; }
+.pair .pair-b {
+  font-family: var(--font-body); font-weight: 500; font-size: 12px;
+  color: var(--fg-secondary); line-height: 1.5; grid-column: 1 / -1;
+}
+.pair .tag {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent-violet);
+  align-self: center;
+}
+.pair.warn { border-color: rgba(255, 61, 90, 0.4); }
+.pair.warn .tag { color: var(--color-danger); }
+.pair.warn::before {
+  content: '⚠'; position: absolute;
+}
+
+/* OpenType showcase */
+.ot-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.ot-cell {
+  background: var(--bg-raised); border: 1px solid var(--border-default);
+  border-radius: 8px; padding: 14px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.ot-cell .glyph {
+  font-family: var(--font-display); font-weight: 700; font-size: 40px;
+  line-height: 1; color: var(--fg-primary); letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 14px;
+}
+.ot-cell .glyph .arrow { font-size: 16px; color: var(--accent-violet); font-weight: 400; }
+.ot-cell .feat {
+  font-family: var(--font-mono); font-size: 9px; color: var(--accent-mint);
+  letter-spacing: 0.1em;
+}
+.ot-cell .desc {
+  font-family: var(--font-body); font-size: 11px; color: var(--fg-tertiary);
+  line-height: 1.45;
+}
+/* Apply feature settings — these only render if Satoshi exposes the feature */
+.ft-default { font-feature-settings: 'kern' 1, 'liga' 1; }
+.ft-ss01    { font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1; }
+.ft-tnum    { font-feature-settings: 'kern' 1, 'tnum' 1; font-variant-numeric: tabular-nums; }
+.ft-slash   { font-feature-settings: 'kern' 1, 'tnum' 1, 'cv01' 1; font-variant-numeric: tabular-nums slashed-zero; }
+
+/* Variable axis slider demo */
+.axis-row {
+  display: grid; grid-template-columns: 56px 1fr auto;
+  gap: 16px; padding: 7px 0; align-items: baseline;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.axis-row:last-child { border-bottom: none; }
+.axis-row .w {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em;
+  color: var(--fg-tertiary); padding-top: 4px;
+}
+.axis-row .live {
+  font-family: var(--font-display); font-size: 22px; line-height: 1;
+  color: var(--fg-primary); letter-spacing: -0.025em;
+}
+.axis-row .role {
+  font-family: var(--font-mono); font-size: 9px; color: var(--fg-muted); white-space: nowrap;
+}
+
+/* Do / Don't list */
+.rules { display: flex; flex-direction: column; gap: 6px; }
+.rules li {
+  list-style: none;
+  display: grid; grid-template-columns: 16px 1fr; gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-body); font-size: 12px; color: var(--fg-secondary);
+  line-height: 1.45;
+}
+.rules li:last-child { border-bottom: none; }
+.rules li::before { font-family: var(--font-mono); font-weight: 700; font-size: 14px; line-height: 1.1; }
+.rules li.do::before    { content: '✓'; color: var(--accent-mint); }
+.rules li.dont::before  { content: '✕'; color: var(--color-danger); }
+.rules li b { color: var(--fg-primary); font-weight: 500; }
+
+.section-h {
+  font-family: var(--font-display); font-weight: 900; font-size: 22px;
+  line-height: 1; letter-spacing: -0.03em; color: var(--fg-primary);
+  margin-bottom: 4px;
+}
+.section-h em { color: var(--accent-mint); font-style: normal; }
+.section-sub {
+  font-family: var(--font-body); font-size: 12px; color: var(--fg-tertiary);
+  line-height: 1.5; max-width: 56ch; margin-bottom: 12px;
+}
+</style></head>
+<body>
+<div class="card">
+  <div class="heading">
+    <span>SATOSHI · BEST PRACTICES FOR GROWTH CLUB</span>
+    <b>VARIABLE 300–900 · TTF</b>
+  </div>
+
+  <div class="grid">
+    <!-- LEFT COLUMN -->
+    <div class="row">
+      <h3 class="section-h">Tracking ladder — <em>tighter as it gets bigger</em></h3>
+      <p class="section-sub">Satoshi corre quente em display. Apertamos negativo em alto-impacto e relaxamos para 0 em corpo. Nunca usar tracking positivo em texto normal.</p>
+
+      <div>
+        <div class="track-row">
+          <span class="label">100px+</span>
+          <span class="sample" style="font-weight: 900; font-size: 38px; letter-spacing: -0.05em; line-height: 0.92;">growth club.</span>
+          <span class="meta">-0.05em · 0.92</span>
+        </div>
+        <div class="track-row">
+          <span class="label">56-96px</span>
+          <span class="sample" style="font-weight: 900; font-size: 30px; letter-spacing: -0.04em; line-height: 0.95;">Engenharia</span>
+          <span class="meta">-0.04em · 0.95</span>
+        </div>
+        <div class="track-row">
+          <span class="label">32-48px</span>
+          <span class="sample" style="font-weight: 700; font-size: 24px; letter-spacing: -0.025em;">As 4 camadas</span>
+          <span class="meta">-0.025em · 1.05</span>
+        </div>
+        <div class="track-row">
+          <span class="label">20-28px</span>
+          <span class="sample" style="font-weight: 700; font-size: 18px; letter-spacing: -0.018em;">Sob medida, não prateleira</span>
+          <span class="meta">-0.018em · 1.2</span>
+        </div>
+        <div class="track-row">
+          <span class="label">15-18px</span>
+          <span class="sample" style="font-weight: 500; font-size: 14px; letter-spacing: -0.01em;">Estratégia de demanda B2B</span>
+          <span class="meta">-0.01em · 1.4</span>
+        </div>
+        <div class="track-row">
+          <span class="label">14-16px body</span>
+          <span class="sample" style="font-weight: 400; font-size: 13px; letter-spacing: 0; font-family: var(--font-body);">Construímos sistemas de receita.</span>
+          <span class="meta">0 · 1.6</span>
+        </div>
+        <div class="track-row">
+          <span class="label">UPPERCASE</span>
+          <span class="sample" style="font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-family: var(--font-mono);">REVENUE ARCHITECTURE</span>
+          <span class="meta">+0.16em</span>
+        </div>
+      </div>
+
+      <h3 class="section-h" style="margin-top: 16px;">Variable axis — <em>weight 300 → 900</em></h3>
+      <p class="section-sub">A variable font expõe todo o eixo `wght`. Use `font-variation-settings: 'wght' N` para precisão (ex: 850 entre Bold e Black).</p>
+      <div>
+        <div class="axis-row"><span class="w">300</span><span class="live" style="font-variation-settings:'wght' 300;">Construímos arquitetura</span><span class="role">Light · raro</span></div>
+        <div class="axis-row"><span class="w">400</span><span class="live" style="font-variation-settings:'wght' 400;">Construímos arquitetura</span><span class="role">Regular · body</span></div>
+        <div class="axis-row"><span class="w">500</span><span class="live" style="font-variation-settings:'wght' 500;">Construímos arquitetura</span><span class="role">Medium · botão, lead</span></div>
+        <div class="axis-row"><span class="w">700</span><span class="live" style="font-variation-settings:'wght' 700;">Construímos arquitetura</span><span class="role">Bold · h1–h3</span></div>
+        <div class="axis-row"><span class="w">900</span><span class="live" style="font-variation-settings:'wght' 900;">Construímos arquitetura</span><span class="role">Black · display</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="row">
+      <h3 class="section-h">OpenType — <em>features que importam</em></h3>
+      <p class="section-sub">Satoshi expõe `ss01` (alt 'a' single-story), `tnum` (números tabulares), `cv01` (zero cortado). Liga sempre o que faz sentido para o contexto.</p>
+
+      <div class="ot-grid">
+        <div class="ot-cell">
+          <div class="glyph"><span class="ft-default">a</span><span class="arrow">→</span><span class="ft-ss01">a</span></div>
+          <span class="feat">ss01</span>
+          <span class="desc">Alt 'a' single-story — mais geométrico. Use em display 60px+.</span>
+        </div>
+        <div class="ot-cell">
+          <div class="glyph"><span class="ft-default" style="letter-spacing: 0;">1234,5</span></div>
+          <span class="feat">tnum</span>
+          <span class="desc">Numerais tabulares — colunas alinham. Ativo em <code style="font-family:var(--font-mono); color: var(--accent-mint);">.t-num</code>.</span>
+        </div>
+        <div class="ot-cell">
+          <div class="glyph"><span class="ft-default">0</span><span class="arrow">→</span><span class="ft-slash">0</span></div>
+          <span class="feat">cv01</span>
+          <span class="desc">Zero cortado — diferencia de 'O' em IDs e códigos.</span>
+        </div>
+      </div>
+
+      <h3 class="section-h" style="margin-top: 16px;">Weight pairing — <em>como combinar</em></h3>
+      <p class="section-sub">Pares calibrados. Tudo o que sair daqui parece descoordenado. Light (300) é proibido em pares — só callout isolado.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="pair">
+          <span class="pair-h">Pipeline previsível</span>
+          <span class="tag">Black + Regular</span>
+          <span class="pair-b" style="font-weight: 400;">Construímos arquiteturas de receita B2B sob medida.</span>
+        </div>
+        <div class="pair">
+          <span class="pair-h">As 4 camadas</span>
+          <span class="tag">Black + Medium</span>
+          <span class="pair-b" style="font-weight: 500;">Warming, prospecção, autoridade e retargeting — coordenados.</span>
+        </div>
+        <div class="pair warn">
+          <span class="pair-h" style="font-weight: 300;">Não fica bom</span>
+          <span class="tag">Light + Black ✕</span>
+          <span class="pair-b">Contraste de peso muito violento em Satoshi — quebra a hierarquia.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" style="margin-top: 8px;">Regras — <em>do / don't</em></h3>
+  <ul class="rules">
+    <li class="do"><span><b>Use o variable font</b> em produção. 1 request vs 10 arquivos.</span></li>
+    <li class="do"><span><b>Aplique <code style="font-family:var(--font-mono); color: var(--accent-mint);">tnum</code></b> em KPIs, tabelas e qualquer coluna de números — colunas alinham.</span></li>
+    <li class="do"><span><b>Tracking aperta com tamanho:</b> -0.05em em 100px+, 0 em body. Sempre.</span></li>
+    <li class="do"><span><b>Italic = Satoshi italic real,</b> não <code style="font-family:var(--font-mono); color: var(--accent-mint);">font-style: italic</code> no Regular. O TTF italic já está carregado.</span></li>
+    <li class="dont"><span><b>Não use peso 400</b> para headings — fica fraco em Satoshi. Mínimo: 500.</span></li>
+    <li class="dont"><span><b>Não use Light (300)</b> em corpo de texto — fica frágil em telas pequenas e dificulta leitura.</span></li>
+    <li class="dont"><span><b>Não use tracking positivo</b> em body — Satoshi é desenhada para tracking 0 ou ligeiramente negativo.</span></li>
+    <li class="dont"><span><b>Não italize UI</b> (labels, buttons, chips, tabs) — italic é para texto editorial.</span></li>
+  </ul>
+</div>
+</body></html>

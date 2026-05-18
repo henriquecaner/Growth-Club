@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>Newsletter Cover — OG (1200×630)</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.frame {
+  width: 1200px;
+  height: 630px;
+  min-width: 1200px;
+  min-height: 630px;
+  max-width: 1200px;
+  max-height: 630px;
+  background: var(--bg-base);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 64px 72px;
+  justify-content: space-between;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+/* Subtle gradient backdrop */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero);
+  opacity: 0.3;
+}
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 880px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+}
+.headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 68px;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--fg-primary);
+  text-wrap: balance;
+}
+.headline em {
+  color: var(--accent-violet);
+  font-style: normal;
+}
+.sub {
+  font-family: var(--font-body);
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--fg-secondary);
+  max-width: 720px;
+}
+.footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  height: 36px;
+  width: auto;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--fg-tertiary);
+  letter-spacing: 0.02em;
+}
+.meta b {
+  color: var(--fg-primary);
+  font-weight: 500;
+}
+</style></head>
+<body>
+<div class="frame">
+  <div class="content">
+    <div class="eyebrow">PIPELINE · EDIÇÃO #42 · MAIO 2026</div>
+    <h1 class="headline">De <em>4 reuniões/mês</em> pra 25 em 90 dias. Sem contratar SDR.</h1>
+    <p class="sub">O case com número que o R. abriu no último meetup. Sem prompt viral, sem fórmula mágica.</p>
+  </div>
+  <div class="footer">
+    <img src="../assets/logo-black.svg" alt="Growth Club" class="logo">
+    <div class="meta"><b>Growth Club</b> · Newsletter no Substack</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Growth Club — A comunidade brasileira de operadores B2B de growth.</title>
+  <link rel="stylesheet" href="../../colors_and_type.css" />
+  <link rel="stylesheet" href="../../fonts/fonts.css" />
+  <link rel="icon" href="../../assets/logo-mark.svg" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-base); color: var(--fg-secondary); overflow-x: hidden; font-family: var(--font-body); }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent-amber); color: var(--fg-inverse); }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(20px); background: var(--bg-overlay-dark); border-bottom: 1px solid var(--border-subtle); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo img { height: 22px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 14px; color: var(--fg-secondary); font-weight: 500; transition: color 160ms var(--ease-out); }
+    .nav-links a:hover { color: var(--fg-primary); }
+    .nav-cta { background: var(--accent-amber); color: var(--fg-inverse); padding: 10px 18px; border-radius: 6px; font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; transition: 160ms var(--ease-out); }
+    .nav-cta:hover { background: var(--accent-amber-bright); box-shadow: var(--glow-amber); }
+
+    /* HERO */
+    .hero { position: relative; padding: 88px 0 96px; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 15% 30%, var(--accent-amber-glow) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 85% 80%, var(--accent-teal-glow) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-teal); margin-bottom: 20px; display: inline-flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent-teal); }
+    h1.mega { font-family: var(--font-display); font-weight: 900; font-size: clamp(54px, 7vw, 100px); line-height: 0.95; letter-spacing: -0.045em; color: var(--fg-primary); max-width: 14ch; margin-bottom: 24px; }
+    h1.mega em { font-style: normal; color: var(--accent-amber); }
+    .lede { font-size: 19px; line-height: 1.55; max-width: 58ch; color: var(--fg-secondary); margin-bottom: 36px; }
+    .hero-ctas { display: flex; gap: 12px; align-items: center; }
+    .btn { font-family: var(--font-body); font-weight: 500; font-size: 15px; padding: 14px 22px; border-radius: 6px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 160ms var(--ease-out); border: 1px solid transparent; }
+    .btn.primary { background: var(--accent-amber); color: var(--fg-inverse); }
+    .btn.primary:hover { background: var(--accent-amber-bright); box-shadow: var(--glow-amber); }
+    .btn.ghost { background: transparent; color: var(--fg-primary); border-color: var(--border-strong); }
+    .btn.ghost:hover { background: var(--bg-raised); border-color: var(--fg-primary); }
+
+    /* stats */
+    .stats-row { margin-top: 72px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; padding-top: 32px; border-top: 1px solid var(--border-default); }
+    .stat .n { font-family: var(--font-display); font-weight: 900; font-size: 48px; letter-spacing: -0.045em; line-height: 1; color: var(--fg-primary); font-feature-settings: 'tnum' 1; }
+    .stat .n em { font-style: normal; color: var(--accent-amber); }
+    .stat .l { margin-top: 10px; font-size: 12px; color: var(--fg-tertiary); line-height: 1.5; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* PROBLEM */
+    .problem { padding: 120px 0; background: var(--bg-void); border-top: 1px solid var(--border-subtle); }
+    .sec-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 56px; gap: 40px; }
+    .sec-head .eye-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-teal); }
+    .sec-head h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 4.8vw, 64px); line-height: 1.02; letter-spacing: -0.035em; color: var(--fg-primary); max-width: 22ch; margin-top: 12px; }
+    .sec-head h2 em { font-style: normal; color: var(--accent-amber); }
+    .problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border-default); border: 1px solid var(--border-default); border-radius: 12px; overflow: hidden; }
+    .p-card { background: var(--bg-raised); padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; min-height: 260px; }
+    .p-card .n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent-teal); }
+    .p-card svg { width: 24px; height: 24px; stroke-width: 1.75; color: var(--fg-primary); }
+    .p-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: var(--fg-primary); line-height: 1.25; }
+    .p-card p { font-size: 14px; line-height: 1.55; color: var(--fg-secondary); }
+
+    /* 4 ESPAÇOS */
+    .layers { padding: 140px 0; position: relative; overflow: hidden; }
+    .layers::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 80% 20%, var(--accent-amber-soft) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .layers .wrap { position: relative; z-index: 1; }
+    .layers-head { margin-bottom: 64px; max-width: 20ch; }
+    .layers-head .eye-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-teal); }
+    .layers-head h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 5.2vw, 72px); line-height: 1; letter-spacing: -0.04em; color: var(--fg-primary); margin-top: 12px; }
+    .layers-head h2 em { font-style: normal; color: var(--accent-amber); }
+    .layer-rows { display: flex; flex-direction: column; }
+    .layer {
+      display: grid; grid-template-columns: 80px 1fr 1fr;
+      gap: 48px; padding: 40px 0;
+      border-top: 1px solid var(--border-subtle);
+      align-items: start;
+    }
+    .layer:last-child { border-bottom: 1px solid var(--border-subtle); }
+    .layer:hover { background: linear-gradient(90deg, rgba(212, 162, 76, 0.04), transparent); }
+    .layer .n { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em; color: var(--accent-teal); padding-top: 6px; }
+    .layer h3 { font-family: var(--font-display); font-weight: 800; font-size: 32px; line-height: 1.05; letter-spacing: -0.03em; color: var(--fg-primary); }
+    .layer h3 em { font-style: normal; color: var(--accent-amber); }
+    .layer .layer-sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-tertiary); margin-top: 10px; }
+    .layer p { font-size: 15px; line-height: 1.65; color: var(--fg-secondary); margin-bottom: 14px; }
+    .layer p strong { color: var(--fg-primary); font-weight: 500; }
+
+    /* TIMELINE */
+    .timeline { padding: 120px 0; background: var(--bg-void); border-top: 1px solid var(--border-subtle); }
+    .tl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border-default); border: 1px solid var(--border-default); border-radius: 12px; overflow: hidden; margin-top: 48px; }
+    .tl-cell { background: var(--bg-raised); padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; min-height: 240px; }
+    .tl-cell .when { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent-teal); }
+    .tl-cell h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: var(--fg-primary); line-height: 1.2; }
+    .tl-cell p { font-size: 14px; line-height: 1.55; color: var(--fg-secondary); }
+
+    /* BIG STATEMENT */
+    .manifesto-big { padding: 140px 0; background: var(--gradient-architect); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); position: relative; overflow: hidden; }
+    .manifesto-big::after { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, var(--accent-amber-glow) 0%, transparent 50%); opacity: 0.4; pointer-events: none; }
+    .manifesto-big .wrap { position: relative; z-index: 1; }
+    .manifesto-big h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(44px, 6vw, 88px); line-height: 1; letter-spacing: -0.04em; color: var(--fg-primary); max-width: 16ch; }
+    .manifesto-big h2 em { font-style: normal; color: var(--accent-amber); }
+    .manifesto-big .sub { margin-top: 28px; font-size: 18px; max-width: 54ch; color: var(--fg-secondary); line-height: 1.6; }
+
+    /* QUOTE */
+    .quote-section { padding: 120px 0; border-top: 1px solid var(--border-subtle); }
+    .quote-section blockquote { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.15; letter-spacing: -0.03em; color: var(--fg-primary); max-width: 22ch; }
+    .quote-section blockquote em { font-style: normal; color: var(--accent-amber); }
+    .quote-section cite { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-tertiary); font-style: normal; display: inline-flex; align-items: center; gap: 12px; margin-top: 40px; }
+    .quote-section cite::before { content: ""; width: 40px; height: 1px; background: var(--accent-teal); }
+
+    /* CTA FINAL */
+    .cta-final { padding: 140px 0; position: relative; overflow: hidden; background: radial-gradient(ellipse at center, var(--accent-amber-soft) 0%, transparent 70%), var(--bg-base); border-top: 1px solid var(--border-subtle); }
+    .cta-final .wrap { text-align: center; }
+    .cta-final h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(44px, 6vw, 88px); line-height: 0.98; letter-spacing: -0.045em; color: var(--fg-primary); margin: 0 auto 24px; max-width: 18ch; }
+    .cta-final h2 em { font-style: normal; color: var(--accent-amber); }
+    .cta-final p { font-size: 17px; max-width: 48ch; margin: 0 auto 36px; color: var(--fg-secondary); line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: var(--bg-void); padding: 64px 0 32px; border-top: 1px solid var(--border-subtle); }
+    .foot-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid var(--border-subtle); }
+    .foot-brand img { height: 24px; margin-bottom: 16px; }
+    .foot-brand p { font-size: 13px; line-height: 1.6; color: var(--fg-tertiary); max-width: 34ch; }
+    .foot-col h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-tertiary); margin-bottom: 16px; font-weight: 500; }
+    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .foot-col a { font-size: 14px; color: var(--fg-secondary); transition: color 160ms; }
+    .foot-col a:hover { color: var(--accent-amber); }
+    .foot-bottom { padding-top: 24px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); letter-spacing: 0.04em; }
+    .foot-bottom .amber { color: var(--accent-amber); }
+
+    .inline-arrow { display: inline-block; transition: transform 160ms var(--ease-out); }
+    a:hover .inline-arrow, .btn:hover .inline-arrow { transform: translate(3px, -3px); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#"><img src="../../assets/logo-white.svg" alt="Growth Club" /></a>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#espacos">Os 4 espaços</a>
+      <a href="#meetups">Meetups</a>
+      <a href="#empresas">Empresas</a>
+    </div>
+    <a class="nav-cta" href="#cta">Tornar-se membro <i data-lucide="arrow-up-right"></i></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Comunidade B2B de growth · desde 2015</span>
+    <h1 class="mega">Mesa de canto de um pub. <em>Growth de verdade.</em> Stack de verdade. Sem teatro.</h1>
+    <p class="lede">Aqui senta todo mundo: do CEO ao dev, do growth ao quebrado. Se você carrega responsabilidade por crescer alguma coisa — pipeline, receita, retenção — tem um lugar na mesa. Newsletter no Substack, Community no WhatsApp, meetup presencial. Régua: se não tem número, não é Growth Club.</p>
+    <div class="hero-ctas">
+      <a class="btn primary" href="#cta">Tornar-se membro <i data-lucide="arrow-up-right"></i></a>
+      <a class="btn ghost" href="#espacos">Ver os 4 espaços</a>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="n"><em>2.261</em></div><div class="l">Subs Substack</div></div>
+      <div class="stat"><div class="n"><em>715</em></div><div class="l">Ativos WhatsApp</div></div>
+      <div class="stat"><div class="n">10<em>+</em></div><div class="l">Meetups realizados</div></div>
+      <div class="stat"><div class="n"><em>391</em></div><div class="l">Core group</div></div>
+      <div class="stat"><div class="n">11<em>a</em></div><div class="l">No ar desde 2015</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="sobre">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eye-label">/ POR QUE A GENTE EXISTE</span>
+        <h2>O growth no Brasil virou <em>teatro de palco.</em></h2>
+      </div>
+      <p style="max-width: 40ch; font-size: 15px; line-height: 1.6; color: var(--fg-tertiary);">Influencer faz post viral sem número. Mentor cobra R$50k pra repetir o que tá em livro de 2018. Grupo de WhatsApp vira spam de vagas. Aqui não tem grupo fake, vitrine de LinkedIn ou palco de pitch.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="p-card"><span class="n">01 / PALCO</span><i data-lucide="megaphone"></i><h3>Post bombou. Pipeline não mexeu.</h3><p>Curtidas no LinkedIn não pagam folha. Engajamento não é receita. Ali tá tudo bem.</p></div>
+      <div class="p-card"><span class="n">02 / GURU</span><i data-lucide="trending-down"></i><h3>10 prompts que mudaram a vida de ninguém.</h3><p>Lista decorativa sem número atrás. Print de Cursor no feed sem output de operação atrelado.</p></div>
+      <div class="p-card"><span class="n">03 / NETWORKING</span><i data-lucide="users-x"></i><h3>Grupo virou spam de vaga.</h3><p>Comunidade pega 5k membros, vira mural de recolocação. Substância morreu na inflação.</p></div>
+      <div class="p-card"><span class="n">04 / PATROCINADO</span><i data-lucide="banknote"></i><h3>"Conteúdo" que é anúncio disfarçado.</h3><p>Painel com 3 fundadores onde 2 estão vendendo ferramenta. Disclosure escondida no final.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="layers" id="espacos">
+  <div class="wrap">
+    <div class="layers-head">
+      <span class="eye-label">/ ONDE A COMUNIDADE ACONTECE</span>
+      <h2>4 espaços. Mesma <em>régua editorial.</em></h2>
+    </div>
+
+    <div class="layer-rows">
+      <div class="layer">
+        <span class="n">01</span>
+        <div>
+          <h3><em>Newsletter.</em></h3>
+          <div class="layer-sub">Substack quinzenal · gratuita</div>
+        </div>
+        <div>
+          <p><strong>Curadoria com número. Quem não tem dado, não vai.</strong></p>
+          <p>Edição quinzenal com 1 case real, 1 benchmark, 1 link da semana. Régua editorial #1: se não tem número auditável, não entra. 2.261 inscritos orgânicos desde 2019 — zero boost pago, zero list-swap, zero pop-up.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="n">02</span>
+        <div>
+          <h3><em>WhatsApp</em> Community.</h3>
+          <div class="layer-sub">715 membros ativos</div>
+        </div>
+        <div>
+          <p><strong>Pergunta com contexto. Resposta com case.</strong></p>
+          <p>Sem motivacional, sem vaga aleatória, sem "alguém recomenda...?". O grupo é de operador pra operador — você chega com problema específico ("CAC subiu 40%, hipóteses?"), recebe resposta com case e número de alguém que passou pelo mesmo.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="n">03</span>
+        <div>
+          <h3><em>Meetup</em> presencial.</h3>
+          <div class="layer-sub">SP · S1 · E1 · Barte · jun/2026</div>
+        </div>
+        <div>
+          <p><strong>Mesa de canto. Cerveja no fim do dia.</strong></p>
+          <p>10+ meetups realizados desde 2017. Próxima edição: <em>Meetup Growth SP · S1 · E1 · Revenue Operations com IA</em> @ Barte, jun/2026. Convidado abre case com número aberto. Plateia pergunta sem suavizar. Cerveja paga conversa que não cabe na talk.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="n">04</span>
+        <div>
+          <h3><em>Livecast.</em></h3>
+          <div class="layer-sub">Debate franco · operador convidado</div>
+        </div>
+        <div>
+          <p><strong>Conversa que não cabe em painel TED.</strong></p>
+          <p>Live mensal com 1 operador convidado. Sem agenda escondida, sem patrocinado-disfarçado-de-conteúdo. Se a marca patrocina, está marcado como patrocínio na descrição. Conteúdo editorial sempre separado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline" id="meetups">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eye-label">/ ROADMAP 2026</span>
+        <h2>Profissionalizando o que já tá <em>rodando há 11 anos.</em></h2>
+      </div>
+      <p style="max-width: 40ch; font-size: 15px; line-height: 1.6; color: var(--fg-tertiary);">A comunidade existe desde 2015. 2026 é o ano de profissionalizar a operação — sem perder a régua editorial nem o tom mesa-de-canto.</p>
+    </div>
+    <div class="tl-grid">
+      <div class="tl-cell"><span class="when">JAN-ABR/26</span><h3>Marca v1 + site no ar.</h3><p>Decisões locked, paleta + tipografia + voz. Brand brief plan executado. Site público em <code style="font-family: var(--font-mono); color: var(--accent-amber);">growthclub.pro</code>.</p></div>
+      <div class="tl-cell"><span class="when">MAIO/26</span><h3>Founder Crew completo.</h3><p>3 vagas operadoras Era Pré-S1 fechadas: frontend, designer+vídeo, community manager. Revshare 30% líquido.</p></div>
+      <div class="tl-cell"><span class="when">JUN/26</span><h3>Meetup SP · S1 · E1.</h3><p>Relançamento oficial @ Barte. Revenue Operations com IA. 100 vagas presenciais + livestream.</p></div>
+      <div class="tl-cell"><span class="when">2H/26 ─ 2027</span><h3>Master + escala.</h3><p>Tier pago (R$ 690 early, depois R$ 990/ano). Mentorias quinzenais, benchmarks privados. Founder Member volta quando atingirmos 100 Master.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto-big">
+  <div class="wrap">
+    <h2>Franco, com número, sem palco, <em>com cerveja.</em></h2>
+    <p class="sub">Ton-anchor locked desde abril de 2026. Régua editorial #1: se não tem número, não é Growth Club. Régua #2: post que vendia palco recebe redirecionamento cordial. Régua #3: patrocínio é marcado, conteúdo editorial é separado. Sem exceção.</p>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="wrap">
+    <blockquote>Curadoria que prefere ofender quem está de passagem <em>a enganar quem ficou.</em></blockquote>
+    <cite>Manifesto · Growth Club · Outlaw + Sage</cite>
+  </div>
+</section>
+
+<section class="cta-final" id="cta">
+  <div class="wrap">
+    <h2>Entra pra <em>mesa de canto</em>.</h2>
+    <p>Toda terça sai newsletter. Aberta uma ou duas, ou cancela — a gente não dá pra perder tempo. Próximo Meetup Growth é em jun/2026 em SP. Se quiser carregar mais junto, Growth Hacker Master abre em 2027.</p>
+    <a class="btn primary" href="#" style="padding: 16px 28px; font-size: 16px;">Tornar-se membro <i data-lucide="arrow-up-right"></i></a>
+  </div>
+</section>
+
+<footer id="empresas">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="../../assets/logo-white.svg" alt="Growth Club" />
+        <p>Comunidade brasileira de operadores B2B de growth. Hospedada na Level Tech, profissionalizando 11 anos de operação orgânica.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Comunidade</h4>
+        <ul><li><a href="#">Newsletter Substack</a></li><li><a href="#">WhatsApp Community</a></li><li><a href="#">Próximo meetup</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Sobre</h4>
+        <ul><li><a href="sub-page.html">Manifesto</a></li><li><a href="sub-page.html#crew">Founder Crew</a></li><li><a href="#">Contato</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Empresas</h4>
+        <ul><li><a href="#">Patrocínio</a></li><li><a href="#">Hunting</a></li><li><a href="#">Mentoria B2B</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Growth Club<span class="amber">.</span> Hospedado na Level Tech · CNPJ TBD.</span>
+      <span>SÃO PAULO · BR</span>
+    </div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

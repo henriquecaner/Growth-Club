@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Elevation & Glow</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 28px 32px; gap: 14px; justify-content: space-between; }
+.row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; flex: 1; align-items: stretch; }
+.el {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--fg-primary);
+  letter-spacing: -0.01em;
+}
+.desc {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--fg-tertiary);
+  letter-spacing: 0.04em;
+}
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>ELEVATION · INSET + GLOW ONLY</span><b>NO DROP SHADOWS</b></div>
+  <div class="row">
+    <div class="el" style="box-shadow: var(--shadow-flat);">
+      <div class="name">flat</div>
+      <div class="desc">inset 1px highlight · cards inline</div>
+    </div>
+    <div class="el" style="box-shadow: var(--shadow-raised);">
+      <div class="name">raised</div>
+      <div class="desc">inset + 8px 24px 40% · popovers</div>
+    </div>
+    <div class="el" style="box-shadow: var(--shadow-overlay);">
+      <div class="name">overlay</div>
+      <div class="desc">inset + 24px 48px 60% · modals</div>
+    </div>
+    <div class="el" style="box-shadow: var(--glow-mint); border-color: var(--accent-mint);">
+      <div class="name" style="color: var(--accent-mint);">glow · mint</div>
+      <div class="desc">0 0 32px mint 35% · focus / active</div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

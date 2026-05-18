@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Iconography in context</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 14px; }
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+.row { display: flex; flex-direction: column; gap: 8px; }
+.row-label {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.samples { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+/* Size scale */
+.size-demo { display: flex; align-items: flex-end; gap: 16px; }
+.size-demo .item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.size-demo .box {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--fg-primary);
+}
+.size-demo .tag { font-family: var(--font-mono); font-size: 9px; color: var(--fg-tertiary); }
+
+/* Icon in button */
+.btn {
+  font-family: var(--font-body); font-weight: 500; font-size: 12px;
+  padding: 7px 12px; border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  display: inline-flex; align-items: center; gap: 6px;
+  cursor: pointer;
+}
+.btn.primary { background: var(--accent-violet); color: #fff; }
+.btn.ghost { background: transparent; color: var(--fg-primary); border-color: var(--border-default); }
+.btn.icon-only { padding: 7px; width: 32px; height: 32px; justify-content: center; }
+.btn svg { width: 14px; height: 14px; }
+
+/* Icon in KPI */
+.kpi {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-raised); border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  min-width: 160px;
+}
+.kpi .badge {
+  width: 28px; height: 28px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.kpi .badge.v { background: var(--accent-violet-soft); color: var(--accent-violet); }
+.kpi .badge.m { background: var(--accent-mint-soft); color: var(--accent-mint); }
+.kpi .badge svg { width: 14px; height: 14px; }
+.kpi .val { font-family: var(--font-display); font-weight: 900; font-size: 16px; color: var(--fg-primary); letter-spacing: -0.02em; line-height: 1; }
+.kpi .lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-tertiary); margin-top: 2px; }
+
+/* States */
+.state-demo { display: flex; gap: 14px; align-items: center; }
+.state-demo .item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.state-demo svg { width: 16px; height: 16px; }
+.state-demo .ico-box {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+}
+.ico-default { color: var(--fg-tertiary); }
+.ico-active { color: var(--accent-violet); background: var(--accent-violet-soft); border-color: var(--accent-violet); }
+.ico-disabled { color: var(--fg-muted); opacity: 0.5; }
+.ico-success { color: var(--accent-mint); }
+.ico-danger { color: var(--color-danger); }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>ICONOGRAPHY · IN CONTEXT</span><b>SIZES · STATES · COMPONENTS</b></div>
+
+  <div class="row">
+    <span class="row-label">SIZE SCALE — 12 · 14 · 16 · 20 · 24</span>
+    <div class="size-demo">
+      <div class="item"><div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><span class="tag">12px</span></div>
+      <div class="item"><div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><span class="tag">14px</span></div>
+      <div class="item"><div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><span class="tag">16px · default</span></div>
+      <div class="item"><div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><span class="tag">20px</span></div>
+      <div class="item"><div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><span class="tag">24px</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row-label">IN BUTTONS</span>
+    <div class="samples">
+      <button class="btn primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Publicar automação
+      </button>
+      <button class="btn ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exportar
+      </button>
+      <button class="btn ghost icon-only" title="Configurar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6m5.66-16.66-4.24 4.24M10.58 13.42l-4.24 4.24m12.32 0-4.24-4.24M10.58 10.58 6.34 6.34"/></svg>
+      </button>
+      <button class="btn ghost icon-only" title="Mais">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row-label">IN KPI CARDS</span>
+    <div class="samples">
+      <div class="kpi">
+        <div class="badge v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div><div class="val">R$ 1.28M</div><div class="lbl">Pipeline</div></div>
+      </div>
+      <div class="kpi">
+        <div class="badge m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l7 7"/></svg></div>
+        <div><div class="val">18</div><div class="lbl">Hot leads</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row-label">STATES — default · active · disabled · success · danger</span>
+    <div class="state-demo">
+      <div class="item"><div class="ico-box ico-default"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="tag" style="font-family:var(--font-mono);font-size:8px;color:var(--fg-tertiary);">default</span></div>
+      <div class="item"><div class="ico-box ico-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="tag" style="font-family:var(--font-mono);font-size:8px;color:var(--fg-tertiary);">active</span></div>
+      <div class="item"><div class="ico-box ico-disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="tag" style="font-family:var(--font-mono);font-size:8px;color:var(--fg-tertiary);">disabled</span></div>
+      <div class="item"><div class="ico-box ico-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><span class="tag" style="font-family:var(--font-mono);font-size:8px;color:var(--fg-tertiary);">success</span></div>
+      <div class="item"><div class="ico-box ico-danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><span class="tag" style="font-family:var(--font-mono);font-size:8px;color:var(--fg-tertiary);">danger</span></div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

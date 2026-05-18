@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Spacing Scale</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 24px 28px; gap: 14px; justify-content: space-between; }
+.scale { flex: 1; display: flex; align-items: flex-end; gap: 6px; padding-bottom: 18px; position: relative; }
+.tick { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+.bar {
+  width: 100%;
+  background: var(--accent-mint);
+  border-radius: 2px;
+  position: relative;
+}
+.bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 -6px 0;
+  border-left: 1px dashed var(--border-default);
+  border-right: 1px dashed var(--border-default);
+  top: -6px;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--fg-tertiary);
+  letter-spacing: 0.04em;
+}
+.label b { color: var(--fg-secondary); font-weight: 500; }
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>SPACING · BASE 4PX</span><b>13 STEPS</b></div>
+  <div class="scale">
+    <div class="tick"><div class="bar" style="height: 4px;"></div><span class="label"><b>1</b> · 4</span></div>
+    <div class="tick"><div class="bar" style="height: 8px;"></div><span class="label"><b>2</b> · 8</span></div>
+    <div class="tick"><div class="bar" style="height: 12px;"></div><span class="label"><b>3</b> · 12</span></div>
+    <div class="tick"><div class="bar" style="height: 16px;"></div><span class="label"><b>4</b> · 16</span></div>
+    <div class="tick"><div class="bar" style="height: 20px;"></div><span class="label"><b>5</b> · 20</span></div>
+    <div class="tick"><div class="bar" style="height: 24px;"></div><span class="label"><b>6</b> · 24</span></div>
+    <div class="tick"><div class="bar" style="height: 32px;"></div><span class="label"><b>8</b> · 32</span></div>
+    <div class="tick"><div class="bar" style="height: 40px;"></div><span class="label"><b>10</b> · 40</span></div>
+    <div class="tick"><div class="bar" style="height: 48px;"></div><span class="label"><b>12</b> · 48</span></div>
+    <div class="tick"><div class="bar" style="height: 64px;"></div><span class="label"><b>16</b> · 64</span></div>
+    <div class="tick"><div class="bar" style="height: 80px;"></div><span class="label"><b>20</b> · 80</span></div>
+    <div class="tick"><div class="bar" style="height: 96px;"></div><span class="label"><b>24</b> · 96</span></div>
+    <div class="tick"><div class="bar" style="height: 128px;"></div><span class="label"><b>32</b> · 128</span></div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

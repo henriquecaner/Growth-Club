@@ -1,0 +1,413 @@
+/* =========================================================================
+   Growth Club — Design System Tokens
+   Light-first: Pub Cream surfaces + Growth Black text (default).
+   Dark sections available via [data-theme="dark"] for hero/CTA/cover contexts.
+   Amber Beer (CTA primary) + Pirate Teal (secondary accent).
+
+   Brand anchor:
+     "Franco, com número, sem palco, com cerveja."
+     — Growth Club, ton-anchor locked 2026-04-22
+
+   Editorial rule:
+     "Se não tem número, não é Growth Club."
+   ========================================================================= */
+
+/* Fonts — Satoshi (display + body) + Roboto (mono) self-hosted */
+@import url('./fonts/fonts.css');
+
+/* =========================================================================
+   LIGHT THEME (default) — Pub Cream bg, Growth Black text
+   ========================================================================= */
+:root {
+  /* Background scale — warm neutrals, "luz de pub" */
+  --bg-void:        #ECE7D6;   /* deepest (outer / section contrast) */
+  --bg-base:        #F5F1E8;   /* main page background — Pub Cream */
+  --bg-raised:      #FBF7EE;   /* cards, panels — warm white */
+  --bg-sunken:      #ECE7D6;   /* inputs — slight recess */
+  --bg-overlay:     #FBF7EE;   /* modals, menus */
+
+  /* Foreground scale — warm-black, not pure */
+  --fg-primary:     #0A0A0A;   /* headlines — Growth Black */
+  --fg-secondary:   #2A2A28;   /* body — warm dark */
+  --fg-tertiary:    #8B847E;   /* meta — Smoke Gray */
+  --fg-muted:       #B8B3AC;   /* disabled */
+  --fg-inverse:     #F5F1E8;   /* text on dark/accent surfaces */
+
+  /* Accents — Amber primary (CTA), Pirate Teal secondary */
+  --accent-amber:        #D4A24C;
+  --accent-amber-bright: #E5B45D;   /* hover */
+  --accent-amber-dim:    #B88838;   /* press */
+  --accent-amber-soft:   rgba(212, 162, 76, 0.12);
+  --accent-amber-glow:   rgba(212, 162, 76, 0.28);
+
+  --accent-teal:        #4FB3A5;
+  --accent-teal-bright: #6FC4B7;
+  --accent-teal-dim:    #3A8F84;
+  --accent-teal-soft:   rgba(79, 179, 165, 0.12);
+  --accent-teal-glow:   rgba(79, 179, 165, 0.28);
+
+  /* Legacy aliases — preserve old [violet/mint] class names so previews don't break */
+  --accent-violet:        var(--accent-amber);
+  --accent-violet-bright: var(--accent-amber-bright);
+  --accent-violet-dim:    var(--accent-amber-dim);
+  --accent-violet-soft:   var(--accent-amber-soft);
+  --accent-violet-glow:   var(--accent-amber-glow);
+  --accent-mint:        var(--accent-teal);
+  --accent-mint-bright: var(--accent-teal-bright);
+  --accent-mint-dim:    var(--accent-teal-dim);
+  --accent-mint-soft:   var(--accent-teal-soft);
+  --accent-mint-glow:   var(--accent-teal-glow);
+
+  /* Borders — warm hairlines on light bg */
+  --border-subtle:  rgba(10, 10, 10, 0.06);
+  --border-default: rgba(10, 10, 10, 0.12);
+  --border-strong:  rgba(10, 10, 10, 0.24);
+  --border-accent:  var(--accent-amber);
+
+  /* Semantic */
+  --color-success:  #4FB3A5;        /* Pirate Teal */
+  --color-warning:  #D4A24C;        /* Amber Beer */
+  --color-danger:   #B84A3E;        /* Brick Red */
+  --color-info:     var(--accent-teal);
+
+  /* Data-viz — warm palette tuned for the GC */
+  --data-1: #4FB3A5;   /* teal */
+  --data-2: #D4A24C;   /* amber */
+  --data-3: #B84A3E;   /* brick */
+  --data-4: #8B847E;   /* smoke */
+  --data-5: #2A6F66;   /* deep teal */
+  --data-6: #8E6B33;   /* deep amber */
+
+  --grid-line: rgba(10, 10, 10, 0.05);
+
+  /* Gradients — warm, editorial */
+  --gradient-hero:
+    radial-gradient(ellipse at top left, var(--accent-amber-soft) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom right, var(--accent-teal-soft) 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-void) 100%);
+  --gradient-amber-fade:
+    linear-gradient(135deg, var(--accent-amber) 0%, var(--bg-base) 100%);
+  --gradient-teal-fade:
+    linear-gradient(135deg, var(--accent-teal) 0%, var(--bg-base) 100%);
+  --gradient-architect:
+    linear-gradient(135deg, #ECE7D6 0%, #F5F1E8 50%, #E8E2D0 100%);
+  /* Legacy aliases */
+  --gradient-purple-fade: var(--gradient-amber-fade);
+  --gradient-mint-fade:   var(--gradient-teal-fade);
+
+  /* Elevation — soft drops, no glows in light */
+  --glow-teal:    0 0 0 4px var(--accent-teal-soft);
+  --glow-amber:   0 0 0 4px var(--accent-amber-soft);
+  --glow-mint:    var(--glow-teal);
+  --glow-violet:  var(--glow-amber);
+  --glow-purple:  var(--glow-amber);
+  --shadow-flat:  0 1px 2px rgba(10, 10, 10, 0.04);
+  --shadow-raised:
+    0 1px 2px rgba(10, 10, 10, 0.04),
+    0 8px 24px rgba(10, 10, 10, 0.08);
+  --shadow-overlay:
+    0 2px 4px rgba(10, 10, 10, 0.06),
+    0 24px 48px rgba(10, 10, 10, 0.14);
+
+  color-scheme: light;
+}
+
+/* =========================================================================
+   DARK SECTIONS — Growth Black for hero/cover/CTA-final contexts
+   "Dark mode nunca vive sozinho — só como contraste pontual dentro do fluxo light."
+   ========================================================================= */
+[data-theme="dark"] {
+  /* Background scale — Growth Black */
+  --bg-void:        #000000;   /* deepest */
+  --bg-base:        #0A0A0A;   /* main bg — Growth Black */
+  --bg-raised:      #16140F;   /* cards, panels — warm-black */
+  --bg-sunken:      #050505;   /* inputs, code blocks */
+  --bg-overlay:     #1F1C16;   /* modals, menus */
+
+  /* Foreground scale */
+  --fg-primary:     #F5F1E8;   /* headlines — Pub Cream */
+  --fg-secondary:   #D6D1C2;   /* body */
+  --fg-tertiary:    #8B847E;   /* metadata — Smoke Gray */
+  --fg-muted:       #4A453F;   /* disabled, placeholders */
+  --fg-inverse:     #0A0A0A;   /* text on light/accent surfaces */
+
+  /* Primary accent — AMBER (brighter on dark for contrast) */
+  --accent-amber:        #E5B45D;
+  --accent-amber-bright: #F2C77A;   /* hover */
+  --accent-amber-dim:    #B88838;   /* press */
+  --accent-amber-soft:   rgba(229, 180, 93, 0.16);
+  --accent-amber-glow:   rgba(229, 180, 93, 0.45);
+
+  /* Secondary accent — TEAL (brighter on dark) */
+  --accent-teal:        #5FC9BB;
+  --accent-teal-bright: #82D8CC;
+  --accent-teal-dim:    #3A8F84;
+  --accent-teal-soft:   rgba(95, 201, 187, 0.14);
+  --accent-teal-glow:   rgba(95, 201, 187, 0.40);
+
+  /* Legacy aliases */
+  --accent-violet:        var(--accent-amber);
+  --accent-violet-bright: var(--accent-amber-bright);
+  --accent-violet-dim:    var(--accent-amber-dim);
+  --accent-violet-soft:   var(--accent-amber-soft);
+  --accent-violet-glow:   var(--accent-amber-glow);
+  --accent-mint:        var(--accent-teal);
+  --accent-mint-bright: var(--accent-teal-bright);
+  --accent-mint-dim:    var(--accent-teal-dim);
+  --accent-mint-soft:   var(--accent-teal-soft);
+  --accent-mint-glow:   var(--accent-teal-glow);
+
+  /* Borders */
+  --border-subtle:  rgba(245, 241, 232, 0.06);
+  --border-default: rgba(245, 241, 232, 0.10);
+  --border-strong:  rgba(245, 241, 232, 0.22);
+  --border-accent:  var(--accent-teal);
+
+  /* Semantic */
+  --color-success:  #5FC9BB;
+  --color-warning:  #E5B45D;
+  --color-danger:   #D85A4D;
+  --color-info:     var(--accent-amber);
+
+  /* Data-viz ramp */
+  --data-1: #5FC9BB;
+  --data-2: #E5B45D;
+  --data-3: #D85A4D;
+  --data-4: #8B847E;
+  --data-5: #82D8CC;
+  --data-6: #F2C77A;
+
+  /* Grid / hairline */
+  --grid-line: rgba(245, 241, 232, 0.04);
+
+  /* Gradients for dark hero contexts */
+  --gradient-hero:
+    radial-gradient(ellipse at top left, var(--accent-amber-glow) 0%, transparent 45%),
+    radial-gradient(ellipse at bottom right, var(--accent-teal-glow) 0%, transparent 45%),
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-void) 100%);
+  --gradient-amber-fade:
+    linear-gradient(135deg, var(--accent-amber) 0%, var(--bg-base) 100%);
+  --gradient-teal-fade:
+    linear-gradient(135deg, var(--accent-teal) 0%, var(--bg-base) 100%);
+  --gradient-architect:
+    linear-gradient(135deg, #2A2014 0%, #0A0A0A 50%, #0F2622 100%);
+  --gradient-purple-fade: var(--gradient-amber-fade);
+  --gradient-mint-fade:   var(--gradient-teal-fade);
+
+  /* Elevation — warm glows for dark sections */
+  --glow-teal:    0 0 32px rgba(95, 201, 187, 0.40);
+  --glow-amber:   0 0 32px rgba(229, 180, 93, 0.45);
+  --glow-mint:    var(--glow-teal);
+  --glow-violet:  var(--glow-amber);
+  --glow-purple:  var(--glow-amber);
+  --shadow-flat:  inset 0 1px 0 rgba(245, 241, 232, 0.04);
+  --shadow-raised:
+    inset 0 1px 0 rgba(245, 241, 232, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-overlay:
+    inset 0 1px 0 rgba(245, 241, 232, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.7);
+
+  color-scheme: dark;
+}
+
+/* =========================================================================
+   STATIC (theme-agnostic) — type, spacing, radii, motion
+
+   TYPOGRAPHY — Satoshi best practices (calibrated to this typeface):
+   • Variable font (wght 300–900). Use `font-variation-settings` for the
+     production-perfect weight, or fall back to `font-weight` (already
+     mapped to the same axis).
+   • Tracking scales INVERSELY with size: bigger needs tighter.
+       ≥100px → -0.045 / -0.05em (--ls-hairline)
+        56–96 → -0.04em            (--ls-tightest)
+        32–48 → -0.025 / -0.03em   (--ls-display)
+        20–28 → -0.018 / -0.02em   (--ls-tight)
+        15–18 →  0 to -0.01em      (--ls-normal)
+         ≤14 →  0 to +0.01em
+        UPPER → +0.08em to +0.16em (--ls-label / --ls-wide-loud)
+   • Leading: 0.92 for display (--lh-display), 1.0 (--lh-tight) for
+     mega marquee, 1.15 (--lh-snug) for h1-h3, 1.45 (--lh-normal) for
+     subheads, 1.6 (--lh-relaxed) for paragraphs.
+   • Weight pairing: Black (900) for display, Bold (700) for headings,
+     Medium (500) for emphasized body / buttons, Regular (400) for body.
+   • OpenType: kern + liga always; tnum for numbers in dashboards / KPIs
+     (use `[data-num]` or `.t-num`); ss01 for display (single-story 'a').
+   • Italic: only via real Satoshi italic file; use for book/song titles,
+     foreign words, sentence-level emphasis. NEVER on UI labels.
+   ========================================================================= */
+:root {
+  /* Stack — Satoshi (display + body) + Roboto (mono). Migrated from
+     Archivo Black + Inter via AD-006 (2026-05-17). */
+  --font-display: 'Satoshi', sans-serif;
+  --font-body:    'Satoshi', sans-serif;
+  --font-mono:    'Roboto', monospace;
+
+  /* Weight axis stops */
+  --fw-light:     300;
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-bold:      700;
+  --fw-black:     900;
+
+  /* Font sizes */
+  --fs-display-xl: clamp(56px, 8vw, 120px);
+  --fs-display-l:  clamp(44px, 6vw, 88px);
+  --fs-display-m:  clamp(36px, 4.5vw, 64px);
+  --fs-display-s:  clamp(28px, 3.6vw, 44px);
+
+  --fs-h1: 48px;
+  --fs-h2: 36px;
+  --fs-h3: 28px;
+  --fs-h4: 22px;
+  --fs-h5: 18px;
+  --fs-h6: 15px;
+
+  --fs-body-lg: 18px;
+  --fs-body:    16px;
+  --fs-body-sm: 14px;
+  --fs-caption: 12px;
+  --fs-micro:   11px;
+
+  /* Line-heights */
+  --lh-display:  0.92;
+  --lh-tight:    1.0;
+  --lh-snug:     1.15;
+  --lh-normal:   1.45;
+  --lh-relaxed:  1.6;
+  --lh-loose:    1.8;
+
+  /* Letter-spacing */
+  --ls-hairline:  -0.05em;
+  --ls-tightest:  -0.04em;
+  --ls-display:   -0.025em;
+  --ls-tight:     -0.018em;
+  --ls-snug:      -0.01em;
+  --ls-normal:     0;
+  --ls-wide:       0.04em;
+  --ls-label:      0.08em;
+  --ls-loud:       0.16em;
+
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32:  128px;
+
+  --radius-none: 0;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-pill: 999px;
+  --radius-full: 999px;
+
+  --ease-out:    cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-linear: linear;
+
+  --dur-instant: 80ms;
+  --dur-fast:    160ms;
+  --dur-med:     240ms;
+  --dur-slow:    400ms;
+
+  --container-xs:  480px;
+  --container-sm:  720px;
+  --container-md:  960px;
+  --container-lg:  1200px;
+  --container-xl:  1440px;
+  --container-max: 1680px;
+
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 1000;
+  --z-modal:   2000;
+  --z-toast:   3000;
+
+  --bg-overlay-dark: rgba(10, 10, 10, 0.80);
+}
+
+/* =========================================================================
+   SEMANTIC TYPE ROLES — Satoshi-tuned
+   ========================================================================= */
+
+.t-display-xl {
+  font-family: var(--font-display); font-weight: var(--fw-black);
+  font-variation-settings: 'wght' 900;
+  font-size: var(--fs-display-xl); line-height: var(--lh-display);
+  letter-spacing: var(--ls-hairline); color: var(--fg-primary);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  text-wrap: balance;
+}
+.t-display-l {
+  font-family: var(--font-display); font-weight: var(--fw-black);
+  font-variation-settings: 'wght' 900;
+  font-size: var(--fs-display-l); line-height: var(--lh-display);
+  letter-spacing: var(--ls-tightest); color: var(--fg-primary);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  text-wrap: balance;
+}
+.t-display-m {
+  font-family: var(--font-display); font-weight: var(--fw-black);
+  font-variation-settings: 'wght' 900;
+  font-size: var(--fs-display-m); line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tightest); color: var(--fg-primary);
+  text-wrap: balance;
+}
+.t-display-s {
+  font-family: var(--font-display); font-weight: var(--fw-black);
+  font-variation-settings: 'wght' 900;
+  font-size: var(--fs-display-s); line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display); color: var(--fg-primary);
+  text-wrap: balance;
+}
+
+h1, .t-h1 { font-family: var(--font-display); font-weight: var(--fw-bold); font-variation-settings:'wght' 700; font-size: var(--fs-h1); line-height: var(--lh-snug);   letter-spacing: var(--ls-display); color: var(--fg-primary); text-wrap: balance; }
+h2, .t-h2 { font-family: var(--font-display); font-weight: var(--fw-bold); font-variation-settings:'wght' 700; font-size: var(--fs-h2); line-height: var(--lh-snug);   letter-spacing: var(--ls-display); color: var(--fg-primary); text-wrap: balance; }
+h3, .t-h3 { font-family: var(--font-display); font-weight: var(--fw-bold); font-variation-settings:'wght' 700; font-size: var(--fs-h3); line-height: var(--lh-snug);   letter-spacing: var(--ls-tight);   color: var(--fg-primary); text-wrap: balance; }
+h4, .t-h4 { font-family: var(--font-display); font-weight: var(--fw-bold); font-variation-settings:'wght' 700; font-size: var(--fs-h4); line-height: var(--lh-normal); letter-spacing: var(--ls-tight);   color: var(--fg-primary); }
+h5, .t-h5 { font-family: var(--font-display); font-weight: var(--fw-medium); font-variation-settings:'wght' 500; font-size: var(--fs-h5); line-height: var(--lh-normal); letter-spacing: var(--ls-snug);   color: var(--fg-primary); }
+h6, .t-h6 { font-family: var(--font-display); font-weight: var(--fw-medium); font-variation-settings:'wght' 500; font-size: var(--fs-h6); line-height: var(--lh-normal); letter-spacing: var(--ls-normal);  color: var(--fg-primary); }
+
+p, .t-body { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body);    line-height: var(--lh-relaxed); color: var(--fg-secondary); }
+.t-body-lg { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body-lg); line-height: var(--lh-relaxed); color: var(--fg-secondary); }
+.t-body-sm { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body-sm); line-height: var(--lh-normal);  color: var(--fg-secondary); }
+
+.t-lead { font-family: var(--font-body); font-weight: var(--fw-medium); font-variation-settings:'wght' 500; font-size: var(--fs-body-lg); line-height: 1.5; color: var(--fg-secondary); letter-spacing: var(--ls-snug); }
+
+.t-label   { font-family: var(--font-body); font-weight: var(--fw-medium); font-variation-settings:'wght' 500; font-size: var(--fs-caption); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--fg-tertiary); }
+.t-eyebrow { font-family: var(--font-mono); font-weight: var(--fw-medium); font-size: var(--fs-caption); letter-spacing: var(--ls-loud); text-transform: uppercase; color: var(--accent-teal); }
+.t-caption { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-caption); line-height: var(--lh-normal); color: var(--fg-tertiary); }
+.t-mono    { font-family: var(--font-mono); font-weight: var(--fw-regular); font-size: var(--fs-body-sm); color: var(--fg-secondary); }
+
+.t-num     { font-feature-settings: 'kern' 1, 'tnum' 1, 'cv01' 1; font-variant-numeric: tabular-nums slashed-zero; }
+
+.t-emph, em.t-emph { font-style: italic; }
+
+.t-accent        { color: var(--accent-teal); }
+.t-accent-amber  { color: var(--accent-amber); }
+/* Legacy alias preserved */
+.t-accent-violet { color: var(--accent-amber); }
+
+html, body {
+  background: var(--bg-base);
+  color: var(--fg-secondary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--accent-amber); color: var(--fg-inverse); }

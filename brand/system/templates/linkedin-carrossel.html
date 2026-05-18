@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>LinkedIn carrossel PDF</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html, body { margin: 0; padding: 0; background: #16140F;
+  font-family: var(--font-body); min-height: 100vh;
+}
+.header {
+  padding: 28px 40px; color: #fff; display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.header b { color: #fff; font-weight: 500; }
+.strip {
+  display: flex; gap: 24px; padding: 40px; overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.page {
+  width: 480px; height: 600px; /* 1200x1500 @ 0.4 */
+  flex: 0 0 auto; scroll-snap-align: start;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* shared chrome */
+.page .chrome-top { padding: 32px 32px 0; display: flex; justify-content: space-between; align-items: flex-start; }
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 20px; width: auto; display: block; }
+.meta {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  text-align: right; display: flex; flex-direction: column; gap: 2px;
+}
+.page .chrome-bot {
+  padding: 16px 32px 28px; display: flex; justify-content: space-between; align-items: flex-end;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.chrome-bot .nxt { display: inline-flex; align-items: center; gap: 8px; }
+.chrome-bot svg { width: 12px; height: 12px; }
+
+/* Page 1 — Cover */
+.p1 { background: #0D0D1F; color: #fff; }
+.p1::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 20%, rgba(212, 162, 76,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 90%, rgba(79, 179, 165,0.25) 0%, transparent 60%);
+}
+.p1 .meta { color: rgba(255,255,255,0.55); }
+.p1 .meta b { color: #4FB3A5; font-weight: 500; }
+.p1 .body {
+  flex: 1; padding: 24px 32px; display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 1;
+}
+.p1 .eyebrow {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: #4FB3A5; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 12px;
+}
+.p1 .eyebrow::before { content: ""; width: 24px; height: 1px; background: #4FB3A5; }
+.p1 h1 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 54px; line-height: 0.96; letter-spacing: -0.045em;
+  margin: 0 0 18px; max-width: 11ch;
+}
+.p1 h1 em { color: #4FB3A5; font-style: normal; }
+.p1 .lede { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.7); max-width: 34ch; }
+.p1 .chrome-bot { color: #fff; border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* Page 2 — Insight / number */
+.p2 { background: #F5F5F5; color: #1A1A1A; }
+.p2 .meta { color: #7A7A7A; }
+.p2 .meta b { color: #D4A24C; }
+.p2 .body { flex: 1; padding: 20px 32px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+.p2 .eyebrow {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #7A7A7A; display: inline-flex; align-items: center; gap: 10px;
+}
+.p2 .eyebrow::before { content: ""; width: 18px; height: 1px; background: #D4A24C; }
+.p2 .big {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 148px; line-height: 0.85; letter-spacing: -0.06em; margin: 0;
+  display: flex; align-items: baseline; gap: 6px;
+}
+.p2 .big em { color: #D4A24C; font-style: normal; }
+.p2 .big .unit { font-size: 52px; }
+.p2 .stmt {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: 20px; line-height: 1.3; letter-spacing: -0.02em; max-width: 22ch;
+}
+.p2 .stmt em { color: #D4A24C; font-style: normal; font-weight: 700; }
+.p2 .chrome-bot { color: #1A1A1A; border-top: 1px solid rgba(26,26,26,0.1); }
+.p2 .src { font-family: var(--font-mono); font-size: 9px; color: #7A7A7A; letter-spacing: 0.1em; }
+
+/* Page 3 — Explanation / short paragraph */
+.p3 { background: #0D0D1F; color: #fff; }
+.p3 .meta { color: rgba(255,255,255,0.55); }
+.p3 .meta b { color: #4FB3A5; }
+.p3 .body { flex: 1; padding: 24px 32px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+.p3 .eyebrow {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #4FB3A5; display: inline-flex; align-items: center; gap: 10px;
+}
+.p3 .eyebrow::before { content: ""; width: 18px; height: 1px; background: #4FB3A5; }
+.p3 h2 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 36px; line-height: 1.02; letter-spacing: -0.035em;
+  color: #fff; margin: 0; max-width: 16ch;
+}
+.p3 h2 em { color: #4FB3A5; font-style: normal; }
+.p3 p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.72); max-width: 38ch; margin: 0; }
+.p3 .chrome-bot { color: #fff; border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* Page 4 — 3 cards horizontal */
+.p4 { background: #F5F5F5; color: #1A1A1A; }
+.p4 .meta { color: #7A7A7A; }
+.p4 .meta b { color: #D4A24C; }
+.p4 .body { flex: 1; padding: 18px 32px; display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+.p4 h2 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 28px; line-height: 1.05; letter-spacing: -0.03em;
+  margin: 0; max-width: 18ch;
+}
+.p4 h2 em { color: #D4A24C; font-style: normal; }
+.p4 .cards { display: flex; flex-direction: column; gap: 10px; }
+.p4 .card {
+  background: #fff; border: 1px solid rgba(26,26,26,0.08); border-radius: 8px;
+  padding: 14px 16px; display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: flex-start;
+}
+.p4 .card .n { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: #D4A24C; padding-top: 2px; }
+.p4 .card h3 { font-family: var(--font-display); font-weight: 700; font-size: 14px; line-height: 1.25; letter-spacing: -0.02em; margin: 0 0 2px; }
+.p4 .card p { font-size: 12px; line-height: 1.45; color: #55555A; margin: 0; }
+.p4 .chrome-bot { color: #1A1A1A; border-top: 1px solid rgba(26,26,26,0.1); }
+
+/* Page 5 — quote */
+.p5 { background: #D4A24C; color: #fff; }
+.p5 .meta { color: rgba(255,255,255,0.65); }
+.p5 .meta b { color: #fff; }
+.p5 .body { flex: 1; padding: 24px 32px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+.p5 .q-mark {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 80px; line-height: 0.5; color: rgba(255,255,255,0.3); margin-bottom: -30px;
+}
+.p5 blockquote {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 26px; line-height: 1.22; letter-spacing: -0.025em;
+  margin: 0; max-width: 22ch;
+}
+.p5 blockquote em { color: rgba(255,255,255,0.65); font-style: normal; font-weight: 500; }
+.p5 cite {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75); font-style: normal;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.p5 cite::before { content: ""; width: 24px; height: 1px; background: #fff; }
+.p5 .chrome-bot { color: #fff; border-top: 1px solid rgba(255,255,255,0.25); }
+
+/* Page 6 — CTA */
+.p6 { background: #0D0D1F; color: #fff; }
+.p6::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(212, 162, 76,0.35) 0%, transparent 65%);
+}
+.p6 .meta { color: rgba(255,255,255,0.55); }
+.p6 .meta b { color: #4FB3A5; }
+.p6 .body {
+  flex: 1; padding: 24px 32px; display: flex; flex-direction: column; justify-content: center;
+  align-items: flex-start; gap: 20px; position: relative; z-index: 1;
+}
+.p6 h2 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 52px; line-height: 0.96; letter-spacing: -0.045em; margin: 0; max-width: 12ch;
+}
+.p6 h2 em { color: #4FB3A5; font-style: normal; }
+.p6 p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.72); max-width: 34ch; margin: 0; }
+.p6 .btn {
+  margin-top: 8px; padding: 14px 22px; border-radius: 6px;
+  background: #4FB3A5; color: #0D0D1F;
+  font-family: var(--font-body); font-weight: 500; font-size: 14px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.p6 .btn svg { width: 14px; height: 14px; }
+.p6 .hand { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.p6 .hand b { color: #4FB3A5; font-weight: 500; }
+.p6 .chrome-bot { color: #fff; border-top: 1px solid rgba(255,255,255,0.1); }
+</style></head>
+<body>
+<div class="header">
+  <span>LinkedIn carrossel PDF · 1200×1500 · preview 0.4×</span>
+  <span><b>6</b> páginas · Scroll horizontal</span>
+</div>
+<div class="strip">
+
+  <!-- 01 COVER -->
+  <div class="page p1">
+    <div class="chrome-top">
+      <span class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+      <div class="meta"><span>CARROSSEL</span><b>01 / 06</b></div>
+    </div>
+    <div class="body">
+      <span class="eyebrow">Comunidade B2B Growth · desde 2015</span>
+      <h1>Se não tem número, <em>não é Growth Club.</em></h1>
+      <p class="lede">A mesa de canto pros operadores que entregam. Sem palco, sem fórmula mágica — newsletter, WhatsApp, meetup, livecast.</p>
+    </div>
+    <div class="chrome-bot">
+      <span class="nxt">Arraste →</span>
+      <span>growthclub.pro</span>
+    </div>
+  </div>
+
+  <!-- 02 INSIGHT -->
+  <div class="page p2">
+    <div class="chrome-top">
+      <span class="brand"><img src="../assets/logo-black.svg" alt="Growth Club"></span>
+      <div class="meta"><span>DADO</span><b>02 / 06</b></div>
+    </div>
+    <div class="body">
+      <span class="eyebrow">A comunidade em número · 2026</span>
+      <div class="big"><em>2.261</em><span class="unit">·</span><em>715</em></div>
+      <div class="stmt">Subs no Substack <em>e</em> ativos no WhatsApp Community.</div>
+      <span class="src">11 anos orgânicos · 10+ meetups · 0 boost pago</span>
+    </div>
+    <div class="chrome-bot">
+      <span class="nxt">Arraste →</span>
+      <span>02 / 06</span>
+    </div>
+  </div>
+
+  <!-- 03 EXPLANATION -->
+  <div class="page p3">
+    <div class="chrome-top">
+      <span class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+      <div class="meta"><span>COMO</span><b>03 / 06</b></div>
+    </div>
+    <div class="body">
+      <span class="eyebrow">Como a comunidade funciona</span>
+      <h2>Outras vendem palco. <em>A gente abre a mesa.</em></h2>
+      <p>Sem painel de palestrante, sem foto sorrindo na frente de logo. Operador de growth B2B fala com operador, com case real, número no copo, sem agenda escondida.</p>
+    </div>
+    <div class="chrome-bot">
+      <span class="nxt">Arraste →</span>
+      <span>03 / 06</span>
+    </div>
+  </div>
+
+  <!-- 04 STEPS -->
+  <div class="page p4">
+    <div class="chrome-top">
+      <span class="brand"><img src="../assets/logo-black.svg" alt="Growth Club"></span>
+      <div class="meta"><span>4 ESPAÇOS</span><b>04 / 06</b></div>
+    </div>
+    <div class="body">
+      <h2>4 espaços. <em>Mesma régua editorial.</em></h2>
+      <div class="cards">
+        <div class="card"><span class="n">01</span><div><h3>Newsletter</h3><p>Substack quinzenal. Curadoria com número, sem opinião sem dado atrás.</p></div></div>
+        <div class="card"><span class="n">02</span><div><h3>WhatsApp Community</h3><p>715 ativos. Pergunta com contexto, resposta com case. Sem motivacional.</p></div></div>
+        <div class="card"><span class="n">03</span><div><h3>Meetup</h3><p>Presencial. SP S1E1 @ Barte, jun/2026. Cerveja, mesa de canto, sem palco.</p></div></div>
+        <div class="card"><span class="n">04</span><div><h3>Livecast</h3><p>Debate franco com operador convidado. Sem TED, sem patrocinado-disfarçado.</p></div></div>
+      </div>
+    </div>
+    <div class="chrome-bot">
+      <span class="nxt">Arraste →</span>
+      <span>04 / 06</span>
+    </div>
+  </div>
+
+  <!-- 05 QUOTE -->
+  <div class="page p5">
+    <div class="chrome-top">
+      <span class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+      <div class="meta"><span>PRINCÍPIO</span><b>05 / 06</b></div>
+    </div>
+    <div class="body">
+      <div class="q-mark">"</div>
+      <blockquote>Franco, com número, sem palco, <em>com cerveja.</em></blockquote>
+      <cite>Ton-anchor do Growth Club · locked 2026-04-22</cite>
+    </div>
+    <div class="chrome-bot">
+      <span class="nxt">Arraste →</span>
+      <span>05 / 06</span>
+    </div>
+  </div>
+
+  <!-- 06 CTA -->
+  <div class="page p6">
+    <div class="chrome-top">
+      <span class="brand"><img src="../assets/logo-white.svg" alt="Growth Club"></span>
+      <div class="meta"><span>PRÓXIMO PASSO</span><b>06 / 06</b></div>
+    </div>
+    <div class="body">
+      <h2>Entra pra <em>mesa de canto</em>.</h2>
+      <p>Newsletter quinzenal de graça. WhatsApp pros que querem mesa. Meetup pros que vêm presencial. Master pros que querem mentoria + benchmarks privados.</p>
+      <a class="btn">Tornar-se membro
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <span class="hand">Siga <b>@growthclub</b> no LinkedIn</span>
+    </div>
+    <div class="chrome-bot">
+      <span class="nxt">Fim</span>
+      <span>growthclub.pro</span>
+    </div>
+  </div>
+
+</div>
+</body></html>

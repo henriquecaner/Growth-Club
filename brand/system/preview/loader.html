@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Loader</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 14px; }
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+
+.demo-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.demo {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 20px 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; min-height: 120px;
+}
+.demo .tag {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+}
+.demo .cap {
+  font-family: var(--font-body); font-size: 11px; color: var(--fg-primary); text-align: center;
+}
+
+/* 6-dot staircase loader — brand signature */
+.stair {
+  display: grid;
+  grid-template-columns: repeat(3, 8px);
+  grid-template-rows: repeat(3, 8px);
+  gap: 3px;
+  width: 30px; height: 30px;
+}
+.stair span {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-violet);
+  opacity: 0.18;
+  animation: stair 1.5s var(--ease-in-out) infinite;
+}
+/* Layout (row,col) and animation order matching the logo staircase */
+.stair span.s1 { grid-area: 3 / 1; animation-delay: 0.00s; } /* bottom-left */
+.stair span.s2 { grid-area: 3 / 2; animation-delay: 0.12s; } /* bottom-mid */
+.stair span.s3 { grid-area: 3 / 3; background: var(--accent-mint); animation-delay: 0.24s; } /* MINT corner */
+.stair span.s4 { grid-area: 2 / 2; animation-delay: 0.36s; } /* mid-mid */
+.stair span.s5 { grid-area: 2 / 3; animation-delay: 0.48s; } /* mid-right */
+.stair span.s6 { grid-area: 1 / 3; animation-delay: 0.60s; } /* top-right */
+@keyframes stair {
+  0%, 80%, 100% { opacity: 0.18; transform: scale(0.85); }
+  20%, 50%      { opacity: 1;    transform: scale(1.0); }
+}
+
+/* Skeleton row */
+.skel-row { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.skel {
+  height: 10px; border-radius: 3px;
+  background: linear-gradient(90deg,
+    var(--bg-sunken) 0%, var(--bg-raised) 50%, var(--bg-sunken) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+.skel.short { width: 60%; }
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Spinner (ring) */
+.spin {
+  width: 22px; height: 22px;
+  border: 2px solid var(--border-default);
+  border-top-color: var(--accent-violet);
+  border-radius: 50%;
+  animation: rot 0.8s linear infinite;
+}
+@keyframes rot { to { transform: rotate(360deg); } }
+
+/* Progress */
+.progress-full { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.track {
+  height: 4px; background: var(--bg-sunken);
+  border-radius: 999px; overflow: hidden;
+}
+.fill {
+  height: 100%; width: 0;
+  background: var(--accent-violet);
+  animation: fill 2.4s var(--ease-out) infinite;
+}
+@keyframes fill {
+  0%   { width: 0; }
+  70%  { width: 92%; }
+  100% { width: 100%; }
+}
+.meta {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.05em;
+  color: var(--fg-tertiary); display: flex; justify-content: space-between;
+}
+
+/* Pulse dot */
+.pulse-wrap { display: inline-flex; align-items: center; gap: 8px; }
+.pulse-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-mint); position: relative;
+}
+.pulse-dot::after {
+  content: ''; position: absolute; inset: -4px;
+  border-radius: 50%; border: 2px solid var(--accent-mint);
+  animation: pulse 1.6s var(--ease-out) infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-label {
+  font-family: var(--font-body); font-size: 11px; color: var(--fg-primary); font-weight: 500;
+}
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>LOADER · SIGNATURE + ALTERNATIVES</span><b>5 PATTERNS</b></div>
+  <div class="demo-grid">
+    <div class="demo" style="grid-column: 1 / -1;">
+      <span class="tag">PRIMARY · 6-DOT STAIRCASE LOADER</span>
+      <div class="stair"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span><span class="s6"></span></div>
+      <span class="cap">Assinatura da marca — escada do logo animada. Usado em state global: boot, sync, publicação.</span>
+    </div>
+    <div class="demo">
+      <span class="tag">SKELETON</span>
+      <div class="skel-row">
+        <div class="skel"></div>
+        <div class="skel short"></div>
+        <div class="skel"></div>
+        <div class="skel short"></div>
+      </div>
+      <span class="cap">Dados tabulares carregando.</span>
+    </div>
+    <div class="demo">
+      <span class="tag">SPINNER</span>
+      <div class="spin"></div>
+      <span class="cap">Ação pontual — salvar, enviar.</span>
+    </div>
+    <div class="demo">
+      <span class="tag">PROGRESS</span>
+      <div class="progress-full">
+        <div class="meta"><span>Calculando pipeline</span><span>~20s</span></div>
+        <div class="track"><div class="fill"></div></div>
+      </div>
+      <span class="cap">Operação longa com estimativa.</span>
+    </div>
+    <div class="demo" style="grid-column: 1 / -1;">
+      <span class="tag">PULSE · LIVE STATUS</span>
+      <span class="pulse-wrap"><span class="pulse-dot"></span><span class="pulse-label">Automação ativa · 247 leads em fluxo</span></span>
+      <span class="cap">State persistente de execução contínua.</span>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

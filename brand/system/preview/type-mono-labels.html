@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Type — Mono & Labels</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 24px 28px; gap: 14px; justify-content: space-between; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+.box {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  min-width: 0;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+.mono-big {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--fg-primary);
+  letter-spacing: -0.01em;
+}
+.mono-body {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-secondary);
+  word-break: break-all;
+}
+.label-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+}
+.label-big {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--fg-primary);
+}
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>MONO · ROBOTO + LABELS</span><b>DATA · TAGS</b></div>
+  <div class="row">
+    <div class="box">
+      <span class="tag">MONO · NUMERIC / IDS</span>
+      <div class="mono-big">R$ 1.284.000,00</div>
+      <div class="mono-body">pipeline_id: lvl_7K3Ma9Qx</div>
+      <div class="mono-body">+34.2% vs. Q3</div>
+    </div>
+    <div class="box">
+      <span class="tag">LABEL · EYEBROW</span>
+      <div class="label-eyebrow">01 · ARQUITETURA</div>
+      <div class="label-big">Pipeline previsível<br/>não é sorte.</div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

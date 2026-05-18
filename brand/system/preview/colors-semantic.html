@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR" data-no-split><head><meta charset="utf-8"><title>Colors — Semantic & Data</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 24px 28px; gap: 14px; }
+.section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.row { display: flex; gap: 10px; flex: 1; }
+.sw {
+  flex: 1;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(17,17,20,0.7);
+  font-weight: 500;
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--fg-inverse);
+  letter-spacing: -0.01em;
+}
+.hex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(17,17,20,0.7);
+}
+.light-hex, .dark-hex { display: none; }
+[data-theme="light"] .light-hex { display: revert; }
+[data-theme="dark"] .dark-hex { display: revert; }
+/* Default (no split) shows light variant */
+html[data-no-split] .light-hex { display: revert; }
+.heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-mint); font-weight: 500; }
+.data-sw { color: #0A0A0A; }
+.data-sw .tag, .data-sw .hex { color: rgba(17,17,20,0.7); }
+</style></head>
+<body>
+<div class="card">
+  <div class="section">
+    <div class="heading"><span>SEMANTIC · STATUS</span><b>4 STATES</b></div>
+    <div class="row">
+      <div class="sw" style="background: var(--color-success);">
+        <span class="tag">SUCCESS</span>
+        <div class="name">success</div>
+        <div class="hex light-hex">#4FB3A5</div>
+        <div class="hex dark-hex">#5FC9BB</div>
+      </div>
+      <div class="sw" style="background: var(--color-warning);">
+        <span class="tag">WARNING</span>
+        <div class="name">warning</div>
+        <div class="hex light-hex">#D99400</div>
+        <div class="hex dark-hex">#FFB800</div>
+      </div>
+      <div class="sw" style="background: var(--color-danger); color: #fff;">
+        <span class="tag" style="color: rgba(255,255,255,0.7);">DANGER</span>
+        <div class="name" style="color: #fff;">danger</div>
+        <div class="hex light-hex" style="color: rgba(255,255,255,0.75);">#E62E4C</div>
+        <div class="hex dark-hex" style="color: rgba(255,255,255,0.75);">#FF3D5A</div>
+      </div>
+      <div class="sw" style="background: var(--color-info); color: #fff;">
+        <span class="tag" style="color: rgba(255,255,255,0.7);">INFO</span>
+        <div class="name" style="color: #fff;">info</div>
+        <div class="hex" style="color: rgba(255,255,255,0.75);">#D4A24C</div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="heading"><span>DATA-VIZ · CHART RAMP</span><b>6 SERIES</b></div>
+    <div class="row">
+      <div class="sw" style="background: var(--data-1);"><span class="tag">01</span><span class="hex light-hex">#4FB3A5</span><span class="hex dark-hex">#5FC9BB</span></div>
+      <div class="sw" style="background: var(--data-2); color: #fff;"><span class="tag" style="color:rgba(255,255,255,.7);">02</span><span class="hex" style="color:rgba(255,255,255,.75);">#D4A24C</span></div>
+      <div class="sw" style="background: var(--data-3);"><span class="tag">03</span><span class="hex light-hex">#0091C4</span><span class="hex dark-hex">#00C6FF</span></div>
+      <div class="sw" style="background: var(--data-4);"><span class="tag">04</span><span class="hex light-hex">#D99400</span><span class="hex dark-hex">#FFB800</span></div>
+      <div class="sw" style="background: var(--data-5); color: #fff;"><span class="tag" style="color:rgba(255,255,255,.7);">05</span><span class="hex light-hex" style="color:rgba(255,255,255,.75);">#E62E4C</span><span class="hex dark-hex" style="color:rgba(255,255,255,.75);">#FF3D5A</span></div>
+      <div class="sw" style="background: var(--data-6); color: #fff;"><span class="tag" style="color:rgba(255,255,255,.7);">06</span><span class="hex light-hex" style="color:rgba(255,255,255,.75);">#E5B45D</span><span class="hex dark-hex" style="color:rgba(255,255,255,.75);">#9580FF</span></div>
+    </div>
+  </div>
+</div>
+<script src="_split.js"></script>
+</body></html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Copy library</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.card { padding: 20px 22px; gap: 14px; }
+.heading {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  display: flex; justify-content: space-between;
+}
+.heading b { color: var(--accent-teal); font-weight: 500; }
+
+.section { display: flex; flex-direction: column; gap: 6px; }
+.section-title {
+  font-family: var(--font-display); font-weight: 900; font-size: 14px;
+  color: var(--fg-primary); letter-spacing: -0.02em;
+}
+.section-sub {
+  font-family: var(--font-body); font-size: 11px; color: var(--fg-tertiary);
+  margin-top: -2px;
+}
+.items { display: flex; flex-direction: column; gap: 1px; background: var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; }
+.item {
+  display: grid; grid-template-columns: 140px 1fr;
+  background: var(--bg-raised); padding: 8px 12px; gap: 12px;
+  align-items: start;
+}
+.item .ctx {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--fg-tertiary);
+  padding-top: 2px;
+}
+.item .copy {
+  font-family: var(--font-body); font-size: 12px;
+  color: var(--fg-primary); line-height: 1.45;
+}
+.item .copy em { font-style: normal; color: var(--fg-tertiary); }
+.item .copy .alt { color: var(--accent-amber); margin-left: 6px; font-size: 11px; }
+
+.pair { display: flex; gap: 8px; flex-wrap: wrap; }
+.ctabtn {
+  font-family: var(--font-body); font-weight: 500; font-size: 11px;
+  padding: 5px 10px; border-radius: var(--radius-md);
+}
+.ctabtn.primary { background: var(--accent-amber); color: var(--fg-inverse); }
+.ctabtn.ghost { background: transparent; color: var(--fg-primary); border: 1px solid var(--border-default); }
+</style></head>
+<body>
+<div class="card">
+  <div class="heading"><span>COPY LIBRARY · SHOWCASE — FONTE: ../../voice/glossario.md + dos-and-donts.md</span><b>ERRORS · LOADING · CTAs</b></div>
+
+  <div class="section">
+    <div class="section-title">Erros</div>
+    <div class="section-sub">Direto sobre o que quebrou. Nomeia a causa. Oferece o próximo passo. Sem teatro.</div>
+    <div class="items">
+      <div class="item"><span class="ctx">Validação</span><span class="copy">E-mail inválido — confere o domínio.</span></div>
+      <div class="item"><span class="ctx">Rede</span><span class="copy">Sem conexão. O rascunho do post tá salvo localmente.</span></div>
+      <div class="item"><span class="ctx">Permissão</span><span class="copy">Você não é membro Master ainda. Esse conteúdo é pago.</span></div>
+      <div class="item"><span class="ctx">Plataforma</span><span class="copy">Substack fora do ar. A gente tenta de novo em alguns minutos.</span></div>
+      <div class="item"><span class="ctx">Servidor</span><span class="copy">Algo travou aqui. Tenta de novo em alguns segundos.</span></div>
+      <div class="item"><span class="ctx">404</span><span class="copy">Esse meetup não existe — ou foi arquivado.</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Loading</div>
+    <div class="section-sub">Descreve a operação real. Nunca "Carregando..."</div>
+    <div class="items">
+      <div class="item"><span class="ctx">Inscrição</span><span class="copy">Confirmando sua inscrição no meetup.</span></div>
+      <div class="item"><span class="ctx">Newsletter</span><span class="copy">Puxando as últimas edições do Substack.</span></div>
+      <div class="item"><span class="ctx">Comunidade</span><span class="copy">Listando os 715 membros ativos do WhatsApp.</span></div>
+      <div class="item"><span class="ctx">Upload</span><span class="copy">Enviando seu case com número — isso leva ~10s.</span></div>
+      <div class="item"><span class="ctx">Vídeo</span><span class="copy">Carregando livecast.</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">CTA pairs</div>
+    <div class="section-sub">Primário age. Alternativo respeita quem precisa de tempo.</div>
+    <div class="items">
+      <div class="item"><span class="ctx">Home</span><span><span class="pair"><button class="ctabtn primary">Tornar-se membro</button><button class="ctabtn ghost">Ver a newsletter primeiro</button></span></span></div>
+      <div class="item"><span class="ctx">Meetup</span><span><span class="pair"><button class="ctabtn primary">Garantir vaga</button><button class="ctabtn ghost">Ver edições anteriores</button></span></span></div>
+      <div class="item"><span class="ctx">Onboarding</span><span><span class="pair"><button class="ctabtn primary">Entrar no WhatsApp</button><button class="ctabtn ghost">Continuar só na newsletter</button></span></span></div>
+      <div class="item"><span class="ctx">Destrutivo</span><span><span class="pair"><button class="ctabtn primary" style="background: var(--color-danger);">Sair da comunidade</button><button class="ctabtn ghost">Cancelar</button></span></span></div>
+      <div class="item"><span class="ctx">Salvar</span><span><span class="pair"><button class="ctabtn primary">Publicar case</button><button class="ctabtn ghost">Salvar como rascunho</button></span></span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Microcopy</div>
+    <div class="section-sub">Labels curtos, ativos. Sem "Clique aqui".</div>
+    <div class="items">
+      <div class="item"><span class="ctx">Nav</span><span class="copy">Home · Sobre · Recursos · Meetups · Empresas · Tornar-se Membro</span></div>
+      <div class="item"><span class="ctx">Form help</span><span class="copy">A gente usa pra mandar a newsletter — sem spam, sem venda externa.</span></div>
+      <div class="item"><span class="ctx">Confirmação</span><span class="copy">Vaga garantida. <em>Próximo meetup: 12/jun, 19h, Barte SP.</em></span></div>
+      <div class="item"><span class="ctx">Tooltip</span><span class="copy">Master = tier pago. Acesso a mentorias quinzenais + benchmarks privados.</span></div>
+      <div class="item"><span class="ctx">Placeholder</span><span class="copy">Buscar edição, autor, tema...</span></div>
+    </div>
+  </div>
+
+</div>
+<script src="_split.js"></script>
+</body></html>
