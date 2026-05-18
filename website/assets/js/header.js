@@ -11,7 +11,7 @@ class GcHeader extends HTMLElement {
     };
 
     this.innerHTML = `
-      <nav class="nav" aria-label="Principal">
+      <nav class="nav" aria-label="Principal" data-theme="dark">
         <div class="wrap nav-inner">
           <a class="nav-logo" href="/" aria-label="Growth Club — Home">
             <img src="/assets/images/logo-white.svg" alt="Growth Club" height="22">
@@ -79,3 +79,30 @@ function ensureLucide(onReady) {
 window.gcEnsureLucide = ensureLucide;
 
 customElements.define('gc-header', GcHeader);
+
+// Global icon hydration — guarantees all [data-lucide] in the page get rendered
+// even if the inline final <script> ran before the CDN finished loading.
+function hydrateAllLucideIcons() {
+  ensureLucide(() => {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', hydrateAllLucideIcons);
+} else {
+  hydrateAllLucideIcons();
+}
+// Re-run once more after a microtask delay to catch Web Components that
+// hydrated late and inserted their own [data-lucide] elements.
+setTimeout(hydrateAllLucideIcons, 0);
+
+// Auto-load scroll-reveal globally (once per page)
+if (!document.querySelector('script[data-gc-scroll-reveal]')) {
+  const s = document.createElement('script');
+  s.src = '/assets/js/scroll-reveal.js';
+  s.async = true;
+  s.dataset.gcScrollReveal = '1';
+  document.head.appendChild(s);
+}

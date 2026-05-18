@@ -410,4 +410,5 @@ html, body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-::selection { background: var(--accent-amber); color: var(--fg-inverse); }
+::selection { background: var(--accent-amber-glow); color: var(--fg-primary); }
+[data-theme="dark"] ::selection { background: var(--accent-amber); color: var(--bg-base); }

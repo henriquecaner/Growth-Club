@@ -7,11 +7,17 @@
 
   try {
     const res = await fetch('/assets/data/slot-dinamico.json');
+    if (!res.ok) throw new Error(`Slot data HTTP ${res.status}`);
     const data = await res.json();
 
+    // Fuso horário explícito para evitar drift UTC vs local na comparação de datas.
+    // data_iso em YYYY-MM-DD é parseado como UTC pelo Date, mas "hoje" é local.
+    // Normalizamos ambos para meia-noite UTC do dia em questão.
     const hoje = new Date();
-    const meetupData = new Date(data.meetup.data_iso);
-    const diffDias = Math.ceil((meetupData - hoje) / (1000 * 60 * 60 * 24));
+    const hojeUtc = Date.UTC(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+    const [y, m, d] = String(data.meetup.data_iso).split('-').map(Number);
+    const meetupUtc = Date.UTC(y, (m || 1) - 1, d || 1);
+    const diffDias = Math.round((meetupUtc - hojeUtc) / (1000 * 60 * 60 * 24));
 
     if (data.mode === 'meetup' && diffDias >= 0 && diffDias <= 60) {
       slot.innerHTML = `
@@ -34,6 +40,5 @@
     }
   } catch (err) {
     slot.style.display = 'none';
-    console.warn('Slot dinâmico falhou:', err);
   }
 })();

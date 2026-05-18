@@ -1,7 +1,9 @@
 /* =========================================================================
    Growth Club — Chrome (header + footer)
    Canonical UI Kit nav + 4-column foot-top pattern.
-   Site is dark-global; chrome uses bg-overlay-dark + bg-void backgrounds.
+   Light-first site: nav carries data-theme="dark" locally (preto translucido
+   sticky por cima de qualquer fundo); footer usa bg-void (Pub Cream sunken
+   no light, Growth Black no dark).
    ========================================================================= */
 
 /* =========================================================================

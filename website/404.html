@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
 
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
@@ -21,17 +21,13 @@
 
   <main>
 
-    <section class="hero-sub">
+    <section class="hero-sub" style="text-align: center; padding: 64px 0 120px;">
       <div class="wrap">
-        <span class="kicker">404 · página não encontrada</span>
-        <h1 class="page-title">Esse link saiu do <em>clube.</em></h1>
-        <p class="page-lede">Ou nunca esteve aqui. URL inválida, página removida, link que envelheceu. Tudo bem — o resto da comunidade continua no ar.</p>
-      </div>
-    </section>
-
-    <section class="article">
-      <div class="wrap" style="max-width: 720px;">
-        <div class="hero-ctas" style="margin-top: 32px; justify-content: center;">
+        <span class="kicker" style="justify-content: center;">/ Erro 404 · Página não encontrada</span>
+        <div aria-hidden="true" style="font-family: var(--font-display); font-weight: 900; font-size: clamp(140px, 28vw, 320px); line-height: 0.88; letter-spacing: -0.06em; color: var(--accent-amber); margin: 24px 0 16px; font-feature-settings: 'tnum' 1;">404</div>
+        <h1 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(32px, 4.6vw, 56px); line-height: 1.1; letter-spacing: -0.035em; color: var(--fg-primary); max-width: 22ch; margin: 0 auto 20px;">Sem URL, <em style="color: var(--accent-amber); font-style: normal;">sem número.</em></h1>
+        <p class="page-lede" style="margin-inline: auto; max-width: 52ch;">Sem número, não é Growth Club. Link envelheceu, URL inválida ou esse caminho nunca existiu. Tudo bem — o resto da comunidade continua no ar.</p>
+        <div class="hero-ctas" style="margin-top: 40px; justify-content: center;">
           <a class="btn primary" href="/">Voltar pra home <i data-lucide="arrow-up-right"></i></a>
           <a class="btn ghost" href="/membro">Tornar-se membro</a>
         </div>
