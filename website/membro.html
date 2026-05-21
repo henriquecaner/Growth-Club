@@ -16,18 +16,18 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
   <gc-header current=""></gc-header>
 
-  <main>
+  <main id="main">
 
     <section class="hero-sub">
       <div class="wrap">
@@ -48,7 +48,7 @@
       <div class="wrap">
         <div class="split-two" style="margin-bottom: 64px;">
           <div>
-            <h3 style="color: var(--accent-teal); font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin-bottom: 16px;">Pra quem é</h3>
+            <h3 class="card-h3 is-teal">Pra quem é</h3>
             <ul>
               <li>Founder, CRO, growth/RevOps lead, vendedor consultivo sênior em B2B (SaaS, indústria, serviços recorrentes)</li>
               <li>Topa abrir número quando entrega case</li>
@@ -57,7 +57,7 @@
             </ul>
           </div>
           <div>
-            <h3 style="color: var(--accent-amber); font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin-bottom: 16px;">Pra quem não é</h3>
+            <h3 class="card-h3 is-amber">Pra quem não é</h3>
             <ul>
               <li>Procura curso de "growth hacker certificado"</li>
               <li>Quer postar fórmula mágica sem número</li>
@@ -68,78 +68,149 @@
           </div>
         </div>
 
-        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg-primary); margin-bottom: 32px; max-width: 22ch;">O que <em style="color: var(--accent-amber); font-style: normal;">você ganha</em> entrando hoje.</h2>
+        <h2 class="section-h2 is-large" style="margin-bottom: 32px; max-width: 22ch;">O que <em>você ganha</em> entrando hoje.</h2>
 
-        <ul class="stack" style="--space: 20px; list-style: none; padding: 0; margin-bottom: 64px;">
-          <li><strong style="color: var(--fg-primary);">Marketer que quer parar de campanha vaidosa e operar com pipeline</strong> — newsletter quinzenal com 1 case real (antes/depois), 1 benchmark coletado, 1 link comentado. Geração de demanda com número, não impressão. 2.261 leitores desde 2019.</li>
-          <li><strong style="color: var(--fg-primary);">Growth lead procurando pares na sua cadeira</strong> — WhatsApp Community com 715 ativos. Pergunta com número de contexto, resposta com case de quem viu o mesmo. Sem motivacional, sem "alguém recomenda...?".</li>
-          <li><strong style="color: var(--fg-primary);">Vendedor B2B virando RevOps moderno</strong> — máquina de vendas com previsibilidade, IA onde economiza tempo. Prioridade pra meetup presencial em SP (Meetup Growth SP · S1 · E1 · Barte, jun/2026, tema "RevOps com IA").</li>
-          <li><strong style="color: var(--fg-primary);">Founder trocando feedback de operação sem chapéu de palestrante</strong> — Q&amp;A mensal escrito sobre CAC, ICP, pricing, contratação. Você manda pergunta; resposta sai em edição especial da newsletter, sem cobrar.</li>
-          <li><strong style="color: var(--fg-primary);">Analyst e vibe-coder aplicando IA com método</strong> — deep editorial trimestral de 1 tema por edição (próximos: RevOps com IA, pricing B2B sênior, salário de growth lead 2026). Agentes e automação inteligente com mecânica concreta, não hype.</li>
+        <ul class="bare-list stack-md" style="margin-bottom: 64px;">
+          <li><strong>Marketer que quer parar de campanha vaidosa e operar com pipeline</strong> — newsletter quinzenal com 1 case real (antes/depois), 1 benchmark coletado, 1 link comentado. Geração de demanda com número, não impressão. 2.261 leitores desde 2019.</li>
+          <li><strong>Growth lead procurando pares na sua cadeira</strong> — WhatsApp Community com 715 ativos. Pergunta com número de contexto, resposta com case de quem viu o mesmo. Sem motivacional, sem "alguém recomenda...?".</li>
+          <li><strong>Vendedor B2B virando RevOps moderno</strong> — máquina de vendas com previsibilidade, IA onde economiza tempo. Prioridade pra meetup presencial em SP (Meetup Growth SP · S1 · E1 · Barte, jun/2026, tema "RevOps com IA").</li>
+          <li><strong>Founder trocando feedback de operação sem chapéu de palestrante</strong> — Q&amp;A mensal escrito sobre CAC, ICP, pricing, contratação. Você manda pergunta; resposta sai em edição especial da newsletter, sem cobrar.</li>
+          <li><strong>Analyst e vibe-coder aplicando IA com método</strong> — deep editorial trimestral de 1 tema por edição (próximos: RevOps com IA, pricing B2B sênior, salário de growth lead 2026). Agentes e automação inteligente com mecânica concreta, não hype.</li>
         </ul>
 
-        <div id="form" style="background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 40px 32px; margin-bottom: 64px;">
-          <span class="eye-label" style="display: block; margin-bottom: 16px;">/ CANDIDATURA — TIER GROWTH HACKER (FREE)</span>
-          <h3 style="font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--fg-primary); margin-bottom: 12px;">Conta um pouco sobre <em style="color: var(--accent-amber); font-style: normal;">você.</em></h3>
-          <p style="color: var(--fg-secondary); font-size: 15px; line-height: 1.55; margin-bottom: 24px;">Form curto, 5-7 perguntas (cerca de 3 minutos). Resposta da triagem em até 7 dias por email. Aprovado entra na newsletter quinzenal + convite pra WhatsApp Community. Sem spam, sem swap de lista.</p>
+        <div id="form" class="info-card is-large" style="margin-bottom: 64px; scroll-margin-top: 96px;">
+          <span class="eye-label is-block">/ CANDIDATURA — TIER GROWTH HACKER (FREE)</span>
+          <h3 class="card-h3" style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Conta um pouco sobre <em class="em-amber">você.</em></h3>
+          <p class="p-lead-sm" style="margin-bottom: 24px;">7 campos, ~3 minutos. Resposta da triagem em até 7 dias úteis por email. Aprovado entra na newsletter quinzenal + convite pra WhatsApp Community.</p>
 
-          <!--
-            FORM DE ENTREVISTA — placeholder
-            Sub-projeto separado: campos, perguntas, handler de submit e destino dos dados
-            (Tally / Google Sheets / backend custom) a serem definidos pelo Henrique.
-            Handler antigo `assets/js/newsletter-form.js` desativado.
-          -->
-          <div style="padding: 24px; border: 1px dashed var(--border-default); border-radius: 8px; text-align: center;">
-            <p style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-tertiary); margin-bottom: 8px;">FORM ABRE EM BREVE</p>
-            <p style="color: var(--fg-secondary); font-size: 14px; line-height: 1.55; margin: 0;">Estamos finalizando o form de entrevista. Avise-nos por email se quiser ser notificado: <a href="mailto:contato@growthclub.pro?subject=Avisar%20quando%20o%20form%20abrir">contato@growthclub.pro</a>.</p>
-          </div>
+          <form class="member-form" novalidate>
+            <fieldset>
+              <legend>Você</legend>
+              <label>
+                Nome completo <span class="req">*</span>
+                <input type="text" name="nome" required minlength="3" autocomplete="name" placeholder="Maria Souza">
+                <span class="field-hint">Como aparece na bio do LinkedIn.</span>
+              </label>
+              <label>
+                Email <span class="req">*</span>
+                <input type="email" name="email" required autocomplete="email" placeholder="voce@empresa.com">
+                <span class="field-hint">Pra onde mandamos a newsletter e a resposta da triagem.</span>
+              </label>
+              <label>
+                LinkedIn <span class="req">*</span>
+                <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/...">
+                <span class="field-hint">Contexto antes da resposta — não pedimos CV.</span>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Operação</legend>
+              <label>
+                Role atual <span class="req">*</span>
+                <select name="role" required>
+                  <option value="">Selecionar…</option>
+                  <option>Founder / CEO</option>
+                  <option>CRO / VP Sales</option>
+                  <option>Growth Lead / RevOps Lead</option>
+                  <option>Marketing Lead / CMO</option>
+                  <option>Vendedor consultivo senior</option>
+                  <option>Analyst / Data / RevOps</option>
+                  <option>Outro</option>
+                </select>
+              </label>
+              <label>
+                Empresa <span class="req">*</span>
+                <input type="text" name="empresa" required minlength="2" autocomplete="organization" placeholder="Onde tu opera hoje">
+              </label>
+              <label>
+                Setor
+                <select name="setor">
+                  <option value="">Selecionar…</option>
+                  <option>SaaS B2B</option>
+                  <option>Indústria</option>
+                  <option>Serviços recorrentes (B2B)</option>
+                  <option>Marketplace / e-com</option>
+                  <option>Fintech</option>
+                  <option>Outro</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Contexto</legend>
+              <label>
+                Qual problema te trouxe aqui? <span class="req">*</span>
+                <textarea name="problema" required minlength="20" rows="4" placeholder="Ex: CAC subiu 40% no Q1 sem hipótese clara, ou estamos lançando produto novo e quero benchmark de pricing..."></textarea>
+                <span class="field-hint">Mínimo 20 caracteres. Quanto mais contexto, melhor a triagem.</span>
+              </label>
+            </fieldset>
+
+            <label class="field-checkbox">
+              <input type="checkbox" name="lgpd" required>
+              <span>Autorizo o uso desses dados pra triagem editorial e contato por email. Posso revogar a qualquer momento via <a href="/lgpd">/lgpd</a>. <span class="req">*</span></span>
+            </label>
+
+            <div class="actions">
+              <button type="submit" class="btn primary">Enviar candidatura <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></button>
+              <a href="https://tally.so/r/BzLJO4" class="tally-link" target="_blank" rel="noopener">ou preenche no Tally →</a>
+            </div>
+          </form>
         </div>
 
-        <div style="background: linear-gradient(135deg, var(--bg-raised) 0%, var(--bg-void) 100%); border: 1px solid var(--border-default); border-radius: 16px; padding: 56px 40px; margin-bottom: 64px; position: relative; overflow: hidden;">
-          <div aria-hidden="true" style="position: absolute; top: 0; right: 0; width: 280px; height: 280px; background: radial-gradient(circle, var(--accent-amber-glow) 0%, transparent 60%); opacity: 0.7; pointer-events: none;"></div>
-          <div style="position: absolute; top: 28px; right: 28px; z-index: 1;">
-            <span style="background: var(--accent-amber); color: var(--fg-inverse); padding: 6px 14px; border-radius: 999px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;">Em breve · 2027</span>
-          </div>
-          <span class="eye-label" style="display: block; margin-bottom: 20px; position: relative; z-index: 1;">/ Tier pago · Growth Hacker Master</span>
-          <h3 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 4.6vw, 56px); line-height: 1; letter-spacing: -0.04em; color: var(--fg-primary); margin-bottom: 32px; max-width: 18ch; position: relative; z-index: 1;">Master abre quando tiver <em style="color: var(--accent-amber); font-style: normal;">100 pagantes na fila.</em></h3>
-
-          <div style="display: flex; gap: 40px; align-items: baseline; margin-bottom: 32px; flex-wrap: wrap; position: relative; z-index: 1;">
-            <div>
-              <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--accent-teal); text-transform: uppercase; margin-bottom: 8px;">Early · primeiros 100-200</div>
-              <div style="font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.04em; color: var(--accent-amber);">R$ 690<span style="font-size: 18px; color: var(--fg-tertiary); letter-spacing: 0; font-weight: 400;"> /ano</span></div>
+        <dialog id="member-confirm" class="gc-dialog" aria-labelledby="member-confirm-title">
+          <form method="dialog">
+            <h2 id="member-confirm-title">Recebido<em>.</em></h2>
+            <p>Triagem em até 7 dias úteis por email. Aprovado entra na newsletter quinzenal + convite pra WhatsApp Community. Não aprovado recebe email educado com motivo.</p>
+            <p>Enquanto isso: dá uma olhada no <a href="https://growthclub.substack.com" target="_blank" rel="noopener">arquivo da newsletter</a> ou na <a href="/meetups/sp-s1e1-barte">próxima edição do meetup SP</a>.</p>
+            <div class="dialog-actions">
+              <button type="submit" class="btn primary" value="close">Fechar</button>
             </div>
-            <div>
-              <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--fg-tertiary); text-transform: uppercase; margin-bottom: 8px;">Regular · depois</div>
-              <div style="font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1; letter-spacing: -0.04em; color: var(--fg-secondary);">R$ 990<span style="font-size: 15px; color: var(--fg-tertiary); letter-spacing: 0; font-weight: 400;"> /ano</span></div>
+          </form>
+        </dialog>
+
+        <div class="tier-card">
+          <div aria-hidden="true" class="bg-orb is-top-right is-large" style="--orb-opacity: 0.7;"></div>
+          <span class="badge-soon">Em breve · 2027</span>
+          <span class="eye-label is-block">/ Tier pago · Growth Hacker Master</span>
+          <h3 class="tier-headline">Master abre quando tiver <em>100 pagantes na fila.</em></h3>
+
+          <div class="price-row">
+            <div class="price-block">
+              <span class="label">Early · primeiros 100-200</span>
+              <span class="value">R$ 690<span class="unit"> /ano</span></span>
+            </div>
+            <div class="price-block is-muted">
+              <span class="label">Regular · depois</span>
+              <span class="value">R$ 990<span class="unit"> /ano</span></span>
             </div>
           </div>
 
-          <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.7; max-width: 58ch; margin-bottom: 28px; position: relative; z-index: 1;">Mentoria quinzenal com Henrique, benchmarks privados de pricing, conversão por canal e salário senior+, deep editorial mensal. R$ 990/ano cabe no orçamento de quem já paga R$ 200-500/mês em ferramenta SaaS — com a diferença de ter pares na mesa, não dashboard. Sem pre-sale, sem promessa de data. Avisamos quando abrir.</p>
+          <p class="p-lead-md" style="max-width: 58ch; margin-bottom: 28px;">Mentoria quinzenal com Henrique, benchmarks privados de pricing, conversão por canal e salário senior+, deep editorial mensal. R$ 990/ano cabe no orçamento de quem já paga R$ 200-500/mês em ferramenta SaaS — com a diferença de ter pares na mesa, não dashboard. Sem pre-sale, sem promessa de data. Avisamos quando abrir.</p>
 
-          <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--fg-tertiary); text-transform: uppercase; padding-top: 24px; border-top: 1px solid var(--border-subtle); max-width: 62ch; position: relative; z-index: 1;">
+          <div class="footnote">
             Gatilho de abertura · marca v1 publicada + site no ar com captação ativa + ≥100 inscritos na fila
           </div>
         </div>
 
-        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg-primary); margin-bottom: 32px;">Perguntas <em style="color: var(--accent-amber); font-style: normal;">frequentes.</em></h2>
+        <h2 class="section-h2 is-large" style="margin-bottom: 32px;">Perguntas <em>frequentes.</em></h2>
 
-        <div class="stack" style="--space: 28px; margin-bottom: 64px;">
-          <div>
-            <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--fg-primary); margin-bottom: 8px;">Como funciona a triagem?</h3>
-            <p style="color: var(--fg-secondary); font-size: 15px; line-height: 1.6;">Form curto com 5-7 perguntas pra a gente entender seu contexto — cargo, empresa, problema atual. Sem prova de currículo, sem pedir CV. Critério é qualitativo: dá pra sustentar conversa de operador? Resposta em até 7 dias por email. Aprovado entra na newsletter + recebe convite pra WhatsApp. Não aprovado recebe email educado com motivo.</p>
-          </div>
-          <div>
-            <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--fg-primary); margin-bottom: 8px;">Como entro no WhatsApp?</h3>
-            <p style="color: var(--fg-secondary); font-size: 15px; line-height: 1.6;">Após a triagem ser aprovada, convite por email em até 7 dias. Entrada manual pra manter o sinal da Community.</p>
-          </div>
-          <div>
-            <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--fg-primary); margin-bottom: 8px;">Vão me prospectar?</h3>
-            <p style="color: var(--fg-secondary); font-size: 15px; line-height: 1.6;">Não. A lista nunca foi vendida nem trocada por swap em 11 anos. Política de não-contaminação editorial completa em <a href="/empresas">/empresas</a>.</p>
-          </div>
-          <div>
-            <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--fg-primary); margin-bottom: 8px;">Quando abre o Master?</h3>
-            <p style="color: var(--fg-secondary); font-size: 15px; line-height: 1.6;">Em 2027, sem data. Gatilho: marca v1 publicada + site no ar com captação ativa + ≥100 Growth Hacker Master pagantes na fila. Avisamos por email quando bater.</p>
-          </div>
+        <div class="faq-list" style="margin-bottom: 64px;">
+          <details name="faq-membro">
+            <summary>Como funciona a triagem?</summary>
+            <p>Form curto com 5-7 perguntas pra a gente entender seu contexto — cargo, empresa, problema atual. Sem prova de currículo, sem pedir CV. Critério é qualitativo: dá pra sustentar conversa de operador? Resposta em até 7 dias por email. Aprovado entra na newsletter + recebe convite pra WhatsApp. Não aprovado recebe email educado com motivo.</p>
+          </details>
+          <details name="faq-membro">
+            <summary>Como entro no WhatsApp?</summary>
+            <p>Após a triagem ser aprovada, convite por email em até 7 dias. Entrada manual pra manter o sinal da Community.</p>
+          </details>
+          <details name="faq-membro">
+            <summary>Vão me prospectar?</summary>
+            <p>Não. A lista nunca foi vendida nem trocada por swap em 11 anos. Política de não-contaminação editorial completa em <a href="/empresas">/empresas</a>.</p>
+          </details>
+          <details name="faq-membro">
+            <summary>Quando abre o Master?</summary>
+            <p>Em 2027, sem data. Gatilho: marca v1 publicada + site no ar com captação ativa + ≥100 Growth Hacker Master pagantes na fila. Avisamos por email quando bater.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -148,7 +219,7 @@
       <div class="wrap">
         <h2>Aplicar pra <em>entrar.</em></h2>
         <p>Cadastro grátis com triagem leve. Form curto, 5-7 perguntas. Resposta em até 7 dias. WhatsApp Community por convite após aprovação.</p>
-        <a class="btn primary" href="#form">Enviar candidatura <i data-lucide="arrow-up-right"></i></a>
+        <a class="btn primary" href="#form">Enviar candidatura <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
       </div>
     </section>
 
@@ -158,11 +229,32 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
-  <!-- <script src="/assets/js/newsletter-form.js"></script> — desativado em 2026-05-18, form Substack removido (spec v1.1). Reativa quando sub-projeto do form de entrevista decidir reutilizar handler. -->
   <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
+    // Member application form — native validation + <dialog> confirmation.
+    // Backend TBD. Until decided, persist locally and stage to mailto fallback.
+    (() => {
+      const form = document.querySelector('.member-form');
+      const dialog = document.getElementById('member-confirm');
+      if (!form || !dialog) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const data = Object.fromEntries(new FormData(form));
+        // Stage: log + dialog. Replace with fetch(...) when backend lands.
+        console.info('[membro] candidatura recebida', data);
+        try {
+          const inbox = JSON.parse(localStorage.getItem('gc-membro-inbox') || '[]');
+          inbox.push({ ...data, at: new Date().toISOString() });
+          localStorage.setItem('gc-membro-inbox', JSON.stringify(inbox));
+        } catch {}
+        dialog.showModal();
+        form.reset();
+      });
+    })();
   </script>
 </body>
 </html>

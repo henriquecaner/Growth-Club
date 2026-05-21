@@ -16,18 +16,18 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
   <gc-header current="recursos"></gc-header>
 
-  <main>
+  <main id="main">
 
     <section class="hero-sub">
       <div class="wrap">
@@ -46,30 +46,30 @@
 
     <section class="section">
       <div class="wrap">
-        <span class="eye-label" style="display: block; margin-bottom: 16px;">/ DESTAQUE</span>
-        <div style="background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 48px 40px; margin-bottom: 64px; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: radial-gradient(circle, var(--accent-amber-glow) 0%, transparent 60%); pointer-events: none;"></div>
+        <span class="eye-label is-block">/ DESTAQUE</span>
+        <div class="info-card is-large" style="padding: 48px 40px; margin-bottom: 64px; overflow: hidden; position: relative;">
+          <div aria-hidden="true" class="bg-orb is-med" style="top: -80px; right: -80px; --orb-opacity: 1;"></div>
           <span class="kicker" style="margin-top: 0;">Workshop · IA aplicada na prática</span>
-          <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg-primary); margin-bottom: 16px;">AI LIKE A <em style="color: var(--accent-amber); font-style: normal;">PRO.</em></h2>
-          <p style="color: var(--fg-secondary); font-size: 17px; line-height: 1.6; margin-bottom: 16px; max-width: 60ch;">Workshop ao vivo (~3 horas) ensinando você a parar de queimar crédito em ferramenta que quebra em projeto real. Setup com <strong>Google Antigravity + Claude</strong> — duas ferramentas, sem upsell mensal escondido. Aplicação direta no fim da aula: você sai com seu próprio projeto rodando.</p>
-          <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 12px; max-width: 60ch;"><strong>Pra quem é:</strong> CEOs, C-levels, growth pros, marketers e não-devs que querem construir com IA sem virar refém de plataforma que cobra por token.</p>
-          <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 12px; max-width: 60ch;"><strong>Pra quem não é:</strong> dev sênior já fluente em IDE; quem quer curso teórico de 40 horas; quem prefere fórmula mágica sem operação.</p>
-          <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 12px; max-width: 60ch;"><strong>Investimento:</strong> R$ 397 · acesso vitalício à gravação + comunidade exclusiva de alunos.</p>
-          <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 24px; max-width: 60ch;"><strong>Validado em produção:</strong> Turma 1 esgotou, Turma 2 em andamento, R$ 3 mil já vendidos sem boost pago.</p>
+          <h2 class="section-h2 is-large" style="margin-bottom: 16px; position: relative; z-index: 1;">AI LIKE A <em>PRO.</em></h2>
+          <p class="p-lead-lg" style="max-width: 60ch; position: relative; z-index: 1;">Workshop ao vivo (~3 horas) ensinando você a parar de queimar crédito em ferramenta que quebra em projeto real. Setup com <strong>Google Antigravity + Claude</strong> — duas ferramentas, sem upsell mensal escondido. Aplicação direta no fim da aula: você sai com seu próprio projeto rodando.</p>
+          <p class="p-lead-md" style="max-width: 60ch; margin-top: 12px;"><strong>Pra quem é:</strong> CEOs, C-levels, growth pros, marketers e não-devs que querem construir com IA sem virar refém de plataforma que cobra por token.</p>
+          <p class="p-lead-md" style="max-width: 60ch; margin-top: 12px;"><strong>Pra quem não é:</strong> dev sênior já fluente em IDE; quem quer curso teórico de 40 horas; quem prefere fórmula mágica sem operação.</p>
+          <p class="p-lead-md" style="max-width: 60ch; margin-top: 12px;"><strong>Investimento:</strong> R$ 397 · acesso vitalício à gravação + comunidade exclusiva de alunos.</p>
+          <p class="p-lead-md" style="max-width: 60ch; margin-top: 12px; margin-bottom: 24px;"><strong>Validado em produção:</strong> Turma 1 esgotou, Turma 2 em andamento, R$ 3 mil já vendidos sem boost pago.</p>
           <div class="hero-ctas">
-            <a class="btn primary" href="/ai-like-a-pro/">Ver detalhes da próxima turma <i data-lucide="arrow-up-right"></i></a>
+            <a class="btn primary" href="/ai-like-a-pro/">Ver detalhes da próxima turma <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
             <a class="btn ghost" href="mailto:workshops@growthclub.pro">Falar com o time</a>
           </div>
         </div>
 
-        <span class="eye-label" style="display: block; margin-bottom: 16px;">/ PRÓXIMAS TURMAS</span>
-        <div style="background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 32px; margin-bottom: 64px;">
-          <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6;">Próximas turmas em formação. A lista de espera tem prioridade de inscrição. Entra pela página do workshop em <a href="/ai-like-a-pro/">AI LIKE A PRO</a> ou pela newsletter.</p>
+        <span class="eye-label is-block">/ PRÓXIMAS TURMAS</span>
+        <div class="info-card" style="margin-bottom: 64px;">
+          <p class="p-lead-md">Próximas turmas em formação. A lista de espera tem prioridade de inscrição. Entra pela página do workshop em <a href="/ai-like-a-pro/">AI LIKE A PRO</a> ou pela newsletter.</p>
         </div>
 
-        <span class="eye-label" style="display: block; margin-bottom: 16px;">/ HISTÓRICO</span>
-        <h2 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 16px;">Turmas <em style="color: var(--accent-amber); font-style: normal;">já realizadas.</em></h2>
-        <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 24px; max-width: 60ch;">AI LIKE A PRO já completou duas turmas com vagas esgotadas. Compilação detalhada do histórico (datas, alunos formados, cases aplicados) sai na próxima atualização desta página.</p>
+        <span class="eye-label is-block">/ HISTÓRICO</span>
+        <h2 class="section-h2" style="margin-bottom: 16px;">Turmas <em>já realizadas.</em></h2>
+        <p class="p-lead-md" style="max-width: 60ch; margin-bottom: 24px;">AI LIKE A PRO já completou duas turmas com vagas esgotadas. Compilação detalhada do histórico (datas, alunos formados, cases aplicados) sai na próxima atualização desta página.</p>
       </div>
     </section>
 
@@ -77,7 +77,7 @@
       <div class="wrap">
         <h2>Workshop personalizado <em>pra teu time.</em></h2>
         <p>Pra time interno (growth, RevOps, AI), montamos turma fechada com aplicação no contexto da empresa. Conversa direta no email.</p>
-        <a class="btn primary" href="mailto:workshops@growthclub.pro">workshops@growthclub.pro <i data-lucide="arrow-up-right"></i></a>
+        <a class="btn primary" href="mailto:workshops@growthclub.pro">workshops@growthclub.pro <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
       </div>
     </section>
 
@@ -87,10 +87,5 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
-  <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

@@ -16,18 +16,18 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
   <gc-header current="recursos"></gc-header>
 
-  <main>
+  <main id="main">
 
     <section class="hero-sub">
       <div class="wrap">
@@ -46,15 +46,15 @@
     </section>
 
     <section class="section">
-      <div class="wrap" style="max-width: 880px;">
+      <div class="wrap is-narrow">
 
-        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 24px;">O que <em style="color: var(--accent-amber); font-style: normal;">você encontra lá.</em></h2>
+        <h2 class="section-h2" style="margin-bottom: 24px;">O que <em>você encontra lá.</em></h2>
 
-        <ul class="stack" style="--space: 20px; list-style: none; padding: 0; margin-bottom: 48px;">
-          <li><strong style="color: var(--fg-primary);">Operador falando com operador</strong> — sem coach, sem mentor de palco, sem vendedor de ferramenta disfarçado.</li>
-          <li><strong style="color: var(--fg-primary);">Pergunta com contexto, resposta com case</strong> — "CAC subiu 40% no Q1, hipóteses?" puxa case real de quem passou pelo mesmo movimento.</li>
-          <li><strong style="color: var(--fg-primary);">Subgrupos por interesse</strong> — RevOps, founders, AI, B2B SaaS, indústria. Você entra no que faz sentido pro teu contexto.</li>
-          <li><strong style="color: var(--fg-primary);">Confidencialidade ativa</strong> — número compartilhado no grupo não vira post no LinkedIn no dia seguinte. Política explícita no <a href="/codigo-de-conduta">Código de Conduta</a>.</li>
+        <ul class="bare-list stack-md" style="margin-bottom: 48px;">
+          <li><strong>Operador falando com operador</strong> — sem coach, sem mentor de palco, sem vendedor de ferramenta disfarçado.</li>
+          <li><strong>Pergunta com contexto, resposta com case</strong> — "CAC subiu 40% no Q1, hipóteses?" puxa case real de quem passou pelo mesmo movimento.</li>
+          <li><strong>Subgrupos por interesse</strong> — RevOps, founders, AI, B2B SaaS, indústria. Você entra no que faz sentido pro teu contexto.</li>
+          <li><strong>Confidencialidade ativa</strong> — número compartilhado no grupo não vira post no LinkedIn no dia seguinte. Política explícita no <a href="/codigo-de-conduta">Código de Conduta</a>.</li>
         </ul>
 
         <div class="pull" style="margin: 56px 0;">
@@ -62,17 +62,16 @@
           <p>Pergunta com contexto. <em>Resposta com case.</em> Sem motivacional.</p>
         </div>
 
-        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 16px;">Pedir <em style="color: var(--accent-amber); font-style: normal;">convite.</em></h2>
-        <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 32px; max-width: 60ch;">Preenche o formulário pra entrar na fila. Triagem leve pra manter régua: a gente confirma que você opera B2B e topa o jogo editorial. Resposta em até 7 dias úteis.</p>
+        <h2 class="section-h2" style="margin-bottom: 16px;">Pedir <em>convite.</em></h2>
+        <p class="p-lead-md" style="max-width: 60ch; margin-bottom: 32px;">Preenche o formulário pra entrar na fila. Triagem leve pra manter régua: a gente confirma que você opera B2B e topa o jogo editorial. Resposta em até 7 dias úteis.</p>
 
         <iframe
+          class="embedded-form"
           src="https://tally.so/embed/BzLJO4?alignLeft=1&hideTitle=1&transparentBackground=1"
-          width="100%"
           height="640"
           frameborder="0"
           title="Pedir convite Community"
-          loading="lazy"
-          style="border-radius: 8px; background: var(--bg-raised); border: 1px solid var(--border-subtle);"></iframe>
+          loading="lazy"></iframe>
       </div>
     </section>
 
@@ -80,7 +79,7 @@
       <div class="wrap">
         <h2>Newsletter primeiro, <em>Community depois.</em></h2>
         <p>Maior parte dos convites Community vai pra quem já está na newsletter. Começa por lá se quer entrar mais rápido.</p>
-        <a class="btn primary" href="/membro">Tornar-se membro <i data-lucide="arrow-up-right"></i></a>
+        <a class="btn primary" href="/membro">Tornar-se membro <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
       </div>
     </section>
 
@@ -90,10 +89,5 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
-  <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

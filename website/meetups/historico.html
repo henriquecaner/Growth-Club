@@ -16,18 +16,18 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
   <gc-header current="meetups"></gc-header>
 
-  <main>
+  <main id="main">
 
     <section class="hero-sub">
       <div class="wrap">
@@ -55,7 +55,7 @@
       <div class="wrap">
         <h2>Próximo é <em>S1E1 @ Barte.</em></h2>
         <p>Junho de 2026 em SP. Revenue Operations com IA. Inscrição aberta em breve pra quem está na newsletter.</p>
-        <a class="btn primary" href="/meetups/sp-s1e1-barte">Ver detalhes <i data-lucide="arrow-up-right"></i></a>
+        <a class="btn primary" href="/meetups/sp-s1e1-barte">Ver detalhes <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
       </div>
     </section>
 
@@ -65,10 +65,5 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
-  <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

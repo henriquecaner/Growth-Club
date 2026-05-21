@@ -17,18 +17,18 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
   <gc-header current=""></gc-header>
 
-  <main>
+  <main id="main">
 
     <section class="hero-sub">
       <div class="wrap">
@@ -122,10 +122,5 @@
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script src="/assets/js/scrollspy.js"></script>
-  <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

@@ -381,8 +381,8 @@ h4, .t-h4 { font-family: var(--font-display); font-weight: var(--fw-bold); font-
 h5, .t-h5 { font-family: var(--font-display); font-weight: var(--fw-medium); font-variation-settings:'wght' 500; font-size: var(--fs-h5); line-height: var(--lh-normal); letter-spacing: var(--ls-snug);   color: var(--fg-primary); }
 h6, .t-h6 { font-family: var(--font-display); font-weight: var(--fw-medium); font-variation-settings:'wght' 500; font-size: var(--fs-h6); line-height: var(--lh-normal); letter-spacing: var(--ls-normal);  color: var(--fg-primary); }
 
-p, .t-body { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body);    line-height: var(--lh-relaxed); color: var(--fg-secondary); }
-.t-body-lg { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body-lg); line-height: var(--lh-relaxed); color: var(--fg-secondary); }
+p, .t-body { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body);    line-height: var(--lh-relaxed); color: var(--fg-secondary); text-wrap: pretty; }
+.t-body-lg { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body-lg); line-height: var(--lh-relaxed); color: var(--fg-secondary); text-wrap: pretty; }
 .t-body-sm { font-family: var(--font-body); font-weight: var(--fw-regular); font-variation-settings:'wght' 400; font-size: var(--fs-body-sm); line-height: var(--lh-normal);  color: var(--fg-secondary); }
 
 .t-lead { font-family: var(--font-body); font-weight: var(--fw-medium); font-variation-settings:'wght' 500; font-size: var(--fs-body-lg); line-height: 1.5; color: var(--fg-secondary); letter-spacing: var(--ls-snug); }
@@ -393,8 +393,6 @@ p, .t-body { font-family: var(--font-body); font-weight: var(--fw-regular); font
 .t-mono    { font-family: var(--font-mono); font-weight: var(--fw-regular); font-size: var(--fs-body-sm); color: var(--fg-secondary); }
 
 .t-num     { font-feature-settings: 'kern' 1, 'tnum' 1, 'cv01' 1; font-variant-numeric: tabular-nums slashed-zero; }
-
-.t-emph, em.t-emph { font-style: italic; }
 
 .t-accent        { color: var(--accent-teal); }
 .t-accent-amber  { color: var(--accent-amber); }
@@ -412,3 +410,18 @@ html, body {
 }
 ::selection { background: var(--accent-amber-glow); color: var(--fg-primary); }
 [data-theme="dark"] ::selection { background: var(--accent-amber); color: var(--bg-base); }
+
+/* =========================================================================
+   CROSS-DOCUMENT VIEW TRANSITIONS — auto cross-fade between pages.
+   Progressive enhancement: degrades to no animation in Firefox/older.
+   Honors prefers-reduced-motion.
+   ========================================================================= */
+@view-transition { navigation: auto; }
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 240ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}

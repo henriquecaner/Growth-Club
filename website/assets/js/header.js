@@ -1,6 +1,6 @@
 // <gc-header current="home"> — canonical UI Kit nav
-// Renderiza nav sticky com logo, 6 links (home/sobre/recursos/meetups/empresas/contato)
-// e CTA "Tornar-se membro" amber. Atributo `current` marca o link ativo.
+// Renderiza nav sticky com logo, 6 links e CTA "Tornar-se membro".
+// Ícones consumidos do sprite estático em /assets/icons.svg (sem CDN runtime).
 class GcHeader extends HTMLElement {
   connectedCallback() {
     const current = this.getAttribute('current') || '';
@@ -11,6 +11,7 @@ class GcHeader extends HTMLElement {
     };
 
     this.innerHTML = `
+      <a class="skip-link" href="#main">Pular para o conteúdo</a>
       <nav class="nav" aria-label="Principal" data-theme="dark">
         <div class="wrap nav-inner">
           <a class="nav-logo" href="/" aria-label="Growth Club — Home">
@@ -33,13 +34,12 @@ class GcHeader extends HTMLElement {
           </div>
           <a class="nav-cta" href="/membro">
             Tornar-se membro
-            <i data-lucide="arrow-up-right"></i>
+            <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg>
           </a>
         </div>
       </nav>
     `;
 
-    // Mobile toggle
     const toggle = this.querySelector('.nav-mobile-toggle');
     const navEl = this.querySelector('.nav');
     toggle?.addEventListener('click', () => {
@@ -48,61 +48,7 @@ class GcHeader extends HTMLElement {
       toggle.setAttribute('aria-expanded', String(!open));
       toggle.setAttribute('aria-label', open ? 'Abrir menu' : 'Fechar menu');
     });
-
-    // Hydrate Lucide icons. If the CDN isn't loaded (sub-pages without
-    // the inline <script> in <head>), inject it now so the CTA icon
-    // renders on every page that uses <gc-header>.
-    ensureLucide(() => window.lucide && window.lucide.createIcons());
   }
 }
-
-// Idempotent Lucide loader — safe to call from header + footer + page.
-function ensureLucide(onReady) {
-  if (window.lucide && typeof window.lucide.createIcons === 'function') {
-    onReady();
-    return;
-  }
-  const existing = document.querySelector('script[data-lucide-cdn]');
-  if (existing) {
-    existing.addEventListener('load', onReady, { once: true });
-    return;
-  }
-  const s = document.createElement('script');
-  s.src = 'https://unpkg.com/lucide@latest/dist/umd/lucide.js';
-  s.dataset.lucideCdn = '1';
-  s.async = true;
-  s.addEventListener('load', onReady, { once: true });
-  document.head.appendChild(s);
-}
-
-// Expose for other components / inline scripts
-window.gcEnsureLucide = ensureLucide;
 
 customElements.define('gc-header', GcHeader);
-
-// Global icon hydration — guarantees all [data-lucide] in the page get rendered
-// even if the inline final <script> ran before the CDN finished loading.
-function hydrateAllLucideIcons() {
-  ensureLucide(() => {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  });
-}
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', hydrateAllLucideIcons);
-} else {
-  hydrateAllLucideIcons();
-}
-// Re-run once more after a microtask delay to catch Web Components that
-// hydrated late and inserted their own [data-lucide] elements.
-setTimeout(hydrateAllLucideIcons, 0);
-
-// Auto-load scroll-reveal globally (once per page)
-if (!document.querySelector('script[data-gc-scroll-reveal]')) {
-  const s = document.createElement('script');
-  s.src = '/assets/js/scroll-reveal.js';
-  s.async = true;
-  s.dataset.gcScrollReveal = '1';
-  document.head.appendChild(s);
-}

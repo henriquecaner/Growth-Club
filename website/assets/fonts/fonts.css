@@ -1,26 +1,16 @@
 /* ============================================================
-   LEVEL Design System — Fonts
-   ============================================================
-   Satoshi self-hosted (uploaded OTF brand fonts).
-   Roboto self-hosted.
-*/
+   Growth Club — Fonts (pruned 2026-05-20)
 
-/* Satoshi — primary typeface (display + body) */
-@font-face {
-  font-family: 'Satoshi';
-  src: url('Satoshi-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
+   Self-hosted faces actually referenced in CSS:
+     Satoshi Regular (400), Medium (500), Bold (700), Black (900)
+     Roboto  Regular (400), Medium (500)
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('Satoshi-LightItalic.otf') format('opentype');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
+   Italics removed — only .t-emph used font-style: italic and is
+   not referenced in any HTML. If italic reappears in copy, add
+   the matching face back here and copy the file out of _legacy/.
+
+   font-display: swap — paint with fallback while OTF/TTF loads.
+   ============================================================ */
 
 @font-face {
   font-family: 'Satoshi';
@@ -29,15 +19,6 @@
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'Satoshi';
-  src: url('Satoshi-Italic.otf') format('opentype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
 @font-face {
   font-family: 'Satoshi';
   src: url('Satoshi-Medium.otf') format('opentype');
@@ -45,15 +26,6 @@
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'Satoshi';
-  src: url('Satoshi-MediumItalic.otf') format('opentype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
 @font-face {
   font-family: 'Satoshi';
   src: url('Satoshi-Bold.otf') format('opentype');
@@ -61,45 +33,11 @@
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'Satoshi';
-  src: url('Satoshi-BoldItalic.otf') format('opentype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
 @font-face {
   font-family: 'Satoshi';
   src: url('Satoshi-Black.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Satoshi';
-  src: url('Satoshi-BlackItalic.otf') format('opentype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Roboto — mono/data */
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -110,59 +48,10 @@
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
 @font-face {
   font-family: 'Roboto';
   src: url('Roboto-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('Roboto-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
   font-display: swap;
 }

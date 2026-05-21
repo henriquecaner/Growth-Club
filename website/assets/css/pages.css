@@ -1,6 +1,12 @@
-/* Page-specific styles (AD-008) */
+/* =========================================================================
+   Page-specific styles
+   - Home: #slot-dinamico
+   - /sobre + /empresas: .anchor-nav (sticky TOC)
+   - Meetup LP: countdown widget, agenda 5-col grid, sponsor cluster, price cards
+   - Membro / ai-like-a-pro: tier-card variants
+   ========================================================================= */
 
-/* Home — slot dinâmico */
+/* ---- Home — slot dinâmico ---- */
 #slot-dinamico {
   text-align: center;
 
@@ -9,7 +15,7 @@
   & .btn { margin-top: var(--space-5); }
 }
 
-/* /sobre + /empresas anchor nav */
+/* ---- /sobre + /empresas — anchor-nav (sticky TOC) ---- */
 .anchor-nav {
   display: flex;
   flex-wrap: wrap;
@@ -37,4 +43,584 @@
       background: var(--bg-raised);
     }
   }
+}
+
+/* =========================================================================
+   MEETUP LP — countdown widget (`<div class="countdown">`)
+   ========================================================================= */
+.countdown {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 540px;
+  padding: 28px 32px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.countdown > .count { position: relative; z-index: 1; }
+.countdown .count-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--fg-primary);
+  font-feature-settings: 'tnum' 1;
+}
+.countdown .count-num.is-primary { color: var(--accent-amber); }
+.countdown .count-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--fg-tertiary);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ---- MEETUP LP — agenda grid (5 slots) ---- */
+.tl-grid.is-five { grid-template-columns: repeat(5, 1fr); }
+.tl-grid .tl-cell.is-compact { min-height: auto; }
+@media (max-width: 900px) {
+  .tl-grid.is-five { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .tl-grid.is-five { grid-template-columns: 1fr; }
+}
+
+/* ---- MEETUP LP — sponsor mark ---- */
+.sponsor-mark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--fg-primary);
+}
+
+/* ---- MEETUP LP / membro — price teaser inside .card ---- */
+.card.is-price h3 {
+  font-size: 28px;
+  margin-top: 6px;
+}
+
+/* =========================================================================
+   MEMBRO — tier card (large pricing teaser for Master tier)
+   ========================================================================= */
+.tier-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border-default);
+  background: linear-gradient(135deg, var(--bg-raised) 0%, var(--bg-void) 100%);
+  padding: 56px 40px;
+  margin-bottom: 64px;
+}
+.tier-card > * { position: relative; z-index: 1; }
+.tier-card .tier-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(36px, 4.6vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--fg-primary);
+  margin-bottom: 32px;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.tier-card .tier-headline em { font-style: normal; color: var(--accent-amber); }
+
+/* =========================================================================
+   MEMBRO · FORM — accessible application form with :user-valid feedback
+   and native <dialog> confirmation. No JS framework, no backend dependency.
+   ========================================================================= */
+.member-form {
+  display: grid;
+  gap: 24px;
+}
+.member-form fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.member-form legend {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 4px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.member-form legend::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--accent-teal);
+}
+.member-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+}
+.member-form label .req {
+  color: var(--accent-amber);
+  font-weight: 400;
+}
+.member-form input,
+.member-form select,
+.member-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  color: var(--fg-primary);
+  font-size: 16px;
+  font-family: var(--font-body);
+  transition: border-color 160ms var(--ease-out),
+              box-shadow 160ms var(--ease-out);
+}
+.member-form select { cursor: pointer; }
+.member-form textarea {
+  resize: vertical;
+  min-height: 6rem;
+  line-height: 1.5;
+}
+.member-form input:focus,
+.member-form select:focus,
+.member-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 0 3px var(--accent-amber-soft);
+}
+.member-form input:user-valid,
+.member-form select:user-valid,
+.member-form textarea:user-valid {
+  border-color: var(--accent-teal);
+}
+.member-form input:user-invalid,
+.member-form select:user-invalid,
+.member-form textarea:user-invalid {
+  border-color: var(--color-danger);
+  background: color-mix(in oklab, var(--color-danger) 4%, var(--bg-sunken));
+}
+.member-form .field-hint {
+  font-size: 12px;
+  color: var(--fg-tertiary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+.member-form :user-invalid ~ .field-hint { color: var(--color-danger); }
+.member-form .field-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--fg-secondary);
+  line-height: 1.45;
+}
+.member-form .field-checkbox input {
+  width: auto;
+  margin-top: 3px;
+  accent-color: var(--accent-amber);
+}
+.member-form .actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.member-form .tally-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  text-decoration: none;
+}
+.member-form .tally-link:hover { color: var(--accent-amber); }
+
+/* Generic <dialog> styling — applies anywhere we use .gc-dialog */
+dialog.gc-dialog {
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  background: var(--bg-raised);
+  color: var(--fg-primary);
+  padding: 0;
+  max-width: min(480px, calc(100vw - 32px));
+  box-shadow: var(--shadow-overlay);
+}
+dialog.gc-dialog::backdrop {
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+dialog.gc-dialog form {
+  padding: 40px 32px;
+  margin: 0;
+}
+dialog.gc-dialog h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+dialog.gc-dialog h2 em {
+  font-style: normal;
+  color: var(--accent-amber);
+}
+dialog.gc-dialog p {
+  color: var(--fg-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+dialog.gc-dialog .dialog-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @starting-style {
+    dialog.gc-dialog[open] {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    dialog.gc-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+  dialog.gc-dialog {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out),
+                display 200ms allow-discrete, overlay 200ms allow-discrete;
+  }
+  dialog.gc-dialog::backdrop {
+    opacity: 1;
+    transition: opacity 200ms var(--ease-out), display 200ms allow-discrete,
+                overlay 200ms allow-discrete;
+  }
+}
+
+/* =========================================================================
+   404 — viewport-locked mini-manifesto (full-bleed, no header/footer)
+   "Esse número não bate." — Growth Club tom-anchor aplicado visualmente.
+   ========================================================================= */
+.page-404 {
+  min-block-size: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.page-404::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 30% 30%, var(--accent-amber-glow) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, var(--accent-teal-glow) 0%, transparent 60%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.page-404-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-404-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.page-404-eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--accent-teal);
+}
+.page-404-numeral {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(140px, 28vw, 320px);
+  line-height: 0.84;
+  letter-spacing: -0.06em;
+  color: var(--accent-amber);
+  font-feature-settings: 'tnum' 1;
+  margin-bottom: 24px;
+  text-shadow: 0 0 80px var(--accent-amber-glow);
+}
+.page-404-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--fg-primary);
+  margin-bottom: 16px;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.page-404-headline em {
+  font-style: normal;
+  color: var(--accent-amber);
+}
+.page-404-lede {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-secondary);
+  max-width: 48ch;
+  margin-bottom: 40px;
+  text-wrap: pretty;
+}
+.page-404-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.page-404-footer {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.page-404-footer a { color: var(--fg-tertiary); text-decoration: none; }
+.page-404-footer a:hover { color: var(--accent-amber); }
+
+/* =========================================================================
+   EMBEDDED FORMS — Tally iframe consistent treatment
+   ========================================================================= */
+.embedded-form {
+  width: 100%;
+  border-radius: 8px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+}
+
+/* =========================================================================
+   AI LIKE A PRO — "memo leaked" aesthetic
+   Internal-document mood: classification banner, FROM/TO/RE meta, mono body,
+   redacted <s> strikes, faux-margin annotations, exclusive <details> agenda.
+   ========================================================================= */
+.memo {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 40px 64px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg-secondary);
+  box-shadow:
+    0 0 0 6px var(--bg-base),
+    var(--shadow-raised);
+}
+.memo::before {
+  content: "// LEAKED";
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  background: var(--accent-amber);
+  color: #0A0A0A;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  font-weight: 700;
+  transform: rotate(-2deg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.memo-header {
+  border-bottom: 1px dashed var(--border-default);
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+}
+.memo-classification {
+  color: var(--color-danger);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.memo-classification::before {
+  content: "●";
+  color: var(--color-danger);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .memo-classification::before {
+    animation: memo-blink 2s infinite;
+  }
+}
+@keyframes memo-blink { 50% { opacity: 0.25; } }
+.memo-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+  font-size: 12px;
+  color: var(--fg-tertiary);
+  letter-spacing: 0.04em;
+}
+.memo-meta strong {
+  color: var(--accent-teal);
+  font-weight: 500;
+  margin-right: 6px;
+}
+.memo-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: var(--fg-primary);
+  margin: 0 0 32px;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.memo-title em { font-style: normal; color: var(--accent-amber); }
+.memo-body p { margin: 0 0 16px; }
+.memo-body strong { color: var(--fg-primary); font-weight: 700; }
+.memo-body s {
+  color: var(--fg-muted);
+  text-decoration-color: var(--color-danger);
+  text-decoration-thickness: 2px;
+  text-underline-offset: -2px;
+}
+.memo-list {
+  list-style: none;
+  padding: 8px 0 8px 20px;
+  margin: 0 0 16px;
+  border-left: 2px solid var(--accent-teal);
+  display: grid;
+  gap: 8px;
+}
+.memo-list li::before {
+  content: "→ ";
+  color: var(--accent-teal);
+}
+.memo-agenda {
+  margin-top: 32px;
+  padding: 18px 24px;
+  background: var(--bg-sunken);
+  border: 1px dashed var(--border-default);
+  border-radius: 4px;
+}
+.memo-agenda summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-amber);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  list-style: none;
+  font-weight: 700;
+}
+.memo-agenda summary::-webkit-details-marker { display: none; }
+.memo-agenda summary::after {
+  content: " [+ expandir]";
+  color: var(--fg-tertiary);
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+}
+.memo-agenda[open] summary::after { content: " [− colapsar]"; }
+.memo-agenda summary:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.memo-agenda-body {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--fg-secondary);
+}
+.memo-agenda-body p { margin: 0; }
+.memo-agenda-body strong { color: var(--accent-teal); font-weight: 500; }
+.memo-margin-note {
+  margin: 36px 0;
+  padding: 16px 0 16px 22px;
+  border-left: 4px solid var(--accent-amber);
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--fg-primary);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.memo-margin-note span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  font-weight: 400;
+}
+.memo-footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--border-default);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.memo-stamp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+}
+.memo-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .memo { padding: 32px 24px 48px; }
+  .memo-meta { grid-template-columns: 1fr; }
+  .memo::before { right: 12px; }
 }

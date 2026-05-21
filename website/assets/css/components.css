@@ -1048,18 +1048,103 @@ h1.page-title em {
 }
 
 /* =========================================================================
-   INLINE ARROW — used inside .btn / nav cta, animates on hover
+   FAQ — native <details name="faq"> exclusive accordion
    ========================================================================= */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.faq-list details {
+  border-top: 1px solid var(--border-default);
+  padding: 22px 0;
+}
+.faq-list details:last-child {
+  border-bottom: 1px solid var(--border-default);
+}
+.faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--fg-primary);
+  outline: none;
+}
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after {
+  content: "+";
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--accent-amber);
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 200ms var(--ease-out);
+}
+.faq-list details[open] summary::after {
+  transform: rotate(45deg);
+}
+.faq-list summary:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.faq-list details > :not(summary) {
+  margin-top: 12px;
+  color: var(--fg-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) {
+    .faq-list details::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition: block-size 240ms var(--ease-out), content-visibility 240ms allow-discrete;
+      interpolate-size: allow-keywords;
+    }
+    .faq-list details[open]::details-content {
+      block-size: auto;
+    }
+  }
+}
+
+/* =========================================================================
+   ICONS — SVG sprite consumer (replaces Lucide CDN runtime).
+   Use as: <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#NAME"/></svg>
+   ========================================================================= */
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+  transition: transform 160ms var(--ease-out);
+}
+/* Buttons + nav-cta scale up the icon slightly for visual weight */
+.btn .icon,
+.nav-cta .icon { width: 1.05em; height: 1.05em; }
+
+/* Inline arrow ornament: keep working for legacy class + animate any icon
+   inside a button-shaped element on hover */
 .inline-arrow {
   display: inline-block;
   transition: transform 160ms var(--ease-out);
 }
 a:hover .inline-arrow,
-.btn:hover .inline-arrow { transform: translate(3px, -3px); }
-
-/* Lucide arrow inside btn picks up same effect */
-.btn:hover svg.lucide-arrow-up-right,
-.nav-cta:hover svg.lucide-arrow-up-right { transform: translate(3px, -3px); transition: transform 160ms var(--ease-out); }
+.btn:hover .inline-arrow,
+.btn:hover .icon,
+.nav-cta:hover .icon { transform: translate(3px, -3px); }
 
 /* =========================================================================
    AMBER UTILITY — used in footer copyright period etc.
@@ -1520,18 +1605,30 @@ body::before {
 .cta-final .btn.primary:hover::after,
 .cta-inline .btn.primary:hover::after { opacity: 1; }
 
-/* ---- 14 · SCROLL-REVEAL — IntersectionObserver-driven entrance -------- */
+/* ---- 14 · SCROLL-DRIVEN REVEAL — native CSS replaces scroll-reveal.js ----
+   Sections slide-up as they enter the scrollport. Animates ONLY transform —
+   opacity stays at 1 to keep content visible to screenshots, print, scrapers,
+   and any browser where `animation-fill-mode: both` applies the `from` state
+   before the range starts (which would otherwise blank the page). */
+@keyframes gc-reveal-up {
+  from { transform: translateY(36px); }
+  to   { transform: translateY(0); }
+}
 @media (prefers-reduced-motion: no-preference) {
-  .reveal-init {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 720ms var(--ease-out),
-                transform 720ms var(--ease-out);
-    will-change: opacity, transform;
-  }
-  .reveal-init.is-revealed {
-    opacity: 1;
-    transform: translateY(0);
+  @supports (animation-timeline: view()) {
+    .problem,
+    .layers,
+    .timeline,
+    .manifesto-big,
+    .quote-section,
+    .cta-final,
+    .cta-inline,
+    .article,
+    .section {
+      animation: gc-reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
   }
 }
 
@@ -1593,3 +1690,190 @@ footer.gc-footer::before {
   text-decoration-color: var(--accent-amber);
   text-decoration-thickness: 2px;
 }
+
+/* =========================================================================
+   =========================================================================
+   PHASE 2 — UTILITY LAYER (2026-05-20)
+   Extracts the patterns that were inline-styled across the 7 heavy pages
+   (meetup LP, membro, workshops, ai-like-a-pro, newsletter, contato,
+    comunidade). Compose on existing markup to drop ~200 style="..." attrs.
+   =========================================================================
+   ========================================================================= */
+
+/* ---- Section heading (sub-page secondary h2) ---- */
+.section-h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 3.6vw, 40px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--fg-primary);
+  text-wrap: balance;
+}
+.section-h2.is-large {
+  font-size: clamp(32px, 4vw, 48px);
+}
+.section-h2 em { font-style: normal; color: var(--accent-amber); }
+
+/* ---- Eye-label inline → block helper ---- */
+.eye-label.is-block { display: block; margin-bottom: 16px; }
+.eye-label.is-center { justify-content: center; }
+
+/* ---- Lead / body paragraphs in 3 weights ---- */
+.p-lead-lg { color: var(--fg-secondary); font-size: 17px; line-height: 1.7; }
+.p-lead-md { color: var(--fg-secondary); font-size: 16px; line-height: 1.6; }
+.p-lead-sm { color: var(--fg-secondary); font-size: 15px; line-height: 1.55; }
+.p-lead-lg + .p-lead-lg,
+.p-lead-md + .p-lead-md { margin-top: 18px; }
+
+/* ---- Wrap variants ---- */
+.wrap.is-narrow { max-width: 880px; }
+.wrap.is-prose  { max-width: 720px; }
+
+/* ---- Bare list (resets bullets + padding without losing semantics) ---- */
+.bare-list { list-style: none; padding: 0; margin: 0; }
+
+/* ---- Stack with explicit gap ---- */
+.stack-md > * + * { margin-top: 20px; }
+.stack-lg-2 > * + * { margin-top: 28px; }
+
+/* ---- Highlight box (pricing teaser, future-tier card) ---- */
+.highlight-box {
+  background: linear-gradient(135deg, var(--bg-raised) 0%, var(--bg-void) 100%);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 56px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.highlight-box > * { position: relative; z-index: 1; }
+
+/* ---- Info card (boxed copy) ---- */
+.info-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 32px;
+}
+.info-card.is-large { padding: 40px 32px; }
+
+/* ---- Decorative orb (radial glow) — control via CSS vars ---- */
+.bg-orb {
+  position: absolute;
+  pointer-events: none;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    var(--orb-color, var(--accent-amber-glow)) 0%,
+    transparent 60%);
+  opacity: var(--orb-opacity, 0.6);
+}
+.bg-orb.is-top-right { top: 0; right: 0; }
+.bg-orb.is-large { width: 280px; }
+.bg-orb.is-med   { width: 240px; }
+.bg-orb.is-small { width: 200px; }
+
+/* ---- Layered content helper ---- */
+.z-content { position: relative; z-index: 1; }
+
+/* ---- Status badge "em breve / a definir" ---- */
+.badge-soon {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  z-index: 2;
+  background: var(--accent-amber);
+  color: var(--fg-inverse);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ---- Price display (Master tier teaser, future events) ---- */
+.price-row {
+  display: flex;
+  gap: 40px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.price-block { display: flex; flex-direction: column; gap: 8px; }
+.price-block .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+}
+.price-block.is-muted .label { color: var(--fg-tertiary); }
+.price-block .value {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent-amber);
+}
+.price-block.is-muted .value {
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--fg-secondary);
+}
+.price-block .unit {
+  font-size: 18px;
+  color: var(--fg-tertiary);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.price-block.is-muted .unit { font-size: 15px; }
+
+/* ---- Footnote line ---- */
+.footnote {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--fg-tertiary);
+  text-transform: uppercase;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+  max-width: 62ch;
+}
+
+/* ---- Form placeholder (interview form en breve) ---- */
+.form-placeholder {
+  padding: 24px;
+  border: 1px dashed var(--border-default);
+  border-radius: 8px;
+  text-align: center;
+}
+.form-placeholder .label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  margin-bottom: 8px;
+}
+
+/* ---- Emphasis-color tokens (replaces inline em color) ---- */
+em.em-amber, .em-amber { color: var(--accent-amber); font-style: normal; }
+em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
+
+/* ---- Card heading shorthand (split-two and similar) ---- */
+.card-h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.card-h3.is-teal  { color: var(--accent-teal); }
+.card-h3.is-amber { color: var(--accent-amber); }
+
+/* ---- Section section padding override ---- */
+.section.is-alt { background: var(--bg-void); border-top: 1px solid var(--border-subtle); }
+

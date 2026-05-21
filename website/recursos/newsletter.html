@@ -16,18 +16,18 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
   <gc-header current="recursos"></gc-header>
 
-  <main>
+  <main id="main">
 
     <section class="hero-sub">
       <div class="wrap">
@@ -46,25 +46,25 @@
     </section>
 
     <section class="section">
-      <div class="wrap" style="max-width: 880px;">
+      <div class="wrap is-narrow">
 
-        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 24px;">O que entra <em style="color: var(--accent-amber); font-style: normal;">em cada edição.</em></h2>
+        <h2 class="section-h2" style="margin-bottom: 24px;">O que entra <em>em cada edição.</em></h2>
 
-        <ul class="stack" style="--space: 20px; list-style: none; padding: 0; margin-bottom: 48px;">
-          <li><strong style="color: var(--fg-primary);">1 case real com número aberto</strong> — operador da comunidade abrindo movimento concreto (CAC, payback, conversão, retenção) com antes-e-depois auditável.</li>
-          <li><strong style="color: var(--fg-primary);">1 benchmark privado</strong> — recortes do banco de dados informal da comunidade (benchmark de pricing, conversão por canal, salário senior+, etc).</li>
-          <li><strong style="color: var(--fg-primary);">1 link da semana</strong> — leitura externa que vale o seu tempo. Não é dump de RSS — é curadoria com nota editorial.</li>
-          <li><strong style="color: var(--fg-primary);">Convite editorial</strong> — pergunta aberta da edição. Resposta da comunidade entra na edição seguinte com crédito.</li>
+        <ul class="bare-list stack-md" style="margin-bottom: 48px;">
+          <li><strong>1 case real com número aberto</strong> — operador da comunidade abrindo movimento concreto (CAC, payback, conversão, retenção) com antes-e-depois auditável.</li>
+          <li><strong>1 benchmark privado</strong> — recortes do banco de dados informal da comunidade (benchmark de pricing, conversão por canal, salário senior+, etc).</li>
+          <li><strong>1 link da semana</strong> — leitura externa que vale o seu tempo. Não é dump de RSS — é curadoria com nota editorial.</li>
+          <li><strong>Convite editorial</strong> — pergunta aberta da edição. Resposta da comunidade entra na edição seguinte com crédito.</li>
         </ul>
 
-        <div style="background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 40px 32px; margin-bottom: 48px;">
-          <span class="eye-label" style="display: block; margin-bottom: 16px;">/ INSCRIÇÃO GRÁTIS</span>
-          <h3 style="font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--fg-primary); margin-bottom: 12px;">Entra na lista <em style="color: var(--accent-amber); font-style: normal;">agora.</em></h3>
-          <p style="color: var(--fg-secondary); font-size: 15px; line-height: 1.55; margin-bottom: 24px;">Próxima edição em até 14 dias. Sem spam, sem boost, sem swap de lista. Cancela quando quiser.</p>
+        <div id="inscricao" class="info-card is-large" style="margin-bottom: 48px; scroll-margin-top: 96px;">
+          <span class="eye-label is-block">/ INSCRIÇÃO GRÁTIS</span>
+          <h3 class="card-h3" style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Entra na lista <em class="em-amber">agora.</em></h3>
+          <p class="p-lead-sm" style="margin-bottom: 24px;">Próxima edição em até 14 dias. Sem spam, sem boost, sem swap de lista. Cancela quando quiser.</p>
 
           <form class="form-newsletter" data-substack-url="https://growthclub.substack.com/subscribe">
             <input type="email" name="email" placeholder="seu@email.com" required aria-label="Email">
-            <button type="submit" class="btn primary">Quero a newsletter <i data-lucide="arrow-up-right"></i></button>
+            <button type="submit" class="btn primary">Quero a newsletter <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></button>
             <label class="field-checkbox" style="flex-basis: 100%; margin-top: 12px;">
               <input type="checkbox" name="lgpd-opt-in" required>
               <span>Autorizo o envio de newsletter editorial. Posso revogar a qualquer momento. <a href="/lgpd">Ver direitos LGPD</a>.</span>
@@ -72,7 +72,7 @@
           </form>
         </div>
 
-        <p style="color: var(--fg-tertiary); font-size: 14px; line-height: 1.6;">Já lê pelo Substack direto? <a href="https://growthclub.substack.com" target="_blank" rel="noopener">growthclub.substack.com</a>.</p>
+        <p class="t-caption">Já lê pelo Substack direto? <a href="https://growthclub.substack.com" target="_blank" rel="noopener">growthclub.substack.com</a>.</p>
 
       </div>
     </section>
@@ -81,7 +81,7 @@
       <div class="wrap">
         <h2>Pega a régua <em>em tempo real.</em></h2>
         <p>Newsletter é o canal mais antigo da comunidade. Tudo que rola na Community e nos meetups passa por aqui primeiro.</p>
-        <a class="btn primary" href="#" onclick="document.querySelector('.form-newsletter input').focus(); return false;">Cadastrar email <i data-lucide="arrow-up-right"></i></a>
+        <a class="btn primary" href="#inscricao">Cadastrar email <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
       </div>
     </section>
 
@@ -92,10 +92,5 @@
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script src="/assets/js/newsletter-form.js"></script>
-  <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

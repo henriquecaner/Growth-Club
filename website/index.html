@@ -16,13 +16,12 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,7 +44,7 @@
 
   <gc-header current="home"></gc-header>
 
-  <main>
+  <main id="main">
 
     <!-- HERO -->
     <section class="hero" data-theme="dark">
@@ -54,7 +53,7 @@
         <h1 class="mega">Se não tem número, <em>não é Growth Club.</em></h1>
         <p class="lede">Comunidade curada de operadores B2B — founders, CROs, growth/RevOps leads, vendedores consultivos, analytics. Marketing com pipeline, vendas com previsibilidade, geração de demanda com número. Newsletter quinzenal com 1 case real (antes/depois), 1 benchmark, 1 link comentado. 11 anos de operação, sem boost pago, sem swap de lista.</p>
         <div class="hero-ctas">
-          <a class="btn primary" href="/membro">Tornar-se membro <i data-lucide="arrow-up-right"></i></a>
+          <a class="btn primary" href="/membro">Tornar-se membro <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
           <a class="btn ghost" href="#espacos">Ver os 4 espaços</a>
         </div>
 
@@ -81,25 +80,25 @@
         <div class="problem-grid">
           <div class="p-card">
             <span class="n">01 / PALCO</span>
-            <i data-lucide="megaphone"></i>
+            <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#megaphone"/></svg>
             <h3>Post bomba. Pipeline não mexe.</h3>
             <p>Posts virais de growth no LinkedIn BR fazem 30k+ views por semana. Pipeline B2B típico mexe por outras 4-5 alavancas. Engajamento de feed não está entre elas.</p>
           </div>
           <div class="p-card">
             <span class="n">02 / GURU</span>
-            <i data-lucide="trending-down"></i>
+            <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#trending-down"/></svg>
             <h3>Fórmula mágica que ninguém reproduziu.</h3>
             <p>Curso de growth no Brasil custa de R$ 2k a R$ 50k. Pergunta básica de reply: "qual o número antes e depois do método em uma empresa real?". Resposta rara.</p>
           </div>
           <div class="p-card">
             <span class="n">03 / NETWORKING</span>
-            <i data-lucide="users-x"></i>
+            <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#users-x"/></svg>
             <h3>Grupo virou mural de vaga.</h3>
             <p>Comunidades de growth B2B passando dos 5k membros que monitoramos têm mais de metade das mensagens recentes em recolocação. Substância vai embora junto da inflação.</p>
           </div>
           <div class="p-card">
             <span class="n">04 / PATROCINADO</span>
-            <i data-lucide="banknote"></i>
+            <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#banknote"/></svg>
             <h3>Conteúdo que é anúncio.</h3>
             <p>Painel B2B típico tem 3 founders, 2 vendendo ferramenta da própria empresa. Disclosure aparece em letra miúda quando aparece. Aqui patrocínio fica marcado na vinheta.</p>
           </div>
@@ -206,7 +205,7 @@
         <p>Régua de quem entra: case vem com número. Régua de quem patrocina: vai marcado na vinheta. Régua de quem não entrega nenhuma das duas: pedido cordial pra reabrir.</p>
         <blockquote style="font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.25; letter-spacing: -0.02em; margin: 32px 0; max-width: 28ch;">A rataria com nome pomposo continua. <em>A gente continua chamando de rataria.</em></blockquote>
         <cite style="display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-tertiary); margin-bottom: 40px;">Manifesto · Growth Club</cite>
-        <a class="btn primary" href="/membro" style="padding: 16px 28px; font-size: 16px;">Tornar-se membro <i data-lucide="arrow-up-right"></i></a>
+        <a class="btn primary" href="/membro" style="padding: 16px 28px; font-size: 16px;">Tornar-se membro <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
       </div>
     </section>
 
@@ -217,11 +216,5 @@
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
   <!-- <script src="/assets/js/newsletter-form.js"></script> — desativado em 2026-05-18, form Substack removido (spec v1.1). Reativa quando sub-projeto do form de entrevista decidir reutilizar handler. -->
-  <script>
-    // Hydrate Lucide icons after web components have rendered
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

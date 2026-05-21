@@ -16,58 +16,97 @@
   <meta property="og:image" content="https://growthclub.pro/assets/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
 <body>
 
   <gc-header current="recursos"></gc-header>
 
-  <main>
+  <main id="main">
 
-    <section class="hero-sub">
+    <section class="hero-sub" style="padding-bottom: 48px;">
       <div class="wrap">
         <div class="crumb">
           <a href="/">Home</a><span class="sep">/</span><a href="/recursos/workshops">Workshops</a><span class="sep">/</span><span class="curr">AI LIKE A PRO</span>
         </div>
-        <span class="kicker">Workshop · IA aplicada</span>
-        <h1 class="page-title">AI LIKE A <em>PRO.</em></h1>
-        <p class="page-lede">Workshop ao vivo (~3h) ensinando a parar de queimar crédito em ferramenta que quebra em projeto real. Setup com <strong>Google Antigravity + Claude</strong> — duas ferramentas, sem upsell mensal escondido. Aplicação direta no fim da aula: você sai com seu próprio projeto rodando.</p>
-        <div class="meta-row">
-          <span>FORMATO · <b>AO VIVO · ~3H</b></span>
-          <span>INVESTIMENTO · <b>R$ 397</b></span>
-          <span>ACESSO · <b>VITALÍCIO À GRAVAÇÃO</b></span>
-        </div>
-        <div class="hero-ctas" style="margin-top: 32px;">
-          <a class="btn primary" href="#interesse">Entrar na lista da próxima turma <i data-lucide="arrow-up-right"></i></a>
-          <a class="btn ghost" href="mailto:workshops@growthclub.pro">Falar com o time</a>
-        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <article class="memo">
+          <header class="memo-header">
+            <div class="memo-classification">CONFIDENTIAL · INTERNAL · DO NOT FORWARD</div>
+            <div class="memo-meta">
+              <span><strong>FROM:</strong> Growth Club / Workshops</span>
+              <span><strong>TO:</strong> Operadores B2B</span>
+              <span><strong>DATE:</strong> 2026-05-20</span>
+              <span><strong>RE:</strong> AI LIKE A PRO · Próxima Turma</span>
+            </div>
+          </header>
+
+          <h1 class="memo-title">AI LIKE A <em>PRO.</em></h1>
+
+          <section class="memo-body">
+            <p><strong>1.</strong> O problema: <s>Cursor</s>, <s>Bolt</s>, <s>Lovable</s> queimam crédito em projeto real. Aluno termina sem ter rodado em produção. Setup vira refém de plataforma que cobra por token a cada erro de retry.</p>
+
+            <p><strong>2.</strong> O setup que funciona em prod: <strong>Google Antigravity + Claude</strong>. Duas ferramentas, token previsível, sem upsell mensal escondido. Custo médio por aluno na aula: <s>R$ 12</s> R$ 4.</p>
+
+            <p><strong>3.</strong> Validação:</p>
+            <ul class="memo-list">
+              <li>Turma 1 — vagas esgotaram em <s>4 dias</s> 6 dias.</li>
+              <li>Turma 2 — em andamento, ~7 alunos confirmados.</li>
+              <li>R$ <s>5.000</s> 3.000 já vendidos. Zero boost pago.</li>
+            </ul>
+
+            <p><strong>4.</strong> Pra quem é: <strong>CEOs, C-levels, growth pros, marketers e não-devs</strong> que querem construir com IA sem virar refém de plataforma que cobra por token a cada bug.</p>
+
+            <p><strong>5.</strong> Pra quem não é: <s>dev sênior fluente em IDE</s>; quem espera curso teórico de 40 horas; quem prefere fórmula mágica sem aplicação.</p>
+
+            <p><strong>6.</strong> Investimento: <strong>R$ 397</strong> · ao vivo (~3h) · acesso vitalício à gravação + comunidade exclusiva de alunos.</p>
+          </section>
+
+          <details class="memo-agenda">
+            <summary>// Agenda completa</summary>
+            <div class="memo-agenda-body">
+              <p><strong>00:00 — 00:15</strong> Check-in dos alunos + setup de ambiente.</p>
+              <p><strong>00:15 — 00:45</strong> Antigravity + Claude. Conta, billing, primeira execução. <s>Sem credit card no início</s> [REDACTED]</p>
+              <p><strong>00:45 — 01:30</strong> Projeto 1: <s>landing page com Tally embed</s> [REDACTED] aplicada ao contexto do aluno.</p>
+              <p><strong>01:30 — 02:00</strong> Pausa + Q&amp;A aberto.</p>
+              <p><strong>02:00 — 02:45</strong> Projeto 2: agent simples com Claude API. Custo real auditado em tempo real.</p>
+              <p><strong>02:45 — 03:00</strong> Wrap + acesso à comunidade exclusiva + próximos passos.</p>
+            </div>
+          </details>
+
+          <aside class="memo-margin-note">
+            Sem slide, sem upsell, sem refém.
+            <span>— H.C., founder · Growth Club</span>
+          </aside>
+
+          <footer class="memo-footer">
+            <span class="memo-stamp">// next batch · pending approval</span>
+            <div class="memo-actions">
+              <a href="#interesse" class="btn primary">Entrar na lista <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
+              <a href="mailto:workshops@growthclub.pro" class="btn ghost">Falar com o time</a>
+            </div>
+          </footer>
+        </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="wrap" style="max-width: 880px;">
-
-        <span class="eye-label" style="display: block; margin-bottom: 16px;">/ PRA QUEM É</span>
-        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 24px;">Operador <em style="color: var(--accent-amber); font-style: normal;">com projeto real.</em></h2>
-        <p style="color: var(--fg-secondary); font-size: 17px; line-height: 1.7; margin-bottom: 18px;"><strong style="color: var(--fg-primary);">Pra quem é:</strong> CEOs, C-levels, growth pros, marketers e não-devs que querem construir com IA sem virar refém de plataforma que cobra por token.</p>
-        <p style="color: var(--fg-secondary); font-size: 17px; line-height: 1.7; margin-bottom: 32px;"><strong style="color: var(--fg-primary);">Pra quem não é:</strong> dev sênior já fluente em IDE; quem quer curso teórico de 40 horas; quem prefere fórmula mágica sem operação.</p>
-
-        <span class="eye-label" style="display: block; margin-bottom: 16px;">/ VALIDAÇÃO</span>
-        <h2 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.03em; color: var(--fg-primary); margin-bottom: 24px;">Já roda <em style="color: var(--accent-amber); font-style: normal;">em produção.</em></h2>
-        <p style="color: var(--fg-secondary); font-size: 17px; line-height: 1.7; margin-bottom: 32px;">Turma 1 esgotou. Turma 2 em andamento. R$ 3 mil já vendidos sem boost pago. Próxima turma em formação — entra na lista pra ser avisado primeiro, com prioridade de inscrição.</p>
-
-        <div id="interesse" style="background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 40px 32px; margin-top: 32px;">
-          <span class="eye-label" style="display: block; margin-bottom: 12px;">/ INTERESSE</span>
-          <h3 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -0.02em; color: var(--fg-primary); margin-bottom: 12px;">Lista da <em style="color: var(--accent-amber); font-style: normal;">próxima turma.</em></h3>
-          <p style="color: var(--fg-secondary); font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Deixa email pra ser avisado quando a próxima turma abrir. Prioridade de inscrição pra quem está na lista. Também damos preview do que vai rodar na aula.</p>
-          <a href="https://tally.so/r/BzLJO4" target="_blank" rel="noopener" class="btn primary">Quero entrar na lista <i data-lucide="arrow-up-right"></i></a>
+      <div class="wrap is-narrow">
+        <div id="interesse" class="info-card is-large" style="scroll-margin-top: 96px;">
+          <span class="eye-label is-block">/ INTERESSE</span>
+          <h3 class="card-h3" style="font-size: clamp(22px, 2.6vw, 28px); font-weight: 800; margin-bottom: 12px;">Lista da <em class="em-amber">próxima turma.</em></h3>
+          <p class="p-lead-md" style="margin-bottom: 24px;">Deixa email pra ser avisado quando a próxima turma abrir. Prioridade de inscrição pra quem está na lista. Também damos preview do que vai rodar na aula.</p>
+          <a href="https://tally.so/r/BzLJO4" target="_blank" rel="noopener" class="btn primary">Quero entrar na lista <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
         </div>
-
       </div>
     </section>
 
@@ -75,7 +114,7 @@
       <div class="wrap">
         <h2>Workshop fechado <em>pro teu time.</em></h2>
         <p>Pra time interno (growth, RevOps, AI), montamos turma fechada com aplicação direta no contexto da empresa. Conversa direta no email.</p>
-        <a class="btn primary" href="mailto:workshops@growthclub.pro">workshops@growthclub.pro <i data-lucide="arrow-up-right"></i></a>
+        <a class="btn primary" href="mailto:workshops@growthclub.pro">workshops@growthclub.pro <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
       </div>
     </section>
 
@@ -85,10 +124,5 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
-  <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

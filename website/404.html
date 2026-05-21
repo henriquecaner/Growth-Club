@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,42 +8,29 @@
 
   <link rel="icon" href="/assets/images/logo-mark.svg">
 
+  <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/chrome.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
-
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
 </head>
-<body>
+<body class="page-404">
 
-  <gc-header current=""></gc-header>
-
-  <main>
-
-    <section class="hero-sub" style="text-align: center; padding: 64px 0 120px;">
-      <div class="wrap">
-        <span class="kicker" style="justify-content: center;">/ Erro 404 · Página não encontrada</span>
-        <div aria-hidden="true" style="font-family: var(--font-display); font-weight: 900; font-size: clamp(140px, 28vw, 320px); line-height: 0.88; letter-spacing: -0.06em; color: var(--accent-amber); margin: 24px 0 16px; font-feature-settings: 'tnum' 1;">404</div>
-        <h1 style="font-family: var(--font-display); font-weight: 900; font-size: clamp(32px, 4.6vw, 56px); line-height: 1.1; letter-spacing: -0.035em; color: var(--fg-primary); max-width: 22ch; margin: 0 auto 20px;">Sem URL, <em style="color: var(--accent-amber); font-style: normal;">sem número.</em></h1>
-        <p class="page-lede" style="margin-inline: auto; max-width: 52ch;">Sem número, não é Growth Club. Link envelheceu, URL inválida ou esse caminho nunca existiu. Tudo bem — o resto da comunidade continua no ar.</p>
-        <div class="hero-ctas" style="margin-top: 40px; justify-content: center;">
-          <a class="btn primary" href="/">Voltar pra home <i data-lucide="arrow-up-right"></i></a>
-          <a class="btn ghost" href="/membro">Tornar-se membro</a>
-        </div>
-      </div>
-    </section>
-
+  <main id="main" class="page-404-inner">
+    <span class="page-404-eyebrow">Erro 404 · esse número não bate</span>
+    <div class="page-404-numeral" aria-hidden="true">404</div>
+    <h1 class="page-404-headline">Esse caminho <em>não existe.</em></h1>
+    <p class="page-404-lede">Link envelheceu, URL inválida ou nunca existiu. Tudo bem — o resto da comunidade continua no ar, sem palco e com cerveja.</p>
+    <nav class="page-404-actions" aria-label="Ações 404">
+      <a class="btn primary" href="/">Voltar pra home <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
+      <a class="btn ghost" href="/membro">Tornar-se membro</a>
+    </nav>
   </main>
 
-  <gc-footer></gc-footer>
+  <div class="page-404-footer">
+    Growth Club · <a href="/sobre">/sobre</a> · <a href="/recursos/newsletter">/newsletter</a> · <a href="/meetups">/meetups</a>
+  </div>
 
-  <script src="/assets/js/header.js"></script>
-  <script src="/assets/js/footer.js"></script>
-  <script>
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  </script>
 </body>
 </html>

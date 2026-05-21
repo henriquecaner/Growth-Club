@@ -1,11 +1,92 @@
 # STATE: Growth Club
-**Last Updated:** 2026-05-18
+**Last Updated:** 2026-05-20
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-013: Refino técnico do site v2 — sprite, fonts prune, native details, scroll-driven, view transitions, Phase 4 criativo
+**Date:** 2026-05-20
+**Status:** Accepted
+
+**Context:** Site v1 (AD-006/007) entrou no ar 2026-05-17 com refino de copy v2 (AD-011, 2026-05-18). Auditoria técnica pós-deploy expôs gaps que não eram visíveis na revisão de copy: (i) Lucide carregado síncrono via CDN `unpkg.com` em todas as 22 páginas (~190KB JS bloqueante por página, dependência externa terceira), (ii) 28 arquivos de fonte (~3.2MB) servidos no deploy quando o CSS efetivamente usa só 6 pesos (4 Satoshi static + 2 Roboto static — Satoshi não é variable apesar de o tokens.css declarar `font-variation-settings`, que é dead code), (iii) ~210 atributos `style="..."` inline espalhados por 17 páginas — anti-pattern que erode o Design System AD-008 como single source of truth, especialmente concentrado em meetup LP (73), membro (40), workshops/AI LIKE A PRO/contato/newsletter/comunidade (10-16 cada), (iv) FAQs implementadas como `<div><h3><p>` em vez de `<details>` (sem acessibilidade nativa, sem accordion exclusivo), (v) scroll-reveal via JavaScript IntersectionObserver (60 linhas) quando CSS `animation-timeline: view()` já é Newly Available, (vi) `onclick="..."` inline em `recursos/newsletter.html`, (vii) sem skip-link, (viii) sem cross-document view transitions apesar de o site ser multi-page estático, alvo ideal pra `@view-transition { navigation: auto }`. Modern Web Guidance (AD-012) instalado em paralelo virou régua técnica externa pra evitar repetir esses gaps na evolução.
+
+**Decision:** Refino técnico em 4 fases, sprint único Phases 1-3 + check-in antes da Phase 4 (preferência Henrique, 2026-05-20):
+
+**Phase 1 — Render path + native swaps:**
+- **Lucide CDN → sprite SVG local.** `website/assets/icons.svg` (9.3KB, 28 `<symbol>`) gerado via curl de `unpkg.com/lucide-static@0.460.0` + parser Python. Consumo via `<svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#NAME"/></svg>`. Removidos 22 `<script src="https://unpkg.com/lucide@0.460.0">` + 20 blocos inline `window.lucide.createIcons()` + `ensureLucide()`/`hydrateAllLucideIcons()` em `header.js`. CSS `.icon` em `components.css` define `width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 2`. Resultado: zero request externo, zero JS hydration, -190KB bloqueante por página.
+- **Fonts pruned 28 → 6.** Auditoria via `grep font-weight` mostrou só 4 pesos Satoshi (400/500/700/900) + 2 Roboto (400/500) usados. Italic: `.t-emph` declarado mas nunca referenciado em HTML — dead code. `fonts.css` rewritten. 22 arquivos movidos pra `brand/legacy-fonts/` (fora do deploy). 3.2MB → 503KB (-84%). Preload `<link rel="preload" as="font" type="font/otf" crossorigin>` de `Satoshi-Regular.otf` + `Satoshi-Black.otf` em 21 páginas.
+- **Native HTML upgrades.** Skip-link `<a href="#main" class="skip-link">` no `<gc-header>` template + CSS slide-down on focus em `chrome.css`. `id="main"` em `<main>` de todas as 21 páginas. FAQs em membro (4) + meetup LP (6) → `<details name="faq-membro/faq-meetup">` (accordion exclusivo nativo, zero JS). `onclick` inline em `recursos/newsletter.html` → âncora `#inscricao` + `scroll-margin-top`. `.t-emph` removido de `tokens.css`.
+
+**Phase 2 — CSS consolidation:**
+- **Utility layer** (~20 classes no fim de `components.css`): `.section-h2[.is-large]`, `.eye-label.is-block`, `.eye-label.is-center`, `.p-lead-lg/.p-lead-md/.p-lead-sm`, `.wrap.is-narrow` (880px), `.wrap.is-prose` (720px), `.bare-list`, `.stack-md/.stack-lg-2`, `.highlight-box`, `.info-card[.is-large]`, `.bg-orb[.is-top-right/.is-large/.is-med/.is-small]` (CSS vars `--orb-color`, `--orb-opacity`), `.z-content`, `.badge-soon`, `.price-row`, `.price-block[.is-muted]`, `.footnote`, `.form-placeholder`, `.em-amber`/`.em-teal`, `.card-h3[.is-teal/.is-amber]`, `.section.is-alt`.
+- **`pages.css` cresceu** com componentes page-specific: `.countdown` (meetup LP), `.tl-grid.is-five`, `.sponsor-mark`, `.card.is-price`, `.tier-card` (membro Master teaser), `.embedded-form` (Tally iframe), `.member-form` + `dialog.gc-dialog`, `.memo` (AI LIKE A PRO leaked aesthetic), `.page-404-*`.
+- **Refator das 7 páginas pesadas** (ordem por payback): meetup LP 73→12, membro 40→10, workshops 16→12, ai-like-a-pro 13→5, newsletter 13→6, contato 10→4, comunidade 11→5. Site total: ~210 → 101 inline-styles (-52%). Refator via `Write` (reescrita completa), não Edits incrementais — mais rápido e auditável.
+
+**Phase 3 — Modern CSS upgrades:**
+- **Cross-document view transitions.** `@view-transition { navigation: auto }` em `tokens.css` + `view-transition-name: site-header/site-footer` em `.nav`/`footer.gc-footer` no `chrome.css`. Chrome/Safari fazem cross-fade nativo entre páginas; Firefox degrada graciosamente para hard navigation. `prefers-reduced-motion` honrado via `@media` wrapper na duração customizada.
+- **Scroll-driven animations.** `animation-timeline: view()` aplicado a `.problem, .layers, .timeline, .manifesto-big, .quote-section, .cta-final, .cta-inline, .article, .section` dentro de `@media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) }`. Substitui `scroll-reveal.js` (60 linhas + IntersectionObserver). Arquivo `scroll-reveal.js` **deletado**, auto-load no `header.js` removido. **L-003:** versão inicial usou `from { opacity: 0; transform: ... }` + `animation-fill-mode: both`, que deixou seções abaixo do viewport invisíveis em snapshots/screenshots/print/crawlers (porque `both` aplica o `from` state antes do range entrar). Smoke test via Chrome DevTools MCP pegou o bug imediatamente. **Correção locked:** animar **apenas `transform`**, manter `opacity: 1` sempre — efeito slide-up preservado, conteúdo sempre visível pra contextos não-scrollados.
+- **`text-wrap: pretty`** global em `p, .t-body, .t-body-lg`; `text-wrap: balance` já existia em headings. `interpolate-size: allow-keywords` opcional em `<details>` pra animar abertura.
+
+**Phase 4 — Refator criativo (3 páginas com check-in Henrique 2026-05-20):**
+- **`404.html` — viewport-locked mini-manifesto.** `<html data-theme="dark">`, `body.page-404` com `min-block-size: 100dvh; display: grid; place-items: center`. Header/footer omitidos (CTAs centralizados + footer mono fallback com `/sobre`, `/newsletter`, `/meetups`). Numeral "404" em Satoshi Black `clamp(140px, 28vw, 320px)` com `text-shadow: 0 0 80px var(--accent-amber-glow)`. Eyebrow teal "Erro 404 · esse número não bate" reforça régua editorial #1 ("Se não tem número, não é Growth Club") como linguagem visual.
+- **`membro.html` — `<form>` HTML nativo com validação semântica.** Substituiu o `form-placeholder` por `<form class="member-form" novalidate>` com 3 `<fieldset>` (Você / Operação / Contexto) cobrindo 7 campos: nome, email, LinkedIn (URL com `pattern`), role (`<select>`), empresa, setor (`<select>`), problema (`<textarea minlength=20>`), LGPD checkbox. `:user-valid`/`:user-invalid` pintam border teal/danger **só depois de interação** (não polui o estado inicial). `accent-color: var(--accent-amber)` no checkbox. Submit via JS leve (15 linhas) abre `<dialog id="member-confirm" class="gc-dialog">` com `@starting-style` pra animação de open + `transition-behavior: allow-discrete` em `display`/`overlay`. **Backend stub:** dados persistem em `localStorage['gc-membro-inbox']` + `console.info`. Fallback link `tally.so/r/BzLJO4` no footer do form pra quem prefere o Tally hospedado.
+- **`ai-like-a-pro/index.html` — estética "memo leaked".** Mantém `<html data-theme="dark">`. `<article class="memo">` com classification banner vermelho pulsante ("CONFIDENTIAL · INTERNAL · DO NOT FORWARD"), badge "// LEAKED" amarelo rotacionado -2° no canto, FROM/TO/DATE/RE meta em mono teal, título "AI LIKE A PRO." em Satoshi Black `clamp(44px, 7vw, 88px)`, body em Roboto Mono com `<s>` strikethrough vermelho redacted ("Cursor", "Bolt", "Lovable" risados), lista com border-left teal + setas "→", `<details class="memo-agenda">` "// AGENDA COMPLETA [+ expandir]" com timestamps redacted, margin-note em Satoshi com border-left amber + assinatura "H.C., founder · Growth Club", footer "// next batch · pending approval" + 2 CTAs. Voz "franco, com número, sem palco" virou linguagem visual.
+
+**Smoke test visual** via Chrome DevTools MCP (`python3 -m http.server 8765 -d website`): 5 páginas-chave (home, membro, ai-like-a-pro, meetup LP, 404) screenshoteadas em viewport 1280x900, **zero erros no console em todas**. Bug L-003 pego no 1º screenshot.
+
+**Consequences:**
+- 53 arquivos modificados, ~700 linhas adicionadas / ~700 removidas (refator líquido balanceado). 22 fontes deletadas do deploy (preservadas em `brand/legacy-fonts/`). `website/assets/` total: **3.9MB → 672KB (-83%)**.
+- **Zero dependência runtime externa** no critical path do site (Lucide era a única, agora local).
+- **Native-first**: `<details name>` substitui FAQ JS, `animation-timeline: view()` substitui `scroll-reveal.js`, `<dialog>` substitui modal custom, `:user-valid` substitui validação JS no membro form, `view-transition` substitui SPA-like navigation.
+- **Design System AD-008 reforçado:** utility layer extraída elimina 100+ duplicações de inline-style. Founder Crew #1 herda gramática consistente — qualquer página nova começa com `.wrap.is-narrow > .section-h2 > .p-lead-lg` em vez de inventar inline.
+- **Backend do form de membro continua TBD.** Spec L-001 de AD-011 ainda vale — dados ficam em `localStorage` + console enquanto a integração Tally/Google Sheets/backend custom não for decidida. Trocar pra `fetch(...)` quando o backend landar.
+- **Phase 4 abriu vocabulário visual novo** que pode ser reaproveitado: `.page-404-*` no 404, `.member-form` + `dialog.gc-dialog` no membro (`<dialog>` virou primitivo do DS), `.memo` no AI LIKE A PRO (pode virar layout para "vazamento interno" futuro tipo "memo do livecast" se a estética colar).
+- Browser support **escolhido como Baseline Newly Available implícito**: View Transitions (Chrome 126+, Safari 18+), `animation-timeline: view()` (Chrome 115+, Safari TP, Firefox 144+), `<details name>` (Chrome 120+, Safari 17.2+, Firefox 109+), `:user-valid` (Chrome 119+, Safari 16.5+, Firefox 88+), `interpolate-size` (Chrome 129+), `@starting-style` (Chrome 117+). Firefox degrada graciosamente em todas. **Sem polyfills** — não compensam o custo de bundle e adicionam complexidade.
+
+**Alternatives considered:**
+- **Manter Lucide CDN com `<link rel="preload" as="script">`** — descartado. Mesmo preload, é dependência terceira no critical path + 190KB JS pra usar 28 ícones. Sprite local zera o trade-off.
+- **Replicar fontes em WOFF2** (compressão melhor que OTF/TTF) — descartado pra esta sprint. Brand source só forneceu OTF estático; conversão WOFF2 é candidato pra próxima passagem se Founder Crew #2 (designer) quiser otimizar mais.
+- **Container queries em `.cards-grid` e `.tl-grid`** — descartado. Componentes sempre usados full-width dentro de `.wrap`, sem casos de uso em sidebar. ROI baixo, complexidade extra sem ganho real.
+- **Manter `scroll-reveal.js` como fallback pra Firefox** — descartado. Site já honra `prefers-reduced-motion` desativando entrance — comportamento "sem animar" já estava codificado como aceitável. Reaproveitar o degrade existente é grátis.
+- **Form do membro como SPA mini com framework** (Alpine/Stimulus) — descartado. Stack AD-007 proíbe build step e a validação nativa + `<dialog>` cobre 100% do caso sem framework.
+- **Replicar dialog stack via biblioteca** (a11y-dialog, microdialog) — descartado. `<dialog>` nativo + `@starting-style` cobre a11y (focus trap, ESC, backdrop click via `closedby="any"` futuramente).
+- **Refator pesado em todas as 17 páginas em Phase 2** — descartado em favor de "ordem por payback". As 4 páginas "Grupo C" (legais, obrigados) já estavam com < 5 inline-styles e ROI marginal — deixadas pra polimento orgânico em PRs futuros.
+
+**Lessons learned (registradas separadamente em L-003 abaixo).**
+
+---
+
+### AD-012: Modern Web Guidance (Google Chrome) habilitado como plugin de skills
+**Date:** 2026-05-20
+**Status:** Accepted
+
+**Context:** Site v1 (AD-006/007) e refinos pós-deploy (AD-011) rodam em HTML5 + Modern CSS + JS vanilla, sem framework, deployado em Cloudflare Pages. Founder Crew #1 (frontend, vibe coder) herdará a evolução do `website/` quando preenchida (AD-002). Esse setup tem dois riscos editoriais que motivam a decisão: (i) o modelo coding agent tem training cutoff de janeiro/2026 e pode tratar como experimental APIs que já entraram em Baseline Widely Available (View Transitions, container queries, `:has()`, anchor positioning, Popover API, content-visibility, Fetch Priority); (ii) sem régua técnica externa, decisões de frontend ficam refém da preferência ad-hoc de cada sessão, sem fonte vetada de plataforma. Em maio/2026 o time DevRel do Chrome publicou o **Modern Web Guidance** — pacote oficial de skills cobrindo 12 silos (accessibility, built-in-ai, css, css-layout, forms, html, passkeys, performance, privacy, security, user-experience, webmcp).
+
+**Decision:** Plugin `modern-web-guidance@googlechrome` v0.0.169 (commit `1dee00c2ae94d2e0c26d4a0c9fecb87c52bd82f9`) instalado em 2026-05-20 via slash commands nativos do Claude Code:
+1. `/plugin marketplace add GoogleChrome/modern-web-guidance` — registrou o marketplace `googlechrome` em `~/.claude/plugins/marketplaces/googlechrome` (sem `autoUpdate`).
+2. `/plugin install modern-web-guidance@googlechrome` — instalou em `~/.claude/plugins/cache/googlechrome/modern-web-guidance/0.0.169` com scope `local` no `~/.claude/plugins/installed_plugins.json`, vinculado a `projectPath: /Users/henriquecaner/Documents/GitHub/Growth-Club`.
+3. `/reload-plugins` — ativou.
+
+Duas skills ficam disponíveis via Skill tool:
+- `modern-web-guidance:modern-web-guidance` — search engine de guias vetados. Gatilho automático em qualquer task HTML/CSS/JS-cliente. Executa `npx -y modern-web-guidance@latest search "<query>"` em runtime, requer network na 1ª chamada; depois usa cache do npm.
+- `modern-web-guidance:chrome-extensions` — Manifest V3 best practices. Não dispara no Growth Club no curto prazo (não há extensão planejada), mas fica disponível.
+
+**Consequences:**
+- Antes de tocar `website/**`, o Claude consulta o catálogo Modern Web Guidance — reduz risco de patterns obsoletos, dependências desnecessárias, soluções ad-hoc.
+- Plugin **não** escreveu em `.claude/settings.json` do projeto. O Claude Code novo registra plugins de marketplace externo no `installed_plugins.json` global com `scope: local`. Convive sem conflito com `enabledPlugins` legacy do `.claude/settings.json` (onde estão `frontend-design`, `superpowers`, `chrome-devtools-mcp`).
+- Domínio complementar ao `frontend-design` (estética/UX) e `chrome-devtools-mcp` (debug/Lighthouse runtime) — sem sobreposição.
+- A skill sugere documentar política de browser support em CLAUDE.md se detectar sinais (alvo Safari, restrição Electron, etc.). Default atual = Baseline Widely Available implícito (web pública moderna). Política explícita pode virar update do CLAUDE.md se Founder Crew #1 levantar requisito.
+- Founder Crew #1 (quando preencher vaga frontend) herda a régua sem aprendizado adicional — basta abrir o repo em Claude Code que as skills disparam sozinhas.
+
+**Alternatives considered:**
+- **CLI npx isolada** (`npx modern-web-guidance@latest install`) — descartada em favor do plugin Claude Code nativo (`/plugin install`). Plugin é mais coerente com o ecossistema atual e atualiza junto com `frontend-design`+`superpowers`+`chrome-devtools-mcp` via slash commands.
+- **Escopo `user` (global a todos os projetos)** — descartado. Outros repos do Henrique (Fast-Alarm Shopify, JEM-TFAS catalog) não são HTML/CSS/JS frontend puro; carregar essas skills lá só polui contexto. Scope `local` com `projectPath` é cirúrgico.
+- **Não instalar (manter status quo)** — descartado. O gap entre training cutoff e Baseline real cresce em ritmo trimestral; régua técnica externa vetada compensa o custo de network/latência mínimo da 1ª chamada `npx`.
+
+---
 
 ### AD-011: Refino de copy home/membro/empresas v2 — cluster analysis aplicado
 **Date:** 2026-05-18
@@ -466,6 +547,12 @@ Catalogados em `docs/superpowers/specs/2026-04-22-growth-club-business-plan-desi
 ---
 
 ## Lessons Learned
+
+### L-003: Scroll-driven CSS com `opacity: 0` no `from` quebra snapshots e bots
+**Context:** Phase 3 do refino técnico (AD-013) substituiu `scroll-reveal.js` por CSS `animation-timeline: view()` aplicado às seções `.problem`, `.layers`, `.timeline`, `.section`, etc. Keyframe original animava `opacity: 0 → 1` + `transform: translateY(28px) → 0` com `animation-fill-mode: both`.
+**Problem:** `animation-fill-mode: both` aplica o estado `from` da animação **antes** do range entrar. Pra elementos abaixo do viewport (que ainda não entraram no scrollport), isso significava `opacity: 0` permanente até que o scroll trigerasse o range. Comportamento invisível pro usuário scrollando normalmente, mas catastrófico pra: (a) screenshots full-page (Chrome DevTools, Puppeteer, Playwright), (b) print-to-PDF, (c) crawlers de SEO/redes sociais com link preview, (d) screen readers que pulam por estrutura, (e) browsers sem suporte a `animation-timeline: view()` (Firefox até ~2025). Smoke test visual no Chrome DevTools MCP pegou o bug imediatamente — a home renderizava só hero + footer com vazio massivo no meio.
+**Solution:** Animar **apenas `transform`**, manter `opacity: 1` sempre. Efeito slide-up preservado, mas conteúdo sempre visível em qualquer contexto não-scrollado. Regra geral: **scroll-driven CSS que altera visibilidade exige fallback estático garantido**. Se o efeito precisar de fade-in real, alternativa é usar `@scroll-timeline` JS-driven com observer que adiciona class explícita — mas o custo de manutenção volta a empatar com `IntersectionObserver` puro. Trade-off resolvido: animar só transforms baratos, dispensar opacity em scroll-driven.
+**Aplicável a:** qualquer animação CSS aplicada via `animation-timeline` (view/scroll/custom). Especialmente perigoso em sites multi-page estáticos onde crawlers/snapshots representam % significativa do tráfego.
 
 ### L-002: Categoria nova vs. adaptar tier existente
 **Context:** Ao desenhar remuneração pra operadores que vão entregar site/identidade/repo, considerou-se incluir essas pessoas dentro do tier Founder Member existente (R$ 2.079 pago) com algum desconto/exceção.
