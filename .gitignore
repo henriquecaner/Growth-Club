@@ -20,6 +20,12 @@ Thumbs.db
 # Contratos financeiros sensíveis — não publicar (Acordos Founder Crew, NDAs, valores comerciais)
 docs/contracts/
 
+# User research com PII (nome, WhatsApp, email, LinkedIn de respondentes) — não publicar
+docs/research/private/
+
+# Exports brutos de cadastros / submissions (Tally, Substack, WhatsApp) — PII completo
+data-users/
+
 # Stack futuro (quando tivermos código)
 node_modules/
 dist/

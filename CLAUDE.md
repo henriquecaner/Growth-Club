@@ -136,6 +136,12 @@ If the user needs to continue this work in Claude.ai (Projects), Claude Cowork, 
 
 There is no `package.json` or equivalent. None of the commands in `.agents/workflows/global-workflow.md` (`npm install`, `npm run dev`, `npm test`, etc.) work today. That workflow is a template for the eventual stack. Do not run those commands until a stack is committed. When the stack is chosen and wired (future Site sub-project), update `.specs/project/STACK.md` and `universal-agent-rules.md` §2 with the real commands before relying on them.
 
+**Site dev/deploy helpers:**
+
+- **Local preview:** `python3 -m http.server 8788 -d website` → http://localhost:8788. Use porta livre (8765 conflita com LogiPlugin do Logitech G HUB em macs do Henrique).
+- **Cache bust CSS antes de deploy:** `./bin/bump-css-version.sh` — auto-incrementa o `?v=YYYYMMDD[letra]` em todos os `<link rel="stylesheet">`. Roda **toda vez** que mexer em CSS antes do `wrangler pages deploy`, senão browsers que cachearam a versão anterior pegam HTML novo + CSS velho e o site quebra (L-003). `./bin/bump-css-version.sh --check` só mostra a versão atual sem mexer em nada.
+- **Deploy:** `wrangler pages deploy website --project-name growth-club --branch main`.
+
 ## Language & commits
 
 - **Code and code comments:** English (when code exists).
@@ -144,9 +150,19 @@ There is no `package.json` or equivalent. None of the commands in `.agents/workf
 - **Commits:** Conventional Commits — the existing history uses `chore:`, `docs:`, `docs(specs):`, `docs(plans):`, `brand(marca):`, `brand(visual):`, `brand(voice):`, `docs(cowork):`. Follow this pattern. Always include `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>` on AI-assisted commits.
 - **`CONVENTIONS.md` §6** not yet populated — if the user wants stricter rules, flag it as a gap instead of enforcing a guess.
 
-## Plugins enabled in `.claude/settings.json`
+## Plugins enabled
 
-`frontend-design` and `superpowers` (official Claude plugins) are enabled at the project level. Their skills become available via the Skill tool. **Heavy users in this repo so far:** `superpowers:brainstorming`, `superpowers:writing-plans` (produced both the business plan spec and the brand brief plan). Expect to use them again for the upcoming Site sub-project.
+Plugins live in two registries that coexist:
+
+**`.claude/settings.json` (project-local, legacy `enabledPlugins`):**
+- `frontend-design@claude-plugins-official` — distinctive UI/UX generation. Heavy user: site v1 + Design System AD-008.
+- `superpowers@claude-plugins-official` — brainstorming, writing-plans, executing-plans, debugging, TDD, code-review. Heavy users: `superpowers:brainstorming`, `superpowers:writing-plans` (business plan spec + brand brief plan + copy refino v2).
+- `chrome-devtools-mcp@claude-plugins-official` — Chrome DevTools MCP server + skills (a11y-debugging, debug-optimize-lcp, memory-leak-debugging, troubleshooting). Used for runtime audit/Lighthouse against `growthclub.pro`.
+
+**`~/.claude/plugins/installed_plugins.json` (global registry, scope `local` vinculado ao Growth-Club via `projectPath`):**
+- `modern-web-guidance@googlechrome` v0.0.169 (AD-012, 2026-05-20) — search engine de guias vetados pelo Chrome DevRel (12 silos: accessibility, built-in-ai, css, css-layout, forms, html, passkeys, performance, privacy, security, user-experience, webmcp). Gatilho automático em qualquer task HTML/CSS/JS-cliente (`website/**`). Executa `npx modern-web-guidance search`/`retrieve` em runtime. Skill secundária `chrome-extensions` (Manifest V3) instalada porém dormente — sem extensão planejada.
+
+When in doubt, prefer the specialized skill before generic patterns: Modern Web Guidance for plataforma técnica, `frontend-design` for estética/UX, `chrome-devtools-mcp` for runtime debug.
 
 ## What to do next — decision tree
 
