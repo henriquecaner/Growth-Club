@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css">
-  <link rel="stylesheet" href="/assets/css/components.css">
-  <link rel="stylesheet" href="/assets/css/chrome.css">
-  <link rel="stylesheet" href="/assets/css/pages.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260520b">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260520b">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260520b">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260520b">
 </head>
 <body>
 
@@ -78,69 +78,80 @@
           <li><strong>Analyst e vibe-coder aplicando IA com método</strong> — deep editorial trimestral de 1 tema por edição (próximos: RevOps com IA, pricing B2B sênior, salário de growth lead 2026). Agentes e automação inteligente com mecânica concreta, não hype.</li>
         </ul>
 
-        <div id="form" class="info-card is-large" style="margin-bottom: 64px; scroll-margin-top: 96px;">
-          <span class="eye-label is-block">/ CANDIDATURA — TIER GROWTH HACKER (FREE)</span>
-          <h3 class="card-h3" style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Conta um pouco sobre <em class="em-amber">você.</em></h3>
-          <p class="p-lead-sm" style="margin-bottom: 24px;">7 campos, ~3 minutos. Resposta da triagem em até 7 dias úteis por email. Aprovado entra na newsletter quinzenal + convite pra WhatsApp Community.</p>
+        <section id="form" class="application-card" aria-labelledby="application-heading">
+          <header class="application-head">
+            <div class="application-tag">
+              <span class="application-tag-dot" aria-hidden="true"></span>
+              Candidatura · Tier Growth Hacker (free)
+            </div>
+            <h3 id="application-heading" class="application-headline">Conta um pouco sobre <em>você.</em></h3>
+            <div class="application-meta">
+              <span><b>7</b> campos</span>
+              <span><b>~3</b> min</span>
+              <span><b>7</b> dias úteis pra resposta</span>
+            </div>
+          </header>
 
           <form class="member-form" novalidate>
-            <fieldset>
+            <fieldset class="fs-step">
               <legend>Você</legend>
               <label>
-                Nome completo <span class="req">*</span>
+                <span class="label-text">Nome completo <span class="req">*</span></span>
                 <input type="text" name="nome" required minlength="3" autocomplete="name" placeholder="Maria Souza">
                 <span class="field-hint">Como aparece na bio do LinkedIn.</span>
               </label>
               <label>
-                Email <span class="req">*</span>
+                <span class="label-text">Email <span class="req">*</span></span>
                 <input type="email" name="email" required autocomplete="email" placeholder="voce@empresa.com">
                 <span class="field-hint">Pra onde mandamos a newsletter e a resposta da triagem.</span>
               </label>
               <label>
-                LinkedIn <span class="req">*</span>
-                <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/...">
-                <span class="field-hint">Contexto antes da resposta — não pedimos CV.</span>
+                <span class="label-text">LinkedIn <span class="req">*</span></span>
+                <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/maria-souza">
+                <span class="field-hint">Contexto antes da resposta. Não pedimos CV.</span>
               </label>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="fs-step">
               <legend>Operação</legend>
+              <div class="field-row">
+                <label>
+                  <span class="label-text">Role atual <span class="req">*</span></span>
+                  <select name="role" required>
+                    <option value="">Selecionar…</option>
+                    <option>Founder / CEO</option>
+                    <option>CRO / VP Sales</option>
+                    <option>Growth Lead / RevOps Lead</option>
+                    <option>Marketing Lead / CMO</option>
+                    <option>Vendedor consultivo senior</option>
+                    <option>Analyst / Data / RevOps</option>
+                    <option>Outro</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="label-text">Setor</span>
+                  <select name="setor">
+                    <option value="">Selecionar…</option>
+                    <option>SaaS B2B</option>
+                    <option>Indústria</option>
+                    <option>Serviços recorrentes (B2B)</option>
+                    <option>Marketplace / e-com</option>
+                    <option>Fintech</option>
+                    <option>Outro</option>
+                  </select>
+                </label>
+              </div>
               <label>
-                Role atual <span class="req">*</span>
-                <select name="role" required>
-                  <option value="">Selecionar…</option>
-                  <option>Founder / CEO</option>
-                  <option>CRO / VP Sales</option>
-                  <option>Growth Lead / RevOps Lead</option>
-                  <option>Marketing Lead / CMO</option>
-                  <option>Vendedor consultivo senior</option>
-                  <option>Analyst / Data / RevOps</option>
-                  <option>Outro</option>
-                </select>
-              </label>
-              <label>
-                Empresa <span class="req">*</span>
+                <span class="label-text">Empresa <span class="req">*</span></span>
                 <input type="text" name="empresa" required minlength="2" autocomplete="organization" placeholder="Onde tu opera hoje">
               </label>
-              <label>
-                Setor
-                <select name="setor">
-                  <option value="">Selecionar…</option>
-                  <option>SaaS B2B</option>
-                  <option>Indústria</option>
-                  <option>Serviços recorrentes (B2B)</option>
-                  <option>Marketplace / e-com</option>
-                  <option>Fintech</option>
-                  <option>Outro</option>
-                </select>
-              </label>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="fs-step">
               <legend>Contexto</legend>
               <label>
-                Qual problema te trouxe aqui? <span class="req">*</span>
-                <textarea name="problema" required minlength="20" rows="4" placeholder="Ex: CAC subiu 40% no Q1 sem hipótese clara, ou estamos lançando produto novo e quero benchmark de pricing..."></textarea>
+                <span class="label-text">Qual problema te trouxe aqui? <span class="req">*</span></span>
+                <textarea name="problema" required minlength="20" rows="5" placeholder="Ex: CAC subiu 40% no Q1 sem hipótese clara, ou estamos lançando produto novo e quero benchmark de pricing senior B2B…"></textarea>
                 <span class="field-hint">Mínimo 20 caracteres. Quanto mais contexto, melhor a triagem.</span>
               </label>
             </fieldset>
@@ -150,12 +161,24 @@
               <span>Autorizo o uso desses dados pra triagem editorial e contato por email. Posso revogar a qualquer momento via <a href="/lgpd">/lgpd</a>. <span class="req">*</span></span>
             </label>
 
-            <div class="actions">
-              <button type="submit" class="btn primary">Enviar candidatura <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></button>
-              <a href="https://tally.so/r/BzLJO4" class="tally-link" target="_blank" rel="noopener">ou preenche no Tally →</a>
+            <div class="form-submit">
+              <button type="submit" class="btn-submit">
+                <span class="btn-submit-label">Submeter candidatura</span>
+                <span class="btn-submit-meta">// triagem manual em 7 dias úteis</span>
+                <svg class="icon btn-submit-icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg>
+              </button>
             </div>
+
+            <p class="form-fallback">
+              Sem paciência pra preencher aqui?
+              <a href="https://tally.so/r/BzLJO4" target="_blank" rel="noopener">Preenche no Tally em vez disso →</a>
+            </p>
           </form>
-        </div>
+
+          <footer class="application-foot">
+            <span>// triagem manual · sem auto-reply · zero swap de lista</span>
+          </footer>
+        </section>
 
         <dialog id="member-confirm" class="gc-dialog" aria-labelledby="member-confirm-title">
           <form method="dialog">

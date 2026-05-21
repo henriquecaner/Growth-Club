@@ -133,75 +133,237 @@
 .tier-card .tier-headline em { font-style: normal; color: var(--accent-amber); }
 
 /* =========================================================================
-   MEMBRO · FORM — accessible application form with :user-valid feedback
-   and native <dialog> confirmation. No JS framework, no backend dependency.
+   MEMBRO · APPLICATION CARD — editorial-brutalist application form.
+   Numbered fieldsets via CSS counter, oversized labels, generous breathing
+   room, custom select chevron, submit button with meta-line + arrow.
+   "Franco, com número, sem palco, com cerveja" applied to a form.
    ========================================================================= */
-.member-form {
-  display: grid;
-  gap: 24px;
+
+/* ---- Outer card --------------------------------------------------------- */
+.application-card {
+  position: relative;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
+  padding: 56px 56px 0;
+  margin-bottom: 64px;
+  scroll-margin-top: 96px;
+  overflow: hidden;
+  isolation: isolate;
 }
-.member-form fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 16px;
+.application-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 100% 0%, var(--accent-amber-soft) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 0% 100%, var(--accent-teal-soft) 0%, transparent 55%);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: -1;
 }
-.member-form legend {
+.application-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-amber);
+  z-index: 1;
+}
+
+/* ---- Header ------------------------------------------------------------- */
+.application-head {
+  border-bottom: 1px dashed var(--border-default);
+  padding-bottom: 32px;
+  margin-bottom: 40px;
+}
+.application-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 20px;
+}
+.application-tag-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  box-shadow: 0 0 0 4px var(--accent-teal-soft);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .application-tag-dot { animation: app-pulse 2.5s ease-in-out infinite; }
+}
+@keyframes app-pulse {
+  50% { box-shadow: 0 0 0 8px transparent; }
+}
+.application-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(32px, 4.4vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--fg-primary);
+  margin: 0 0 24px;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.application-headline em {
+  font-style: normal;
+  color: var(--accent-amber);
+}
+.application-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent-teal);
-  margin-bottom: 4px;
+  color: var(--fg-tertiary);
+}
+.application-meta b {
+  color: var(--fg-primary);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-right: 8px;
+  vertical-align: -2px;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* ---- Form: numbered fieldsets via CSS counter -------------------------- */
+.member-form {
+  counter-reset: fs;
+  display: grid;
+  gap: 0;
+}
+.member-form fieldset {
+  counter-increment: fs;
+  border: 0;
+  padding: 32px 0;
+  margin: 0;
+  display: grid;
+  gap: 22px;
+  position: relative;
+}
+.member-form fieldset + fieldset {
+  border-top: 1px dashed var(--border-default);
+}
+.member-form legend {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 20px;
   padding: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -0.025em;
+  color: var(--fg-primary);
+  width: 100%;
 }
 .member-form legend::before {
-  content: "";
-  width: 18px;
-  height: 1px;
-  background: var(--accent-teal);
+  content: "0" counter(fs);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--accent-amber);
+  padding-top: 6px;
+  font-feature-settings: 'tnum' 1;
 }
+
+/* ---- Labels + fields ---------------------------------------------------- */
 .member-form label {
   display: grid;
-  gap: 6px;
-  font-size: 14px;
+  gap: 8px;
+  font-family: var(--font-body);
   font-weight: 500;
+  font-size: 14px;
   color: var(--fg-secondary);
+}
+.member-form label .label-text {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
 }
 .member-form label .req {
   color: var(--accent-amber);
-  font-weight: 400;
+  font-weight: 700;
 }
+.member-form .field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 640px) {
+  .member-form .field-row { grid-template-columns: 1fr; }
+}
+
 .member-form input,
 .member-form select,
 .member-form textarea {
   width: 100%;
-  padding: 14px 16px;
-  background: var(--bg-sunken);
-  border: 1px solid var(--border-default);
+  padding: 16px 18px;
+  background: var(--bg-base);
+  border: 1.5px solid var(--border-default);
   border-radius: 6px;
   color: var(--fg-primary);
-  font-size: 16px;
+  font-size: 17px;
   font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.4;
   transition: border-color 160ms var(--ease-out),
+              background 160ms var(--ease-out),
               box-shadow 160ms var(--ease-out);
 }
-.member-form select { cursor: pointer; }
+.member-form input::placeholder,
+.member-form textarea::placeholder {
+  color: var(--fg-muted);
+  font-weight: 400;
+}
 .member-form textarea {
   resize: vertical;
-  min-height: 6rem;
+  min-height: 8rem;
   line-height: 1.5;
+  font-size: 16px;
 }
+
+/* Custom <select> chevron — appearance: none + inline SVG arrow */
+.member-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 48px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B847E' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 14px 14px;
+}
+
 .member-form input:focus,
 .member-form select:focus,
 .member-form textarea:focus {
   outline: none;
   border-color: var(--accent-amber);
-  box-shadow: 0 0 0 3px var(--accent-amber-soft);
+  background: var(--bg-raised);
+  box-shadow: 0 0 0 4px var(--accent-amber-soft);
 }
 .member-form input:user-valid,
 .member-form select:user-valid,
@@ -212,45 +374,163 @@
 .member-form select:user-invalid,
 .member-form textarea:user-invalid {
   border-color: var(--color-danger);
-  background: color-mix(in oklab, var(--color-danger) 4%, var(--bg-sunken));
+  background: color-mix(in oklab, var(--color-danger) 5%, var(--bg-base));
 }
+
 .member-form .field-hint {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--fg-tertiary);
-  font-family: var(--font-mono);
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0;
   margin-top: 2px;
+  line-height: 1.5;
 }
-.member-form :user-invalid ~ .field-hint { color: var(--color-danger); }
+.member-form :user-invalid ~ .field-hint {
+  color: var(--color-danger);
+  font-weight: 500;
+}
+
+/* ---- LGPD checkbox ------------------------------------------------------ */
 .member-form .field-checkbox {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
+  margin-top: 32px;
+  padding: 20px 24px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
   font-size: 14px;
   color: var(--fg-secondary);
-  line-height: 1.45;
+  line-height: 1.55;
+  cursor: pointer;
+  transition: border-color 160ms var(--ease-out);
+}
+.member-form .field-checkbox:has(input:checked) {
+  border-color: var(--accent-teal);
+  background: color-mix(in oklab, var(--accent-teal) 4%, var(--bg-base));
 }
 .member-form .field-checkbox input {
-  width: auto;
-  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  flex-shrink: 0;
   accent-color: var(--accent-amber);
+  cursor: pointer;
 }
-.member-form .actions {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 8px;
+
+/* ---- Submit row --------------------------------------------------------- */
+.member-form .form-submit {
+  margin-top: 32px;
 }
-.member-form .tally-link {
+.btn-submit {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  column-gap: 24px;
+  row-gap: 4px;
+  width: 100%;
+  padding: 22px 28px;
+  background: var(--accent-amber);
+  color: #0A0A0A;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  transition: transform 160ms var(--ease-out),
+              box-shadow 200ms var(--ease-out),
+              background 160ms var(--ease-out);
+}
+.btn-submit-label { grid-column: 1; grid-row: 1; }
+.btn-submit-meta  { grid-column: 1; grid-row: 2; margin-top: 4px; }
+.btn-submit-icon  { grid-column: 2; grid-row: 1 / span 2; align-self: center; transition: transform 160ms var(--ease-out); }
+.btn-submit:hover {
+  background: var(--accent-amber-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(212, 162, 76, 0.35);
+}
+.btn-submit:active { transform: translateY(0); }
+.btn-submit:focus-visible {
+  outline: 3px solid var(--fg-primary);
+  outline-offset: 3px;
+}
+.btn-submit-label {
+  font-size: clamp(18px, 2vw, 22px);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.btn-submit-meta {
   font-family: var(--font-mono);
+  font-weight: 400;
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.7);
+}
+.btn-submit-icon {
+  width: 28px;
+  height: 28px;
+  stroke-width: 2.5;
+  color: #0A0A0A;
+  flex-shrink: 0;
+}
+.btn-submit:hover .btn-submit-icon {
+  transform: translate(4px, -4px);
+}
+
+/* ---- Tally fallback row ------------------------------------------------- */
+.form-fallback {
+  margin: 16px 0 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--fg-tertiary);
+  text-align: center;
+}
+.form-fallback a {
+  color: var(--accent-teal);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-teal-soft);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  margin-left: 6px;
+  transition: text-decoration-color 160ms var(--ease-out),
+              color 160ms var(--ease-out);
+}
+.form-fallback a:hover {
+  color: var(--accent-amber);
+  text-decoration-color: var(--accent-amber);
+  text-decoration-thickness: 2px;
+}
+
+/* ---- Footer microtype --------------------------------------------------- */
+.application-foot {
+  margin-top: 48px;
+  margin-inline: -56px;
+  padding: 16px 56px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-void);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--fg-tertiary);
-  text-decoration: none;
+  text-align: center;
 }
-.member-form .tally-link:hover { color: var(--accent-amber); }
+
+@media (max-width: 720px) {
+  .application-card { padding: 40px 28px 0; }
+  .application-foot { margin-inline: -28px; padding: 14px 28px; }
+  .application-meta { gap: 20px; }
+  .application-meta b { font-size: 18px; }
+  .member-form legend { font-size: 22px; grid-template-columns: 1fr; gap: 4px; }
+  .member-form legend::before { padding-top: 0; }
+  .btn-submit { grid-template-columns: 1fr; gap: 16px; padding: 20px 22px; }
+  .btn-submit-icon { justify-self: start; }
+}
 
 /* Generic <dialog> styling — applies anywhere we use .gc-dialog */
 dialog.gc-dialog {
