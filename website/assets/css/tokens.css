@@ -33,10 +33,10 @@
   --fg-muted:       #B8B3AC;   /* disabled */
   --fg-inverse:     #F5F1E8;   /* text on dark/accent surfaces */
 
-  /* Accents — Amber primary (CTA), Pirate Teal secondary */
+  /* Accents — AD-008 reactivated (AD-017, 2026-05-24) */
   --accent-amber:        #D4A24C;
-  --accent-amber-bright: #E5B45D;   /* hover */
-  --accent-amber-dim:    #B88838;   /* press */
+  --accent-amber-bright: #E5B45D;
+  --accent-amber-dim:    #B88838;
   --accent-amber-soft:   rgba(212, 162, 76, 0.12);
   --accent-amber-glow:   rgba(212, 162, 76, 0.28);
 
@@ -46,7 +46,17 @@
   --accent-teal-soft:   rgba(79, 179, 165, 0.12);
   --accent-teal-glow:   rgba(79, 179, 165, 0.28);
 
-  /* Legacy aliases — preserve old [violet/mint] class names so previews don't break */
+  --accent-brick:       #B84A3E;
+  --accent-brick-soft:  rgba(184, 74, 62, 0.10);
+
+  /* Soft tints — AD-017 additions for Awake-style pastel cards */
+  --tint-amber-soft:    #F2E2C0;
+  --tint-teal-soft:     #CDEDE7;
+  --tint-brick-soft:    #F4D5CF;
+  --tint-warm-neutral:  #E8E2D0;
+  --tint-sage-soft:     #DDE6E2;
+
+  /* Legacy aliases — preserve old [violet/mint] class names */
   --accent-violet:        var(--accent-amber);
   --accent-violet-bright: var(--accent-amber-bright);
   --accent-violet-dim:    var(--accent-amber-dim);
