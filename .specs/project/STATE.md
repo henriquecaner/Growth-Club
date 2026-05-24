@@ -557,6 +557,18 @@ Henrique optou por destravar o handoff de marca **agora** sem esperar o logo SVG
 
 ---
 
+### AD-017: Reativação de AD-008 paleta — Tonal Warm puro → AD-008 estendido com soft tints
+**Date:** 2026-05-24
+**Status:** Accepted (supersedes the 2026-05-24 brainstorming-internal Tonal Warm pure approval)
+
+**Context:** Durante a sessão de brainstorming de 2026-05-24, o founder aprovou momentaneamente uma paleta "Tonal Warm sem accent" (Paper #F7F5F0 + Charcoal #1C1B18 + Ash #6B6862 only, sem Amber/Teal/Brick). Essa aprovação foi superada pela escolha posterior do estilo Awake-inspired, que requer cor de accent — sem cor, cards pastel, retratos com círculos coloridos e pricing destacado não funcionam visualmente.
+
+**Decision:** AD-008 (Growth Club Design System) é reativado com extensão. Paleta volta a ter: Paper `#F7F5F0`, Paper deep `#ECE7D6`, Charcoal `#1C1B18`, Ash `#6B6862`, Amber Beer `#D4A24C`, Pirate Teal `#4FB3A5`, Brick Red `#B84A3E`. Adicionados novos tokens de soft tint pra suportar o estilo Awake: `--amber-soft #F2E2C0`, `--teal-soft #CDEDE7`, `--brick-soft #F4D5CF`, `--warm-neutral #E8E2D0`, `--sage-soft #DDE6E2`. Fontes Satoshi + Roboto Mono mantidas (AD-008 → keep). Componentes web (`<gc-header>`, `<gc-footer>`) mantidos com ajustes de markup pro nav pill da Phase 3.
+
+**Reversibility:** Reverter exige editar `tokens.css` e remover os soft tints. Custo: 1 commit.
+
+---
+
 ## Active Blockers
 
 Nenhum.
