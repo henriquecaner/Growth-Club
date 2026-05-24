@@ -1459,3 +1459,28 @@ dialog.gc-dialog .dialog-actions {
 @media (max-width: 720px) {
   .home-eligibility-list { grid-template-columns: 1fr; }
 }
+
+/* ---- Home logos strip — real company names (Hype E) ---- */
+ul.home-logos-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.logo-mark {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+  letter-spacing: var(--ls-tight);
+  color: var(--fg-secondary);
+  opacity: .65;
+  white-space: nowrap;
+  transition: opacity var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.logo-mark:hover {
+  opacity: 1;
+  color: var(--fg-primary);
+}
+@media (max-width: 720px) {
+  .logo-mark { font-size: var(--fs-body-sm); }
+  .home-logos-row { gap: var(--space-6); }
+}
