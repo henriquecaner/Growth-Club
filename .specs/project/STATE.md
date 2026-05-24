@@ -545,6 +545,18 @@ Henrique optou por destravar o handoff de marca **agora** sem esperar o logo SVG
 
 ---
 
+### AD-016: Reset de régua editorial — "Se não tem número, não é Growth Club" → retirada
+**Date:** 2026-05-24
+**Status:** Accepted (supersedes AD-001 cultural rule #1)
+
+**Context:** A régua editorial "Se não tem número, não é Growth Club." era o filtro #1 da marca (AD-001 §3.3, brand/decisions/01-bandeira-pirata.md, voice manifesto). Funcionava como porta de entrada cultural — case sem número virava redirecionamento cordial. Decisão de reset (2026-05-24) retira a régua porque a copy literal Growth Brazil adotada como nova verdade não comporta o filtro: "#1 comunidade" não tem número, "elite do mercado" não tem número, "os melhores do mundo" não tem número. Manter a régua junto da nova copy seria contradição interna.
+
+**Decision:** Régua "Se não tem número, não é Growth Club." aposentada. Nenhuma régua editorial substitui no curto prazo — comunidade passa a operar sem filtro editorial explícito (a curadoria continua existindo via triagem de candidatura, mas sem rótulo de regra). Posts/newsletter/WhatsApp/livecast continuam editados pelo founder; só não há mais uma régua nominal pública.
+
+**Reversibility:** Reverter exige reintroduzir a régua em CLAUDE.md, brand/decisions/, voice/manifesto. Custo: 3 commits.
+
+---
+
 ## Active Blockers
 
 Nenhum.
