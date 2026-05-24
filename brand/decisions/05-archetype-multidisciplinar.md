@@ -31,11 +31,12 @@ Magician — "comunidade agnóstica onde a troca é real", "membros possuem idei
 
 > "Somos uma comunidade de profissionais de marketing, vendas, sucesso de clientes, analytics, produtos e founders."
 
-### 3 pilares oficiais
+### 4 pilares oficiais (atualizado AD-018, 2026-05-24)
 
 1. **Encontre Talentos** — "Alcance pessoas em nosso canal de contratação. Seja para um consultor pontual ou um funcionário full-time, a elite do mercado está aqui."
 2. **Conteúdo Denso** — "Curadoria diária e compartilhamento de conhecimento replicável. Newsletters, Lives Semanais e AMAs com os melhores do mundo."
 3. **Vibe Única** — "Novo ou avançado, tímido ou extrovertido. Nossos membros possuem ideias semelhantes e diferentes. Somos uma comunidade agnóstica onde a troca é real."
+4. **Ferramentas** — "Templates, checklists e frameworks compartilhados pela comunidade. Materiais práticos editáveis para acelerar o seu dia a dia em Growth."
 
 ### Footnote do meetup
 

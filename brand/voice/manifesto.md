@@ -22,13 +22,15 @@ Somos remotos, criativos, gentis e engajados. Invista energia em seu crescimento
 
 A elite do mercado está aqui. Curadoria diária, conhecimento replicável, encontros que criam laços e memórias.
 
-## 3 pilares
+## 4 pilares
 
 **Encontre Talentos** — Alcance pessoas em nosso canal de contratação. Seja para um consultor pontual ou um funcionário full-time.
 
 **Conteúdo Denso** — Curadoria diária e compartilhamento de conhecimento replicável. Newsletters, Lives Semanais e AMAs com os melhores do mundo.
 
 **Vibe Única** — Novo ou avançado, tímido ou extrovertido. Nossos membros possuem ideias semelhantes e diferentes. Somos uma comunidade agnóstica onde a troca é real.
+
+**Ferramentas** — Templates, checklists e frameworks compartilhados pela comunidade. Materiais práticos editáveis para acelerar o seu dia a dia em Growth.
 
 ## Convite
 

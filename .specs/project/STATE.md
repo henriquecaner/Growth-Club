@@ -569,6 +569,25 @@ Henrique optou por destravar o handoff de marca **agora** sem esperar o logo SVG
 
 ---
 
+### AD-018: 3 pilares → 4 pilares — adicionar "Ferramentas" ao lado dos 3 existentes
+**Date:** 2026-05-24
+**Status:** Accepted (supersedes Decisão 05 §3 pilares — locked passa a ser 4 pilares)
+
+**Context:** Visual review da home em localhost durante Phase 3 (2026-05-24) revelou que a página estava com gap de conteúdo comparada à referência `growth-brazil.webflow.io`. A referência usa 4 pilares (Encontre Talentos / Resolva Problemas / Conheça Pessoas / Ferramentas) enquanto Decisão 05 (commit cdeca07) tinha lockado 3 pilares (Encontre Talentos / Conteúdo Denso / Vibe Única). User aprovou expandir pra 4 mantendo os 3 existentes + adicionando "Ferramentas".
+
+**Decision:** A locked decision §3 pilares da Decisão 05 muda de 3 pra 4. Os 4 pilares oficiais passam a ser:
+
+1. **Encontre Talentos** (preservado) — "Alcance pessoas em nosso canal de contratação. Seja para um consultor pontual ou um funcionário full-time, a elite do mercado está aqui."
+2. **Conteúdo Denso** (preservado) — "Curadoria diária e compartilhamento de conhecimento replicável. Newsletters, Lives Semanais e AMAs com os melhores do mundo."
+3. **Vibe Única** (preservado) — "Novo ou avançado, tímido ou extrovertido. Nossos membros possuem ideias semelhantes e diferentes. Somos uma comunidade agnóstica onde a troca é real."
+4. **Ferramentas** (novo) — "Templates, checklists e frameworks compartilhados pela comunidade. Materiais práticos editáveis para acelerar o seu dia a dia em Growth."
+
+Grid da home muda de 3-col pra 4-col em desktop (responsivo: 2-col em tablet, 1-col em mobile). `brand/decisions/05-archetype-multidisciplinar.md` é editado pra adicionar o 4o pilar (em vez de abrir Decisão 06 separada — mantém Decisão 05 como source of truth dos pilares atualizado).
+
+**Reversibility:** Reverter exige editar STATE + Decisão 05 (remover 4o pilar) + index.html (remover card) + CSS (volta 3-col). Custo: 3 commits.
+
+---
+
 ## Active Blockers
 
 Nenhum.
