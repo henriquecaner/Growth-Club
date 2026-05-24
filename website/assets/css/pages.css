@@ -111,10 +111,13 @@
 }
 .home-pillars-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-4);
 }
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
+  .home-pillars-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
   .home-pillars-grid { grid-template-columns: 1fr; }
 }
 
@@ -1064,4 +1067,142 @@ dialog.gc-dialog .dialog-actions {
   .memo { padding: 32px 24px 48px; }
   .memo-meta { grid-template-columns: 1fr; }
   .memo::before { right: 12px; }
+}
+
+/* =========================================================================
+   HOME — Expansion (AD-018 follow-up, 2026-05-24)
+   Features (O que esperar) · Testimonials · People · FAQ
+   ========================================================================= */
+
+/* ---- Home features (4 funcionalidades) ---- */
+.home-features {
+  padding-block: var(--space-20);
+  background: var(--bg-base);
+}
+.home-features-head {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+.home-features-h2 {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display);
+  font-weight: var(--fw-black);
+  margin: 0 0 var(--space-3);
+}
+.home-features-sub {
+  font-size: var(--fs-body);
+  color: var(--fg-secondary);
+  max-width: 56ch;
+  margin: 0 auto;
+}
+.home-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+@media (max-width: 1024px) {
+  .home-features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .home-features-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Home testimonials ---- */
+.home-testimonials {
+  padding-block: var(--space-20);
+  background: var(--bg-raised);
+}
+.home-testimonials-head {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+.home-testimonials-h2 {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display);
+  font-weight: var(--fw-black);
+  margin: 0 0 var(--space-3);
+}
+.home-testimonials-sub {
+  font-size: var(--fs-body);
+  color: var(--fg-secondary);
+  max-width: 56ch;
+  margin: 0 auto;
+}
+.home-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+@media (max-width: 960px) {
+  .home-testimonials-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Home people (Especialistas) ---- */
+.home-people {
+  padding-block: var(--space-20);
+}
+.home-people-head {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+.home-people-h2 {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display);
+  font-weight: var(--fw-black);
+  margin: 0 0 var(--space-3);
+}
+.home-people-sub {
+  font-size: var(--fs-body);
+  color: var(--fg-secondary);
+  max-width: 56ch;
+  margin: 0 auto;
+}
+.home-people-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+@media (max-width: 1024px) {
+  .home-people-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .home-people-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Home FAQ ---- */
+.home-faq {
+  padding-block: var(--space-20);
+  background: var(--bg-raised);
+}
+.home-faq-inner {
+  max-width: 760px;
+}
+.home-faq-head {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+.home-faq-h2 {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display);
+  font-weight: var(--fw-black);
+  margin: 0 0 var(--space-3);
+}
+.home-faq-sub {
+  font-size: var(--fs-body);
+  color: var(--fg-secondary);
+}
+.home-faq-list {
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ---- Home CTA actions (2 botões no closer) ---- */
+.home-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
