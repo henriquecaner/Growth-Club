@@ -1484,3 +1484,44 @@ ul.home-logos-row {
   .logo-mark { font-size: var(--fs-body-sm); }
   .home-logos-row { gap: var(--space-6); }
 }
+
+/* ---- Home meetup sub-stats (Hype G) ---- */
+.home-meetup-stats {
+  list-style: none;
+  margin: var(--space-6) auto var(--space-8);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.home-meetup-stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+.home-meetup-num {
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1;
+  letter-spacing: var(--ls-tightest);
+  color: var(--fg-primary);
+  font-feature-settings: 'tnum' 1;
+}
+.home-meetup-num small {
+  font-size: 0.55em;
+  color: var(--accent-amber);
+  margin-left: 1px;
+}
+.home-meetup-num-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-loud);
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+}
+@media (max-width: 560px) {
+  .home-meetup-stats { gap: var(--space-4); }
+}
