@@ -52,7 +52,7 @@
             <ul>
               <li>Founder, CRO, growth/RevOps lead, vendedor consultivo sênior em B2B (SaaS, indústria, serviços recorrentes)</li>
               <li>Topa abrir número quando entrega case</li>
-              <li>Quer conversa de operador, não talk de guru</li>
+              <li>Quer conversa entre pares, não talk de palco</li>
               <li>Aceita disclosure claro de patrocínio</li>
             </ul>
           </div>
@@ -253,29 +253,77 @@
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script>
-    // Member application form — native validation + <dialog> confirmation.
-    // Backend TBD. Until decided, persist locally and stage to mailto fallback.
+    // Member application form — Advanced native validation + event timing.
     (() => {
       const form = document.querySelector('.member-form');
       const dialog = document.getElementById('member-confirm');
       if (!form || !dialog) return;
 
+      const inputs = form.querySelectorAll('input, select, textarea');
+
+      // Helper function to validate a field and toggle visual indicators & aria-invalid
+      const validateField = (input) => {
+        const isValid = input.checkValidity();
+        if (!isValid) {
+          input.classList.add('is-invalid');
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          input.classList.remove('is-invalid');
+          input.removeAttribute('aria-invalid');
+        }
+      };
+
+      // 1. Validation on exit (blur)
+      inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+          validateField(input);
+        });
+
+        // 2. Clear error state instantly on user interaction (input)
+        input.addEventListener('input', () => {
+          input.classList.remove('is-invalid');
+          input.removeAttribute('aria-invalid');
+        });
+      });
+
+      // 3. Robust submit trapping
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
+
+        let firstInvalid = null;
+
+        inputs.forEach(input => {
+          validateField(input);
+          if (!input.checkValidity() && !firstInvalid) {
+            firstInvalid = input;
+          }
+        });
+
+        if (firstInvalid) {
+          firstInvalid.focus();
           return;
         }
+
         const data = Object.fromEntries(new FormData(form));
-        // Stage: log + dialog. Replace with fetch(...) when backend lands.
         console.info('[membro] candidatura recebida', data);
+
         try {
           const inbox = JSON.parse(localStorage.getItem('gc-membro-inbox') || '[]');
           inbox.push({ ...data, at: new Date().toISOString() });
           localStorage.setItem('gc-membro-inbox', JSON.stringify(inbox));
-        } catch {}
+        } catch (err) {
+          console.error('Falha ao salvar candidatura localmente:', err);
+        }
+
+        // Open native dialogue modal
         dialog.showModal();
         form.reset();
+        
+        // Clear visual error styles after form reset
+        inputs.forEach(input => {
+          input.classList.remove('is-invalid');
+          input.removeAttribute('aria-invalid');
+        });
       });
     })();
   </script>
