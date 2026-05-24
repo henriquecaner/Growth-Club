@@ -1877,3 +1877,51 @@ em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
 /* ---- Section section padding override ---- */
 .section.is-alt { background: var(--bg-void); border-top: 1px solid var(--border-subtle); }
 
+
+/* =========================================================================
+   AD-017 · Awake-style components for home reset
+   ========================================================================= */
+
+/* ---- Pastel pillar card (used in 3 pilares) ---- */
+.home-pillar {
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6);
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.home-pillar-amber { background: var(--tint-amber-soft); }
+.home-pillar-teal  { background: var(--tint-teal-soft); }
+.home-pillar-brick { background: var(--tint-brick-soft); }
+.home-pillar-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(28,27,24,.08);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-primary);
+}
+.home-pillar h3 {
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
+  color: var(--fg-primary);
+  margin: var(--space-2) 0 0;
+  letter-spacing: var(--ls-tight);
+}
+.home-pillar p {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-secondary);
+  margin: 0;
+}
+
+/* ---- Logo placeholder strip ---- */
+.logo-ph {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-sm);
+  color: var(--fg-tertiary);
+  opacity: .7;
+}
