@@ -34,6 +34,7 @@ build/
 .env
 .env.local
 .env.*.local
+.envrc
 *.log
 __pycache__/
 *.pyc
