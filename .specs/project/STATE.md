@@ -533,6 +533,18 @@ Henrique optou por destravar o handoff de marca **agora** sem esperar o logo SVG
 
 ---
 
+### AD-015: Reset de posicionamento — B2B curado → Comunidade multidisciplinar
+**Date:** 2026-05-24
+**Status:** Accepted (supersedes AD-001 §3-§5 in part)
+
+**Context:** AD-001 (Business Plan v1.2) posicionava o Growth Club como "comunidade brasileira de operadores B2B de growth" com cluster analysis (AD-011) reforçando o foco em founders, CROs, growth/RevOps leads, vendedores consultivos B2B. Decisão de reset (2026-05-24) substitui esse posicionamento por "comunidade de Growth multidisciplinar do Brasil" — marketing + vendas + sucesso de clientes + analytics + produtos + founders, sem o filtro B2B-only.
+
+**Decision:** Headline oficial passa a ser "A #1 Comunidade de Growth Multidisciplinar do Brasil". Sub-headline oficial passa a ser "Somos uma comunidade de profissionais de marketing, vendas, sucesso de clientes, analytics, produtos e founders". Audiência alvo se expande pra todo profissional de growth, não só operadores B2B. Sections §3-§5 do business plan (audiência, posicionamento, ângulo) ficam parcialmente desatualizadas — Phase 4 da implementação do reset atualiza CLAUDE.md e memory pra refletir isso, mas o spec do business plan original fica intacto como artefato histórico.
+
+**Reversibility:** Reverter exige editar headline em `website/index.html` + reescrever CLAUDE.md "Project at a glance". Custo: 2 commits.
+
+---
+
 ## Active Blockers
 
 Nenhum.
