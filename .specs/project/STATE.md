@@ -521,6 +521,18 @@ Henrique optou por destravar o handoff de marca **agora** sem esperar o logo SVG
 
 ---
 
+### AD-014: Reset de archetype — Outlaw+Sage → Hero+Magician aspiracional
+**Date:** 2026-05-24
+**Status:** Accepted (supersedes AD-003 in part)
+
+**Context:** Sessão de brainstorming em 2026-05-24 redirecionou posicionamento e voz da marca após o founder concluir que a régua "Franco, com número, sem palco, com cerveja." e o archetype Outlaw+Sage não capturavam a comunidade que ele quer construir. Nova referência adotada: `growth-brazil.webflow.io` (estrutura/copy) + `henriques-amazing-site-a39ead.webflow.io` (elementos visuais Awake-style). Decisão completa documentada em `docs/superpowers/specs/2026-05-24-growth-club-reset-pivot-design.md`.
+
+**Decision:** Archetype primário passa a ser **Hero + Magician** (aspiracional, inclusivo, "elite do mercado", "transformando o mercado"). Ton-anchor velho ("Franco, com número, sem palco, com cerveja.") aposentado — substituído pelo bloco sub-headline da nova copy ("Somos remotos, criativos, gentis e engajados. Invista energia em seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."). `brand/decisions/03-arquetipo-e-tom.md` movido pra `brand/legacy/2026-05-24-archetype-outlaw-sage.md` via `git mv`. Novo arquivo `brand/decisions/05-archetype-multidisciplinar.md` captura a nova decisão. `brand/voice/` (manifesto, dos-and-donts, tom-por-canal, glossario) movido pra `brand/legacy/voice-2026-04/`; `brand/voice/manifesto.md` recriado com voz nova.
+
+**Reversibility:** `brand/legacy/` mantém os artefatos antigos intactos. Reverter = `git mv` de volta + append "revert AD-014" entry neste STATE.md. Custo: 1 commit.
+
+---
+
 ## Active Blockers
 
 Nenhum.
