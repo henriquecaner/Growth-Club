@@ -1160,16 +1160,59 @@ dialog.gc-dialog .dialog-actions {
   max-width: 56ch;
   margin: 0 auto;
 }
+.home-people-eye {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-loud);
+  text-transform: uppercase;
+  color: var(--accent-teal-dim);
+  display: inline-block;
+  margin-bottom: var(--space-3);
+}
+.home-people-h2 em {
+  font-family: 'Iowan Old Style', Georgia, serif;
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  letter-spacing: -.02em;
+}
 .home-people-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
 }
-@media (max-width: 1024px) {
+@media (max-width: 960px) {
   .home-people-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
   .home-people-grid { grid-template-columns: 1fr; }
+}
+.home-person-role a {
+  color: var(--accent-teal-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-teal-soft);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.home-person-role a:hover {
+  color: var(--accent-teal);
+  border-bottom-color: var(--accent-teal);
+}
+.home-person-social {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-3);
+}
+.home-person-social a {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--fg-tertiary);
+  text-decoration: none;
+  letter-spacing: var(--ls-loose);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.home-person-social a:hover {
+  color: var(--fg-primary);
 }
 
 /* ---- Home FAQ ---- */
