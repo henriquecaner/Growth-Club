@@ -372,7 +372,10 @@
 }
 .member-form input:user-invalid,
 .member-form select:user-invalid,
-.member-form textarea:user-invalid {
+.member-form textarea:user-invalid,
+.member-form input.is-invalid,
+.member-form select.is-invalid,
+.member-form textarea.is-invalid {
   border-color: var(--color-danger);
   background: color-mix(in oklab, var(--color-danger) 5%, var(--bg-base));
 }
@@ -386,7 +389,8 @@
   margin-top: 2px;
   line-height: 1.5;
 }
-.member-form :user-invalid ~ .field-hint {
+.member-form :user-invalid ~ .field-hint,
+.member-form .is-invalid ~ .field-hint {
   color: var(--color-danger);
   font-weight: 500;
 }
