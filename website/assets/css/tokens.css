@@ -399,6 +399,32 @@ p, .t-body { font-family: var(--font-body); font-weight: var(--fw-regular); font
 /* Legacy alias preserved */
 .t-accent-violet { color: var(--accent-amber); }
 
+html {
+  scrollbar-gutter: stable;
+  /* Configuração nativa para navegadores modernos */
+  scrollbar-color: var(--accent-amber) var(--bg-sunken);
+  scrollbar-width: thin;
+}
+
+/* Fallback para motores WebKit antigos (Safari legados, Chrome antigo) */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-sunken);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-amber);
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--bg-sunken);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-amber-bright);
+  }
+}
+
 html, body {
   background: var(--bg-base);
   color: var(--fg-secondary);
