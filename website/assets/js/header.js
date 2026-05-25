@@ -16,7 +16,6 @@ class GcHeader extends HTMLElement {
         <div class="wrap nav-inner">
           <a class="nav-brand" href="/" aria-label="Growth Club — Home">
             <img src="/assets/images/logo-white.svg" alt="Growth Club" height="22">
-            <span class="nav-brand-tagline">#1 Growth Multidisciplinar</span>
           </a>
           <button class="nav-mobile-toggle" aria-label="Abrir menu" aria-expanded="false" type="button">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -33,18 +32,10 @@ class GcHeader extends HTMLElement {
             ${link('empresas', '/empresas',            'Empresas')}
             ${link('contato',  '/contato',             'Contato')}
           </div>
-          <div class="nav-trailing">
-            <a class="nav-meetup-chip" href="/meetups/sp-s1-e1" aria-label="Próximo meetup: 9 de julho de 2026">
-              <span class="chip-dot" aria-hidden="true"></span>
-              <span class="chip-label">Próximo</span>
-              <span class="chip-sep" aria-hidden="true">·</span>
-              <span class="chip-value">9 jul · CRMBonus</span>
-            </a>
-            <a class="nav-cta" href="/membro">
-              Tornar-se membro
-              <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg>
-            </a>
-          </div>
+          <a class="nav-cta" href="/membro">
+            Tornar-se membro
+            <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg>
+          </a>
         </div>
       </nav>
     `;
