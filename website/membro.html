@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524b">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260524b">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524b">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524b">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524c">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260524c">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524c">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524c">
 </head>
 <body>
 
@@ -86,8 +86,8 @@
             </div>
             <h3 id="application-heading" class="application-headline">Conta um pouco sobre <em>você.</em></h3>
             <div class="application-meta">
-              <span><b>7</b> campos</span>
-              <span><b>~3</b> min</span>
+              <span><b>11</b> campos</span>
+              <span><b>~4</b> min</span>
               <span><b>7</b> dias úteis pra resposta</span>
             </div>
           </header>
@@ -95,16 +95,32 @@
           <form class="member-form" novalidate>
             <fieldset class="fs-step">
               <legend>Você</legend>
+              <div class="field-row">
+                <label>
+                  <span class="label-text">Nome <span class="req">*</span></span>
+                  <input type="text" name="nome" required minlength="2" autocomplete="given-name" placeholder="Maria">
+                </label>
+                <label>
+                  <span class="label-text">Sobrenome</span>
+                  <input type="text" name="sobrenome" autocomplete="family-name" placeholder="Souza">
+                </label>
+              </div>
               <label>
-                <span class="label-text">Nome completo <span class="req">*</span></span>
-                <input type="text" name="nome" required minlength="3" autocomplete="name" placeholder="Maria Souza">
-                <span class="field-hint">Como aparece na bio do LinkedIn.</span>
-              </label>
-              <label>
-                <span class="label-text">Email <span class="req">*</span></span>
+                <span class="label-text">E-mail <span class="req">*</span></span>
                 <input type="email" name="email" required autocomplete="email" placeholder="voce@empresa.com">
                 <span class="field-hint">Pra onde mandamos a newsletter e a resposta da triagem.</span>
               </label>
+              <div class="field-row">
+                <label>
+                  <span class="label-text">WhatsApp</span>
+                  <input type="tel" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(11) 91234-5678" maxlength="20">
+                  <span class="field-hint">Pra convite da Community se aprovado.</span>
+                </label>
+                <label>
+                  <span class="label-text">Nascimento</span>
+                  <input type="date" name="nascimento" autocomplete="bday" max="2010-12-31" min="1940-01-01">
+                </label>
+              </div>
               <label>
                 <span class="label-text">LinkedIn <span class="req">*</span></span>
                 <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/maria-souza">
@@ -113,48 +129,48 @@
             </fieldset>
 
             <fieldset class="fs-step">
-              <legend>Operação</legend>
-              <div class="field-row">
-                <label>
-                  <span class="label-text">Role atual <span class="req">*</span></span>
-                  <select name="role" required>
-                    <option value="">Selecionar…</option>
-                    <option>Founder / CEO</option>
-                    <option>CRO / VP Sales</option>
-                    <option>Growth Lead / RevOps Lead</option>
-                    <option>Marketing Lead / CMO</option>
-                    <option>Vendedor consultivo senior</option>
-                    <option>Analyst / Data / RevOps</option>
-                    <option>Outro</option>
-                  </select>
-                </label>
-                <label>
-                  <span class="label-text">Setor</span>
-                  <select name="setor">
-                    <option value="">Selecionar…</option>
-                    <option>SaaS B2B</option>
-                    <option>Indústria</option>
-                    <option>Serviços recorrentes (B2B)</option>
-                    <option>Marketplace / e-com</option>
-                    <option>Fintech</option>
-                    <option>Outro</option>
-                  </select>
-                </label>
-              </div>
+              <legend>No que você manda bem</legend>
               <label>
-                <span class="label-text">Empresa <span class="req">*</span></span>
-                <input type="text" name="empresa" required minlength="2" autocomplete="organization" placeholder="Onde tu opera hoje">
+                <span class="label-text">O que você faz?</span>
+                <textarea name="bio" rows="4" maxlength="2000" placeholder="Ex: 6 anos liderando growth em SaaS B2B. Hoje cuido de outbound + lifecycle em scale-up brasileira. Forte em RevOps e analytics."></textarea>
+                <span class="field-hint">Bio curta. Até 2.000 caracteres.</span>
               </label>
             </fieldset>
 
             <fieldset class="fs-step">
-              <legend>Contexto</legend>
-              <label>
-                <span class="label-text">Qual problema te trouxe aqui? <span class="req">*</span></span>
-                <textarea name="problema" required minlength="20" rows="5" placeholder="Ex: CAC subiu 40% no Q1 sem hipótese clara, ou estamos lançando produto novo e quero benchmark de pricing senior B2B…"></textarea>
-                <span class="field-hint">Mínimo 20 caracteres. Quanto mais contexto, melhor a triagem.</span>
-              </label>
+              <legend>Prioridades de assunto</legend>
+              <span class="fs-help">Marque os temas que mais te interessam (vários permitidos).</span>
+              <div class="member-checkgrid">
+                <label class="check-pill"><input type="checkbox" name="prioridades" value="Growth"><span>Growth</span></label>
+                <label class="check-pill"><input type="checkbox" name="prioridades" value="Marketing"><span>Marketing</span></label>
+                <label class="check-pill"><input type="checkbox" name="prioridades" value="Vendas"><span>Vendas</span></label>
+                <label class="check-pill"><input type="checkbox" name="prioridades" value="CS"><span>CS</span></label>
+                <label class="check-pill"><input type="checkbox" name="prioridades" value="Produtos"><span>Produtos</span></label>
+                <label class="check-pill"><input type="checkbox" name="prioridades" value="Startup"><span>Startup</span></label>
+              </div>
             </fieldset>
+
+            <fieldset class="fs-step">
+              <legend>O que você procura no Growth Club</legend>
+              <span class="fs-help">Quanto mais sincero, melhor a triagem.</span>
+              <div class="member-checkgrid">
+                <label class="check-pill"><input type="checkbox" name="procura" value="Networking"><span>Networking</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Aprender"><span>Aprender</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Mentoria"><span>Mentoria</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Recrutar"><span>Recrutar talento</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Procurar um novo trabalho"><span>Procurar um novo trabalho</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Oferecer Serviços & Produtos"><span>Oferecer Serviços & Produtos</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Conseguir Feedbacks"><span>Conseguir Feedbacks</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Quero Investir"><span>Quero Investir</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Quero Investimento"><span>Quero Investimento</span></label>
+                <label class="check-pill"><input type="checkbox" name="procura" value="Outros"><span>Outros</span></label>
+              </div>
+            </fieldset>
+
+            <label class="field-checkbox">
+              <input type="checkbox" name="slack">
+              <span>Eu uso <strong>Slack</strong> (relevante pra alguns canais futuros da comunidade).</span>
+            </label>
 
             <label class="field-checkbox">
               <input type="checkbox" name="lgpd" required>
@@ -169,10 +185,7 @@
               </button>
             </div>
 
-            <p class="form-fallback">
-              Sem paciência pra preencher aqui?
-              <a href="https://tally.so/r/BzLJO4" target="_blank" rel="noopener">Preenche no Tally em vez disso →</a>
-            </p>
+            <p class="form-fallback" role="status" aria-live="polite"></p>
           </form>
 
           <footer class="application-foot">
@@ -253,18 +266,32 @@
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script>
-    // Member application form — Advanced native validation + event timing.
+    // Member application form — POST to /api/apply (Notion-backed)
     (() => {
       const form = document.querySelector('.member-form');
       const dialog = document.getElementById('member-confirm');
-      if (!form || !dialog) return;
+      const fallback = form?.querySelector('.form-fallback');
+      const submitBtn = form?.querySelector('.btn-submit');
+      const submitLabel = submitBtn?.querySelector('.btn-submit-label');
+      if (!form || !dialog || !submitBtn) return;
 
       const inputs = form.querySelectorAll('input, select, textarea');
 
-      // Helper function to validate a field and toggle visual indicators & aria-invalid
+      // BR phone mask: (11) 91234-5678 or (11) 1234-5678
+      const telInput = form.querySelector('input[name="telefone"]');
+      if (telInput) {
+        telInput.addEventListener('input', (e) => {
+          let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+          if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2, v.length - 4)}-${v.slice(-4)}`;
+          else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+          else if (v.length > 0) v = `(${v}`;
+          e.target.value = v;
+        });
+      }
+
+      // Validation visual state
       const validateField = (input) => {
-        const isValid = input.checkValidity();
-        if (!isValid) {
+        if (!input.checkValidity()) {
           input.classList.add('is-invalid');
           input.setAttribute('aria-invalid', 'true');
         } else {
@@ -272,58 +299,89 @@
           input.removeAttribute('aria-invalid');
         }
       };
-
-      // 1. Validation on exit (blur)
       inputs.forEach(input => {
-        input.addEventListener('blur', () => {
-          validateField(input);
-        });
-
-        // 2. Clear error state instantly on user interaction (input)
+        input.addEventListener('blur', () => validateField(input));
         input.addEventListener('input', () => {
           input.classList.remove('is-invalid');
           input.removeAttribute('aria-invalid');
         });
       });
 
-      // 3. Robust submit trapping
-      form.addEventListener('submit', (e) => {
+      const setSubmitting = (on) => {
+        submitBtn.disabled = on;
+        if (submitLabel) submitLabel.textContent = on ? 'Enviando…' : 'Submeter candidatura';
+      };
+
+      const setFallback = (msg, kind) => {
+        if (!fallback) return;
+        fallback.textContent = msg || '';
+        fallback.dataset.kind = kind || '';
+      };
+
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        setFallback('');
 
+        // 1. Native validation
         let firstInvalid = null;
-
         inputs.forEach(input => {
           validateField(input);
-          if (!input.checkValidity() && !firstInvalid) {
-            firstInvalid = input;
-          }
+          if (!input.checkValidity() && !firstInvalid) firstInvalid = input;
         });
-
         if (firstInvalid) {
           firstInvalid.focus();
+          setFallback('Confere os campos destacados antes de enviar.', 'error');
           return;
         }
 
-        const data = Object.fromEntries(new FormData(form));
-        console.info('[membro] candidatura recebida', data);
+        // 2. Build payload
+        const fd = new FormData(form);
+        const payload = {
+          nome: fd.get('nome') || '',
+          sobrenome: fd.get('sobrenome') || '',
+          email: fd.get('email') || '',
+          telefone: fd.get('telefone') || '',
+          linkedin: fd.get('linkedin') || '',
+          nascimento: fd.get('nascimento') || '',
+          bio: fd.get('bio') || '',
+          prioridades: fd.getAll('prioridades'),
+          procura: fd.getAll('procura'),
+          slack: fd.get('slack') === 'on',
+          lgpd: fd.get('lgpd') === 'on',
+        };
 
+        // 3. POST /api/apply
+        setSubmitting(true);
         try {
-          const inbox = JSON.parse(localStorage.getItem('gc-membro-inbox') || '[]');
-          inbox.push({ ...data, at: new Date().toISOString() });
-          localStorage.setItem('gc-membro-inbox', JSON.stringify(inbox));
-        } catch (err) {
-          console.error('Falha ao salvar candidatura localmente:', err);
-        }
+          const r = await fetch('/api/apply', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
 
-        // Open native dialogue modal
-        dialog.showModal();
-        form.reset();
-        
-        // Clear visual error styles after form reset
-        inputs.forEach(input => {
-          input.classList.remove('is-invalid');
-          input.removeAttribute('aria-invalid');
-        });
+          if (r.ok) {
+            dialog.showModal();
+            form.reset();
+            inputs.forEach(i => {
+              i.classList.remove('is-invalid');
+              i.removeAttribute('aria-invalid');
+            });
+          } else if (r.status === 422) {
+            const data = await r.json().catch(() => ({}));
+            const fields = (data.fields || []).join(', ');
+            setFallback(`Faltou: ${fields || 'campos obrigatórios'}.`, 'error');
+          } else if (r.status === 429) {
+            setFallback('Muita gente se inscrevendo agora. Tenta de novo em ~30s.', 'error');
+          } else if (r.status === 503) {
+            setFallback('Serviço de inscrição em manutenção. Tenta de novo em alguns minutos.', 'error');
+          } else {
+            setFallback('Não foi possível enviar agora. Tenta novamente em alguns minutos.', 'error');
+          }
+        } catch {
+          setFallback('Sem conexão com o servidor. Verifica sua internet e tenta de novo.', 'error');
+        } finally {
+          setSubmitting(false);
+        }
       });
     })();
   </script>

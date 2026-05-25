@@ -555,6 +555,80 @@
   font-weight: 500;
 }
 
+/* ---- Fieldset helper text + checkbox pill grid (multi-select) ---------- */
+.member-form .fs-help {
+  display: block;
+  font-size: 13px;
+  color: var(--fg-tertiary);
+  font-style: italic;
+  margin: -4px 0 16px;
+  line-height: 1.5;
+}
+.member-form .member-checkgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.member-form .check-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  color: var(--fg-secondary);
+  cursor: pointer;
+  transition: border-color 140ms var(--ease-out),
+              background 140ms var(--ease-out),
+              color 140ms var(--ease-out);
+  margin: 0;
+}
+.member-form .check-pill input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--bg-raised);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  margin: 0;
+  transition: border-color 140ms var(--ease-out),
+              background 140ms var(--ease-out);
+}
+.member-form .check-pill input:checked {
+  border-color: var(--accent-amber);
+  background: var(--accent-amber);
+}
+.member-form .check-pill input:checked::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-base);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+.member-form .check-pill:has(input:checked) {
+  border-color: var(--accent-amber);
+  background: var(--tint-amber-soft);
+  color: var(--fg-primary);
+}
+.member-form .check-pill:hover {
+  border-color: var(--accent-amber);
+}
+.member-form .check-pill span {
+  user-select: none;
+}
+
 /* ---- LGPD checkbox ------------------------------------------------------ */
 .member-form .field-checkbox {
   display: flex;
@@ -645,13 +719,22 @@
   transform: translate(4px, -4px);
 }
 
-/* ---- Tally fallback row ------------------------------------------------- */
+/* ---- Form status message (success/error live region) ------------------- */
 .form-fallback {
   margin: 16px 0 0;
   font-family: var(--font-body);
   font-size: 13px;
   color: var(--fg-tertiary);
   text-align: center;
+  min-height: 18px;
+}
+.form-fallback[data-kind="error"] {
+  color: var(--color-danger);
+  font-weight: 500;
+}
+.btn-submit:disabled {
+  opacity: .6;
+  cursor: progress;
 }
 .form-fallback a {
   color: var(--accent-teal);
