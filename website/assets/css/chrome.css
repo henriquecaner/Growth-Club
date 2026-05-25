@@ -148,6 +148,7 @@
    ========================================================================= */
 footer.gc-footer {
   background: var(--bg-void);
+  color: var(--fg-secondary);
   padding: 64px 0 32px;
   border-top: 1px solid var(--border-subtle);
   margin-top: 0;
