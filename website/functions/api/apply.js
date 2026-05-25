@@ -202,14 +202,3 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "network_error" }, 502);
   }
 }
-
-// Reject any non-POST request
-export const onRequest = async ({ request }) => {
-  if (request.method === "POST") {
-    return onRequestPost({ request, env: globalThis.env || {} });
-  }
-  return new Response("Method Not Allowed", {
-    status: 405,
-    headers: { "Allow": "POST", "Content-Type": "text/plain" },
-  });
-};
