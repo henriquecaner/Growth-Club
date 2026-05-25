@@ -2014,27 +2014,59 @@ em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
   color: var(--fg-tertiary);
 }
 
-/* ---- Person card (Especialistas) ---- */
+/* ---- Person card (Especialistas) — rich redesign ---- */
 .home-person {
-  text-align: left;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6) var(--space-6);
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  align-items: center;
+  gap: var(--space-3);
+  transition: transform var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
 }
-.home-person-avatar {
-  width: 96px;
-  height: 96px;
+.home-person:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-amber);
+  box-shadow: 0 8px 24px rgba(28, 27, 24, 0.08);
+}
+.home-person-photo {
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  background: var(--tint-amber-soft);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--space-2);
+  flex-shrink: 0;
+}
+.home-person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+.home-person-initials {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-weight: var(--fw-bold);
-  font-size: 24px;
-  color: var(--accent-amber-dim);
-  margin-bottom: var(--space-3);
+  font-weight: var(--fw-black);
+  font-size: 48px;
+  letter-spacing: var(--ls-tightest);
+  color: var(--fg-primary);
 }
+/* Rotating gradients pro avatar background (cycling de 4 cores) */
+.home-person:nth-child(4n+1) .home-person-photo { background: linear-gradient(135deg, var(--tint-amber-soft), var(--tint-warm-neutral)); }
+.home-person:nth-child(4n+2) .home-person-photo { background: linear-gradient(135deg, var(--tint-teal-soft), var(--tint-sage-soft)); }
+.home-person:nth-child(4n+3) .home-person-photo { background: linear-gradient(135deg, var(--tint-brick-soft), var(--tint-amber-soft)); }
+.home-person:nth-child(4n+4) .home-person-photo { background: linear-gradient(135deg, var(--tint-warm-neutral), var(--tint-sage-soft)); }
 .home-person h3 {
   font-size: var(--fs-h5);
   font-weight: var(--fw-bold);
@@ -2049,6 +2081,10 @@ em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
   text-transform: uppercase;
   color: var(--accent-teal-dim);
   margin: 0;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .home-person-bio {
   font-size: var(--fs-body-sm);

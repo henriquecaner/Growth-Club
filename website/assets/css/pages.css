@@ -1189,7 +1189,7 @@ dialog.gc-dialog .dialog-actions {
 .home-person-role a {
   color: var(--accent-teal-dim);
   text-decoration: none;
-  border-bottom: 1px solid var(--accent-teal-soft);
+  border-bottom: 1px dotted var(--accent-teal-soft);
   transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 .home-person-role a:hover {
@@ -1198,21 +1198,32 @@ dialog.gc-dialog .dialog-actions {
 }
 .home-person-social {
   list-style: none;
-  margin: var(--space-2) 0 0;
-  padding: 0;
+  margin: auto 0 0;
+  padding: var(--space-3) 0 0;
   display: flex;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .home-person-social a {
   font-family: var(--font-mono);
-  font-size: var(--fs-caption);
-  color: var(--fg-tertiary);
+  font-size: 11px;
+  color: var(--fg-secondary);
   text-decoration: none;
   letter-spacing: var(--ls-loose);
-  transition: color var(--dur-fast) var(--ease-out);
+  text-transform: uppercase;
+  background: var(--bg-base);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  transition: color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
 }
 .home-person-social a:hover {
   color: var(--fg-primary);
+  background: var(--tint-amber-soft);
+  border-color: var(--accent-amber);
 }
 
 /* ---- Home FAQ ---- */
