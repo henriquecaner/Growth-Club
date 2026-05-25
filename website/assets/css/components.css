@@ -1998,6 +1998,14 @@ em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
   font-size: var(--fs-caption);
   color: var(--fg-tertiary);
   flex-shrink: 0;
+  overflow: hidden;
+}
+.home-testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 .home-testimonial-meta {
   display: flex;
