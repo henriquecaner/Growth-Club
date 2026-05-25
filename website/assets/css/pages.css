@@ -736,6 +736,9 @@
   opacity: 0.4;
   cursor: not-allowed;
 }
+.wizard-btn[hidden] {
+  display: none;
+}
 .wizard-btn .icon {
   width: 14px;
   height: 14px;

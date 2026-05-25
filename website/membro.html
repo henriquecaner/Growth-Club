@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524e">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260524e">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524e">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524e">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524f">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260524f">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524f">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524f">
 </head>
 <body>
 
@@ -131,8 +131,17 @@
                   </label>
                   <label>
                     <span class="label-text">LinkedIn <span class="req">*</span></span>
-                    <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/maria-souza">
-                    <span class="field-hint">Contexto antes da resposta. Não pedimos CV.</span>
+                    <input
+                      type="url"
+                      name="linkedin"
+                      required
+                      pattern="https?://(www\.)?linkedin\.com/in/[A-Za-z0-9_\-\.%]+/?"
+                      value="https://linkedin.com/in/"
+                      data-prefix="https://linkedin.com/in/"
+                      placeholder="https://linkedin.com/in/maria-souza"
+                      autocomplete="off"
+                      spellcheck="false">
+                    <span class="field-hint">Continue depois de <code>/in/</code> com seu handle.</span>
                   </label>
                 </div>
                 <div class="field-row">
@@ -329,6 +338,40 @@
 
       const TOTAL = steps.length;
       let current = 0;
+
+      // ---- LinkedIn prefix lock ----
+      const linkedinInput = form.querySelector('input[name="linkedin"]');
+      if (linkedinInput) {
+        const prefix = linkedinInput.dataset.prefix || 'https://linkedin.com/in/';
+        // Posiciona cursor após prefix quando user foca no input
+        linkedinInput.addEventListener('focus', () => {
+          if (!linkedinInput.value || linkedinInput.value === prefix) {
+            linkedinInput.value = prefix;
+            requestAnimationFrame(() => {
+              linkedinInput.setSelectionRange(prefix.length, prefix.length);
+            });
+          }
+        });
+        // Se user tentar apagar o prefix, restaura
+        linkedinInput.addEventListener('input', () => {
+          const v = linkedinInput.value;
+          // Aceita paste de URL completa válida (https://linkedin.com/in/... ou https://www.linkedin.com/in/...)
+          if (/^https?:\/\/(www\.)?linkedin\.com\/in\//i.test(v)) return;
+          // Caso contrário, força o prefix
+          if (!v.startsWith(prefix)) {
+            linkedinInput.value = prefix;
+            requestAnimationFrame(() => {
+              linkedinInput.setSelectionRange(prefix.length, prefix.length);
+            });
+          }
+        });
+        // Se sair sem completar handle, limpa pra trigger required
+        linkedinInput.addEventListener('blur', () => {
+          if (linkedinInput.value === prefix) {
+            linkedinInput.value = '';
+          }
+        });
+      }
 
       // ---- BR phone mask ----
       const telInput = form.querySelector('input[name="telefone"]');
