@@ -861,7 +861,7 @@ h1.page-title em {
   position: sticky;
   top: 96px;
 }
-.toc h4 {
+.toc h2 {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.12em;
