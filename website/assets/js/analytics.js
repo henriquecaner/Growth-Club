@@ -71,9 +71,32 @@
   }
 
   /**
+   * Mapping de custom events Growth Club → standard events Meta + GA4.
+   * Permite que pixels já instalados (gtag, fbq) capturem conversões
+   * sem GTM intermediário. GTM, se instalado depois, continua funcionando
+   * via dataLayer event listener.
+   */
+  const STANDARD_EVENT_MAP = {
+    gc_lead_capture: {
+      ga4: 'generate_lead',   // GA4 recommended event
+      meta: 'Lead',            // Meta standard event
+    },
+    gc_signup_attempt: {
+      ga4: 'begin_checkout',   // GA4 — funnel intent
+      meta: 'InitiateCheckout',
+    },
+    gc_signup_success: {
+      ga4: 'sign_up',
+      meta: 'CompleteRegistration',
+    },
+    // gc_wizard_step e gc_signup_error ficam só no dataLayer (analytics interno)
+  };
+
+  /**
    * Publica evento no dataLayer.
    * Se params.email estiver presente, é hasheado pra email_sha256 e
    * o raw é removido antes do push.
+   * Também forwarda pra gtag (GA4) e fbq (Meta Pixel) se carregados.
    */
   async function gcTrack(eventName, params = {}) {
     const payload = {
@@ -86,10 +109,32 @@
       delete payload.email;
     }
     window.dataLayer.push(payload);
+
+    // Forward pra plataformas de ads (standard events)
+    const mapping = STANDARD_EVENT_MAP[eventName];
+    if (mapping) {
+      const eventParams = { ...payload };
+      delete eventParams.event;
+      delete eventParams.timestamp;
+
+      // GA4 via gtag — se carregado
+      if (typeof window.gtag === 'function' && mapping.ga4) {
+        try { window.gtag('event', mapping.ga4, eventParams); } catch {}
+      }
+
+      // Meta Pixel via fbq — se carregado
+      if (typeof window.fbq === 'function' && mapping.meta) {
+        const fbParams = {};
+        if (payload.source) fbParams.content_name = payload.source;
+        if (payload.mode) fbParams.content_category = payload.mode;
+        try { window.fbq('track', mapping.meta, fbParams); } catch {}
+      }
+    }
+
     // Debug em local/preview (não polui console em prod)
     const host = location.hostname;
     if (host === 'localhost' || host === '127.0.0.1' || host.endsWith('.pages.dev')) {
-      console.log('[gc-track]', payload);
+      console.log('[gc-track]', payload, mapping ? `→ ga4:${mapping.ga4} + fb:${mapping.meta}` : '');
     }
   }
 
