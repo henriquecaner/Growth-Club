@@ -1,10 +1,5 @@
-# Cloudflare Pages configuration.
-#
-# Esse arquivo força o detector de Pages Functions a reconhecer
-# website/functions/ em deploys Direct Upload. Sem isso, projetos
-# legacy criados antes do suporte completo a Functions+Direct-Upload
-# ignoram silenciosamente o diretório.
-
 name = "growth-club"
-compatibility_date = "2024-09-23"
+compatibility_date = "2026-05-17"
 pages_build_output_dir = "./website"
+
+[env.production]

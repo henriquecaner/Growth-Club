@@ -1,0 +1,8 @@
+{
+  "name": "growth-club-site",
+  "private": true,
+  "description": "Static site + Pages Functions para growthclub.pro",
+  "scripts": {
+    "deploy": "wrangler pages deploy"
+  }
+}
