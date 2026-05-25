@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524g">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260524g">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524g">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524g">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524h">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260524h">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524h">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524h">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -507,6 +507,61 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script>
+    // Hero email capture → /api/lead (abandono de carrinho) → redirect /membro?email=X
+    (() => {
+      const form = document.querySelector('.home-hero-form');
+      if (!form) return;
+      const input = form.querySelector('input[name="email"]');
+      const btn = form.querySelector('button[type="submit"]');
+      if (!input || !btn) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = (input.value || '').trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          input.focus();
+          input.reportValidity?.();
+          return;
+        }
+        // Disable input + button enquanto fire-and-forget pro Notion
+        const originalLabel = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '…';
+
+        // Tenta capturar lead. Independente do resultado, segue pro /membro.
+        const followUp = () => {
+          const url = `/membro?email=${encodeURIComponent(email)}`;
+          window.location.href = url;
+        };
+
+        // Usa sendBeacon se disponível pra garantir delivery mesmo durante navigate.
+        // Fallback: fetch keepalive.
+        const payload = JSON.stringify({ email });
+        let beaconOk = false;
+        if (navigator.sendBeacon) {
+          try {
+            const blob = new Blob([payload], { type: 'application/json' });
+            beaconOk = navigator.sendBeacon('/api/lead', blob);
+          } catch {}
+        }
+
+        if (beaconOk) {
+          followUp();
+        } else {
+          fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            keepalive: true,
+          }).catch(() => {}).finally(followUp);
+
+          // Garantia anti-trava: redireciona em 1.5s mesmo se fetch travar
+          setTimeout(followUp, 1500);
+        }
+      });
+    })();
+  </script>
   <!-- <script src="/assets/js/newsletter-form.js"></script> — desativado em 2026-05-18, form Substack removido (spec v1.1). Reativa quando sub-projeto do form de entrevista decidir reutilizar handler. -->
 </body>
 </html>

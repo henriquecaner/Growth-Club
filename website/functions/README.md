@@ -8,7 +8,20 @@ Routing).
 
 | Rota             | Arquivo                | Método | Resumo |
 |------------------|------------------------|--------|--------|
-| `/api/apply`     | `api/apply.js`         | POST   | Recebe candidatura do form `/membro` e cria page na database Notion "Membros" |
+| `/api/lead`      | `api/lead.js`          | POST   | Captura email do hero da home. Cria entry mínima no Notion (Nome Completo = "(lead — só email)") pra estratégia de abandono de carrinho. Idempotente (não duplica se email já existe). |
+| `/api/apply`     | `api/apply.js`         | POST   | Recebe candidatura completa do wizard `/membro`. UPSERT by email: se já existe entry (vinda do `/api/lead` ou submit anterior), atualiza via PATCH; senão cria via POST. |
+
+## Fluxo de "abandono de carrinho"
+
+1. Pessoa digita email no hero da home → click "Fazer parte"
+2. JS fire-and-forget `POST /api/lead { email }` (via `sendBeacon` se disponível, senão `fetch keepalive`)
+3. Browser redireciona pra `/membro?email=X`
+4. Wizard de `/membro` lê query param, prefilla email, pessoa preenche restante
+5. Submit final do wizard: `POST /api/apply` faz UPSERT — encontra a entry criada no passo 2 (mesmo email), atualiza com todos os campos. Sem duplicação.
+
+Se pessoa **abandona** após step 1 (não termina wizard):
+- Entry no Notion fica com Nome Completo = "(lead — só email)" + email + Data de inscrição
+- Permite filtragem fácil pra follow-up por outro canal (email manual, etc)
 
 ## Setup obrigatório no Cloudflare Pages
 

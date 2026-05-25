@@ -158,7 +158,7 @@ export async function onRequestPost({ request, env }) {
     };
   }
 
-  // 4. POST to Notion API
+  // 4. UPSERT na Notion API (procura por email primeiro; se existir, PATCH; senão POST)
   const token = env.NOTION_TOKEN;
   const databaseId = env.NOTION_DATABASE_ID || DEFAULT_DATABASE_ID;
 
@@ -167,24 +167,53 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "service_unavailable" }, 503);
   }
 
-  const payload = {
-    parent: { database_id: databaseId },
-    properties,
+  const notionHeaders = {
+    "Authorization": `Bearer ${token}`,
+    "Notion-Version": NOTION_VERSION,
+    "Content-Type": "application/json",
   };
 
   try {
-    const r = await fetch(`${NOTION_API}/pages`, {
+    // 4a. Query por entry existente (lead de hero ou candidatura prévia)
+    const queryRes = await fetch(`${NOTION_API}/databases/${databaseId}/query`, {
       method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Notion-Version": NOTION_VERSION,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
+      headers: notionHeaders,
+      body: JSON.stringify({
+        filter: { property: "e-mail", email: { equals: email } },
+        page_size: 1,
+      }),
     });
 
+    if (queryRes.status === 429) {
+      return json({ error: "rate_limited" }, 429, {
+        "Retry-After": queryRes.headers.get("retry-after") || "30",
+      });
+    }
+
+    let existingPageId = null;
+    if (queryRes.ok) {
+      const data = await queryRes.json().catch(() => null);
+      existingPageId = data?.results?.[0]?.id || null;
+    }
+
+    // 4b. UPDATE (PATCH) se existe, senão CREATE (POST)
+    let r;
+    if (existingPageId) {
+      r = await fetch(`${NOTION_API}/pages/${existingPageId}`, {
+        method: "PATCH",
+        headers: notionHeaders,
+        body: JSON.stringify({ archived: false, properties }),
+      });
+    } else {
+      r = await fetch(`${NOTION_API}/pages`, {
+        method: "POST",
+        headers: notionHeaders,
+        body: JSON.stringify({ parent: { database_id: databaseId }, properties }),
+      });
+    }
+
     if (r.status === 429) {
-      console.warn("[apply] Notion rate limited");
+      console.warn("[apply] Notion rate limited on write");
       return json({ error: "rate_limited" }, 429, {
         "Retry-After": r.headers.get("retry-after") || "30",
       });
@@ -196,7 +225,7 @@ export async function onRequestPost({ request, env }) {
       return json({ error: "upstream_error" }, 502);
     }
 
-    return json({ ok: true });
+    return json({ ok: true, mode: existingPageId ? "updated" : "created" });
   } catch (err) {
     console.error("[apply] fetch failed", String(err).slice(0, 200));
     return json({ error: "network_error" }, 502);
