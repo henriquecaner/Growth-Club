@@ -206,7 +206,7 @@ footer.gc-footer {
   gap: 16px;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--fg-muted);
+  color: var(--fg-tertiary);
   letter-spacing: 0.04em;
   flex-wrap: wrap;
 }
@@ -218,17 +218,17 @@ footer.gc-footer {
   gap: 14px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--fg-muted);
+  color: var(--fg-tertiary);
   letter-spacing: 0.06em;
   flex-wrap: wrap;
 }
 .foot-legal a {
-  color: var(--fg-muted);
+  color: var(--fg-tertiary);
   text-decoration: none;
   transition: color 160ms;
 }
-.foot-legal a:hover { color: var(--fg-tertiary); }
-.foot-legal .sep { color: var(--border-strong); }
+.foot-legal a:hover { color: var(--fg-secondary); }
+.foot-legal .sep { color: var(--fg-muted); }
 
 @media (max-width: 880px) {
   .foot-top {
