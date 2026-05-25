@@ -48,10 +48,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260525d">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260525d">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260525d">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260525d">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260525e">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260525e">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260525e">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260525e">
 </head>
 <body>
 
@@ -84,7 +84,10 @@
               <li><a href="#bases" class="active">01 / Bases legais</a></li>
               <li><a href="#categorias">02 / Categorias de dados</a></li>
               <li><a href="#direitos">03 / Direitos do titular</a></li>
-              <li><a href="#exercer">04 / Como exercer</a></li>
+              <li><a href="#automatizada">04 / Decisão automatizada</a></li>
+              <li><a href="#menores">05 / Crianças e adolescentes</a></li>
+              <li><a href="#exercer">06 / Como exercer</a></li>
+              <li><a href="#anpd">07 / Reclamação à ANPD</a></li>
             </ul>
           </aside>
 
@@ -92,50 +95,98 @@
             <section id="bases">
               <div class="s-num">01 / BASES LEGAIS</div>
               <h2>Em que <em>a gente se apoia.</em></h2>
-              <p><strong>Versão preliminar — em revisão jurídica.</strong> Bases legais aplicáveis: consentimento explícito (newsletter opt-in), execução de contrato (membership quando ativo), legítimo interesse (analytics agregado sem identificação individual) e cumprimento de obrigação legal (retenção fiscal e contábil).</p>
+              <p>A LGPD (Lei 13.709/2018) exige que todo tratamento de dado pessoal tenha uma base legal definida. Abaixo, cada base usada pelo Growth Club, a finalidade e os dados envolvidos.</p>
+
+              <p><strong>Consentimento (art. 7º, I).</strong> Newsletter opt-in via Substack, formulários de candidatura com checkbox LGPD explícito, entrada em subgrupos do WhatsApp por área de interesse. O consentimento é livre, informado, inequívoco e pode ser revogado a qualquer momento sem prejuízo da participação.</p>
+
+              <p><strong>Execução de contrato (art. 7º, V).</strong> Quando você compra ingresso de meetup ou workshop, processamos seus dados de identificação e pagamento pra emissão de nota fiscal, controle de acesso ao evento e comunicação sobre logística.</p>
+
+              <p><strong>Legítimo interesse (art. 7º, IX).</strong> Analytics agregado sem identificação individual (Google Analytics 4 e Meta Pixel em modo agregado), prevenção de fraude no envio de email, segurança de acesso ao site. Você pode se opor a esse tratamento — ver seção 03.</p>
+
+              <p><strong>Cumprimento de obrigação legal (art. 7º, II).</strong> Retenção fiscal e contábil de comprovantes de pagamento (notas fiscais, recibos) pelo prazo exigido pela legislação tributária federal — atualmente 5 anos após o fato gerador.</p>
+
+              <p><strong>Proteção de crédito (art. 7º, X).</strong> Aplicável apenas em caso de inadimplência confirmada em produto pago — workshops ou ingressos não quitados podem gerar registro em órgão de proteção ao crédito após notificação formal.</p>
             </section>
 
             <section id="categorias">
               <div class="s-num">02 / CATEGORIAS</div>
               <h2>O que <em>processamos.</em></h2>
-              <p>Categorias processadas: dados de identificação (nome e email), dados de contato (telefone na Community), dados de navegação (IP, user agent e cookies) e dados de pagamento quando aplicável — sempre processados por gateway terceiro, sem retenção dos dados de cartão por nós.</p>
-              <p>Sem dados sensíveis. Sem dados de menores (titularidade vedada a < 18 anos sem responsável legal).</p>
+              <p><strong>Dados de identificação.</strong> Nome completo, email pessoal ou corporativo, data de nascimento (opcional, usado pra triagem etária da Community).</p>
+
+              <p><strong>Dados de contato.</strong> Telefone (com DDI) — obrigatório só pra quem entra na WhatsApp Community. LinkedIn URL — opcional na candidatura.</p>
+
+              <p><strong>Dados profissionais.</strong> Cargo, empresa, área de atuação, anos de experiência, descrição do trabalho atual. Tudo declarado pelo próprio titular no formulário de candidatura.</p>
+
+              <p><strong>Dados de navegação.</strong> Endereço IP, user agent (navegador + sistema operacional), páginas visitadas, tempo de sessão, fonte de tráfego (referrer). Coletados via Cloudflare, Google Analytics e Meta Pixel — em modo agregado, sem cross-device tracking ativo.</p>
+
+              <p><strong>Dados de comunicação.</strong> Histórico de emails enviados pela newsletter (aberturas, cliques) via Substack. Mensagens trocadas na WhatsApp Community ficam no servidor do WhatsApp/Meta sob política própria do serviço — o Growth Club não retém cópia.</p>
+
+              <p><strong>Dados de pagamento.</strong> Quando aplicável (meetup ou workshop pago), processados por gateway terceiro (Asaas, Stripe ou similar). O Growth Club não armazena número de cartão — recebe apenas confirmação de pagamento, comprovante e dados pra emissão de NF.</p>
+
+              <p><strong>Sem dados sensíveis.</strong> Não coletamos origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato, dado de saúde, vida sexual, dado genético ou biométrico (LGPD art. 5º, II).</p>
             </section>
 
             <section id="direitos">
               <div class="s-num">03 / DIREITOS</div>
               <h2>O que <em>você pode pedir.</em></h2>
-              <p><strong>Confirmação e acesso</strong> — saber se a gente processa dado seu e qual é.</p>
-              <p><strong>Correção</strong> — atualizar dado incompleto, inexato ou desatualizado.</p>
-              <p><strong>Anonimização ou eliminação</strong> — pedir remoção de dado desnecessário ou processado em desconformidade com a LGPD.</p>
-              <p><strong>Portabilidade</strong> — receber seus dados em formato estruturado pra levar pra outro serviço.</p>
-              <p><strong>Revogação de consentimento</strong> — sair da newsletter, sair da Community, revogar opt-in a qualquer momento.</p>
-              <p><strong>Oposição</strong> — opor-se a tratamento feito sob base de legítimo interesse.</p>
-              <p><strong>Informação sobre compartilhamento</strong> — saber com quem a gente compartilha (Substack, Tally, etc).</p>
+              <p>Os direitos abaixo seguem o art. 18 da LGPD. Todos exercíveis a qualquer momento via email pro encarregado (DPO), sem custo, com resposta em até 15 dias úteis.</p>
+
+              <p><strong>Confirmação e acesso (art. 18, I e II).</strong> Saber se a gente trata dado seu e receber cópia em formato legível.</p>
+
+              <p><strong>Correção (art. 18, III).</strong> Atualizar dado incompleto, inexato ou desatualizado — incluindo cargo, empresa e área de atuação que muda ao longo da carreira.</p>
+
+              <p><strong>Anonimização, bloqueio ou eliminação (art. 18, IV).</strong> Pedir remoção de dado desnecessário, excessivo ou processado em desconformidade com a LGPD.</p>
+
+              <p><strong>Portabilidade (art. 18, V).</strong> Receber seus dados em formato estruturado e interoperável (CSV ou JSON) pra levar pra outro serviço.</p>
+
+              <p><strong>Eliminação dos dados tratados com consentimento (art. 18, VI).</strong> Sair da newsletter, sair da Community, revogar consentimento. Atenção: dados retidos por obrigação legal (notas fiscais, por exemplo) ficam mantidos pelo prazo da lei tributária, mas anonimizados pra finalidades não-fiscais.</p>
+
+              <p><strong>Informação sobre compartilhamento (art. 18, VII).</strong> Saber com quem a gente compartilha — lista completa de processadores na <a href="/privacidade#compartilhamento">Política de Privacidade</a>.</p>
+
+              <p><strong>Informação sobre não fornecimento de consentimento (art. 18, VIII).</strong> Saber o que acontece se você recusar consentimento — por exemplo, sem opt-in da newsletter, não conseguimos enviar conteúdo, mas você pode acessar o site normalmente.</p>
+
+              <p><strong>Revogação de consentimento (art. 18, IX).</strong> Voltar atrás a qualquer momento, sem prejuízo. Tratamento anterior à revogação continua válido — não há efeito retroativo.</p>
+
+              <p><strong>Oposição (art. 18, § 2º).</strong> Opor-se a tratamento feito sob base de legítimo interesse, com justificativa. A gente avalia e responde — se houver interesse legítimo predominante (segurança, prevenção de fraude), explicamos por escrito.</p>
+            </section>
+
+            <section id="automatizada">
+              <div class="s-num">04 / DECISÃO AUTOMATIZADA</div>
+              <h2>Não temos. <em>Por enquanto.</em></h2>
+              <p>O Growth Club não usa tratamento automatizado pra tomar decisões que afetem o titular (perfilamento pra crédito, contratação, classificação automática). A triagem de candidatura é <strong>manual</strong>, feita por editor humano — não tem algoritmo decidindo entrada na Community.</p>
+              <p>Se isso mudar no futuro (por exemplo, sistema automatizado pra priorizar candidaturas), avisamos com 30 dias de antecedência e damos direito de revisão por humano nos termos do art. 20 da LGPD.</p>
+            </section>
+
+            <section id="menores">
+              <div class="s-num">05 / MENORES</div>
+              <h2>Acesso vedado <em>a menores.</em></h2>
+              <p>A Community Growth Club é destinada a profissionais maiores de 18 anos. O cadastro é vedado a menores sem assistência ou representação dos pais ou responsável legal. Se identificarmos dado de criança ou adolescente cadastrado sem essa base, a conta é encerrada e os dados eliminados em até 7 dias.</p>
+              <p>Se você é pai/mãe/responsável e identificou cadastro irregular de menor, mande email pra <a href="mailto:dpo@growthclub.pro">dpo@growthclub.pro</a> que processamos imediatamente.</p>
             </section>
 
             <section id="exercer">
-              <div class="s-num">04 / EXERCER</div>
+              <div class="s-num">06 / EXERCER</div>
               <h2>Como <em>fazer a solicitação.</em></h2>
-              <p>Use o formulário abaixo. Resposta em até 15 dias úteis. Documento de identificação pode ser solicitado pra garantir titularidade.</p>
-              <p>Alternativa direta: <a href="mailto:dpo@growthclub.pro">dpo@growthclub.pro</a> com assunto "LGPD · [tipo de solicitação]".</p>
+              <p>Mande email pra <a href="mailto:dpo@growthclub.pro">dpo@growthclub.pro</a> com:</p>
+              <ul>
+                <li><strong>Assunto:</strong> "LGPD · [tipo de solicitação]" — escolha um: acesso, correção, anonimização, eliminação, portabilidade, oposição, revogação de consentimento ou informação sobre compartilhamento.</li>
+                <li><strong>Corpo do email:</strong> email cadastrado no Growth Club + descrição breve do pedido + contexto (em qual canal você se cadastrou — newsletter, WhatsApp, meetup).</li>
+              </ul>
+              <p>Resposta em até <strong>15 dias úteis</strong> a partir da confirmação da titularidade. Documento de identificação pode ser solicitado pra confirmar que o pedido vem do titular real (foto do RG ou CNH, parcial — só nome, CPF e foto). Esse documento é armazenado apenas durante o processamento e eliminado em 30 dias.</p>
+              <p>Sem custo. Em até 2 solicitações por ano (por titular), tratamento gratuito. Solicitações repetitivas e excessivas podem ser cobradas por custo administrativo, com aviso prévio.</p>
+            </section>
 
-              <div style="margin: 32px 0;">
-                <iframe
-                  src="https://tally.so/embed/BzLJO4?alignLeft=1&hideTitle=1&transparentBackground=1"
-                  width="100%"
-                  height="520"
-                  frameborder="0"
-                  title="Solicitação LGPD"
-                  loading="lazy"
-                  style="border-radius: 8px; background: var(--bg-raised); border: 1px solid var(--border-subtle);"></iframe>
-              </div>
+            <section id="anpd">
+              <div class="s-num">07 / ANPD</div>
+              <h2>Reclamação <em>à autoridade.</em></h2>
+              <p>Se a resposta do Growth Club não te atender ou se você quiser questionar o tratamento, pode apresentar reclamação diretamente à <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> — <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">gov.br/anpd</a>. A ANPD é o órgão federal responsável por fiscalizar a aplicação da LGPD.</p>
+              <p>A gente prefere resolver direto — se algo não tá certo no nosso lado, escreve em <a href="mailto:dpo@growthclub.pro">dpo@growthclub.pro</a> antes. Mas o caminho à ANPD existe e é seu direito.</p>
 
-              <div class="author-strip">
+              <div class="author-strip" style="margin-top: 32px;">
                 <div class="avatar">GC</div>
                 <div class="meta">
                   <span class="who">Growth Club · DPO</span>
-                  <span class="role">RESPOSTA EM ATÉ 15 DIAS ÚTEIS</span>
+                  <span class="role">RESPOSTA EM ATÉ 15 DIAS ÚTEIS · DPO@GROWTHCLUB.PRO</span>
                 </div>
               </div>
             </section>

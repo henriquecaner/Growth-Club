@@ -48,10 +48,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260525d">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260525d">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260525d">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260525d">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260525e">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260525e">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260525e">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260525e">
 </head>
 <body>
 
@@ -81,64 +81,163 @@
           <aside class="toc">
             <h2>Nesta política</h2>
             <ul>
-              <li><a href="#dados-coletados" class="active">01 / Dados que coletamos</a></li>
-              <li><a href="#finalidades">02 / Finalidades</a></li>
-              <li><a href="#compartilhamento">03 / Compartilhamento</a></li>
-              <li><a href="#direitos">04 / Direitos do titular</a></li>
+              <li><a href="#controlador" class="active">01 / Quem somos</a></li>
+              <li><a href="#dados-coletados">02 / Dados que coletamos</a></li>
+              <li><a href="#finalidades">03 / Finalidades</a></li>
+              <li><a href="#compartilhamento">04 / Compartilhamento</a></li>
               <li><a href="#cookies">05 / Cookies</a></li>
               <li><a href="#retencao">06 / Retenção</a></li>
-              <li><a href="#contato">07 / Contato</a></li>
+              <li><a href="#seguranca">07 / Segurança</a></li>
+              <li><a href="#internacional">08 / Transferência internacional</a></li>
+              <li><a href="#direitos">09 / Direitos do titular</a></li>
+              <li><a href="#mudancas">10 / Mudanças</a></li>
+              <li><a href="#contato">11 / Contato</a></li>
             </ul>
           </aside>
 
           <article class="prose">
+            <section id="controlador">
+              <div class="s-num">01 / CONTROLADOR</div>
+              <h2>Quem <em>opera essa política.</em></h2>
+              <p><strong>Controlador dos dados.</strong> Level Tecnologia da Informação Ltda — CNPJ 64.685.768/0001-29 — com sede em São Paulo/SP. Em Fase 1, o Growth Club opera dentro do CNPJ da Level Tech (modelo de hospedagem operacional). Se houver spin-off futuro pra CNPJ próprio do Growth Club, os dados são transferidos com aviso prévio de 30 dias e direito de oposição.</p>
+              <p><strong>Encarregado de proteção de dados (DPO).</strong> Henrique Caner — <a href="mailto:dpo@growthclub.pro">dpo@growthclub.pro</a>. Resposta padrão em até 15 dias úteis.</p>
+              <p><strong>A quem aplica.</strong> Esta política alcança quem se inscreve na newsletter, navega no site, preenche formulários, participa da WhatsApp Community ou compra ingresso de meetup/workshop. Princípios norteadores: minimização (só o necessário), finalidade explícita, transparência radical sobre fluxo de dado.</p>
+            </section>
+
             <section id="dados-coletados">
-              <div class="s-num">01 / DADOS</div>
+              <div class="s-num">02 / DADOS</div>
               <h2>O que <em>a gente coleta.</em></h2>
-              <p><strong>Versão preliminar — em revisão jurídica.</strong> Esta política aplica-se a quem se inscreve na newsletter, navega no site, preenche formulários ou participa da Community. Em Fase 1, o tratamento é operado pela Level Tech (hospedagem CNPJ), seguindo princípios de minimização, finalidade e transparência radical.</p>
-              <p>Coletamos: dados de inscrição (email e nome opcional), dados de navegação (IP, user agent e páginas visitadas), dados de formulário (Tally com opt-in LGPD explícito) e dados da Community WhatsApp (telefone e nome de exibição).</p>
+              <p><strong>De cadastro voluntário.</strong> Nome, email, telefone (opcional pra newsletter, obrigatório pra Community), LinkedIn URL, data de nascimento (opcional), cargo, empresa, área de atuação, descrição do trabalho. Tudo informado pelo titular no formulário de candidatura.</p>
+
+              <p><strong>De navegação automática.</strong> Endereço IP, user agent (navegador + sistema operacional + idioma), páginas visitadas, tempo de sessão, fonte de tráfego (referrer), data e hora de acesso. Coletados via servidor Cloudflare e via tags de analytics no navegador (Google Analytics 4, Meta Pixel).</p>
+
+              <p><strong>De interação editorial.</strong> Histórico de aberturas e cliques na newsletter (via Substack), histórico de mensagens enviadas pelo Growth Club via WhatsApp (não as mensagens entre membros — essas ficam só no servidor do WhatsApp/Meta).</p>
+
+              <p><strong>De transação.</strong> Quando há produto pago (meetup ou workshop), processamos nome completo, CPF/CNPJ, endereço de cobrança e dados pra emissão de nota fiscal. Dados do cartão (número, CVV, validade) <strong>nunca</strong> passam pelos servidores do Growth Club — são tokenizados direto pelo gateway terceiro.</p>
+
+              <p><strong>O que a gente NÃO coleta.</strong> Dados sensíveis (origem racial, religião, opinião política, saúde, vida sexual, dados genéticos ou biométricos), dados de menores de 18 anos, geolocalização precisa, dados de dispositivos vinculados (cross-device tracking ativo), histórico de navegação fora do nosso site.</p>
             </section>
 
             <section id="finalidades">
-              <div class="s-num">02 / FINALIDADES</div>
+              <div class="s-num">03 / FINALIDADES</div>
               <h2>Pra que <em>a gente usa.</em></h2>
-              <p>Usamos os dados para envio da newsletter editorial, comunicação sobre meetups, análise agregada de audiência (sem identificação individual), atendimento de solicitação direta e cumprimento de obrigação legal.</p>
+              <p>Cada finalidade tem base legal específica (detalhe em <a href="/lgpd">/lgpd</a>):</p>
+
+              <p><strong>Envio de newsletter editorial.</strong> Base: consentimento. Conteúdo quinzenal com case real + benchmark + link comentado. Você pode descadastrar em 1 clique no rodapé de qualquer email.</p>
+
+              <p><strong>Comunicação sobre meetups e eventos.</strong> Base: consentimento (cadastro) ou execução de contrato (quem comprou ingresso). Confirmação de inscrição, logística do dia, gravação pós-evento, pesquisa de satisfação.</p>
+
+              <p><strong>Operação da WhatsApp Community.</strong> Base: consentimento. Convite controlado, moderação editorial, mensagens administrativas (anúncios, mudanças de subgrupo).</p>
+
+              <p><strong>Análise agregada de audiência.</strong> Base: legítimo interesse. Métricas de tráfego, fonte, tempo de leitura, taxa de abertura de newsletter — tudo em modo agregado, sem identificação individual. Usado pra decidir pauta e melhorar UX.</p>
+
+              <p><strong>Atendimento de solicitação direta.</strong> Base: legítimo interesse e execução de contrato. Resposta a email de contato, suporte sobre meetup, atendimento DPO.</p>
+
+              <p><strong>Cumprimento de obrigação legal.</strong> Base: obrigação legal. Retenção fiscal de nota fiscal, comprovante de pagamento e dados contábeis pelo prazo da legislação tributária.</p>
+
+              <p><strong>Segurança e prevenção de fraude.</strong> Base: legítimo interesse. Detecção de bot, prevenção de spam na newsletter, proteção contra abuso de formulários.</p>
             </section>
 
             <section id="compartilhamento">
-              <div class="s-num">03 / COMPARTILHAMENTO</div>
+              <div class="s-num">04 / COMPARTILHAMENTO</div>
               <h2>Com quem <em>a gente compartilha.</em></h2>
-              <p>Compartilhamos dados com processadores estritamente necessários: Substack (newsletter), Tally (formulários), provedor de hospedagem do site e ferramentas de analytics agregado quando aplicáveis. <strong>Sem venda. Sem cessão pra anunciante. Sem swap de lista.</strong></p>
-            </section>
+              <p>Processadores que recebem dados pra prestar serviço operacional ao Growth Club, todos sob contrato com cláusulas de confidencialidade e LGPD:</p>
 
-            <section id="direitos">
-              <div class="s-num">04 / DIREITOS</div>
-              <h2>O que <em>você pode pedir.</em></h2>
-              <p>Você pode pedir acesso aos seus dados, retificação, anonimização, portabilidade, eliminação e revogação de consentimento a qualquer momento. Canal de exercício: <a href="/lgpd">/lgpd</a> ou email direto pro encarregado (DPO).</p>
+              <p><strong>Substack (Substack Inc., EUA).</strong> Plataforma de newsletter. Recebe email + nome + histórico de aberturas/cliques. Política própria: <a href="https://substack.com/privacy" target="_blank" rel="noopener">substack.com/privacy</a>.</p>
+
+              <p><strong>Cloudflare (EUA).</strong> CDN e hospedagem do site growthclub.pro + Pages Functions. Recebe IP + user agent + páginas acessadas. Política: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>.</p>
+
+              <p><strong>Notion (Notion Labs Inc., EUA).</strong> Database de candidatura à Community. Recebe dados de cadastro (nome, email, LinkedIn, área, descrição). Política: <a href="https://www.notion.so/Privacy-Policy" target="_blank" rel="noopener">notion.so/Privacy-Policy</a>.</p>
+
+              <p><strong>Google Analytics 4 (Google LLC, EUA).</strong> Métricas agregadas de tráfego. Recebe IP anonimizado + user agent + páginas + eventos editoriais. Política: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+
+              <p><strong>Meta Pixel (Meta Platforms Inc., EUA).</strong> Métricas agregadas pra futura mensuração de campanha (modo agregado, sem cross-device). Política: <a href="https://www.facebook.com/policy.php" target="_blank" rel="noopener">facebook.com/policy.php</a>.</p>
+
+              <p><strong>Tally (Tally Forms BV, Bélgica).</strong> Hospedagem de formulários (quando aplicável). Política: <a href="https://tally.so/help/privacy-policy" target="_blank" rel="noopener">tally.so/help/privacy-policy</a>.</p>
+
+              <p><strong>WhatsApp (Meta Platforms Inc., EUA).</strong> Hospedagem da WhatsApp Community. Recebe telefone + nome de exibição. Mensagens são criptografadas end-to-end pelo próprio WhatsApp — o Growth Club não retém cópia.</p>
+
+              <p><strong>Gateway de pagamento.</strong> Quando há produto pago, dados de transação vão pra Asaas, Stripe ou similar — definido por evento. Política específica anunciada na página do produto antes da compra.</p>
+
+              <p><strong>O que NUNCA fazemos.</strong> Sem venda de lista. Sem cessão pra anunciante terceiro. Sem swap com outras newsletters/comunidades. Sem repasse de dado pra empresa parceira (incluindo patrocinador de meetup) — patrocinador recebe relatório agregado, não lista de presença com email.</p>
             </section>
 
             <section id="cookies">
               <div class="s-num">05 / COOKIES</div>
               <h2>Cookies e <em>tecnologias similares.</em></h2>
-              <p>Usamos cookies de sessão (necessários pro site funcionar) e, eventualmente, cookies agregados de analytics. Você pode recusar cookies nas configurações do navegador — o site continua funcional, só algumas métricas agregadas ficam imprecisas.</p>
+              <p><strong>Próprios (first-party).</strong> Cookies de sessão estritamente necessários pra o site funcionar (preferência de tema dark/light, estado de formulário em wizard). Tempo de vida: sessão (apagam quando você fecha o navegador).</p>
+
+              <p><strong>Terceiros (third-party).</strong> Cookies de analytics agregado:</p>
+              <ul>
+                <li><strong>_ga, _ga_*</strong> — Google Analytics 4. Vida útil: até 2 anos.</li>
+                <li><strong>_fbp, _fbc</strong> — Meta Pixel. Vida útil: até 90 dias.</li>
+              </ul>
+              <p>Você pode bloquear cookies de terceiros nas configurações do navegador (Chrome → Configurações → Privacidade → Cookies; Safari → Preferências → Privacidade; Firefox → Configurações → Privacidade) sem prejudicar a navegação. Métricas agregadas ficam imprecisas, só isso.</p>
+
+              <p><strong>Sem cookies de cross-site tracking.</strong> Não compartilhamos cookies com anunciantes externos. Não usamos fingerprinting de dispositivo.</p>
             </section>
 
             <section id="retencao">
               <div class="s-num">06 / RETENÇÃO</div>
               <h2>Por quanto tempo <em>a gente guarda.</em></h2>
-              <p>Prazos preliminares: inscrição na newsletter (enquanto o vínculo estiver ativo, mais até 5 anos depois do cancelamento, por obrigação fiscal e legal), logs de navegação (6 meses), formulário de contato (2 anos) e Community WhatsApp (enquanto você estiver ativo na lista). Prazos podem ser revistos na versão final.</p>
+              <p>Prazos por categoria de dado:</p>
+              <ul>
+                <li><strong>Inscrição na newsletter</strong> — enquanto o vínculo estiver ativo. Após cancelamento: 6 meses (pra impedir reativação acidental). Depois disso, anonimização.</li>
+                <li><strong>Cadastro da Community (Notion)</strong> — enquanto você estiver ativo na lista. Após saída voluntária ou banimento por conduta: 1 ano (auditoria interna), depois anonimização.</li>
+                <li><strong>Logs de navegação no Cloudflare</strong> — 30 dias automáticos.</li>
+                <li><strong>Cookies analíticos (GA4, Meta)</strong> — entre 90 dias e 2 anos, conforme cada provedor.</li>
+                <li><strong>Email de contato e atendimento DPO</strong> — 2 anos após resolução, salvo se contestação ainda em curso.</li>
+                <li><strong>Notas fiscais e comprovantes de pagamento</strong> — 5 anos após o fato gerador, por obrigação fiscal federal.</li>
+                <li><strong>Documento de identificação (caso solicitado pra atendimento DPO)</strong> — 30 dias após validação, depois eliminação.</li>
+              </ul>
+              <p>Você pode pedir eliminação antecipada via <a href="/lgpd#exercer">/lgpd</a>. Dados sob obrigação legal continuam retidos pelo prazo legal mesmo após pedido — mas ficam anonimizados pra finalidades não-fiscais.</p>
+            </section>
+
+            <section id="seguranca">
+              <div class="s-num">07 / SEGURANÇA</div>
+              <h2>Como <em>a gente protege.</em></h2>
+              <p><strong>Criptografia em trânsito.</strong> Site servido apenas via HTTPS (TLS 1.3) com HSTS habilitado. Tráfego entre seu navegador e nossos servidores criptografado ponta a ponta.</p>
+
+              <p><strong>Criptografia em repouso.</strong> Backups de banco de dados são criptografados pelo provedor (Notion, Substack — gestão própria de cada plataforma).</p>
+
+              <p><strong>Acesso interno restrito.</strong> Em Fase 1, acesso aos dados é restrito ao DPO (Henrique Caner) e à Founder Crew (quando preenchida) — mediante NDA com cláusula LGPD. Sem acesso externo, sem terceirização de moderação.</p>
+
+              <p><strong>Notificação de incidente.</strong> Em caso de incidente de segurança envolvendo dado pessoal com risco relevante ao titular, comunicamos a ANPD em até 2 dias úteis e o titular afetado em até 5 dias úteis, conforme art. 48 da LGPD. Inclui descrição do incidente, dados envolvidos, medidas tomadas e impacto avaliado.</p>
+            </section>
+
+            <section id="internacional">
+              <div class="s-num">08 / INTERNACIONAL</div>
+              <h2>Transferência <em>internacional de dados.</em></h2>
+              <p>Vários processadores (Substack, Cloudflare, Notion, Google, Meta, Tally) operam servidores fora do Brasil — principalmente Estados Unidos e União Europeia. Quando seu dado vai pra esses servidores, ele atravessa fronteira.</p>
+              <p>Base legal pra transferência internacional (LGPD art. 33): o titular consentiu explicitamente no momento do cadastro (newsletter, formulário) ou a transferência é necessária pra execução do serviço contratado.</p>
+              <p>Países de destino são adequados ou as plataformas usam cláusulas contratuais padrão (Standard Contractual Clauses da UE) pra garantir proteção equivalente.</p>
+            </section>
+
+            <section id="direitos">
+              <div class="s-num">09 / DIREITOS</div>
+              <h2>O que <em>você pode pedir.</em></h2>
+              <p>Os direitos do art. 18 da LGPD estão todos disponíveis pra você: confirmação e acesso, correção, anonimização, eliminação, portabilidade, revogação de consentimento, informação sobre compartilhamento e oposição. Detalhe de cada direito + processo pra exercer em <a href="/lgpd#direitos">/lgpd</a>.</p>
+              <p>Resposta em até 15 dias úteis. Sem custo nas primeiras 2 solicitações por ano. Solicitações repetitivas e excessivas podem ser cobradas por custo administrativo, com aviso prévio.</p>
+            </section>
+
+            <section id="mudancas">
+              <div class="s-num">10 / MUDANÇAS</div>
+              <h2>Quando <em>essa política muda.</em></h2>
+              <p>Atualizações são publicadas neste link com data de versão visível. Mudanças relevantes (nova finalidade, novo processador, mudança de retenção, mudança de controlador) são avisadas com 30 dias de antecedência via newsletter e via aviso no site.</p>
+              <p>Continuar usando o site, a Community ou outros canais após o prazo significa aceitar a nova versão. Se discordar, você pode exercer o direito de eliminação ou oposição via DPO.</p>
             </section>
 
             <section id="contato">
-              <div class="s-num">07 / CONTATO</div>
+              <div class="s-num">11 / CONTATO</div>
               <h2>Encarregado de <em>proteção de dados.</em></h2>
-              <p>Encarregado de proteção de dados (DPO): contato por <a href="mailto:dpo@growthclub.pro">dpo@growthclub.pro</a>. Prazo padrão de resposta: 15 dias úteis. Em caso de incidente de segurança envolvendo seus dados, comunicamos a ANPD e o titular nos prazos da LGPD.</p>
+              <p><strong>DPO.</strong> Henrique Caner — <a href="mailto:dpo@growthclub.pro">dpo@growthclub.pro</a>. Prazo padrão de resposta: 15 dias úteis a partir da confirmação da titularidade.</p>
+              <p><strong>Reclamação à autoridade.</strong> Caso não fique satisfeito com a resposta, você pode apresentar reclamação à <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> em <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">gov.br/anpd</a>.</p>
 
               <div class="author-strip">
                 <div class="avatar">GC</div>
                 <div class="meta">
                   <span class="who">Growth Club · Privacidade</span>
-                  <span class="role">HOSPEDADO POR LEVEL TECH · CNPJ EM REGISTRO</span>
+                  <span class="role">LEVEL TECNOLOGIA DA INFORMAÇÃO LTDA · CNPJ 64.685.768/0001-29</span>
                 </div>
               </div>
             </section>

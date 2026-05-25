@@ -48,7 +48,7 @@ class GcFooter extends HTMLElement {
           </div>
 
           <div class="foot-bottom">
-            <span>© ${year} Growth Club<span class="amber">.</span> Hospedado na Level Tech · CNPJ TBD.</span>
+            <span>© ${year} Growth Club<span class="amber">.</span> Operado por Level Tecnologia da Informação Ltda · CNPJ 64.685.768/0001-29.</span>
             <span>SÃO PAULO · BR</span>
           </div>
 
