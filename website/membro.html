@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524c">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260524c">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524c">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524c">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524d">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260524d">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524d">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524d">
 </head>
 <body>
 
@@ -92,96 +92,138 @@
             </div>
           </header>
 
-          <form class="member-form" novalidate>
-            <fieldset class="fs-step">
-              <legend>Você</legend>
-              <div class="field-row">
-                <label>
-                  <span class="label-text">Nome <span class="req">*</span></span>
-                  <input type="text" name="nome" required minlength="2" autocomplete="given-name" placeholder="Maria">
-                </label>
-                <label>
-                  <span class="label-text">Sobrenome</span>
-                  <input type="text" name="sobrenome" autocomplete="family-name" placeholder="Souza">
-                </label>
+          <form class="member-form member-wizard" novalidate data-step="0">
+            <!-- Progress -->
+            <div class="wizard-progress" aria-hidden="true">
+              <div class="wizard-progress-track">
+                <div class="wizard-progress-bar" style="--step-pct: 33.33%;"></div>
               </div>
-              <label>
-                <span class="label-text">E-mail <span class="req">*</span></span>
-                <input type="email" name="email" required autocomplete="email" placeholder="voce@empresa.com">
-                <span class="field-hint">Pra onde mandamos a newsletter e a resposta da triagem.</span>
+              <ol class="wizard-progress-dots">
+                <li class="is-active" data-step="0"><span class="dot-num">1</span><span class="dot-label">Você</span></li>
+                <li data-step="1"><span class="dot-num">2</span><span class="dot-label">Sobre você</span></li>
+                <li data-step="2"><span class="dot-num">3</span><span class="dot-label">Interesses</span></li>
+              </ol>
+            </div>
+
+            <!-- Step 1: Você -->
+            <section class="wizard-step is-active" data-step="0" aria-label="Passo 1 de 3 — Você">
+              <header class="wizard-step-head">
+                <span class="wizard-step-eye">/ Passo 01</span>
+                <h4 class="wizard-step-h">Vamos te conhecer.</h4>
+                <p class="wizard-step-sub">Dados básicos pra triagem editorial. Demora menos de um minuto.</p>
+              </header>
+              <fieldset>
+                <div class="field-row">
+                  <label>
+                    <span class="label-text">Nome <span class="req">*</span></span>
+                    <input type="text" name="nome" required minlength="2" autocomplete="given-name" placeholder="Maria">
+                  </label>
+                  <label>
+                    <span class="label-text">Sobrenome</span>
+                    <input type="text" name="sobrenome" autocomplete="family-name" placeholder="Souza">
+                  </label>
+                </div>
+                <label>
+                  <span class="label-text">E-mail <span class="req">*</span></span>
+                  <input type="email" name="email" required autocomplete="email" placeholder="voce@empresa.com">
+                  <span class="field-hint">Pra onde mandamos a newsletter e a resposta da triagem.</span>
+                </label>
+                <div class="field-row">
+                  <label>
+                    <span class="label-text">WhatsApp</span>
+                    <input type="tel" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(11) 91234-5678" maxlength="20">
+                    <span class="field-hint">Pra convite da Community se aprovado.</span>
+                  </label>
+                  <label>
+                    <span class="label-text">Nascimento</span>
+                    <input type="date" name="nascimento" autocomplete="bday" max="2010-12-31" min="1940-01-01">
+                  </label>
+                </div>
+                <label>
+                  <span class="label-text">LinkedIn <span class="req">*</span></span>
+                  <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/maria-souza">
+                  <span class="field-hint">Contexto antes da resposta. Não pedimos CV.</span>
+                </label>
+              </fieldset>
+            </section>
+
+            <!-- Step 2: Sobre você -->
+            <section class="wizard-step" data-step="1" aria-label="Passo 2 de 3 — Sobre você" hidden>
+              <header class="wizard-step-head">
+                <span class="wizard-step-eye">/ Passo 02</span>
+                <h4 class="wizard-step-h">No que você manda bem?</h4>
+                <p class="wizard-step-sub">Conta uma bio curta da sua operação. Pode pular se preferir falar depois.</p>
+              </header>
+              <fieldset>
+                <label>
+                  <span class="label-text">Sua bio profissional</span>
+                  <textarea name="bio" rows="6" maxlength="2000" placeholder="Ex: 6 anos liderando growth em SaaS B2B. Hoje cuido de outbound + lifecycle em scale-up brasileira. Forte em RevOps e analytics."></textarea>
+                  <span class="field-hint"><span class="char-counter" data-target="bio">0</span> / 2.000 caracteres.</span>
+                </label>
+              </fieldset>
+            </section>
+
+            <!-- Step 3: Interesses -->
+            <section class="wizard-step" data-step="2" aria-label="Passo 3 de 3 — Interesses" hidden>
+              <header class="wizard-step-head">
+                <span class="wizard-step-eye">/ Passo 03</span>
+                <h4 class="wizard-step-h">Por que você quer entrar?</h4>
+                <p class="wizard-step-sub">Marque o que ressoa. Vários permitidos — quanto mais sincero, melhor a triagem.</p>
+              </header>
+
+              <fieldset class="wizard-fs">
+                <legend>Prioridades de assunto</legend>
+                <div class="member-checkgrid">
+                  <label class="check-pill"><input type="checkbox" name="prioridades" value="Growth"><span>Growth</span></label>
+                  <label class="check-pill"><input type="checkbox" name="prioridades" value="Marketing"><span>Marketing</span></label>
+                  <label class="check-pill"><input type="checkbox" name="prioridades" value="Vendas"><span>Vendas</span></label>
+                  <label class="check-pill"><input type="checkbox" name="prioridades" value="CS"><span>CS</span></label>
+                  <label class="check-pill"><input type="checkbox" name="prioridades" value="Produtos"><span>Produtos</span></label>
+                  <label class="check-pill"><input type="checkbox" name="prioridades" value="Startup"><span>Startup</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="wizard-fs">
+                <legend>O que você procura no Growth Club</legend>
+                <div class="member-checkgrid">
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Networking"><span>Networking</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Aprender"><span>Aprender</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Mentoria"><span>Mentoria</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Recrutar"><span>Recrutar talento</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Procurar um novo trabalho"><span>Procurar um novo trabalho</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Oferecer Serviços & Produtos"><span>Oferecer Serviços & Produtos</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Conseguir Feedbacks"><span>Conseguir Feedbacks</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Quero Investir"><span>Quero Investir</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Quero Investimento"><span>Quero Investimento</span></label>
+                  <label class="check-pill"><input type="checkbox" name="procura" value="Outros"><span>Outros</span></label>
+                </div>
+              </fieldset>
+
+              <label class="field-checkbox">
+                <input type="checkbox" name="slack">
+                <span>Eu uso <strong>Slack</strong> (relevante pra alguns canais futuros da comunidade).</span>
               </label>
-              <div class="field-row">
-                <label>
-                  <span class="label-text">WhatsApp</span>
-                  <input type="tel" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(11) 91234-5678" maxlength="20">
-                  <span class="field-hint">Pra convite da Community se aprovado.</span>
-                </label>
-                <label>
-                  <span class="label-text">Nascimento</span>
-                  <input type="date" name="nascimento" autocomplete="bday" max="2010-12-31" min="1940-01-01">
-                </label>
-              </div>
-              <label>
-                <span class="label-text">LinkedIn <span class="req">*</span></span>
-                <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/maria-souza">
-                <span class="field-hint">Contexto antes da resposta. Não pedimos CV.</span>
+
+              <label class="field-checkbox">
+                <input type="checkbox" name="lgpd" required>
+                <span>Autorizo o uso desses dados pra triagem editorial e contato por email. Posso revogar a qualquer momento via <a href="/lgpd">/lgpd</a>. <span class="req">*</span></span>
               </label>
-            </fieldset>
+            </section>
 
-            <fieldset class="fs-step">
-              <legend>No que você manda bem</legend>
-              <label>
-                <span class="label-text">O que você faz?</span>
-                <textarea name="bio" rows="4" maxlength="2000" placeholder="Ex: 6 anos liderando growth em SaaS B2B. Hoje cuido de outbound + lifecycle em scale-up brasileira. Forte em RevOps e analytics."></textarea>
-                <span class="field-hint">Bio curta. Até 2.000 caracteres.</span>
-              </label>
-            </fieldset>
-
-            <fieldset class="fs-step">
-              <legend>Prioridades de assunto</legend>
-              <span class="fs-help">Marque os temas que mais te interessam (vários permitidos).</span>
-              <div class="member-checkgrid">
-                <label class="check-pill"><input type="checkbox" name="prioridades" value="Growth"><span>Growth</span></label>
-                <label class="check-pill"><input type="checkbox" name="prioridades" value="Marketing"><span>Marketing</span></label>
-                <label class="check-pill"><input type="checkbox" name="prioridades" value="Vendas"><span>Vendas</span></label>
-                <label class="check-pill"><input type="checkbox" name="prioridades" value="CS"><span>CS</span></label>
-                <label class="check-pill"><input type="checkbox" name="prioridades" value="Produtos"><span>Produtos</span></label>
-                <label class="check-pill"><input type="checkbox" name="prioridades" value="Startup"><span>Startup</span></label>
-              </div>
-            </fieldset>
-
-            <fieldset class="fs-step">
-              <legend>O que você procura no Growth Club</legend>
-              <span class="fs-help">Quanto mais sincero, melhor a triagem.</span>
-              <div class="member-checkgrid">
-                <label class="check-pill"><input type="checkbox" name="procura" value="Networking"><span>Networking</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Aprender"><span>Aprender</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Mentoria"><span>Mentoria</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Recrutar"><span>Recrutar talento</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Procurar um novo trabalho"><span>Procurar um novo trabalho</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Oferecer Serviços & Produtos"><span>Oferecer Serviços & Produtos</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Conseguir Feedbacks"><span>Conseguir Feedbacks</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Quero Investir"><span>Quero Investir</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Quero Investimento"><span>Quero Investimento</span></label>
-                <label class="check-pill"><input type="checkbox" name="procura" value="Outros"><span>Outros</span></label>
-              </div>
-            </fieldset>
-
-            <label class="field-checkbox">
-              <input type="checkbox" name="slack">
-              <span>Eu uso <strong>Slack</strong> (relevante pra alguns canais futuros da comunidade).</span>
-            </label>
-
-            <label class="field-checkbox">
-              <input type="checkbox" name="lgpd" required>
-              <span>Autorizo o uso desses dados pra triagem editorial e contato por email. Posso revogar a qualquer momento via <a href="/lgpd">/lgpd</a>. <span class="req">*</span></span>
-            </label>
-
-            <div class="form-submit">
-              <button type="submit" class="btn-submit">
-                <span class="btn-submit-label">Submeter candidatura</span>
-                <span class="btn-submit-meta">// triagem manual em 7 dias úteis</span>
-                <svg class="icon btn-submit-icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg>
+            <!-- Navigation -->
+            <div class="wizard-nav">
+              <button type="button" class="wizard-btn wizard-prev" disabled>
+                <svg class="icon" aria-hidden="true" style="transform: rotate(180deg);"><use href="/assets/icons.svg#arrow-right"/></svg>
+                <span>Voltar</span>
+              </button>
+              <span class="wizard-step-counter" aria-live="polite"><b class="wizard-current">1</b> / 3</span>
+              <button type="button" class="wizard-btn wizard-btn-primary wizard-next">
+                <span>Próximo</span>
+                <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-right"/></svg>
+              </button>
+              <button type="submit" class="wizard-btn wizard-btn-primary wizard-submit" hidden>
+                <span class="wizard-submit-label">Enviar candidatura</span>
+                <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg>
               </button>
             </div>
 
@@ -266,18 +308,26 @@
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
   <script>
-    // Member application form — POST to /api/apply (Notion-backed)
+    // Member application wizard — 3-step state machine + POST /api/apply
     (() => {
-      const form = document.querySelector('.member-form');
+      const form = document.querySelector('.member-wizard');
       const dialog = document.getElementById('member-confirm');
-      const fallback = form?.querySelector('.form-fallback');
-      const submitBtn = form?.querySelector('.btn-submit');
-      const submitLabel = submitBtn?.querySelector('.btn-submit-label');
-      if (!form || !dialog || !submitBtn) return;
+      if (!form || !dialog) return;
 
-      const inputs = form.querySelectorAll('input, select, textarea');
+      const steps = form.querySelectorAll('.wizard-step');
+      const dots = form.querySelectorAll('.wizard-progress-dots li');
+      const bar = form.querySelector('.wizard-progress-bar');
+      const counter = form.querySelector('.wizard-current');
+      const fallback = form.querySelector('.form-fallback');
+      const btnPrev = form.querySelector('.wizard-prev');
+      const btnNext = form.querySelector('.wizard-next');
+      const btnSubmit = form.querySelector('.wizard-submit');
+      const submitLabel = btnSubmit?.querySelector('.wizard-submit-label');
 
-      // BR phone mask: (11) 91234-5678 or (11) 1234-5678
+      const TOTAL = steps.length;
+      let current = 0;
+
+      // ---- BR phone mask ----
       const telInput = form.querySelector('input[name="telefone"]');
       if (telInput) {
         telInput.addEventListener('input', (e) => {
@@ -289,52 +339,112 @@
         });
       }
 
-      // Validation visual state
+      // ---- Bio char counter ----
+      const bioInput = form.querySelector('textarea[name="bio"]');
+      const bioCounter = form.querySelector('.char-counter[data-target="bio"]');
+      if (bioInput && bioCounter) {
+        bioInput.addEventListener('input', () => {
+          bioCounter.textContent = bioInput.value.length;
+        });
+      }
+
+      // ---- Inline validation feedback ----
       const validateField = (input) => {
         if (!input.checkValidity()) {
           input.classList.add('is-invalid');
           input.setAttribute('aria-invalid', 'true');
-        } else {
-          input.classList.remove('is-invalid');
-          input.removeAttribute('aria-invalid');
+          return false;
         }
+        input.classList.remove('is-invalid');
+        input.removeAttribute('aria-invalid');
+        return true;
       };
-      inputs.forEach(input => {
-        input.addEventListener('blur', () => validateField(input));
-        input.addEventListener('input', () => {
-          input.classList.remove('is-invalid');
-          input.removeAttribute('aria-invalid');
+      form.querySelectorAll('input, textarea, select').forEach(i => {
+        i.addEventListener('blur', () => validateField(i));
+        i.addEventListener('input', () => {
+          i.classList.remove('is-invalid');
+          i.removeAttribute('aria-invalid');
         });
       });
 
-      const setSubmitting = (on) => {
-        submitBtn.disabled = on;
-        if (submitLabel) submitLabel.textContent = on ? 'Enviando…' : 'Submeter candidatura';
-      };
-
+      // ---- State transitions ----
       const setFallback = (msg, kind) => {
         if (!fallback) return;
         fallback.textContent = msg || '';
         fallback.dataset.kind = kind || '';
       };
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+      const renderStep = () => {
+        steps.forEach((s, i) => {
+          const active = i === current;
+          s.classList.toggle('is-active', active);
+          s.toggleAttribute('hidden', !active);
+        });
+        dots.forEach((d, i) => {
+          d.classList.toggle('is-active', i === current);
+          d.classList.toggle('is-done', i < current);
+        });
+        if (bar) bar.style.setProperty('--step-pct', `${((current + 1) / TOTAL) * 100}%`);
+        if (counter) counter.textContent = current + 1;
+        if (btnPrev) btnPrev.disabled = current === 0;
+        const isLast = current === TOTAL - 1;
+        if (btnNext) btnNext.hidden = isLast;
+        if (btnSubmit) btnSubmit.hidden = !isLast;
+        // Focus first input do step
+        requestAnimationFrame(() => {
+          const target = steps[current].querySelector('input:not([type=checkbox]), textarea, select');
+          if (target) target.focus({ preventScroll: false });
+        });
         setFallback('');
+      };
 
-        // 1. Native validation
+      const validateCurrentStep = () => {
+        const stepInputs = steps[current].querySelectorAll('input, textarea, select');
         let firstInvalid = null;
-        inputs.forEach(input => {
-          validateField(input);
-          if (!input.checkValidity() && !firstInvalid) firstInvalid = input;
+        stepInputs.forEach(i => {
+          if (!validateField(i) && !firstInvalid) firstInvalid = i;
         });
         if (firstInvalid) {
           firstInvalid.focus();
-          setFallback('Confere os campos destacados antes de enviar.', 'error');
-          return;
+          setFallback('Confere os campos destacados antes de avançar.', 'error');
+          return false;
         }
+        return true;
+      };
 
-        // 2. Build payload
+      btnNext?.addEventListener('click', () => {
+        if (!validateCurrentStep()) return;
+        if (current < TOTAL - 1) {
+          current++;
+          renderStep();
+        }
+      });
+
+      btnPrev?.addEventListener('click', () => {
+        if (current > 0) {
+          current--;
+          renderStep();
+        }
+      });
+
+      // Enter avança step (mas não submete prematuramente)
+      form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && current < TOTAL - 1) {
+          e.preventDefault();
+          btnNext?.click();
+        }
+      });
+
+      // ---- Submit ----
+      const setSubmitting = (on) => {
+        if (btnSubmit) btnSubmit.disabled = on;
+        if (submitLabel) submitLabel.textContent = on ? 'Enviando…' : 'Enviar candidatura';
+      };
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validateCurrentStep()) return;
+
         const fd = new FormData(form);
         const payload = {
           nome: fd.get('nome') || '',
@@ -350,7 +460,6 @@
           lgpd: fd.get('lgpd') === 'on',
         };
 
-        // 3. POST /api/apply
         setSubmitting(true);
         try {
           const r = await fetch('/api/apply', {
@@ -358,14 +467,12 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
           });
-
           if (r.ok) {
             dialog.showModal();
             form.reset();
-            inputs.forEach(i => {
-              i.classList.remove('is-invalid');
-              i.removeAttribute('aria-invalid');
-            });
+            current = 0;
+            renderStep();
+            if (bioCounter) bioCounter.textContent = '0';
           } else if (r.status === 422) {
             const data = await r.json().catch(() => ({}));
             const fields = (data.fields || []).join(', ');
@@ -383,6 +490,9 @@
           setSubmitting(false);
         }
       });
+
+      // Initial render
+      renderStep();
     })();
   </script>
 </body>
