@@ -160,13 +160,14 @@
   max-width: 720px;
 }
 .home-cta-h2 {
-  font-size: clamp(32px, 5vw, 64px);
+  font-size: clamp(28px, 4.2vw, 56px);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tightest);
   font-weight: var(--fw-black);
   margin: 0 0 var(--space-4);
-  max-width: 20ch;
+  max-width: 30ch;
   margin-inline: auto;
+  text-wrap: balance;
 }
 .home-cta-sub {
   font-size: var(--fs-body);

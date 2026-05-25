@@ -1985,6 +1985,7 @@ em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  margin-top: auto;
 }
 .home-testimonial-avatar {
   width: 44px;
