@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524d">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260524d">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524d">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524d">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524e">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260524e">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524e">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524e">
 </head>
 <body>
 
@@ -123,11 +123,18 @@
                     <input type="text" name="sobrenome" autocomplete="family-name" placeholder="Souza">
                   </label>
                 </div>
-                <label>
-                  <span class="label-text">E-mail <span class="req">*</span></span>
-                  <input type="email" name="email" required autocomplete="email" placeholder="voce@empresa.com">
-                  <span class="field-hint">Pra onde mandamos a newsletter e a resposta da triagem.</span>
-                </label>
+                <div class="field-row">
+                  <label>
+                    <span class="label-text">E-mail <span class="req">*</span></span>
+                    <input type="email" name="email" required autocomplete="email" placeholder="voce@empresa.com">
+                    <span class="field-hint">Pra newsletter e resposta da triagem.</span>
+                  </label>
+                  <label>
+                    <span class="label-text">LinkedIn <span class="req">*</span></span>
+                    <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/maria-souza">
+                    <span class="field-hint">Contexto antes da resposta. Não pedimos CV.</span>
+                  </label>
+                </div>
                 <div class="field-row">
                   <label>
                     <span class="label-text">WhatsApp</span>
@@ -137,13 +144,9 @@
                   <label>
                     <span class="label-text">Nascimento</span>
                     <input type="date" name="nascimento" autocomplete="bday" max="2010-12-31" min="1940-01-01">
+                    <span class="field-hint">Opcional.</span>
                   </label>
                 </div>
-                <label>
-                  <span class="label-text">LinkedIn <span class="req">*</span></span>
-                  <input type="url" name="linkedin" required pattern="https?://(www\.)?linkedin\.com/.+" placeholder="https://linkedin.com/in/maria-souza">
-                  <span class="field-hint">Contexto antes da resposta. Não pedimos CV.</span>
-                </label>
               </fieldset>
             </section>
 
