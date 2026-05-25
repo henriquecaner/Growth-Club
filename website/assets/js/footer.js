@@ -6,7 +6,7 @@ class GcFooter extends HTMLElement {
     const year = new Date().getFullYear();
 
     this.innerHTML = `
-      <footer class="gc-footer">
+      <footer class="gc-footer" data-theme="dark">
         <div class="wrap">
           <div class="foot-top">
             <div class="foot-brand">
