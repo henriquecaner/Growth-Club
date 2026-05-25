@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524h">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260524h">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524h">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524h">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524i">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260524i">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524i">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524i">
 </head>
 <body>
 
@@ -319,6 +319,7 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script src="/assets/js/analytics.js"></script>
   <script>
     // Member application wizard — 3-step state machine + POST /api/apply
     (() => {
@@ -435,6 +436,8 @@
         fallback.dataset.kind = kind || '';
       };
 
+      const STEP_NAMES = ['voce', 'sobre', 'interesses'];
+
       const renderStep = () => {
         steps.forEach((s, i) => {
           const active = i === current;
@@ -457,6 +460,11 @@
           if (target) target.focus({ preventScroll: false });
         });
         setFallback('');
+        // dataLayer — funnel step view
+        window.gcTrack?.('gc_wizard_step', {
+          step_number: current + 1,
+          step_name: STEP_NAMES[current] || `step_${current + 1}`,
+        });
       };
 
       const validateCurrentStep = () => {
@@ -521,6 +529,9 @@
           lgpd: fd.get('lgpd') === 'on',
         };
 
+        // dataLayer — submit attempt (intent signal)
+        window.gcTrack?.('gc_signup_attempt', { email: payload.email });
+
         setSubmitting(true);
         try {
           const r = await fetch('/api/apply', {
@@ -529,23 +540,37 @@
             body: JSON.stringify(payload),
           });
           if (r.ok) {
+            const data = await r.json().catch(() => ({}));
+            // dataLayer — success (Meta: CompleteRegistration, Google: sign_up)
+            window.gcTrack?.('gc_signup_success', {
+              email: payload.email,
+              mode: data.mode || 'created',
+            });
             dialog.showModal();
             form.reset();
             current = 0;
             renderStep();
             if (bioCounter) bioCounter.textContent = '0';
-          } else if (r.status === 422) {
-            const data = await r.json().catch(() => ({}));
-            const fields = (data.fields || []).join(', ');
-            setFallback(`Faltou: ${fields || 'campos obrigatórios'}.`, 'error');
-          } else if (r.status === 429) {
-            setFallback('Muita gente se inscrevendo agora. Tenta de novo em ~30s.', 'error');
-          } else if (r.status === 503) {
-            setFallback('Serviço de inscrição em manutenção. Tenta de novo em alguns minutos.', 'error');
           } else {
-            setFallback('Não foi possível enviar agora. Tenta novamente em alguns minutos.', 'error');
+            let errorCode = `http_${r.status}`;
+            if (r.status === 422) {
+              const data = await r.json().catch(() => ({}));
+              const fields = (data.fields || []).join(', ');
+              errorCode = 'validation_failed';
+              setFallback(`Faltou: ${fields || 'campos obrigatórios'}.`, 'error');
+            } else if (r.status === 429) {
+              errorCode = 'rate_limited';
+              setFallback('Muita gente se inscrevendo agora. Tenta de novo em ~30s.', 'error');
+            } else if (r.status === 503) {
+              errorCode = 'service_unavailable';
+              setFallback('Serviço de inscrição em manutenção. Tenta de novo em alguns minutos.', 'error');
+            } else {
+              setFallback('Não foi possível enviar agora. Tenta novamente em alguns minutos.', 'error');
+            }
+            window.gcTrack?.('gc_signup_error', { error_code: errorCode });
           }
         } catch {
+          window.gcTrack?.('gc_signup_error', { error_code: 'network_error' });
           setFallback('Sem conexão com o servidor. Verifica sua internet e tenta de novo.', 'error');
         } finally {
           setSubmitting(false);

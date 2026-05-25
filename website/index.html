@@ -18,10 +18,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524h">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260524h">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524h">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524h">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260524i">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260524i">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260524i">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260524i">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -507,6 +507,7 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script src="/assets/js/analytics.js"></script>
   <script>
     // Hero email capture → /api/lead (abandono de carrinho) → redirect /membro?email=X
     (() => {
@@ -525,9 +526,11 @@
           return;
         }
         // Disable input + button enquanto fire-and-forget pro Notion
-        const originalLabel = btn.textContent;
         btn.disabled = true;
         btn.textContent = '…';
+
+        // dataLayer event — Lead capture (Meta: Lead, Google Ads: generate_lead)
+        window.gcTrack?.('gc_lead_capture', { source: 'hero_form', email });
 
         // Tenta capturar lead. Independente do resultado, segue pro /membro.
         const followUp = () => {
