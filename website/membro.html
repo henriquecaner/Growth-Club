@@ -272,17 +272,6 @@
           </footer>
         </section>
 
-        <dialog id="member-confirm" class="gc-dialog" aria-labelledby="member-confirm-title">
-          <form method="dialog">
-            <h2 id="member-confirm-title">Recebido<em>.</em></h2>
-            <p>Triagem em até 7 dias úteis por email. Aprovado entra na newsletter quinzenal + convite pra WhatsApp Community. Não aprovado recebe email educado com motivo.</p>
-            <p>Enquanto isso: dá uma olhada no <a href="https://growthclub.substack.com" target="_blank" rel="noopener">arquivo da newsletter</a> ou na <a href="/meetups/sp-s1e1-barte">próxima edição do meetup SP</a>.</p>
-            <div class="dialog-actions">
-              <button type="submit" class="btn primary" value="close">Fechar</button>
-            </div>
-          </form>
-        </dialog>
-
         <div class="tier-card">
           <div aria-hidden="true" class="bg-orb is-top-right is-large" style="--orb-opacity: 0.7;"></div>
           <span class="badge-soon">Em breve · 2027</span>
@@ -349,8 +338,7 @@
     // Member application wizard — 3-step state machine + POST /api/apply
     (() => {
       const form = document.querySelector('.member-wizard');
-      const dialog = document.getElementById('member-confirm');
-      if (!form || !dialog) return;
+      if (!form) return;
 
       const steps = form.querySelectorAll('.wizard-step');
       const dots = form.querySelectorAll('.wizard-progress-dots li');
@@ -566,16 +554,18 @@
           });
           if (r.ok) {
             const data = await r.json().catch(() => ({}));
-            // dataLayer — success (Meta: CompleteRegistration, Google: sign_up)
-            window.gcTrack?.('gc_signup_success', {
-              email: payload.email,
-              mode: data.mode || 'created',
-            });
-            dialog.showModal();
-            form.reset();
-            current = 0;
-            renderStep();
-            if (bioCounter) bioCounter.textContent = '0';
+            // dataLayer — success (Meta: CompleteRegistration, Google: sign_up).
+            // Aguarda track completar (sha256 async) antes do redirect pra
+            // garantir delivery do event antes da nova navegação.
+            try {
+              await window.gcTrack?.('gc_signup_success', {
+                email: payload.email,
+                mode: data.mode || 'created',
+              });
+            } catch {}
+            // Redirect pra thank-you page dedicada (melhor pra conversion tracking)
+            window.location.href = '/membro/obrigado';
+            return;
           } else {
             let errorCode = `http_${r.status}`;
             if (r.status === 422) {

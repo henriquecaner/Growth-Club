@@ -82,5 +82,20 @@
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script src="/assets/js/analytics.js"></script>
+  <script>
+    // Reforço de conversion tracking ao chegar na thank-you page.
+    // GA4 já registra page_view automático; Meta Pixel também (PageView no init).
+    // Aqui dispara também os events de funnel completion explícitos
+    // pra capturar mesmo se o redirect interrompeu o track do /membro.
+    (() => {
+      if (typeof window.gtag === 'function') {
+        try { window.gtag('event', 'sign_up_complete_view', { send_to: 'G-B2CWTK6300' }); } catch {}
+      }
+      if (typeof window.fbq === 'function') {
+        try { window.fbq('trackCustom', 'SignupCompletePageView'); } catch {}
+      }
+    })();
+  </script>
 </body>
 </html>
