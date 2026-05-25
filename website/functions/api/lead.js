@@ -20,6 +20,7 @@ const ALLOWED_ORIGINS = new Set([
   "https://growthclub.pro",
   "https://www.growthclub.pro",
   "https://growth-club.pages.dev",
+  "https://growth-club-site.pages.dev",
 ]);
 
 const LEAD_PLACEHOLDER = "(lead — só email)";

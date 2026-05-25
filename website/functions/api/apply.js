@@ -26,6 +26,7 @@ const ALLOWED_ORIGINS = new Set([
   "https://growthclub.pro",
   "https://www.growthclub.pro",
   "https://growth-club.pages.dev",
+  "https://growth-club-site.pages.dev",
 ]);
 
 // Multi-select whitelists (must match Notion DB options exactly)
