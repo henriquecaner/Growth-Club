@@ -563,8 +563,11 @@
                 mode: data.mode || 'created',
               });
             } catch {}
-            // Redirect pra thank-you page dedicada (melhor pra conversion tracking)
-            window.location.href = '/membro/obrigado';
+            // Redirect pra thank-you page com email preservado (pro botão Substack subscribe).
+            // Email é PII mas vai só pra mesma origem; thank-you JS limpa URL via replaceState
+            // após popular o botão (não fica no histórico do browser).
+            const emailParam = encodeURIComponent(payload.email);
+            window.location.href = `/membro/obrigado?email=${emailParam}`;
             return;
           } else {
             let errorCode = `http_${r.status}`;

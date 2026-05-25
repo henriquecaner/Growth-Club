@@ -21,8 +21,6 @@
 const NOTION_API = "https://api.notion.com/v1";
 const NOTION_VERSION = "2022-06-28";
 const DEFAULT_DATABASE_ID = "36789cac-40bd-80d7-a900-fa0939b4d953";
-const SUBSTACK_PUBLICATION = "brgrowthclub";
-const SUBSTACK_REFERRER = "https://growthclub.pro/membro";
 
 const ALLOWED_ORIGINS = new Set([
   "https://growthclub.pro",
@@ -228,37 +226,10 @@ export async function onRequestPost({ request, env }) {
       return json({ error: "upstream_error" }, 502);
     }
 
-    // 5. Auto-subscribe na newsletter Substack (fire-and-forget, soft fail).
-    // Substack envia email de confirmação (double opt-in) automaticamente.
-    // Se falhar, não bloqueia o fluxo — apenas loga.
-    try {
-      const formBody = new URLSearchParams({
-        email,
-        first_url: SUBSTACK_REFERRER,
-        first_referrer: SUBSTACK_REFERRER,
-        current_url: SUBSTACK_REFERRER,
-        current_referrer: "",
-        referral_code: "",
-        source: "subscribe_page",
-      });
-      const subRes = await fetch(
-        `https://${SUBSTACK_PUBLICATION}.substack.com/api/v1/free?nojs=true`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": "Mozilla/5.0 (compatible; GrowthClub/1.0)",
-            "Accept": "application/json",
-          },
-          body: formBody.toString(),
-        },
-      );
-      if (!subRes.ok) {
-        console.warn("[apply] Substack subscribe failed", subRes.status);
-      }
-    } catch (err) {
-      console.warn("[apply] Substack subscribe error", String(err).slice(0, 120));
-    }
+    // Note: Substack /api/v1/free retorna 403 (Cloudflare challenge) em
+    // requests server-side sem cookies de sessão. Auto-subscribe puro não
+    // viável. Em vez disso, a thank-you page tem CTA prominente que abre
+    // Substack subscribe com email pré-preenchido via query param.
 
     return json({ ok: true, mode: existingPageId ? "updated" : "created" });
   } catch (err) {

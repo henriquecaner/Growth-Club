@@ -53,7 +53,7 @@
         </div>
         <span class="kicker">Candidatura recebida</span>
         <h1 class="page-title">Você está no <em>clube.</em></h1>
-        <p class="page-lede">Recebemos sua candidatura na comunidade. A gente já te inscreveu na newsletter automaticamente — só falta confirmar no email que vai chegar. Próximos passos abaixo.</p>
+        <p class="page-lede">Recebemos sua candidatura na comunidade. Próximo passo: confirma sua inscrição na newsletter quinzenal logo abaixo. Triagem editorial chega no seu email em até 7 dias úteis.</p>
       </div>
     </section>
 
@@ -61,16 +61,29 @@
       <div class="wrap" style="max-width: 720px;">
         <article class="prose" style="max-width: 100%;">
           <section style="border-top: 0; padding-top: 0;">
+            <div class="s-num">AÇÃO IMEDIATA</div>
+            <h2>Confirma a <em>newsletter.</em></h2>
+            <p>O conteúdo denso da comunidade chega pela newsletter quinzenal no Substack. Clica no botão abaixo pra confirmar sua inscrição (seu email já vai estar preenchido — só dar enter).</p>
+            <div class="hero-ctas" style="margin-top: 24px; margin-bottom: 8px;">
+              <a id="substack-cta" class="btn primary" href="https://brgrowthclub.substack.com/subscribe" target="_blank" rel="noopener">
+                Confirmar inscrição na newsletter
+                <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg>
+              </a>
+            </div>
+            <p style="font-size: 13px; color: var(--fg-tertiary); margin-top: 4px;">Abre em nova aba. Sem cobrança. Você pode cancelar a qualquer momento.</p>
+          </section>
+
+          <section style="margin-top: 56px;">
             <div class="s-num">PRÓXIMOS PASSOS</div>
             <h2>O que <em>vai acontecer.</em></h2>
-            <p><strong>1. Confirma o email do Substack</strong> — em até 5 minutos chega um email pedindo pra confirmar a inscrição na newsletter. A gente já cadastrou seu email automaticamente; você só clica no link de confirmação e tá feito. Sem isso, a newsletter quinzenal não chega.</p>
-            <p><strong>2. Triagem da candidatura</strong> — em até 7 dias úteis você recebe email com a decisão. Aprovado recebe convite pra WhatsApp Community (715 ativos) e prioridade pra meetups. Não aprovado recebe email educado com motivo.</p>
+            <p><strong>1. Triagem da candidatura</strong> — em até 7 dias úteis você recebe email com a decisão. Aprovado recebe convite pra WhatsApp Community (715 ativos) e prioridade pra meetups. Não aprovado recebe email educado com motivo.</p>
+            <p><strong>2. Newsletter quinzenal</strong> — depois de confirmar acima, a próxima edição cai na sua caixa em até 14 dias. Conteúdo denso, sem boost, sem swap de lista.</p>
             <p><strong>3. Próximo meetup</strong> — Meetup Growth SP · S1 · E1 · Barte (jun/2026). Inscrição abre em breve. Membros aprovados são avisados primeiro pela newsletter.</p>
           </section>
         </article>
 
         <div class="hero-ctas" style="margin-top: 48px; justify-content: center;">
-          <a class="btn primary" href="/">Voltar pra home <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#arrow-up-right"/></svg></a>
+          <a class="btn ghost" href="/">Voltar pra home</a>
           <a class="btn ghost" href="/meetups">Ver próximos meetups</a>
         </div>
       </div>
@@ -84,16 +97,43 @@
   <script src="/assets/js/footer.js"></script>
   <script src="/assets/js/analytics.js"></script>
   <script>
-    // Reforço de conversion tracking ao chegar na thank-you page.
-    // GA4 já registra page_view automático; Meta Pixel também (PageView no init).
-    // Aqui dispara também os events de funnel completion explícitos
-    // pra capturar mesmo se o redirect interrompeu o track do /membro.
+    // Thank-you page: prefill email no botão Substack + tracking conversion
     (() => {
+      // 1. Prefill email no Substack CTA
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const email = params.get('email');
+        const cta = document.getElementById('substack-cta');
+        if (email && cta) {
+          // Substack subscribe URL aceita ?email= como query param
+          cta.href = `https://brgrowthclub.substack.com/subscribe?email=${encodeURIComponent(email)}`;
+        }
+        // Limpa email da URL (PII) — replaceState não polui histórico
+        if (email) {
+          window.history.replaceState({}, '', '/membro/obrigado');
+        }
+      } catch {}
+
+      // 2. Conversion tracking reforço (GA4 + Meta)
       if (typeof window.gtag === 'function') {
         try { window.gtag('event', 'sign_up_complete_view', { send_to: 'G-B2CWTK6300' }); } catch {}
       }
       if (typeof window.fbq === 'function') {
         try { window.fbq('trackCustom', 'SignupCompletePageView'); } catch {}
+      }
+
+      // 3. Track quando user clica no botão Substack (intent de finalizar newsletter)
+      const cta = document.getElementById('substack-cta');
+      if (cta) {
+        cta.addEventListener('click', () => {
+          window.gcTrack?.('gc_newsletter_confirm_click', {});
+          if (typeof window.fbq === 'function') {
+            try { window.fbq('trackCustom', 'NewsletterConfirmClick'); } catch {}
+          }
+          if (typeof window.gtag === 'function') {
+            try { window.gtag('event', 'newsletter_signup_click'); } catch {}
+          }
+        });
       }
     })();
   </script>
