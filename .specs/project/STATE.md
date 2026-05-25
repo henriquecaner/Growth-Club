@@ -1,11 +1,137 @@
 # STATE: Growth Club
-**Last Updated:** 2026-05-20
+**Last Updated:** 2026-05-25
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-022: Termo canonical da audiência é "especialista" — proibido "operador"
+**Date:** 2026-05-25
+**Status:** Accepted
+
+**Context:** Voz Growth Club desde refino AD-011 usava "operador B2B" pra descrever audiência/membros (newsletter, Community, meetups). Funcional, mas mecânico — não conecta com arquétipo Hero+Magician (AD-014) nem com posicionamento multidisciplinar (AD-015). A home já usava "44 especialistas convidados" no grid de meetups passados, criando inconsistência interna (especialista no grid, operador no resto).
+
+**Decision:** Termo canonical pra qualquer descrição de membro, audiência ou convidado é **"especialista"**. "Operador" só permanece em contextos jurídicos ("operados por Level Tech", "operacional"). Aplicada substituição site-wide via Python regex `\boperador(es)?\b` → "especialista(s)": 28 substituições em 13 arquivos HTML.
+
+**Consequences:**
+- Coerência interna: home, sobre, meetups, recursos, código de conduta usam "especialista" uniformemente.
+- Falsos positivos preservados: "operadora" (Level Tech), "operacional" (logística), "operação" (processo) — `\b` regex preserva.
+- ~120 ocorrências de "operador" em `docs/`, `brand/`, `.specs/` ficam pendentes — B-001 cobre.
+
+---
+
+### AD-021: "Mesa de canto" removido como metáfora editorial
+**Date:** 2026-05-25
+**Status:** Accepted
+
+**Context:** O termo "mesa de canto" aparecia em 10 lugares no site (H1 membro, H1 historico, kicker meetups, H2 do meetup S1E1, OG descriptions). Foi cunhado como pitch editorial mas tem problema semântico: "ficar de canto" é experiência negativa, oposto de troca ativa. Henrique flagou: "INGUEM GOSTA DE FICAR DE CANTO NUMA MESA DE CANTO."
+
+**Decision:** Remoção integral. Substituído por linguagem do pitch padrão da home:
+- "comunidade" / "comunidade Growth Club"
+- "especialista com especialista"
+- "conversa entre pares"
+
+10 substituições em 7 arquivos. Memory file [[feedback-mesa-de-canto-proibida]] criada com a regra.
+
+**Consequences:** Pitch fica coerente com o resto da home. Sem mais metáfora confusa de "ficar de canto". Próxima reescrita de prosa deve usar exclusivamente o vocabulário canonical.
+
+---
+
+### AD-020: Tier pago Master removido do site público
+**Date:** 2026-05-25
+**Status:** Accepted
+
+**Context:** Site referenciava em vários lugares o futuro tier Growth Hacker Master (R$ 690 early / R$ 990 regular, gatilho 2027). Em estágio orgânico atual (newsletter grátis, Community grátis, AMAs grátis), expor preço futuro de tier de membership cria fricção na conversão pra newsletter. Henrique: "isso pode assustar as pessoas".
+
+**Decision:** Remoção de todas as menções a tier pago Master da copy pública. Reescrita de FAQ "Quanto custa fazer parte?" pra "Nada. Newsletter/Community/AMAs grátis." Removido tier-card de `/membro`, FAQ "Quando abre o Master?", roadmap card "Master + escala", AMAs reference de preço, OG description, meta-row "TIER ATUAL · MASTER 2027". Renomeada seção de Termos "Quando tier pago abrir" → "Produtos pagos avulsos".
+
+**Consequences:**
+- Site só mostra: newsletter grátis + Community grátis + AMAs grátis + workshops pagos avulsos (AI LIKE A PRO) + ingressos pagos de meetup (lotes anunciados antes de cada edição).
+- AD-003 (Founder Member parqueado) e dados internos do Master continuam em STATE.md como histórico, mas não viram copy pública.
+- Memory file [[feedback-tier-pago-nao-aparece]] criada com a regra.
+
+---
+
+### AD-019: Meetup S1·E1 reset — Barte parqueado, CRMBonus em 9 jul 2026
+**Date:** 2026-05-25
+**Status:** Accepted
+
+**Context:** Edição original prevista (Meetup Growth SP · S1 · E1 · Revenue Operations com IA @ Barte, jun/2026) foi adiada sine die por mudança de hospedagem. CRMBonus cedeu o espaço pra primeira edição da Era S1 acontecer.
+
+**Decision:** Reset completo da página `/meetups/sp-s1-e1`:
+- **Data:** 9 de julho de 2026, 17:30 às 22:00
+- **Local:** CRMBonus · Rua Minas Gerais, 316 — 3º Andar, Conj. 12 · São Paulo/SP
+- **Formato:** 2 painéis (1h cada) com especialistas convidados + happy hour
+- **Tema:** sem tema técnico específico (genérico multidisciplinar, "case com número aberto") — Barte tinha tema "RevOps com IA" que ficou parqueado junto
+- **URL:** `/meetups/sp-s1-e1` (canonical, sem sufixo de venue)
+- **Redirect 301:** `/meetups/sp-s1e1-barte → /meetups/sp-s1-e1` em `_redirects`
+- **Página refatorada no wireframe 7-sessões** (hero · sobre o meetup · sobre a comunidade · convidados · conteúdo · CTA · realização e parceiros · time de realização + FAQ + closer)
+- **OG image event-specific:** `og-meetup-s1e1.png` (1200×630)
+- **JSON-LD Event schema** publicado
+
+**Consequences:** "Barte" não aparece em copy pública. Quando voltar, vira S1·E2 ou S1·E3 com nova edição. Memory file [[project-meetup-s1e1-crmbonus]] criada.
+
+---
+
+### AD-018: Páginas legais enriquecidas + CNPJ Level Tech canonical
+**Date:** 2026-05-25
+**Status:** Accepted
+
+**Context:** As 4 páginas legais (Privacidade, Termos, LGPD, Código de Conduta) estavam em "versão preliminar — em revisão jurídica" com conteúdo mínimo (~500 palavras cada). Falta de CNPJ específico (placeholder "CNPJ em registro") gerava ruído em LGPD/Termos. Necessário enriquecer pra cobrir cenários operacionais reais (compra de ingresso, retenção fiscal, cookies, ANPD).
+
+**Decision:**
+- **CNPJ canonical:** Level Tecnologia da Informação Ltda · CNPJ 64.685.768/0001-29. Aplicado em footer global, author-strip das 4 páginas legais, página do meetup, seção "Definições" dos Termos.
+- **Privacidade:** 7 → 11 sessões. Controlador + DPO; categorias detalhadas; finalidades com bases legais; compartilhamento (Substack, Cloudflare, Notion, GA4, Meta, Tally, WhatsApp, gateway); cookies (`_ga`, `_fbp` com vida útil); retenção tabular; segurança (TLS 1.3, HSTS, SLA incidente 2d/5d); transferência internacional art. 33 LGPD; mudanças versionadas.
+- **Termos:** 8 → 12 sessões. Definições (6 termos-chave); aceitação com regime empresa/PJ; oferta (5 produtos); PI com licença não-exclusiva do conteúdo de membro; cancelamento com prazos detalhados + direito de arrependimento CDC art. 49; indenização com 4 hipóteses; resolução amigável.
+- **LGPD:** 4 → 7 sessões. Bases legais com art. citado; todos os 9 incisos do art. 18; decisão automatizada (declaramos que não usamos); crianças/adolescentes; ANPD com link gov.br/anpd.
+- **Código de Conduta:** 5 → 9 sessões. Eventos presenciais (consentimento foto, gravação, álcool, anti-assédio); inclusão multidisciplinar; convidados/speakers; contestar decisão em 15d.
+
+**Consequences:** Páginas legais saem de "preliminar" pra vigente. Site fica defensável legalmente sem virar lawyerese. Memory file [[reference-cnpj-canonical]] criada.
+
+---
+
+### AD-017: Site polish 2026-05-25 — omnibus de melhorias visuais e estruturais
+**Date:** 2026-05-25
+**Status:** Accepted
+
+**Context:** Pós-deploy do site v1 + refino técnico (AD-013), bateria de polish em 1 dia de execução autônoma com check-ins pontuais do Henrique.
+
+**Decision (omnibus):**
+- **Meetup S1E1 cascade** Barte → CRMBonus (ver AD-019).
+- **OG images PNG novas** 1200×630 (default + meetup-specific) substituindo SVG (mau suporte FB/LinkedIn). Geradas via Chrome headless renderizando HTML com fontes Satoshi self-hosted.
+- **Meta tags consistentes** em todas 21 páginas: og:image:width/height/alt + twitter:image + canonical em todas indexáveis. 3 thank-you pages que estavam sem meta description ganharam.
+- **Substack URL normalizada** `growthclub.substack.com` → `brgrowthclub.substack.com` em index.html JSON-LD + recursos/newsletter + assets/js/newsletter-form.js.
+- **A11y — heading hierarchy** corrigida em 8 páginas: TOC sidebar `<aside class="toc"> <h4>` promovido pra `<h2>` (CSS `.toc h4` renomeada pra `.toc h2`, mesmo styling visual). 2 cards do membro promovidos `h3.card-h3` → `h2.card-h3`. ai-like-a-pro h3 → h2 da seção "Lista da próxima turma".
+- **A11y — tracking pixels** 21 noscript imgs (Meta Pixel beacon 1×1) ganharam `alt=""` explícito.
+- **Testimonials reais** no home: Huxley Dias (Loft) · Kalina Renno (Configr) · Giovanni Lucas (Zup Innovation) com fotos profissionais. Quotes extraídos via yt-dlp + ffmpeg do vídeo recap meetup SESSION 2 EP 2 (lower-thirds identificaram 5 speakers; 3 escolhidos cobrindo 3 ângulos: comunidade/networking/emocional). CSS `.home-testimonial-avatar img` adicionada. `.home-testimonial figcaption { margin-top: auto }` pra ancorar attribution no rodapé do card.
+- **CTA final H1 fix** "Junte-se à comunidade…" quebrava em 4 linhas → 2 linhas via `<br>` explícito + font-size redução + max-width 30ch + `text-wrap: balance`.
+- **FAQ home expandida** 5 → 12 perguntas.
+- **Página meetup S1E1 refatorada** no wireframe 7-sessões (Topo · Hero · Sobre o meetup · Sobre a comunidade · Convidados · Conteúdo · CTA · Realização e parceiros · Time de realização + FAQ + Closer). Estrutura mais comercial — comunidade entra como Sessão 2 antes do CTA.
+- **Forms Tally removidos** de `/contato` e `/lgpd` (loading copy desatualizada da Barte; redundante com canais diretos).
+- **Footer dark theme aplicado** via `data-theme="dark"` no `<footer>` (era cream por bug de cascade); `color: var(--fg-secondary)` no elemento footer pra resolver `color: inherit` da `.foot-col a`; `.foot-bottom`/`.foot-legal` migrados pra `--fg-tertiary` (legível) em vez de `--fg-muted` (invisível).
+- **Navbar** com underline amber animado no hover/active dos links + hover lift no CTA + glassmorphism subtle no scroll (`data-scrolled="true"` adiciona shadow). Tagline e chip de meetup tentados e removidos (info demais).
+- **Footer "épico" tentado e revertido** — hero CTA, stats, manifesto pull, social row, build in public adicionados depois removidos a pedido do Henrique. CSS dos elementos ficou inerte em chrome.css.
+- **Bugs L-003 latentes não-encontrados:** nenhum (Phase 3 do AD-013 tinha sido limpa).
+
+**Consequences:** Site pública agora cobre os principais gaps de fundo (a11y, meta, performance), com posicionamento atualizado (CRMBonus) e voz limpa (sem mesa de canto, sem operador, sem tier pago). Próximos passos: alinhar docs internas (B-001).
+
+---
+
+### AD-016: Voz padrão sem regionalismo geográfico — mineiro tentado e rejeitado
+**Date:** 2026-05-25
+**Status:** Accepted
+
+**Context:** Em meio ao polish (AD-017), tentei "tempero mineiro moderado" via Python regex (cê / tá / tão / vamo / pra) em 14 páginas, 41 substituições. Após visualizar o resultado, Henrique pediu reverter "urgente". Reversão via `git checkout 9ecc178 -- <files>` preservando os fixes posteriores (footer dark, CNPJ).
+
+**Decision:** Voz Growth Club é editorial nacional/multidisciplinar — sem marcadores regionais (mineiro/paulista/carioca/nordestino). Mantém contrações coloquiais comuns ("pra", "tá", "tô" em diálogo) mas evita gíria/sotaque que mapeia pra uma região.
+
+**Consequences:** Memory file [[feedback-voz-sem-regionalismo]] criada. Tentativas futuras de "humanizar" copy não usam regionalismo. Voz default já é humanizada (CLAUDE.md global manda usar humanizer skill) — adicionar regionalismo é overshoot.
+
+**Lessons learned:** L-004 abaixo.
+
+---
 
 ### AD-013: Refino técnico do site v2 — sprite, fonts prune, native details, scroll-driven, view transitions, Phase 4 criativo
 **Date:** 2026-05-20
@@ -590,7 +716,36 @@ Grid da home muda de 3-col pra 4-col em desktop (responsivo: 2-col em tablet, 1-
 
 ## Active Blockers
 
-Nenhum.
+### B-001 (URGENTE): Revisar TODA documentação oficial pro novo padrão 2026-05-25
+**Date opened:** 2026-05-25
+**Owner:** Henrique (revisão) + agente Claude (execução)
+**Status:** Open — bloqueia consistência editorial cross-channel
+
+**Context:** O site público (`website/`) foi alinhado em 2026-05-25 a um conjunto de regras editoriais novas (AD-016 a AD-022). A documentação interna em `docs/`, `brand/`, `.specs/` continua reflexo do estado anterior (~120 ocorrências de "operador" só nos MDs, várias menções a "Barte" como evento ativo, descrições antigas de tier pago Master como ativo, "mesa de canto" como pitch).
+
+**Scope da revisão:** todos os arquivos `*.md` em:
+- `docs/community/`, `docs/crew/`, `docs/investors/`, `docs/sponsors/`, `docs/superpowers/`, `docs/legacy/`
+- `brand/decisions/`, `brand/visual/`, `brand/voice/`, `brand/legacy/`
+- `.specs/project/` (exceto este STATE.md, que é append-only)
+- `README.md`, `CHANGELOG.md`, `SECURITY.md` na raiz
+
+**Regras a aplicar (referência canonical = memory files):**
+1. **Termo `operador` → `especialista`** (ver [[feedback-termo-especialista]]). Preservar "operacional", "operadora", "operação".
+2. **Remover "mesa de canto"** (ver [[feedback-mesa-de-canto-proibida]]). Substituir por "comunidade", "especialista com especialista", "conversa entre pares".
+3. **Meetup S1·E1 = CRMBonus 9 jul 2026** (ver [[project-meetup-s1e1-crmbonus]]). Barte parqueado, sem data. Não usar como evento ativo.
+4. **CNPJ canonical: Level Tecnologia da Informação Ltda · 64.685.768/0001-29** (ver [[reference-cnpj-canonical]]). Substituir placeholders "CNPJ em registro", "CNPJ TBD", "Hospedado por Level Tech" sem detalhe.
+5. **Tier pago Master parqueado** (ver [[feedback-tier-pago-nao-aparece]]). Em docs internas pode mencionar como histórico/planejado, mas não como produto ativo. Atualizar Business Plan, Brand Brief, Founder Crew docs.
+6. **Voz sem regionalismo** (ver [[feedback-voz-sem-regionalismo]]). Editorial neutro, sem mineiro/paulista/carioca.
+7. **Páginas legais atualizadas** (ver AD-018). Se brand book ou docs referenciam termos/privacidade antigos, sincronizar.
+
+**Approach sugerido:**
+- Fase 1 (quick wins via script): `\boperador(es)?\b → especialista(s)` site-wide em MD. Estimativa 120 substituições.
+- Fase 2 (curadoria manual): caçar "mesa de canto", "Barte", "Master tier", "CNPJ em registro" — substituir caso a caso preservando contexto.
+- Fase 3 (revisão estrutural): Business Plan v1.2 (`docs/superpowers/specs/2026-04-22-growth-club-business-plan-design.md`), Brand Brief Plan, brand decisions/voice files — verificar coerência ampla.
+
+**Quando atacar:** próxima sessão dedicada (não meter no meio de outras tasks). Estimativa: 2-3 horas focadas. Dependência: nenhuma. Bloqueia: nada técnico, mas bloqueia coerência editorial cross-channel se docs vazarem pra investidor/imprensa/crew sem alinhamento.
+
+---
 
 ---
 
@@ -614,6 +769,12 @@ Catalogados em `docs/superpowers/specs/2026-04-22-growth-club-business-plan-desi
 ---
 
 ## Lessons Learned
+
+### L-004: Regionalismo geográfico em copy editorial multidisciplinar é caro
+**Context:** Em 2026-05-25, tentei "tempero mineiro" (cê / tá / vamo / pra) em ~14 páginas a pedido do Henrique. Após visualizar, Henrique pediu reverter urgente.
+**Problem:** A voz Growth Club já é coloquial e franca (não institucional/corporativa). Adicionar marcadores regionais cria 2 problemas: (a) limita o alcance percebido — comunidade de 33 cidades e 7 estados não é "mineira", (b) parece artificial em copy que precisa funcionar pra leitor em qualquer região do Brasil. A voz default já é humanizada (CLAUDE.md global manda usar humanizer skill que remove AI-isms) — adicionar regionalismo é overshoot. Tentativa de "humanizar mais" via sotaque foi confundida com "tornar mais natural", mas o resultado prático foi parecer caricatura.
+**Solution:** Voz padrão = editorial neutra brasileira, sem marcadores regionais. Quando um usuário pede "mais natural", verificar se a copy atual já passou pelo humanizer skill antes de inventar nova camada de tempero. Regionalismo só entra se houver decisão explícita de targeting regional (que não é o caso do Growth Club — escopo nacional).
+**Aplicável a:** futuras tentativas de "humanizar" / "deixar mais natural" prosa do site. Memory file [[feedback-voz-sem-regionalismo]] sintetiza a regra.
 
 ### L-003: Scroll-driven CSS com `opacity: 0` no `from` quebra snapshots e bots
 **Context:** Phase 3 do refino técnico (AD-013) substituiu `scroll-reveal.js` por CSS `animation-timeline: view()` aplicado às seções `.problem`, `.layers`, `.timeline`, `.section`, etc. Keyframe original animava `opacity: 0 → 1` + `transform: translateY(28px) → 0` com `animation-fill-mode: both`.
