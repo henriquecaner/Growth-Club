@@ -1,5 +1,5 @@
 // Captura email do form .form-newsletter e redireciona pro Substack com email pré-preenchido.
-// Uso: <form class="form-newsletter" data-substack-url="https://growthclub.substack.com/subscribe">
+// Uso: <form class="form-newsletter" data-substack-url="https://brgrowthclub.substack.com/subscribe">
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -12,7 +12,7 @@ document.addEventListener('submit', (e) => {
 
   const emailInput = form.querySelector('input[type="email"]');
   const optIn = form.querySelector('input[type="checkbox"][name="lgpd-opt-in"]');
-  const subUrl = form.dataset.substackUrl || 'https://growthclub.substack.com/subscribe';
+  const subUrl = form.dataset.substackUrl || 'https://brgrowthclub.substack.com/subscribe';
 
   const email = (emailInput?.value || '').trim();
   if (!email || !EMAIL_RE.test(email)) {

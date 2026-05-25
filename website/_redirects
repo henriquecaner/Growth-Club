@@ -1,3 +1,6 @@
+# Old meetup URL redirected to canonical S1E1
+/meetups/sp-s1e1-barte   /meetups/sp-s1-e1   301
+
 # Cloudflare Pages — redirects/rewrites
 # Formato: source destination status
 
