@@ -194,6 +194,7 @@ O valor do Google **na monetização** é o case de marca, não o custo (o custo
 ## 7. Stack & infra
 
 - **Ghost-on-VM é exceção consciente** ao padrão Cloudflare-serverless do repo (site v1, AI LIKE A PRO, Lead Magnets). Justificada: Ghost exige servidor Node+MySQL persistente; não há equivalente serverless que entregue email+membership+tema nativos.
+- **Cloudflare fica na *frente* do Ghost, não o hospeda.** Pages/Workers são edge/serverless (V8 isolates) — não rodam Node stateful + MySQL persistente. **Cloudflare Containers avaliado e descartado:** rodaria o container, mas exigiria MySQL externo (o Cloudflare não tem MySQL gerenciado; D1 é SQLite serverless que o Ghost não fala nativamente) — Frankenstein sem ganho. Caminho suportado: Ghost em **Docker na VM**, exposto via **Cloudflare Tunnel** (`cloudflared`, sem porta/IP público), com **DNS + cache de página + WAF** na borda e **R2 como storage adapter** de mídia. Resultado: ~tudo no ecossistema Cloudflare, só o *runtime* do Ghost na VM.
 - **O sync backend (Fase 2) é Cloudflare Worker** — fica on-pattern (serverless, vanilla, secrets via Cloudflare), consistente com Lead Magnets.
 - **Repo:** novo e separado (precedente AI LIKE A PRO + Lead Magnets), sugestão `growth-club-newsletter` (tema Ghost + Worker de sync + página `/assinar`).
 
@@ -217,7 +218,8 @@ O valor do Google **na monetização** é o case de marca, não o custo (o custo
 | **R-C** | **Elegibilidade do paid SwG** (Verdade dura nº 1). | Gate #1 antes de qualquer build da Fase 2. |
 | **R-D** | **Ghost sem API de membro pago** (Verdade dura nº 2). | Workaround comp subscription com `expiry_at` gerenciado pelo Worker. |
 | **R-E** | **Integração custom frágil** consumindo tempo do único Crew frontend. | Spike com Gate #2 e timebox; Fase 1 nunca depende disso. |
-| **R-F** | **Fallback de monetização.** Se Gate #1 ou #2 falharem, o tier pago fica sem motor. | **Stripe nativo do Ghost documentado como plano B** — não é o plano (Henrique escolheu Google), mas existe como saída de emergência sem reescrever a fundação. |
+| **R-F** | **Fallback de monetização.** Se Gate #1 ou #2 falharem, o tier pago fica sem motor. | **Stripe nativo do Ghost documentado como plano B** — não é o plano (Henrique escolheu Google), mas existe como saída de emergência sem reescrever a fundação. *(Gate #1 já passou — risco rebaixado, mas o plano B fica registrado.)* |
+| **R-G** | **Segurança do Ghost self-hosted.** CVE-2026-26980 (SQLi crítico, sem auth) afetou Ghost ≤ 6.19.0; app exposto é superfície de ataque. | Subir já em **≥ 6.19.1** e manter atualizado; WAF do Cloudflare na frente; Cloudflare Tunnel em vez de IP público; backups automáticos do MySQL. |
 
 ---
 
