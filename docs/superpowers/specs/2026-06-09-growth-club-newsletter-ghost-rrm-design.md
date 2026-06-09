@@ -77,7 +77,7 @@ Validado com o Henrique. Os dois pontos de entrada terminam no **mesmo checkout*
   Cloudflare Worker (sync backend = hub do flow)
         ├─→ Ghost Admin API : cria/promove membro PRO (comp + expiry)   [acesso + email]
         ├─→ HubSpot         : cria/atualiza contato + status "pago"      [pessoa — CRM canônico]
-        └─→ Notion Membros  : registra/atualiza a pessoa                 [diretório — ver decisão §3]
+        └─→ Notion Membros  : registra/atualiza a pessoa (escrita direta) [diretório — §3]
         ↓
   cancelou no Google → RTDN STATE_CANCELLED → Worker rebaixa Ghost p/ grátis + atualiza HubSpot/Notion
 ```
@@ -102,14 +102,11 @@ Princípio herdado do sub-projeto Lead Magnets: **um campo = um dono = uma dire�
 - `Worker → HubSpot` — pessoa + status de pagamento (mantém o CRM canônico ciente do assinante pago).
 - `Notion ← HubSpot` — espelho read-only (a forma canônica de "registrar no Notion" sem dar dois donos ao Notion).
 
-**⚠️ Decisão pendente — onde o Worker registra a "pessoa":** o Henrique pediu "registra no banco do Notion" e **não** mencionou HubSpot. Mas a decisão canônica (Lead Magnets, 2026-06-01) diz HubSpot = fonte da verdade da pessoa e Notion = espelho read-only. E o mirror HubSpot→Notion (mirror-D) **ainda não existe**. Duas saídas (ver pergunta ao Henrique):
+**✅ Decisão (Henrique, 2026-06-09) — o Worker escreve nos dois:** no evento de assinatura o Worker grava em paralelo:
+- **HubSpot** — contato + status "assinante pago" (mantém o CRM canônico ciente do assinante).
+- **Notion Membros DB** — registra/atualiza a pessoa **diretamente** (ponte interina), pra ter o registro no diretório de forma imediata, sem esperar o mirror.
 
-| Opção | Como | Trade-off |
-|-------|------|-----------|
-| **(Recomendado) Via HubSpot** | Worker escreve no HubSpot; Notion reflete quando o mirror-D existir | Respeita "um dono, uma direção"; custo = Notion só reflete após o mirror existir |
-| **Ponte interina** | Worker escreve **direto no Notion** também, agora | Registro imediato no Notion (o que o Henrique pediu); custo = Notion ganha dois escritores até consolidar no mirror |
-
-Nunca two-way no mesmo campo, em qualquer das opções.
+**Consolidação futura:** quando o **mirror-D** (HubSpot→Notion) for construído, ele **substitui** a escrita direta do Worker no Notion — o Notion volta a ter um dono só (HubSpot). Até lá, a escrita direta é uma exceção consciente e **upsert idempotente** (matching por email), nunca two-way no mesmo campo. A escrita no Ghost e no HubSpot continua sendo a do Worker.
 
 ---
 
