@@ -141,12 +141,20 @@ Não depende do motor de pagamento do Google nem de integração com HubSpot. En
 
 O case de pioneirismo. Montado por cima da Fase 1, com gates go/no-go. Se um gate falhar, a Fase 1 já está no ar e o tier pago espera.
 
-### 5.1 Gate #1 — Eligibility check (PRÉ-REQUISITO, 5 min, ação do Henrique)
-No Publisher Center → Reader Revenue Manager → **Pricing plans / Subscriptions**: tentar criar um plano **pago** (preço em R$) e ver se pede vincular **Payments profile**.
-- ✅ Consegue criar plano pago + vincular payments profile → porta aberta, segue.
-- ❌ Só aparece contribuição/signup/registration sem assinatura paga → conta provisionada **só openaccess**; spike em espera até a porta abrir (rollout do Google é gradual). Fase 1 segue normal.
+### 5.1 Gate #1 — Eligibility check ✅ PASSOU (2026-06-09)
 
-> ⚠️ **Verdade dura nº 1 — elegibilidade não confirmada.** A config atual (`:openaccess`) não cobra nada. O paywall pago do RRM exige payments profile vinculado + pricing plan pago + declaração For-Profit/Nonprofit, e o recurso ainda é liberado em rollout. **Nada na Fase 2 deve ser construído antes do Gate #1 passar.**
+**Resultado:** a monetização paga via Google **está habilitada na conta** do Growth Club. Confirmado por screenshots do Publisher Center:
+- ✅ Perfil de comerciante **Aprovado** (conta de pagamentos `7236-3489-4477-1417`).
+- ✅ **Preço/oferta criados** — "1 oferta ativa", "Defina preços para seu conteúdo". A incógnita do gate ("dá pra criar plano pago?") está respondida: **sim**.
+- ✅ Identidade confirmada pra aceitar pagamentos; logo quadrado enviado; snippet adicionado.
+
+**Bloqueios operacionais restantes (NÃO bloqueiam a Fase 1):**
+1. **Dados bancários** pendentes na Central de Pagamentos do Google.
+2. **Análise de conformidade de `growthclub.pro`** rodando — pode levar **até 2 semanas**; as CTAs/prompts do RRM só aparecem após aprovação.
+
+> ⚠️ **Atenção — conformidade vs conteúdo.** O Google analisa a conformidade de `growthclub.pro`, que hoje é site institucional **sem conteúdo editorial**, e a política do RRM espera conteúdo de publisher. Isso **reforça a sequência foundation-first**: subir o Ghost (`boletim`) com conteúdo dá ao Google o que analisar. **Confirmar se a propriedade RRM (`growthclub.pro`) cobre o subdomínio `boletim.growthclub.pro`** onde o conteúdo vai morar — senão registrar a propriedade do subdomínio.
+
+> ⚠️ **Dois snippets, não um.** O `:openaccess` (que o Henrique copiou) é pra conteúdo **grátis** — não cobra. Pra conteúdo **pago**, o RRM gera um snippet com **ID de produto pago** distinto ("use o snippet correspondente ao ID do produto para rotular conteúdo como pago"). Implementação: `:openaccess` nos posts grátis, product-id pago nos posts gated.
 
 ### 5.2 Página de assinatura em `growthclub.pro/assinar`
 - Página standalone no site estático → **swg.js em "manual mode"** (sem markup de artigo numa landing standalone, o cliente inicializa em modo manual).
@@ -278,7 +286,7 @@ Pontos do ADR:
 
 ## 15. Próximos passos (sequência)
 
-1. **Henrique faz o Gate #1** (eligibility check, 5 min) — destrava se a Fase 2 é viável já ou fica em espera.
+1. ✅ **Gate #1 feito (2026-06-09)** — monetização via Google **habilitada** (§5.1). Restam dados bancários + análise de conformidade (até 2 semanas).
 2. **Revisar este spec** — ajustar antes do plano de implementação.
-3. **`superpowers:writing-plans`** → plano da **Fase 1** (fundação) primeiro, que sai independente.
-4. Fase 2 ganha seu próprio plano quando o Gate #1 passar.
+3. **`superpowers:writing-plans`** → plano da **Fase 1** (fundação) primeiro, que sai independente e dá ao Google conteúdo pra analisar (ajuda a conformidade a passar).
+4. Fase 2 ganha seu próprio plano; o gargalo agora é **operacional** (banco + conformidade), não elegibilidade.
