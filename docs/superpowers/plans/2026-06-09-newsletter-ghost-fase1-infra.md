@@ -121,6 +121,8 @@ Expected: `GHOST_DATABASE_URL` e `GHOST_DB_CA` listados.
 
 ## Task 3: Worker do Ghost de produção (`/content`, MySQL, SSL com CA)
 
+> ⚠️ **Achado (2026-06-09, tentativa de subpath ao vivo):** o roteamento `/content` → Worker **funciona** (provado: request foi pro Worker e o site `/` ficou intacto = Pages). Mas o **Ghost em subpath retornou HTTP 500** — Ghost atrás de proxy num subpath precisa dos headers de proxy corretos repassados pelo Worker (`X-Forwarded-Proto: https`, `Host`/`X-Forwarded-Host` que o Ghost espera) e/ou config de subpath; o `container.fetch(request)` cru **não basta**. Seguir a receita [createtoday.io (Ghost subdirectory via CF Workers)](https://createtoday.io/posts/ghost-subdirectory). **Não resolvido na noite do spike — é trabalho desta tarefa, com calma.** O spike foi restaurado pro estado workers.dev (200) pra não deixar produção quebrada.
+
 **Files:**
 - Create: `package.json`
 - Create: `wrangler.jsonc`
