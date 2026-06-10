@@ -714,6 +714,27 @@ Grid da home muda de 3-col pra 4-col em desktop (responsivo: 2-col em tablet, 1-
 
 ---
 
+### AD-019: Usability/delight pass no site — chrome épico + camada de animação progressiva
+**Date:** 2026-06-10
+**Status:** Accepted
+
+**Context:** Deep review de usabilidade solicitado pelo Henrique ("site 6/10, quero 9/10 — faltam animações, ícones épicos, hero memorável, nav e footer épicos"). O review revelou que `chrome.css` já continha estilos completos pra um footer rico (footer-hero CTA, footer-stats, orbs, manifesto pull-quote, social, build-in-public) e pro chip de meetup na nav, mas `header.js`/`footer.js` renderizavam só a versão mínima. O sistema de scroll-reveal nativo (components.css §14) cobria apenas classes legadas (`.problem`, `.layers`...) — nenhuma seção `.home-*` animava. O menu mobile usava hack frágil (`top: calc(100% + 280px)`).
+
+**Decision:** Pass de usabilidade em 6 frentes, tudo progressivo (sem JS ou com `prefers-reduced-motion` o conteúdo fica 100% visível e estático — coerente com L-003):
+
+1. **Nav épica** (`header.js` + `chrome.css`): chip do próximo meetup (S1·E1 · 9 JUL · SP, pulse dot, some <1160px), barra de progresso de scroll amber→teal (CSS scroll-driven, degrada invisível), hamburger animado (3 barras → X), painel mobile reconstruído (links + chip + CTA num dropdown animado, fecha com Esc/clique).
+2. **Footer épico** (`footer.js`): footer-hero CTA ("Cresça com quem já passou pela curva."), footer-stats (5 números com count-up), orbs decorativos, manifesto pull-quote com o ton-anchor verbatim, social row (Substack/LinkedIn/GitHub), link build-in-public. Opt-outs: `data-cta="off"` (home + páginas de conversão/obrigado), `data-stats="off"` (home, que já tem os números no hero).
+3. **Hero memorável** (`pages.css` + `index.html`): badge com pulse dot ("Desde 2015 · Meetup S1·E1 em 9 jul"), orbs flutuantes amber/teal, entrada em stagger, sublinhado animado no *Multidisciplinar*, focus ring no form.
+4. **Scroll reveal** (`enhance.js` novo): IntersectionObserver marca heads/grids da home + footer com `[data-reveal]` e stagger; estado escondido gated em `html.gc-js`.
+5. **Count-up** (`enhance.js`): stats da home/meetup/footer sobem de 0 com formatação pt-BR ao entrar no viewport.
+6. **Micro-interações** (`components.css`): ícones dos pilares viram squircles 56px com gradiente por tinta + hover scale/rotate, feature icons 48px com inversão amber no hover, marquee infinito na régua de logos (pausa no hover, mask fade), aspas decorativas nos testimonials, lifts em cards, sheen sweep nos botões primary, FAQ com expansão suave (`interpolate-size`, Chrome 129+).
+
+`enhance.js` foi adicionado a todas as 20 páginas (defer). Cache CSS bumped pra `v=20260610`. Smoke test Playwright (desktop+mobile) verde.
+
+**Reversibility:** Reverter = git revert do commit; nenhum dado/contrato externo afetado.
+
+---
+
 ## Active Blockers
 
 ### B-001 (URGENTE): Revisar TODA documentação oficial pro novo padrão 2026-05-25
