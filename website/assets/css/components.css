@@ -2138,3 +2138,218 @@ em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
   line-height: var(--lh-relaxed);
   color: var(--fg-secondary);
 }
+
+/* =========================================================================
+   =========================================================================
+   USABILITY/DELIGHT PASS — 2026-06-10
+   Scroll reveals (IO via enhance.js), count-up stats, logos marquee,
+   ícones com peso visual, hovers em cards, FAQ com expansão suave.
+   Tudo gated em html.gc-js e/ou prefers-reduced-motion: sem JS ou com
+   motion reduzido, o conteúdo fica 100% visível e estático.
+   =========================================================================
+   ========================================================================= */
+
+/* ---- A · SCROLL REVEAL — estado escondido só existe com .gc-js ---------- */
+html.gc-js [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 700ms var(--ease-out),
+    transform 700ms var(--ease-out);
+  transition-delay: var(--rd, 0ms);
+}
+html.gc-js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.gc-js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---- B · HOME PILLAR ICONS — squircles com gradiente por tinta ---------- */
+.home-pillar-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  color: var(--fg-inverse);
+  box-shadow: 0 6px 16px rgba(10, 10, 10, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+}
+.home-pillar-icon .icon { width: 26px; height: 26px; }
+.home-pillar-amber   .home-pillar-icon { background: linear-gradient(135deg, var(--accent-amber-bright), var(--accent-amber-dim)); }
+.home-pillar-teal    .home-pillar-icon { background: linear-gradient(135deg, var(--accent-teal-bright), var(--accent-teal-dim)); }
+.home-pillar-brick   .home-pillar-icon { background: linear-gradient(135deg, #D86A5C, var(--accent-brick)); }
+.home-pillar-neutral .home-pillar-icon { background: linear-gradient(135deg, #4A453F, #0A0A0A); }
+.home-pillar {
+  transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+}
+.home-pillar:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(10, 10, 10, 0.10);
+}
+.home-pillar:hover .home-pillar-icon {
+  transform: scale(1.1) rotate(-4deg);
+  box-shadow: 0 10px 24px rgba(10, 10, 10, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+/* ---- C · FEATURE CARDS — ícone maior + lift com accent ------------------ */
+.home-feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-amber-soft), transparent);
+  border: 1px solid var(--accent-amber-glow);
+  color: var(--accent-amber-dim);
+  transition: transform 280ms var(--ease-out), background 280ms var(--ease-out), color 280ms var(--ease-out);
+}
+.home-feature-icon .icon { width: 22px; height: 22px; }
+.home-feature {
+  transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+}
+.home-feature:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-amber);
+  box-shadow: 0 12px 28px rgba(10, 10, 10, 0.08);
+}
+.home-feature:hover .home-feature-icon {
+  transform: scale(1.08) rotate(4deg);
+  background: var(--accent-amber);
+  color: var(--fg-inverse);
+}
+
+/* ---- D · TESTIMONIALS — aspas decorativas + lift ------------------------ */
+.home-testimonial {
+  position: relative;
+  transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+}
+.home-testimonial::before {
+  content: "\201C";
+  position: absolute;
+  top: 2px;
+  right: 18px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 88px;
+  line-height: 1;
+  color: var(--accent-amber);
+  opacity: 0.16;
+  pointer-events: none;
+}
+.home-testimonial:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-amber);
+  box-shadow: 0 12px 28px rgba(10, 10, 10, 0.08);
+}
+
+/* ---- E · ROADMAP CELLS — lift + when em accent --------------------------- */
+.home-roadmap-cell {
+  transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+}
+.home-roadmap-cell:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-amber);
+  box-shadow: 0 12px 28px rgba(10, 10, 10, 0.08);
+}
+.home-roadmap-cell:hover .home-roadmap-when { color: var(--accent-amber-dim); }
+
+/* ---- F · LOGOS MARQUEE — loop infinito, pausa no hover ------------------- */
+.home-logos-marquee {
+  display: flex;
+  gap: var(--space-12);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.home-logos-marquee .home-logos-row {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  min-width: max-content;
+  animation: gc-marquee 48s linear infinite;
+}
+.home-logos-marquee:hover .home-logos-row { animation-play-state: paused; }
+@keyframes gc-marquee {
+  to { transform: translateX(calc(-100% - var(--space-12))); }
+}
+@media (max-width: 720px) {
+  .home-logos-marquee { gap: var(--space-6); }
+  .home-logos-marquee .home-logos-row { animation-duration: 32s; }
+  @keyframes gc-marquee {
+    to { transform: translateX(calc(-100% - var(--space-6))); }
+  }
+}
+
+/* ---- G · FAQ — expansão suave (interpolate-size, Chrome 129+) ------------ */
+.home-faq-item summary {
+  transition: color 160ms var(--ease-out);
+}
+.home-faq-item summary:hover { color: var(--accent-amber-dim); }
+.home-faq-item summary:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) {
+    .home-faq-item { interpolate-size: allow-keywords; }
+    .home-faq-item::details-content {
+      opacity: 0;
+      block-size: 0;
+      overflow: clip;
+      transition:
+        content-visibility 360ms allow-discrete,
+        opacity 360ms var(--ease-out),
+        block-size 360ms var(--ease-out);
+    }
+    .home-faq-item[open]::details-content {
+      opacity: 1;
+      block-size: auto;
+    }
+  }
+}
+
+/* ---- H · BTN PRIMARY — sheen sweep no hover ------------------------------ */
+.btn.primary,
+.btn-primary,
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+}
+.btn.primary::before,
+.btn-primary::before,
+.nav-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn.primary:hover::before,
+  .btn-primary:hover::before,
+  .nav-cta:hover::before {
+    transition: transform 600ms var(--ease-out);
+    transform: translateX(110%);
+  }
+}
+
+/* ---- I · LATEST CARDS — lift mais generoso ------------------------------- */
+.home-latest-card {
+  transition: border-color 280ms var(--ease-out), transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+}
+.home-latest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(10, 10, 10, 0.08);
+}
+
+/* ---- J · ELIGIBILITY — check icons com micro-bounce ----------------------- */
+.home-eligibility-list li {
+  transition: transform 200ms var(--ease-out);
+}
+.home-eligibility-list li:hover { transform: translateX(4px); }
+.home-eligibility-list li:hover .icon { color: var(--accent-amber); }

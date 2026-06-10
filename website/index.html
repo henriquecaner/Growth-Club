@@ -47,10 +47,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260525m">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260525m">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260525m">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260525m">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260610">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260610">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260610">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260610">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -78,6 +78,7 @@
     <!-- HERO -->
     <section class="home-hero">
       <div class="wrap home-hero-inner">
+        <p class="home-hero-badge"><span class="badge-dot"></span>Desde 2015 · <strong>Meetup S1·E1 em 9 jul</strong></p>
         <h1 class="home-hero-h1">A <span class="home-hero-num">#1</span> Comunidade de Growth<br><em>Multidisciplinar</em> do Brasil.</h1>
         <p class="home-hero-sub">Somos uma comunidade de profissionais de marketing, vendas, sucesso de clientes, analytics, produtos e founders.</p>
         <form class="home-hero-form" action="/membro" method="get">
@@ -566,10 +567,11 @@
 
   </main>
 
-  <gc-footer></gc-footer>
+  <gc-footer data-cta="off" data-stats="off"></gc-footer>
 
   <script src="/assets/js/header.js"></script>
   <script src="/assets/js/footer.js"></script>
+  <script src="/assets/js/enhance.js" defer></script>
   <script src="/assets/js/analytics.js"></script>
   <script>
     // Hero email capture → /api/lead (abandono de carrinho) → redirect /membro?email=X
