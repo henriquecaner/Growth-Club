@@ -7,6 +7,22 @@
 
 ## Recent Decisions (ADR)
 
+### AD-024: Uploads do Ghost duráveis no R2 (imagens, PDFs, arquivos) + endpoint de restart
+**Date:** 2026-06-10
+**Status:** Accepted
+
+**Context:** Primeiro upload real no admin (avatar do Henrique) retornou 404 — o disco do Cloudflare Container é efêmero e zera a cada restart; o Ghost grava uploads no filesystem local por padrão. O problema cobria também PDFs/arquivos de post (requisito explícito do Henrique) e atingiria temas no plano 2. Cloudflare Images foi avaliado e descartado pra uploads do editor (sem storage adapter Ghost mantido; API não é S3); Cloudflare Stream foi aceito pra vídeo, mas via embed de player no post (vídeo não passa pelo storage do Ghost).
+
+**Decision:** Bucket R2 **`gc-news-images`** + adapter **`ghos3@3.1.0`** (S3-compatible, cobre os 3 storages do Ghost: `images`, `media`, `files`) instalado pelo entrypoint do container a cada cold start (~30s extras; sem Docker local não há imagem custom — evoluir pra imagem baked se incomodar). Worker serve `GET /content(/content)?/images/*` direto do binding R2 (cache imutável 1 ano, sem acordar o container). Secrets: `GHOST_R2_ACCESS_KEY_ID`/`GHOST_R2_SECRET_ACCESS_KEY`. Como o container sobrevive ao deploy do Worker (env/entrypoint só aplicam em start novo), foi criado o endpoint de manutenção **`POST /content/_gc/restart`** (token `GC_ADMIN_TOKEN`, fail-closed) que chama `Container.stop()` via RPC do DO.
+
+**Consequences:**
+- Imagens, PDFs e arquivos de post sobrevivem a restart do container. Vídeo = Stream embed (decisão de produto).
+- Achado operacional: container roda em **gru21 (Guarulhos/SP)** — o TTFB ~1,5s é a viagem ao Aiven na Califórnia; mover o banco pra perto ou Hyperdrive vira a alavanca de latência.
+- Credenciais R2 do token (escopo amplo: admin de buckets da conta) vazaram no chat — rotacionar por um token escopado em Object Read & Write no bucket único (pendência, junto com a senha do Aiven).
+- Validação de escrita (upload real → R2) pendente do Henrique re-subir o avatar.
+
+---
+
 ### AD-023: Ghost de produção no ar em growthclub.pro/content — Fase 1 infra executada
 **Date:** 2026-06-10
 **Status:** Accepted

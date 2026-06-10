@@ -6,6 +6,18 @@
 
 ---
 
+## 2026-06-10 · AD-024 · Uploads do Ghost no R2 — disco de container não guarda nada
+
+O primeiro upload real no admin durou menos que um restart de container: 404. Disco de Cloudflare Container é efêmero por design, e o Ghost grava uploads no filesystem. A correção foi um bucket R2 (`gc-news-images`) com o adapter S3 `ghos3`, cobrindo os três storages do Ghost: imagens, PDFs e arquivos de post. O Worker serve os uploads direto do R2, com cache de 1 ano, sem nem acordar o container.
+
+Vídeo ficou fora de propósito: o caminho é Cloudflare Stream com embed do player no post, não upload pelo editor (arquivo cru não tem bitrate adaptativo nem analytics).
+
+Descoberta de bônus: o container roda em Guarulhos (gru21). O TTFB de 1,5s é todo a viagem ao banco na Califórnia — a alavanca de latência agora tem endereço.
+
+Referência: [`STATE.md` AD-024](.specs/project/STATE.md) · repo `growth-club-newsletter`.
+
+---
+
 ## 2026-06-10 · AD-023 · Newsletter própria: Ghost no ar em growthclub.pro/content
 
 A infra da newsletter própria saiu do papel. Ghost 6.44 roda em produção em `growthclub.pro/content/`, num Cloudflare Container atrás de um Worker, com MySQL gerenciado (Aiven). O site institucional continua no Cloudflare Pages, intocado: o Worker só responde o subpath `/content`.
