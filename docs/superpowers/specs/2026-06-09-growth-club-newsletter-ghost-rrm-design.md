@@ -115,7 +115,13 @@ Princípio herdado do sub-projeto Lead Magnets: **um campo = um dono = uma dire�
 Não depende do motor de pagamento do Google nem de integração com HubSpot. Entrega valor sozinha.
 
 ### 4.1 Ghost em Cloudflare Containers (spike de infra com gate)
-**Decisão do founder:** rodar o Ghost inteiro no Cloudflare (não em VM), pelo case "tudo no ecossistema". É experimental — então a Fase 1 **começa por um spike de infra com gate go/no-go**, antes de migrar os 2.261 ou ir a produção:
+
+> **✅❌ RESULTADO DO SPIKE (2026-06-09)** — rodado na conta Caner (`c0ceab96`), Worker descartável `gc-ghost-spike` (imagem `docker.io/library/ghost:6-alpine`):
+> - **Nível 1 — GO ✅:** o Ghost **roda no Cloudflare Containers**. Imagem oficial puxada direto do Docker Hub (sem Docker local — feature CF mar/2026); container subiu, Ghost **6.44** bootou, home `/` e admin `/ghost/` → **HTTP 200**. O runtime serverless comporta o Ghost.
+> - **Nível 2 — NO-GO ❌:** **o D1 não serve de banco pro Ghost.** O Ghost não suporta SQLite em produção desde a v5.0 (e D1 = SQLite), e não foi desenhado pra serverless — exigiria fork do core. Confirmado pela comunidade Ghost + pela arquitetura. Nem cheguei a montar o adapter knex-HTTP: a barreira é de design, não de implementação.
+> - **Implicação:** o *runtime* do Ghost **pode** ficar no Cloudflare, mas o **banco precisa ser MySQL** — que o Cloudflare não oferece gerenciado. Caminhos: **(A)** Ghost-Container + **MySQL gerenciado externo** (Aiven/PlanetScale) via **Hyperdrive** — máximo de Cloudflare possível; **(B)** **fallback VM** (Ghost + MySQL juntos, Cloudflare Tunnel na frente). **"Ghost 100% dentro do Cloudflare, zero infra externa" não é viável hoje** — falta um MySQL gerenciado na plataforma.
+
+**Decisão do founder (original):** rodar o Ghost inteiro no Cloudflare (não em VM), pelo case "tudo no ecossistema". É experimental — então a Fase 1 **começa por um spike de infra com gate go/no-go**, antes de migrar os 2.261 ou ir a produção:
 
 - **Gate de infra (go/no-go):** provar que o Ghost **boota e roda estável** em Cloudflare Containers com:
   - Banco no **D1** via adapter `cloudflare-d1-http-knex` (o Ghost usa knex). **Ponto de maior risco** — o Ghost suporta oficialmente só MySQL 8; migrations e queries dele podem não passar limpo no D1. Validar boot + migrations + CRUD de post/membro + login de membro.
