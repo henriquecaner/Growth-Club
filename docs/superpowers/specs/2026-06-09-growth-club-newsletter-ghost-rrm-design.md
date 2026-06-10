@@ -34,6 +34,8 @@ Construir a newsletter do Growth Club no próprio domínio (substituindo gradual
 
 ## 2. Arquitetura de alto nível
 
+> **⚠️ Atualização (2026-06-09): subpath `/content`, não subdomínio.** O Henrique decidiu que o Ghost roda em **`growthclub.pro/content`** (não `boletim.growthclub.pro`), pra consolidar SEO no domínio raiz (melhor pro Google Discover/News). Onde o diagrama abaixo diz `boletim.growthclub.pro`, leia `growthclub.pro/content`. Implica: **Workers Route `growthclub.pro/content/*` → Worker do Ghost; resto → Pages** + Ghost com `url` de subpath (`https://growthclub.pro/content`). O Ghost suporta subdiretório no self-hosted (há receita com Cloudflare Workers). **Risco a validar (gate inicial da Fase 1):** a coexistência Worker-num-subpath + Pages no mesmo domínio teve limitação histórica no Cloudflare — testar com mini-spike antes de montar o resto, mesma disciplina do spike Ghost+MySQL. `/assinar` (Fase 2) também fica no domínio raiz (Pages).
+
 ```
                     growthclub.pro  (Cloudflare Pages, estático — INTOCADO)
                     ├── site institucional v1 (AD-006/007)
