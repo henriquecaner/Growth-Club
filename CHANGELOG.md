@@ -6,6 +6,20 @@
 
 ---
 
+## 2026-06-10 · AD-023 · Newsletter própria: Ghost no ar em growthclub.pro/content
+
+A infra da newsletter própria saiu do papel. Ghost 6.44 roda em produção em `growthclub.pro/content/`, num Cloudflare Container atrás de um Worker, com MySQL gerenciado (Aiven). O site institucional continua no Cloudflare Pages, intocado: o Worker só responde o subpath `/content`.
+
+O bug que travou o spike de ontem tinha 3 linhas de correção. Ghost atrás de proxy exige os headers `X-Forwarded-Proto: https` e `X-Forwarded-Host`, os mesmos que o nginx de referência do Ghost injeta. O `container.fetch(request)` cru não repassa nada disso, e o Ghost respondia 500. A receita paga que tínhamos anotado (createtoday.io) nem servia: faz proxy de subdomínio com reescrita de HTML e não suporta membership, que é o centro do projeto.
+
+Validação em produção: admin em `/content/ghost/` respondendo 200, members API 204, TTFB de 1,5s (container nos EUA falando com banco na Califórnia, free tier). Custo: ~US$ 5/mês de Workers Paid; banco grátis (Aiven 1GB). Hyperdrive fica pra quando a latência incomodar.
+
+Próximo da Fase 1: tema com o Design System (AD-008), migração dos ~2.261 assinantes do Substack, RRM.
+
+Referência: [`STATE.md` AD-023](.specs/project/STATE.md) · [plan](docs/superpowers/plans/2026-06-09-newsletter-ghost-fase1-infra.md).
+
+---
+
 ## 2026-05-18 · AD-011 · Refino de copy home/membro/empresas v2 — cluster analysis aplicado
 
 Refino editorial cirúrgico nas 3 páginas centrais do site (home, membro, empresas). Frame de entrada na comunidade reposicionado de "cadastro grátis 1-clique pra newsletter Substack" pra "candidatura com triagem leve em form de entrevista" — tier continua free (Growth Hacker), triagem é qualitativa. Pull do form Substack signup de todas as páginas; placeholder "FORM ABRE EM BREVE" segura o lugar até o sub-projeto separado definir campos, perguntas e handler.

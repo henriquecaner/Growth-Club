@@ -1,5 +1,7 @@
 # Newsletter Ghost — Fase 1 (Infra + roteamento `/content`) — Implementation Plan
 
+> ✅ **EXECUTADO em 2026-06-10** (AD-023 em `.specs/project/STATE.md`). Ghost 6.44 no ar em `growthclub.pro/content/`. Desvios conscientes do plano: (a) banco de produção = banco do spike reusado (Aiven free tier só permite 1 serviço grátis); (b) fix do 500 = headers de proxy (`X-Forwarded-Proto/Host/For`) injetados antes do `container.fetch()` — receita createtoday.io descartada (paywall + abordagem incompatível com membership); (c) route exata `/content` adicionada além do wildcard. Task 5 (Hyperdrive) adiada — TTFB ~1,5s aceito pra Fase 1. Pendências em AD-023.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: use `superpowers:subagent-driven-development` (recomendado) ou `superpowers:executing-plans` pra implementar task-by-task. Passos usam checkbox (`- [ ]`).
 
 **Goal:** Colocar o Ghost de produção rodando em `growthclub.pro/content` (Cloudflare Container + Aiven MySQL + Workers Route), sem quebrar o site institucional.
@@ -32,7 +34,7 @@ Secrets (via `wrangler secret put`, nunca no repo): `GHOST_DATABASE_URL`, `GHOST
 - Create: `route-test/wrangler.jsonc`
 - Create: `route-test/src/index.js`
 
-- [ ] **Step 1: Criar o Worker de teste**
+- [x] **Step 1: Criar o Worker de teste**
 
 `route-test/src/index.js`:
 ```js
@@ -59,12 +61,12 @@ export default {
 }
 ```
 
-- [ ] **Step 2: Deploy do Worker de teste**
+- [x] **Step 2: Deploy do Worker de teste**
 
 Run: `cd route-test && wrangler deploy`
 Expected: deploy OK + a route `growthclub.pro/_gc_routetest/*` listada.
 
-- [ ] **Step 3: Verificar a coexistência (3 curls)**
+- [x] **Step 3: Verificar a coexistência (3 curls)**
 
 ```bash
 curl -s -m 25 "https://growthclub.pro/_gc_routetest/x"      # deve dar "ROUTE-TEST OK: /_gc_routetest/x"
@@ -73,17 +75,17 @@ curl -s -m 25 "https://growthclub.pro/sobre" | grep -o "<title>[^<]*</title>" # 
 ```
 Expected: o subpath retorna "ROUTE-TEST OK"; `/` e `/sobre` continuam o site institucional (Pages intocado).
 
-- [ ] **Step 4: Decisão go/no-go**
+- [x] **Step 4: Decisão go/no-go**
 
 - ✅ Worker pegou o subpath E site intacto → **GO**: `/content` é viável. Seguir.
 - ❌ Worker não pegou (Pages reivindica `/*`) ou site quebrou → **fallback subdomínio**: usar `boletim.growthclub.pro` (DNS CNAME → Worker via Custom Domain). Reverter este plano pra subdomínio (Ghost `url=https://boletim.growthclub.pro`, sem Workers Route). O resto das tarefas é idêntico, só muda `url` + como o Worker é exposto.
 
-- [ ] **Step 5: Remover o Worker de teste**
+- [x] **Step 5: Remover o Worker de teste**
 
 Run: `wrangler delete --name gc-route-test` (e remover a route no dashboard se persistir).
 Expected: rota some; `curl https://growthclub.pro/_gc_routetest/x` volta a cair no site (404 do Pages).
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add route-test/ && git commit -m "chore(spike): gate de roteamento /content validado (worker de teste)"
 ```
@@ -96,15 +98,15 @@ git add route-test/ && git commit -m "chore(spike): gate de roteamento /content 
 
 **Files:** nenhum (provisionamento externo + secrets).
 
-- [ ] **Step 1: Criar o serviço MySQL de produção no Aiven**
+- [x] **Step 1: Criar o serviço MySQL de produção no Aiven**
 
 No painel Aiven: criar serviço **MySQL 8**, plano que comporte produção (Free 1GB pra começar; subir quando crescer). **Região mais perto do Brasil disponível** (preferir SP/AWS sa-east; senão a mais próxima — registrar a escolha). FK é nativo no MySQL (sem config extra).
 
-- [ ] **Step 2: Coletar credenciais**
+- [x] **Step 2: Coletar credenciais**
 
 No serviço: copiar **Service URI** (`mysql://avnadmin:...@host:port/defaultdb?ssl-mode=REQUIRED`) e baixar o **CA certificate** (`Show`/download).
 
-- [ ] **Step 3: Configurar os secrets no Worker** (no diretório do repo de produção, após a Task 3 criar o wrangler.jsonc)
+- [x] **Step 3: Configurar os secrets no Worker** (no diretório do repo de produção, após a Task 3 criar o wrangler.jsonc)
 
 ```bash
 wrangler secret put GHOST_DATABASE_URL   # colar a Service URI no prompt (nunca no chat/arquivo versionado)
@@ -112,7 +114,7 @@ wrangler secret put GHOST_DB_CA          # colar o conteúdo do CA cert (-----BE
 ```
 Expected: "Success! Uploaded secret ..." pra cada um.
 
-- [ ] **Step 4: Confirmar (sem expor segredo)**
+- [x] **Step 4: Confirmar (sem expor segredo)**
 
 Run: `wrangler secret list`
 Expected: `GHOST_DATABASE_URL` e `GHOST_DB_CA` listados.
@@ -128,7 +130,7 @@ Expected: `GHOST_DATABASE_URL` e `GHOST_DB_CA` listados.
 - Create: `wrangler.jsonc`
 - Create: `src/index.js`
 
-- [ ] **Step 1: `package.json`**
+- [x] **Step 1: `package.json`**
 ```json
 {
   "name": "growth-club-newsletter",
@@ -142,7 +144,7 @@ Expected: `GHOST_DATABASE_URL` e `GHOST_DB_CA` listados.
 Run: `npm install`
 Expected: `@cloudflare/containers` instalado.
 
-- [ ] **Step 2: `wrangler.jsonc`** (Container + Route `/content/*`)
+- [x] **Step 2: `wrangler.jsonc`** (Container + Route `/content/*`)
 ```jsonc
 {
   "name": "growth-club-newsletter",
@@ -167,7 +169,7 @@ Expected: `@cloudflare/containers` instalado.
 }
 ```
 
-- [ ] **Step 3: `src/index.js`** (subpath `/content` + MySQL + CA cert real)
+- [x] **Step 3: `src/index.js`** (subpath `/content` + MySQL + CA cert real)
 ```js
 import { Container } from '@cloudflare/containers';
 
@@ -210,7 +212,7 @@ export default {
 };
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 ```bash
 git add package.json wrangler.jsonc src/index.js && git commit -m "feat(infra): Worker do Ghost de produção em /content (Container + MySQL + SSL CA)"
 ```
@@ -221,17 +223,17 @@ git add package.json wrangler.jsonc src/index.js && git commit -m "feat(infra): 
 
 > ⚠️ Toca a zona de produção (cria a route `/content/*`). Operador aprova.
 
-- [ ] **Step 1: Garantir secrets** (Task 2 Step 3-4 já feitos pra ESTE Worker)
+- [x] **Step 1: Garantir secrets** (Task 2 Step 3-4 já feitos pra ESTE Worker)
 
 Run: `wrangler secret list`
 Expected: `GHOST_DATABASE_URL` + `GHOST_DB_CA`.
 
-- [ ] **Step 2: Deploy**
+- [x] **Step 2: Deploy**
 
 Run: `wrangler deploy`
 Expected: Worker deployado + container `growth-club-newsletter-ghostcontainer` + route `growthclub.pro/content/*` aplicada.
 
-- [ ] **Step 3: Boot + migrations (poll — pode levar 1-3 min nas migrations remotas)**
+- [x] **Step 3: Boot + migrations (poll — pode levar 1-3 min nas migrations remotas)**
 ```bash
 for i in $(seq 1 12); do
   code=$(curl -s -m 30 -o /dev/null -w "%{http_code}" "https://growthclub.pro/content/")
@@ -240,7 +242,7 @@ done
 ```
 Expected: chega a **200** (Ghost subiu com MySQL).
 
-- [ ] **Step 4: Verificações funcionais**
+- [x] **Step 4: Verificações funcionais**
 ```bash
 curl -s -m 30 "https://growthclub.pro/content/" | grep -o 'content="Ghost [0-9.]*"'      # generator Ghost
 curl -s -m 30 -o /dev/null -w "admin -> %{http_code}\n" "https://growthclub.pro/content/ghost/"  # 200
@@ -249,7 +251,7 @@ curl -s -m 30 "https://growthclub.pro/" | grep -o "<title>[^<]*</title>"   # SIT
 ```
 Expected: `/content/` = Ghost; `/content/ghost/` = admin 200; site institucional em `/` intacto.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 ```bash
 git commit --allow-empty -m "chore(infra): Ghost de produção validado em growthclub.pro/content"
 ```

@@ -1,11 +1,28 @@
 # STATE: Growth Club
-**Last Updated:** 2026-05-25
+**Last Updated:** 2026-06-10
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-023: Ghost de produção no ar em growthclub.pro/content — Fase 1 infra executada
+**Date:** 2026-06-10
+**Status:** Accepted
+
+**Context:** Spec da newsletter própria (Ghost + RRM, 2026-06-09) tinha a arquitetura provada em spike, mas a tentativa de subpath ao vivo retornou HTTP 500 — `container.fetch(request)` cru não repassa headers de proxy que o Ghost exige. O plano de infra (`docs/superpowers/plans/2026-06-09-newsletter-ghost-fase1-infra.md`) previa banco novo de produção, mas o Aiven free tier só permite um serviço grátis, e o banco do spike já tinha as migrations + dados validados.
+
+**Decision:** Executado o plano com dois desvios conscientes: (a) **reuso do banco Aiven do spike como produção** (free tier único; estado persistente do Ghost vive ali); (b) **fix do 500 = injetar `X-Forwarded-Proto: https`, `X-Forwarded-Host` e `X-Forwarded-For` antes do `container.fetch()`** — equivalente ao `proxy_set_header` do nginx de referência do Ghost; a receita createtoday.io apontada no plano é paywall e nem servia (proxy de subdomínio com reescrita de HTML, sem membership). Worker `growth-club-newsletter` (repo próprio em `~/Documents/GitHub/growth-club-newsletter`) com routes **exata `/content` + wildcard `/content/*`** (wildcard sozinho não casa o path sem barra), `workers_dev: false`, SSL com CA do Aiven verificado (`rejectUnauthorized: true`). Worker e route órfã do spike (`gc-ghost-spike`) deletados.
+
+**Consequences:**
+- Ghost 6.44 servindo em `growthclub.pro/content/` (admin 200, members API 204), site institucional intacto no Pages.
+- Secrets `GHOST_DATABASE_URL` + `GHOST_DB_CA` recuperados dos transcripts da sessão do spike (sem re-trabalho do operador) e configurados via `wrangler secret put`.
+- TTFB ~1,5s (container EUA ↔ Aiven Califórnia). Hyperdrive (Task 5) adiado conscientemente — reavaliar se latência incomodar ou volume crescer.
+- Pendências: rotacionar senha do Aiven que vazou no chat do spike (higiene; exige re-put do secret), deletar container app órfão `gc-ghost-spike-ghostcontainer`, configurar admin do Ghost (conta, tema, RRM = planos 2-4 da Fase 1).
+- Custo: Workers Paid ~US$5/mês (Containers) + Aiven free 1GB.
+
+---
 
 ### AD-022: Termo canonical da audiência é "especialista" — proibido "operador"
 **Date:** 2026-05-25
