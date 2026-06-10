@@ -13,7 +13,7 @@ O pedido inicial ("cola esse snippet em todas as páginas") foi reescopado porqu
 
 **Decisões travadas nesta sessão (entram como ADR no `STATE.md` — ver §15):**
 
-1. **Plataforma = Ghost, self-hosted.** Dono dos dados, marca aplicável ao tema, assinatura + email nativos, RRM via Code Injection. Roda na infra do Henrique (VM), não no Cloudflare Pages — Ghost é app Node+MySQL e precisa de servidor 24/7.
+1. **Plataforma = Ghost. Hosting = Cloudflare Containers (decisão do founder, 2026-06-09).** Dono dos dados, marca aplicável ao tema, assinatura + email nativos, RRM via Code Injection. O founder optou por rodar o Ghost **inteiro no Cloudflare** (Containers + D1 + R2) como parte do case "tudo no ecossistema" — *ciente do aviso* de que é experimental e não-suportado pelo Ghost. Estruturado como **spike de infra com gate go/no-go + fallback pra VM via Tunnel** (§4.1/§7) pra não apostar a fundação num approach não-provado.
 2. **Substack: paralelo, migração gradual.** Importa os ~2.261 inscritos pro Ghost (importador oficial Substack→Ghost), mantém o Substack vivo no começo, valida deliverability no Ghost, depois desliga. Não queima o ativo principal.
 3. **Tier pago via motor do Google (Subscribe with Google), não Stripe.** Decisão de founder consciente: Henrique ouviu o trade-off de custo (5% Google vs ~3,4% Stripe, sem revshare no self-hosted) e respondeu *"não ligo pro revshare e custo, quero aumentar autoridade e montar um case"*. A aposta é de **marca/pioneirismo** (Outlaw + build-in-public), não financeira. **Fundamentada:** a fonte do Google confirma que Subscription Linking *"is available to all publishers with paying readers, not just news… most outside the news vertical don't realize this tool applies to them"* — o "ninguém usa / ninguém conhece" tem base real.
 4. **Arquitetura de pagamento desenhada pelo Henrique:** página de assinatura no `growthclub.pro` → pessoa assina via Google → API sincroniza pro Ghost como membro pago/grátis → rebaixa o tier se parar de pagar. **Pagamento e entitlement vivem no Google; o Ghost só recebe informação.**
@@ -39,7 +39,7 @@ Construir a newsletter do Growth Club no próprio domínio (substituindo gradual
                     ├── site institucional v1 (AD-006/007)
                     └── /assinar           ← NOVA página de checkout SwG (Fase 2, swg.js manual mode)
 
-                    boletim.growthclub.pro (Ghost, self-hosted na VM, Cloudflare na frente)
+                    boletim.growthclub.pro (Ghost em Cloudflare Containers + D1 + R2 — spike, fallback VM)
                     ├── posts = páginas web indexáveis (NewsArticle real)
                     ├── email nativo (newsletter) + lista de membros
                     ├── Code Injection: snippet RRM (Fase 1, openaccess signup)
@@ -54,7 +54,7 @@ Construir a newsletter do Growth Club no próprio domínio (substituindo gradual
 ```
 
 - **`growthclub.pro` continua exatamente como está** — estático, Cloudflare Pages, design system, funil. Ganha só uma rota nova (`/assinar`) na Fase 2.
-- **Ghost mora em subdomínio** (`boletim.growthclub.pro`, nome a confirmar), com Cloudflare na frente (DNS/proxy/cache). É onde os posts viram páginas indexáveis, onde o email sai, e onde o snippet RRM entra via Code Injection.
+- **Ghost mora em subdomínio** (`boletim.growthclub.pro`, nome a confirmar), **rodando dentro do Cloudflare (Containers — spike) com fallback VM via Tunnel**. É onde os posts viram páginas indexáveis, onde o email sai, e onde o snippet RRM entra via Code Injection.
 - **Design system (AD-008)** vira um **tema Ghost custom** (Handlebars): tokens CSS, Satoshi+Roboto self-hosted, `<gc-header>`/`<gc-footer>` re-implementados. O visual não é perdido.
 
 ---
@@ -114,10 +114,16 @@ Princípio herdado do sub-projeto Lead Magnets: **um campo = um dono = uma dire�
 
 Não depende do motor de pagamento do Google nem de integração com HubSpot. Entrega valor sozinha.
 
-### 4.1 Ghost self-hosted
-- Provisionar Ghost (Node + MySQL) na VM do Henrique (`level-themachine` ou VPS dedicado — ver risco R-A em §11), atrás do Cloudflare.
-- Subdomínio `boletim.growthclub.pro` (nome a confirmar) com SSL via Cloudflare.
-- **Deliverability:** configurar provedor de envio em massa (Mailgun ou Amazon SES) com SPF/DKIM/DMARC no domínio. **Este é o item make-or-break da Fase 1** — newsletter sem deliverability é newsletter morta.
+### 4.1 Ghost em Cloudflare Containers (spike de infra com gate)
+**Decisão do founder:** rodar o Ghost inteiro no Cloudflare (não em VM), pelo case "tudo no ecossistema". É experimental — então a Fase 1 **começa por um spike de infra com gate go/no-go**, antes de migrar os 2.261 ou ir a produção:
+
+- **Gate de infra (go/no-go):** provar que o Ghost **boota e roda estável** em Cloudflare Containers com:
+  - Banco no **D1** via adapter `cloudflare-d1-http-knex` (o Ghost usa knex). **Ponto de maior risco** — o Ghost suporta oficialmente só MySQL 8; migrations e queries dele podem não passar limpo no D1. Validar boot + migrations + CRUD de post/membro + login de membro.
+  - Disco do Container é **efêmero** → mídia no **R2** (adapter `ghost-cloudflare-r2`); estado persistente via R2/FUSE ou Durable Objects storage (snapshots de Container ainda *coming soon*).
+  - Container mantendo o Ghost de pé sem reciclar a sessão / perder estado.
+- **✅ Gate passa** → segue pra tema + migração + RRM, tudo no Cloudflare.
+- **❌ Gate falha** (D1 incompatível, container instável) → **fallback: Ghost em Docker na VM (`level-themachine`/VPS) via Cloudflare Tunnel** — a arquitetura "chata e sólida". Tema, migração, snippet e Worker são **os mesmos**; só muda onde o Ghost roda. **Zero retrabalho de fundação.**
+- **Deliverability** (vale pros dois caminhos): provedor de envio em massa (Mailgun/SES) com SPF/DKIM/DMARC no domínio. **Item make-or-break** — newsletter sem deliverability é newsletter morta.
 
 ### 4.2 Tema com o Design System (AD-008)
 - Tema Ghost custom (Handlebars) aplicando tokens CSS, fontes self-hosted, header/footer da marca.
@@ -194,7 +200,7 @@ O valor do Google **na monetização** é o case de marca, não o custo (o custo
 ## 7. Stack & infra
 
 - **Ghost-on-VM é exceção consciente** ao padrão Cloudflare-serverless do repo (site v1, AI LIKE A PRO, Lead Magnets). Justificada: Ghost exige servidor Node+MySQL persistente; não há equivalente serverless que entregue email+membership+tema nativos.
-- **Cloudflare fica na *frente* do Ghost, não o hospeda.** Pages/Workers são edge/serverless (V8 isolates) — não rodam Node stateful + MySQL persistente. **Cloudflare Containers avaliado e descartado:** rodaria o container, mas exigiria MySQL externo (o Cloudflare não tem MySQL gerenciado; D1 é SQLite serverless que o Ghost não fala nativamente) — Frankenstein sem ganho. Caminho suportado: Ghost em **Docker na VM**, exposto via **Cloudflare Tunnel** (`cloudflared`, sem porta/IP público), com **DNS + cache de página + WAF** na borda e **R2 como storage adapter** de mídia. Resultado: ~tudo no ecossistema Cloudflare, só o *runtime* do Ghost na VM.
+- **Hosting do Ghost = Cloudflare Containers (escolha do founder), com fallback VM.** O founder optou por rodar o Ghost no Cloudflare pelo case "tudo no ecossistema", ciente de que é experimental: **Container** (runtime Node) + **D1** (banco, via adapter community knex) + **R2** (mídia, já que o disco do Container é efêmero). Não-suportado pelo Ghost e sem precedente conhecido em produção → tratado como **spike com gate** (§4.1). **Fallback "chato e sólido":** Ghost em **Docker na VM via Cloudflare Tunnel** se o gate falhar — sem retrabalho de tema/migração/Worker. Em qualquer dos dois, DNS + cache + WAF + Worker de sync ficam no Cloudflare.
 - **O sync backend (Fase 2) é Cloudflare Worker** — fica on-pattern (serverless, vanilla, secrets via Cloudflare), consistente com Lead Magnets.
 - **Repo:** novo e separado (precedente AI LIKE A PRO + Lead Magnets), sugestão `growth-club-newsletter` (tema Ghost + Worker de sync + página `/assinar`).
 
@@ -214,7 +220,7 @@ O valor do Google **na monetização** é o case de marca, não o custo (o custo
 | # | Risco | Mitigação |
 |---|-------|-----------|
 | **R-A** | **Deliverability self-hosted.** É o calcanhar de Aquiles do Ghost self-hosted. Lista de 2.261 sem aquecimento pode cair em spam. | Mailgun/SES com SPF/DKIM/DMARC; migração gradual com Substack em paralelo; aquecimento de IP. |
-| **R-B** | **Uptime/backup da VM.** Newsletter de produção numa VM pessoal tem risco de queda/perda. | Backups automáticos do MySQL + content; considerar VPS dedicado vs `level-themachine`; monitoramento. |
+| **R-B** | **Ghost no Cloudflare Containers é experimental e não-provado.** D1 não é suportado pelo Ghost; disco efêmero; sem precedente de Ghost-em-Containers em produção. Pode não bootar/estabilizar. | **Spike de infra com gate go/no-go (§4.1)** antes de migrar/produção; **fallback Ghost-on-VM via Tunnel** sem retrabalho de fundação; backups (export D1 / dump). |
 | **R-C** | **Elegibilidade do paid SwG** (Verdade dura nº 1). | Gate #1 antes de qualquer build da Fase 2. |
 | **R-D** | **Ghost sem API de membro pago** (Verdade dura nº 2). | Workaround comp subscription com `expiry_at` gerenciado pelo Worker. |
 | **R-E** | **Integração custom frágil** consumindo tempo do único Crew frontend. | Spike com Gate #2 e timebox; Fase 1 nunca depende disso. |
@@ -226,7 +232,8 @@ O valor do Google **na monetização** é o case de marca, não o custo (o custo
 ## 10. Critérios de aceite
 
 **Fase 1 (fundação):**
-- [ ] Ghost no ar em subdomínio, atrás do Cloudflare, com tema aplicando o Design System AD-008.
+- [ ] **Gate de infra:** Ghost boota e roda estável em Cloudflare Containers + D1 + R2 — ou fallback VM acionado — **antes** de migrar os 2.261.
+- [ ] Ghost no ar em subdomínio, dentro do Cloudflare (ou VM via Tunnel), com tema aplicando o Design System AD-008.
 - [ ] Email em massa entregando com SPF/DKIM/DMARC verdes; taxa de entrega comparável ao Substack.
 - [ ] ~2.261 inscritos importados como membros grátis; Substack em paralelo até critério de desligamento.
 - [ ] Snippet RRM `:openaccess` injetado via Code Injection; prompt de signup funcionando; posts indexáveis como `NewsArticle`.
@@ -247,7 +254,7 @@ O valor do Google **na monetização** é o case de marca, não o custo (o custo
 
 - **Google Publisher Center:** publicação registrada (já existe — ID `CAow69bgCw`); payments profile vinculado + pricing plan pago (Gate #1) pra Fase 2; declaração For-Profit (Level Tech CNPJ).
 - **Subscribe with Google:** acesso ao Subscription Linking + RTDN/Pub/Sub (projeto Google Cloud + tópico Pub/Sub) pra Fase 2.
-- **Ghost:** instância self-hosted provisionada; Ghost Admin API key (Integration) pro Worker.
+- **Ghost:** instância provisionada — **Cloudflare Containers + D1 + R2** (spike) ou **VM + Docker via Tunnel** (fallback); Ghost Admin API key (Integration) pro Worker.
 - **Email:** conta Mailgun/SES + DNS (SPF/DKIM/DMARC).
 - **Cloudflare:** DNS do subdomínio; projeto Worker + secrets (Fase 2).
 - **Substack:** export da lista pra importação.
