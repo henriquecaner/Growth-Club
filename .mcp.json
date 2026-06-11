@@ -3,6 +3,20 @@
     "notion": {
       "type": "http",
       "url": "https://mcp.notion.com/mcp"
+    },
+    "mailgun": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "MAILGUN_API_KEY=$(cat \"$HOME/.config/mailgun/api-key\") MAILGUN_API_REGION=us exec npx -y @mailgun/mcp-server"
+      ]
+    },
+    "aiven": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "AIVEN_TOKEN=$(cat \"$HOME/.config/aiven/token\") exec npx -y mcp-aiven"
+      ]
     }
   }
 }

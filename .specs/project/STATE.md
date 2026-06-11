@@ -1,11 +1,67 @@
 # STATE: Growth Club
-**Last Updated:** 2026-06-10
+**Last Updated:** 2026-06-11
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-028: Credenciais vazadas em chat não serão rotacionadas (decisão do founder) + MCPs Mailgun/Aiven no projeto
+**Date:** 2026-06-11
+**Status:** Accepted
+
+**Context:** As pendências de higiene de AD-023/AD-024 (rotacionar senha Aiven e token R2 vazados em transcript) seguiam abertas. Ao receber o plano de rotação via clipboard (`pbpaste | wrangler secret put`, sem o valor tocar o chat), o Henrique decidiu explicitamente **não rotacionar nada** — Aiven, R2 e a API key do Mailgun (colada no chat em 2026-06-11) ficam como estão. Risco aceito pelo founder; transcripts são locais na máquina dele.
+
+**Decision:** Rotações canceladas e removidas da fila. Padrão de credenciais consolidado: secrets novos vivem em arquivos `chmod 600` fora dos repos (`~/.config/mailgun/api-key`, `~/.config/aiven/token`, `~/.config/growth-club/gc-admin-token`) e entram em Workers via `wrangler secret put` lendo do arquivo. **MCPs project-scoped** adicionados ao `.mcp.json` (commitado, sem secret inline): `mailgun` (`npx -y @mailgun/mcp-server`) e `aiven` (`npx -y mcp-aiven`), ambos com wrapper `sh -c` que lê a credencial do arquivo local. Token Aiven canônico = o gerado em 2026-06-11 sem expiração (descrição "MCP Claude Code - Growth Club - Ghost"); os dois de 2026-06-10 expiram sozinhos.
+
+**Consequences:**
+- `GC_ADMIN_TOKEN` foi rotacionado (era pré-requisito de operação, não higiene): gerado via `openssl rand` direto pra `~/.config/growth-club/gc-admin-token`, valor nunca passou pelo chat.
+- Tools MCP carregam em sessão nova (ou `/mcp`); via REST os mesmos tokens já operam (poder ligar/desligar o Aiven daqui foi o que resolveu o incidente AD-025).
+
+---
+
+### AD-027: Identidade de email da newsletter — transacional `hey@mail.growthclub.pro` (Cloudflare) + bulk `send.growthclub.pro` (Mailgun)
+**Date:** 2026-06-11
+**Status:** Accepted (parcial — aguarda token Email Sending e grupo Workspace)
+
+**Context:** Ghost separa email transacional (magic link, reset, convites — SMTP genérico) de bulk (edições — hardcoded Mailgun). O Henrique configurou o Mailgun em 2026-06-10 com domínio **`send.growthclub.pro`** (SPF/DKIM/MX verificados, conta US). Pro transacional, pediu remetente **`hey@mail.growthclub.pro`** (não `noreply@`) com respostas caindo num **grupo `hey@growthclub.pro`** do Google Workspace (a criar) — postura de marca "responde-se a gente, não a um robô".
+
+**Decision:** Transacional via **SMTP do Cloudflare Email Sending** (`smtp.mx.cloudflare.net:465`, TLS implícito, user literal `api_token`, senha = API token com permissão Email Sending: Edit — secret `GHOST_SMTP_TOKEN`, fallback gracioso se ausente). `from` = `"Growth Club" <hey@mail.growthclub.pro>`. Respostas: **catch-all do Email Routing no subdomínio `mail.growthclub.pro`** (MX já aponta route1-3.mx.cloudflare.net) encaminhando pro grupo `hey@growthclub.pro`. Apex continua Google Workspace (routing CF da zona segue disabled — só o subdomínio roteia pela CF).
+
+**Consequences:**
+- **Restrição DMARC importante:** `mail.growthclub.pro` tem `p=reject`; o remetente das **edições** (bulk/Mailgun) precisa ficar em `@send.growthclub.pro` — usar `hey@mail.*` no bulk = rejeição em massa. Reply-to do bulk pode ser `hey@growthclub.pro` direto na config da newsletter no admin.
+- Pendências: token Email Sending: Edit (Henrique) → `wrangler secret put GHOST_SMTP_TOKEN` → restart; grupo Workspace criado → registrar destination address (verificação por email) → criar catch-all rule.
+- Mailgun do bulk ainda precisa ser plugado no admin do Ghost (Settings → Email newsletter → region US + domain `send.growthclub.pro` + API key).
+
+---
+
+### AD-026: Tema `gc-news` (Design System) construído e PARQUEADO por decisão do founder
+**Date:** 2026-06-11
+**Status:** Parked
+
+**Context:** Plano 2 da Fase 1 (`docs/superpowers/plans/2026-06-11-newsletter-tema-design-system.md`) foi executado: tema Handlebars `gc-news` completo consumindo o Design System **same-origin** (Ghost em `/content` lê `tokens.css`/`components.css`/`chrome.css`/fontes e os web components `gc-header`/`gc-footer` direto do Pages — zero duplicação), gscan 0 erros, JSON-LD `NewsArticle` + `isAccessibleForFree` no post (adianta o Plano 4/RRM). Distribuição: tar.gz no R2 (`_gc/theme/`) servido pelo Worker em `/content/_gc/theme.tar.gz` e instalado pelo BOOT_SCRIPT a cada cold start (disco efêmero). Em meio ao incidente AD-025, o Henrique decidiu **pular o tema por agora**.
+
+**Decision:** Tema fica **inerte**: código no repo `growth-club-newsletter` (`theme/gc-news/` + `bin/deploy-theme.sh`), tar.gz no R2, bootstrap instala os arquivos mas o Ghost segue no Casper (tema só vale quando ativado no admin). Ativação futura = Settings → Design → gc-news (1 clique) + Publication language `pt-br`.
+
+**Consequences:**
+- Custo residual: ~2s no cold start (download+extract de 4KB). Acoplamento documentado: o tema depende dos paths `/assets/*` do site no Pages.
+- O requisito `NewsArticle` do Plano 4 volta a precisar de solução fora do tema enquanto o Casper estiver ativo (Code Injection pode cobrir).
+
+---
+
+### AD-025: Incidente 2026-06-11 — `/content` fora do ar; causa dupla (timeout de 20s no cold start + Aiven POWEROFF) e fixes permanentes
+**Date:** 2026-06-11
+**Status:** Accepted
+
+**Context:** Site da newsletter caiu ("Failed to start container: The container is not listening in the TCP address 10.0.0.1:2368"). Investigação em camadas: (1ª causa) a lib `@cloudflare/containers` espera a porta por **20s default** (`TIMEOUT_TO_GET_PORTS_MS`), mas o cold start real leva 30s–3min (npm install do ghos3 a cada boot) — o container dormiu de madrugada (`sleepAfter: 1h`) e nenhum boot do dia coube no budget; (2ª causa, revelada após o fix) o **Aiven MySQL free estava `POWEROFF`** (política de free tier) — Ghost subia, não alcançava o banco e morria ("Container crashed while checking for ports").
+
+**Decision:** (a) Override de `startAndWaitForPorts` no `GhostContainer` injetando `portReadyTimeoutMS: 240_000`; (b) endpoint de diagnóstico **`POST /content/_gc/dbcheck`** (token-gated) que testa TCP até o MySQL via `cloudflare:sockets` usando o secret existente, sem expor credencial; (c) **power on do Aiven via API REST** (`PUT /v1/project/gc-ghost/service/gc-ghost {"powered": true}`) com o token AD-028 — recovery sem abrir console; (d) timeout de 20s no fetch do tema no BOOT_SCRIPT (falha de tema nunca derruba boot).
+
+**Consequences:**
+- Recovery validado: Aiven RUNNING → dbcheck greeting 77 bytes → Ghost HTTP 200 em 1,2s.
+- **Risco aberto:** Aiven free pode desligar de novo por inatividade. Sinais: `/content` 500 + dbcheck falhando. Runbook: power on via API (1 comando). Mitigações futuras: plano pago, keep-alive, ou migrar banco (que também resolveria a latência — serviço em `do-sfo`).
+- Repo `growth-club-newsletter` agora tem remote: `github.com/henriquecaner/growth-club-newsletter` (privado, criado 2026-06-11).
 
 ### AD-024: Uploads do Ghost duráveis no R2 (imagens, PDFs, arquivos) + endpoint de restart
 **Date:** 2026-06-10
