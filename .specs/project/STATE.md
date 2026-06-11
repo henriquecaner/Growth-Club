@@ -7,6 +7,24 @@
 
 ## Recent Decisions (ADR)
 
+### AD-030: Frente de email da newsletter concluída — bulk (Mailgun) + transacional (Cloudflare) ponta a ponta
+**Date:** 2026-06-11
+**Status:** Accepted (fecha AD-027)
+
+**Context:** Sessão de execução fechou a frente inteira de email após uma cascata de incidentes encadeados (cada fix revelava a próxima camada). Estado final validado com logs reais (Mailgun events + cabeçalho Gmail + relay SMTP `250 OK`).
+
+**Decision — arquitetura de email de dois domínios:**
+- **Bulk (edições) = Mailgun**, sender `hey@send.growthclub.pro`. Três fixes que destravaram a entrega: (1) **espblock resolvido** trocando o sender de `caner@growthclub.pro` (apex, DMARC `p=reject; adkim=s; aspf=s` strict) pra `@send.growthclub.pro`, onde o DKIM do Mailgun (`pdk1._domainkey.send.growthclub.pro`) alinha; (2) **links quebrados** (`send.send.growthclub.pro` NXDOMAIN) resolvidos voltando `web_prefix` de `send` pra `email` via API Mailgun; (3) **cert TLS** do domínio de tracking (recurso pago) contornado **desligando o click tracking** — o Ghost já reescreve links pro próprio `/content/r/` (rastreio nativo), então não se perdeu nada. **Open tracking religado** (pixel invisível funciona via GmailImageProxy server-side). Log final: Accepted → Delivered (250 OK gmail-smtp-in, TLS+DKIM) → Opened.
+- **Transacional (magic link/welcome/reset) = Cloudflare Email Sending**, sender `hey@mail.growthclub.pro`. Onboarding correto do subdomínio via dashboard (produto "Envio de Email/Email Sending Beta", NÃO "Email Routing" — Routing teria adicionado MX no apex e quebrado o Google Workspace). DNS auto-publicado em `cf-bounce.mail.growthclub.pro` (DKIM seletor `cf-bounce`, SPF, MX de bounce). Secret `GHOST_SMTP_TOKEN` = API token CF com permissão Email Sending: Edit (user literal `api_token`, host `smtp.mx.cloudflare.net:465` TLS implícito). Validado com nodemailer direto (`250 Ok`) antes do Ghost, e o test chegou na inbox (DKIM `mail.growthclub.pro`).
+- **Reply-to = `hey@growthclub.pro`** (grupo Google Workspace no apex; MX Google intacto, sem Cloudflare Email Routing).
+
+**Consequences:**
+- DMARC strict no apex obriga: bulk SEMPRE de `@send.`, transacional de `@mail.`. Nunca enviar de `@growthclub.pro` apex por terceiro.
+- Click tracking fica com o Ghost (nativo); Mailgun só faz open. Analytics de verdade virá do Tinybird (próxima frente).
+- Lição operacional: o dashboard CF tem DOIS produtos de email com nomes parecidos — Email **Sending** (outbound, o certo) e Email **Routing** (inbound, perigoso no apex). Não confundir.
+
+---
+
 ### AD-028: Credenciais vazadas em chat não serão rotacionadas (decisão do founder) + MCPs Mailgun/Aiven no projeto
 **Date:** 2026-06-11
 **Status:** Accepted
