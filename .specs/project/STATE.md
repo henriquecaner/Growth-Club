@@ -7,6 +7,26 @@
 
 ## Recent Decisions (ADR)
 
+### AD-031: Web analytics Tinybird no ar — datafiles deployados + 2º container de ingestão (traffic-analytics)
+**Date:** 2026-06-11
+**Status:** Accepted
+
+**Context:** Ghost 6 tem web analytics nativo via Tinybird (ClickHouse). Workspace `GrowthClub` (org Level Tech, região us_east) criado pelo Henrique, vazio. Nosso Ghost roda em container custom `ghost:6-alpine` — sem os helpers do docker-compose oficial (`tinybird-login/sync/deploy`) nem o microserviço de ingestão. Descoberta-chave lendo o core do Ghost: a arquitetura tem 3 peças — Tinybird (dados), stats-reads (JWT direto do Ghost) e **ingestão via proxy `ghost/traffic-analytics`** (recebe page hits, enriquece UA/geo/hash-IP, encaminha pro `/v0/events`). Ghost NÃO posta direto. Henrique escolheu rodar o proxy como 2º Cloudflare Container.
+
+**Decision:**
+- **Datafiles deployados** no workspace via CLI `tb` (instalada por `uv tool install tinybird`; fonte = repo Ghost tag v6.44.1 `ghost/core/core/server/data/tinybird/`; `tb --cloud deploy`): 5 datasources (`analytics_events` + 3 MVs) + ~30 endpoints. Deploy #1 live em gcp/us-east4.
+- **2º container** `AnalyticsContainer` (`ghost/traffic-analytics:1.0.244`, porta 3000) no mesmo Worker `growth-club-newsletter`, env `PROXY_TARGET=<api>/v0/events` + secret `TINYBIRD_TRACKER_TOKEN`. Rota pública `/content/_analytics/*` → proxy (strip do prefixo → `/api/v1/page_hit`).
+- **Ghost config** (env `tinybird__*`): `adminToken` = **workspace admin token** (assina JWT pros stats-reads), `workspaceId`, `stats__endpoint`, `tracker__endpoint` (URL pública do proxy) + `analytics__enabled/url`. Secrets `TINYBIRD_ADMIN_TOKEN` + `TINYBIRD_TRACKER_TOKEN`.
+- **Validado ponta a ponta:** `ghost-stats.min.js` injetado no site apontando pro proxy; page_hit de teste → proxy (202 `successful_rows:1`) → `analytics_events` (count=1).
+
+**Consequences:**
+- Custo: o 2º container some pra `sleepAfter` 2h; Workers Paid cobre. Mais uma peça pra manter.
+- Contrato do endpoint de ingestão documentado na memória ([[project-newsletter-ghost-rrm]]): `?name=analytics_events` + header `x-site-uuid` + payload com `user-agent`/`locale`/timestamp ISO.
+- Mata o warning de console `Tinybird analytics: No valid token received`. Dashboard Analytics do admin passa a popular conforme o tráfego real chega.
+- Padrão reforçado: cada "atalho" do container único revela uma peça que o docker-compose dava de graça (R2 adapter, tema, agora o proxy de analytics).
+
+---
+
 ### AD-030: Frente de email da newsletter concluída — bulk (Mailgun) + transacional (Cloudflare) ponta a ponta
 **Date:** 2026-06-11
 **Status:** Accepted (fecha AD-027)
