@@ -803,6 +803,29 @@ Grid da home muda de 3-col pra 4-col em desktop (responsivo: 2-col em tablet, 1-
 
 ---
 
+### AD-029 (ex-AD-019 da sessão VM): Usability/delight pass no site — chrome épico + camada de animação progressiva
+**Date:** 2026-06-10
+**Status:** Accepted
+
+> **Nota de merge (2026-06-11):** esta ADR nasceu numa sessão paralela (VM) como "AD-019", colidindo com o AD-019 existente (Meetup S1·E1 reset → CRMBonus, 2026-05-25). Renumerada pra AD-029 ao reconciliar as branches; o commit original (`b91dd8b`/`1fa3626`) e o CHANGELOG referenciam o número antigo.
+
+**Context:** Deep review de usabilidade solicitado pelo Henrique ("site 6/10, quero 9/10 — faltam animações, ícones épicos, hero memorável, nav e footer épicos"). O review revelou que `chrome.css` já continha estilos completos pra um footer rico (footer-hero CTA, footer-stats, orbs, manifesto pull-quote, social, build-in-public) e pro chip de meetup na nav, mas `header.js`/`footer.js` renderizavam só a versão mínima. O sistema de scroll-reveal nativo (components.css §14) cobria apenas classes legadas (`.problem`, `.layers`...) — nenhuma seção `.home-*` animava. O menu mobile usava hack frágil (`top: calc(100% + 280px)`).
+
+**Decision:** Pass de usabilidade em 6 frentes, tudo progressivo (sem JS ou com `prefers-reduced-motion` o conteúdo fica 100% visível e estático — coerente com L-003):
+
+1. **Nav épica** (`header.js` + `chrome.css`): chip do próximo meetup (S1·E1 · 9 JUL · SP, pulse dot, some <1160px), barra de progresso de scroll amber→teal (CSS scroll-driven, degrada invisível), hamburger animado (3 barras → X), painel mobile reconstruído (links + chip + CTA num dropdown animado, fecha com Esc/clique).
+2. **Footer épico** (`footer.js`): footer-hero CTA ("Cresça com quem já passou pela curva."), footer-stats (5 números com count-up), orbs decorativos, manifesto pull-quote com o ton-anchor verbatim, social row (Substack/LinkedIn/GitHub), link build-in-public. Opt-outs: `data-cta="off"` (home + páginas de conversão/obrigado), `data-stats="off"` (home, que já tem os números no hero).
+3. **Hero memorável** (`pages.css` + `index.html`): badge com pulse dot ("Desde 2015 · Meetup S1·E1 em 9 jul"), orbs flutuantes amber/teal, entrada em stagger, sublinhado animado no *Multidisciplinar*, focus ring no form.
+4. **Scroll reveal** (`enhance.js` novo): IntersectionObserver marca heads/grids da home + footer com `[data-reveal]` e stagger; estado escondido gated em `html.gc-js`.
+5. **Count-up** (`enhance.js`): stats da home/meetup/footer sobem de 0 com formatação pt-BR ao entrar no viewport.
+6. **Micro-interações** (`components.css`): ícones dos pilares viram squircles 56px com gradiente por tinta + hover scale/rotate, feature icons 48px com inversão amber no hover, marquee infinito na régua de logos (pausa no hover, mask fade), aspas decorativas nos testimonials, lifts em cards, sheen sweep nos botões primary, FAQ com expansão suave (`interpolate-size`, Chrome 129+).
+
+`enhance.js` foi adicionado a todas as 20 páginas (defer). Cache CSS bumped pra `v=20260610`. Smoke test Playwright (desktop+mobile) verde.
+
+**Reversibility:** Reverter = git revert do commit; nenhum dado/contrato externo afetado.
+
+---
+
 ## Active Blockers
 
 ### B-001 (URGENTE): Revisar TODA documentação oficial pro novo padrão 2026-05-25
@@ -858,6 +881,12 @@ Catalogados em `docs/superpowers/specs/2026-04-22-growth-club-business-plan-desi
 ---
 
 ## Lessons Learned
+
+### L-005: Cache mismatch vale pra JS de web components, não só CSS
+**Context:** 2026-06-11, deploy do AD-019 quebrou o mobile em produção ("nav estourando a largura da página"). Causa: `header.js`/`footer.js` eram servidos pelo Cloudflare Pages com `Cache-Control: max-age=14400` (4h) e **sem** `?v=` — celulares que já tinham visitado o site rodaram o `header.js` antigo (markup `.nav-links`/`.nav-cta` direto no `.nav-inner`) com o `chrome.css` novo (que só esconde `.nav-menu` no mobile). Resultado: 6 links + CTA expostos num viewport de 390px, `scrollWidth` 585px vs 390px.
+**Problem:** É o L-003 aplicado a JS — web components que geram markup são tão acoplados ao CSS quanto o próprio HTML, mas o cache busting cobria só os stylesheets.
+**Solution:** (1) Todo `<script src="/assets/js/...">` carrega o mesmo `?v=` dos stylesheets — `bin/bump-css-version.sh` agora bumpa ambos. (2) Toda mudança de classe/estrutura em markup gerado por JS precisa de regra CSS defensiva pro markup antigo durante a janela de TTL (ex.: `.nav-inner > .nav-links { display: none }` no mobile do `chrome.css`). (3) `_headers` declara cache explícito pra `/assets/js/*` igual ao CSS.
+**Aplicável a:** qualquer mudança futura em `header.js`/`footer.js` ou novo asset JS que renderize markup.
 
 ### L-004: Regionalismo geográfico em copy editorial multidisciplinar é caro
 **Context:** Em 2026-05-25, tentei "tempero mineiro" (cê / tá / vamo / pra) em ~14 páginas a pedido do Henrique. Após visualizar, Henrique pediu reverter urgente.

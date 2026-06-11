@@ -139,7 +139,7 @@ There is no `package.json` or equivalent. None of the commands in `.agents/workf
 **Site dev/deploy helpers:**
 
 - **Local preview:** `python3 -m http.server 8788 -d website` → http://localhost:8788. Use porta livre (8765 conflita com LogiPlugin do Logitech G HUB em macs do Henrique).
-- **Cache bust CSS antes de deploy:** `./bin/bump-css-version.sh` — auto-incrementa o `?v=YYYYMMDD[letra]` em todos os `<link rel="stylesheet">`. Roda **toda vez** que mexer em CSS antes do `wrangler pages deploy`, senão browsers que cachearam a versão anterior pegam HTML novo + CSS velho e o site quebra (L-003). `./bin/bump-css-version.sh --check` só mostra a versão atual sem mexer em nada.
+- **Cache bust CSS/JS antes de deploy:** `./bin/bump-css-version.sh` — auto-incrementa o `?v=YYYYMMDD[letra]` em todos os `<link rel="stylesheet">` **e** `<script src="/assets/js/...">`. Roda **toda vez** que mexer em CSS ou JS antes do `wrangler pages deploy`, senão browsers que cachearam a versão anterior pegam HTML novo + asset velho e o site quebra (L-003 pra CSS, L-005 pra JS dos web components — TTL de 4h no Cloudflare). Mudou classe/estrutura de markup gerado por `header.js`/`footer.js`? Deixa regra CSS defensiva pro markup antigo. `./bin/bump-css-version.sh --check` só mostra a versão atual sem mexer em nada.
 - **Deploy:** `wrangler pages deploy website --project-name growth-club --branch main`.
 
 ## Language & commits

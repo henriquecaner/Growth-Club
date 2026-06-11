@@ -1993,3 +1993,142 @@ ul.home-logos-row {
   width: 12px;
   height: 12px;
 }
+
+/* =========================================================================
+   HOME HERO — memorable pass (2026-06-10)
+   Orbs flutuantes amber/teal, badge com pulse dot, entrada em stagger,
+   sublinhado animado no em do H1, focus ring no form de captura.
+   ========================================================================= */
+.home-hero {
+  position: relative;
+  overflow: hidden;
+}
+.home-hero::before,
+.home-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+.home-hero::before {
+  top: -160px;
+  left: -120px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, var(--accent-amber-glow) 0%, transparent 70%);
+}
+.home-hero::after {
+  bottom: -200px;
+  right: -140px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, var(--accent-teal-glow) 0%, transparent 70%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero::before { animation: gc-orb-drift 14s ease-in-out infinite alternate; }
+  .home-hero::after  { animation: gc-orb-drift 18s ease-in-out infinite alternate-reverse; }
+}
+@keyframes gc-orb-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(48px, 28px) scale(1.12); }
+}
+.home-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Badge acima do H1 */
+.home-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 13px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: color-mix(in oklab, var(--bg-raised) 80%, transparent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+  margin-bottom: var(--space-6);
+}
+.home-hero-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  box-shadow: 0 0 0 3px var(--accent-teal-soft);
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-badge .badge-dot { animation: gc-badge-pulse 2.4s ease-in-out infinite; }
+}
+@keyframes gc-badge-pulse {
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+.home-hero-badge strong {
+  color: var(--accent-amber-dim);
+  font-weight: 700;
+}
+
+/* Sublinhado animado no em do H1 (revela depois da entrada) */
+.home-hero-h1 em {
+  position: relative;
+  white-space: nowrap;
+}
+.home-hero-h1 em::after {
+  content: "";
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 0.02em;
+  height: 0.09em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-amber-bright));
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-h1 em::after { animation: gc-underline-in 640ms var(--ease-out) 900ms forwards; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-h1 em::after { transform: scaleX(1); }
+}
+@keyframes gc-underline-in {
+  to { transform: scaleX(1); }
+}
+
+/* Entrada em stagger (espelha o padrão das sub-páginas) */
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-inner > * {
+    opacity: 0;
+    animation: fade-up 720ms var(--ease-out) forwards;
+  }
+  .home-hero-inner > *:nth-child(1) { animation-delay:  60ms; }
+  .home-hero-inner > *:nth-child(2) { animation-delay: 160ms; }
+  .home-hero-inner > *:nth-child(3) { animation-delay: 280ms; }
+  .home-hero-inner > *:nth-child(4) { animation-delay: 400ms; }
+  .home-hero-inner > *:nth-child(5) { animation-delay: 520ms; }
+  .home-hero-inner > *:nth-child(6) { animation-delay: 640ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-inner > * {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* Form de captura — focus ring + transição */
+.home-hero-form input {
+  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out), background 160ms var(--ease-out);
+}
+.home-hero-form input:focus-visible {
+  outline: none;
+  border-color: var(--accent-amber);
+  background: var(--bg-raised);
+  box-shadow: 0 0 0 4px var(--accent-amber-soft);
+}

@@ -32,6 +32,20 @@ Referência: [`STATE.md` AD-023](.specs/project/STATE.md) · [plan](docs/superpo
 
 ---
 
+## 2026-06-10 · AD-029 · Usability/delight pass — nav e footer épicos + camada de animação
+
+> Registrado originalmente como "AD-019" numa sessão paralela; renumerado pra AD-029 no merge de 2026-06-11 (colisão com o AD-019 de 2026-05-25, Meetup S1·E1 → CRMBonus).
+
+Deep review de usabilidade no site com meta explícita: sair de 6/10 pra 9/10. A descoberta central do review: o CSS já tinha estilos completos pra um footer rico (hero CTA, stats, orbs, manifesto) e pro chip de meetup na nav — mas os web components renderizavam só a versão mínima. O pass ativa o que existia e adiciona a camada que faltava.
+
+O que mudou: nav ganha chip do próximo meetup (S1·E1 · 9 JUL · SP com pulse dot), barra de progresso de scroll e menu mobile reconstruído (painel animado com links + chip + CTA, hamburger que vira X). Footer ganha CTA gigante ("Cresça com quem já passou pela curva."), 5 stats com count-up, manifesto pull-quote com o ton-anchor, social row e link build-in-public. Home ganha hero com badge, orbs flutuantes, entrada em stagger e sublinhado animado no "Multidisciplinar"; régua de logos vira marquee infinito; ícones dos 4 pilares viram squircles com gradiente; reveals por scroll em todas as seções; FAQ com expansão suave.
+
+Régua técnica: tudo progressivo — sem JS ou com `prefers-reduced-motion`, o conteúdo fica 100% visível e estático (coerente com L-003). Zero dependência nova: um arquivo `enhance.js` vanilla (IntersectionObserver) + CSS scroll-driven onde o browser suporta. 20 páginas cobertas via web components. Smoke test Playwright (desktop + mobile) verde.
+
+Referência: [`STATE.md` AD-029](.specs/project/STATE.md).
+
+---
+
 ## 2026-05-18 · AD-011 · Refino de copy home/membro/empresas v2 — cluster analysis aplicado
 
 Refino editorial cirúrgico nas 3 páginas centrais do site (home, membro, empresas). Frame de entrada na comunidade reposicionado de "cadastro grátis 1-clique pra newsletter Substack" pra "candidatura com triagem leve em form de entrevista" — tier continua free (Growth Hacker), triagem é qualitativa. Pull do form Substack signup de todas as páginas; placeholder "FORM ABRE EM BREVE" segura o lugar até o sub-projeto separado definir campos, perguntas e handler.

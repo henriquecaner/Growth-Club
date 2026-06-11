@@ -197,43 +197,140 @@
   stroke-width: 2;
 }
 
-/* Mobile toggle */
+/* Desktop: .nav-menu é transparente pro flex layout do nav-inner */
+.nav-menu { display: contents; }
+
+/* Scroll progress — linha amber→teal na base da nav (CSS scroll-driven,
+   some sozinha em browsers sem animation-timeline) */
+.nav-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-teal));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+.nav { position: sticky; }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .nav-progress {
+      animation: gc-nav-progress linear both;
+      animation-timeline: scroll();
+    }
+  }
+}
+@keyframes gc-nav-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Mobile toggle — hamburger 3 barras que vira X */
 .nav-mobile-toggle {
   display: none;
   background: transparent;
   border: 1px solid var(--border-default);
   color: var(--fg-primary);
-  padding: 8px;
+  padding: 10px 9px;
   border-radius: var(--radius-sm);
   cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
   align-items: center;
   justify-content: center;
 }
+.nav-toggle-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 240ms var(--ease-out), opacity 160ms var(--ease-out);
+}
+.nav[data-mobile-open="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav[data-mobile-open="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav[data-mobile-open="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Chip some primeiro quando a largura aperta */
+@media (max-width: 1160px) {
+  .nav-meetup-chip { display: none; }
+}
 
 @media (max-width: 880px) {
-  .nav-links { display: none; }
-  .nav-cta { display: none; }
+  .nav-menu { display: none; }
   .nav-mobile-toggle { display: inline-flex; }
 
-  .nav[data-mobile-open="true"] .nav-links {
+  /* Legacy fallback — clientes com header.js antigo em cache (TTL 4h no
+     Cloudflare): o markup velho tem .nav-links/.nav-cta direto no .nav-inner,
+     sem .nav-menu. Sem estas regras, CSS novo + JS velho expõe os 6 links e o
+     CTA no viewport mobile e estoura a largura da página (L-005). */
+  .nav-inner > .nav-links,
+  .nav-inner > .nav-cta { display: none; }
+  .nav[data-mobile-open="true"] .nav-inner > .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.97);
+    border-bottom: 1px solid var(--border-default);
+    padding: 20px 40px 24px;
+  }
+
+  .nav[data-mobile-open="true"] .nav-menu {
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--bg-base);
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-default);
-    padding: 20px 40px 24px;
+    padding: 24px 40px 28px;
+    gap: 20px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+    animation: gc-nav-panel 260ms var(--ease-out);
+  }
+  .nav[data-mobile-open="true"] .nav-links {
+    flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 4px;
+  }
+  .nav[data-mobile-open="true"] .nav-links a {
+    font-size: 17px;
+    padding-block: 10px;
+    width: 100%;
+  }
+  .nav[data-mobile-open="true"] .nav-trailing {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(245, 241, 232, 0.10);
+  }
+  .nav[data-mobile-open="true"] .nav-meetup-chip {
+    display: inline-flex;
+    justify-content: center;
   }
   .nav[data-mobile-open="true"] .nav-cta {
-    display: inline-flex;
-    position: absolute;
-    top: calc(100% + 280px);
-    left: 40px;
+    justify-content: center;
+    padding-block: 13px;
   }
+}
+@keyframes gc-nav-panel {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav[data-mobile-open="true"] .nav-menu { animation: none; }
+  .nav-toggle-bar { transition: none; }
 }
 
 /* =========================================================================
