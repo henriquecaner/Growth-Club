@@ -791,6 +791,12 @@ Catalogados em `docs/superpowers/specs/2026-04-22-growth-club-business-plan-desi
 
 ## Lessons Learned
 
+### L-005: Cache mismatch vale pra JS de web components, não só CSS
+**Context:** 2026-06-11, deploy do AD-019 quebrou o mobile em produção ("nav estourando a largura da página"). Causa: `header.js`/`footer.js` eram servidos pelo Cloudflare Pages com `Cache-Control: max-age=14400` (4h) e **sem** `?v=` — celulares que já tinham visitado o site rodaram o `header.js` antigo (markup `.nav-links`/`.nav-cta` direto no `.nav-inner`) com o `chrome.css` novo (que só esconde `.nav-menu` no mobile). Resultado: 6 links + CTA expostos num viewport de 390px, `scrollWidth` 585px vs 390px.
+**Problem:** É o L-003 aplicado a JS — web components que geram markup são tão acoplados ao CSS quanto o próprio HTML, mas o cache busting cobria só os stylesheets.
+**Solution:** (1) Todo `<script src="/assets/js/...">` carrega o mesmo `?v=` dos stylesheets — `bin/bump-css-version.sh` agora bumpa ambos. (2) Toda mudança de classe/estrutura em markup gerado por JS precisa de regra CSS defensiva pro markup antigo durante a janela de TTL (ex.: `.nav-inner > .nav-links { display: none }` no mobile do `chrome.css`). (3) `_headers` declara cache explícito pra `/assets/js/*` igual ao CSS.
+**Aplicável a:** qualquer mudança futura em `header.js`/`footer.js` ou novo asset JS que renderize markup.
+
 ### L-004: Regionalismo geográfico em copy editorial multidisciplinar é caro
 **Context:** Em 2026-05-25, tentei "tempero mineiro" (cê / tá / vamo / pra) em ~14 páginas a pedido do Henrique. Após visualizar, Henrique pediu reverter urgente.
 **Problem:** A voz Growth Club já é coloquial e franca (não institucional/corporativa). Adicionar marcadores regionais cria 2 problemas: (a) limita o alcance percebido — comunidade de 33 cidades e 7 estados não é "mineira", (b) parece artificial em copy que precisa funcionar pra leitor em qualquer região do Brasil. A voz default já é humanizada (CLAUDE.md global manda usar humanizer skill que remove AI-isms) — adicionar regionalismo é overshoot. Tentativa de "humanizar mais" via sotaque foi confundida com "tornar mais natural", mas o resultado prático foi parecer caricatura.

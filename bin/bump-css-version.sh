@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# bin/bump-css-version.sh — auto-bump cache-busting query string nos <link rel="stylesheet">
+# bin/bump-css-version.sh — auto-bump cache-busting query string nos
+# <link rel="stylesheet"> E nos <script src="/assets/js/..."> (mesmo ?v= único).
 #
 # Convenção: ?v=YYYYMMDD com sufixo a/b/c… quando há múltiplos deploys no mesmo dia.
-# Roda sempre antes de `wrangler pages deploy` quando mexer em qualquer CSS, pra
-# forçar refresh do cache em browsers que ainda têm a versão anterior.
+# Roda sempre antes de `wrangler pages deploy` quando mexer em qualquer CSS ou JS,
+# pra forçar refresh do cache em browsers que ainda têm a versão anterior.
 #
 # Uso:
 #   ./bin/bump-css-version.sh             # auto-bump usando data de hoje
@@ -13,6 +14,8 @@
 #
 # AD-013 + L-003: cache mismatch entre HTML novo e CSS cacheado quebra o site
 # (regras .icon e .member-form ausentes → SVG explode + form perde grid).
+# L-005: o mesmo vale pra JS — header.js/footer.js cacheados (TTL 4h) com CSS
+# novo expõem markup antigo sem as regras mobile → nav estoura no celular.
 
 set -euo pipefail
 

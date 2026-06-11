@@ -262,6 +262,26 @@
   .nav-menu { display: none; }
   .nav-mobile-toggle { display: inline-flex; }
 
+  /* Legacy fallback — clientes com header.js antigo em cache (TTL 4h no
+     Cloudflare): o markup velho tem .nav-links/.nav-cta direto no .nav-inner,
+     sem .nav-menu. Sem estas regras, CSS novo + JS velho expõe os 6 links e o
+     CTA no viewport mobile e estoura a largura da página (L-005). */
+  .nav-inner > .nav-links,
+  .nav-inner > .nav-cta { display: none; }
+  .nav[data-mobile-open="true"] .nav-inner > .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.97);
+    border-bottom: 1px solid var(--border-default);
+    padding: 20px 40px 24px;
+  }
+
   .nav[data-mobile-open="true"] .nav-menu {
     display: flex;
     flex-direction: column;
