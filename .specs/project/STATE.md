@@ -7,6 +7,45 @@
 
 ## Recent Decisions (ADR)
 
+### AD-033: Design v1 do tema gc-site aprovado — mix PMA × Creator Science + exceções deliberadas ao DS
+**Date:** 2026-06-11
+**Status:** Accepted ("abravamos seguir assim" — Henrique)
+
+**Context:** Iterações de design no tema `gc-site` guiadas por navegação visual ao vivo no PMA (browser automation: hero é vídeo `hero.webm` de gradient mesh; mega-menu de 3 colunas com promo contextual; biblioteca dark com tabs de pílula) e pelo benchmark creatorscience.com trazido pelo Henrique (captura de email no hero, promessa de tempo, carimbo circular, card pontilhado). Henrique deu licença explícita pra **quebrar regras travadas dos documentos** em prol do design ("não precisa obedecer todas as regras... quero ir MUITO além").
+
+**Decision — o que ficou aprovado:**
+- **Hero**: mesh de gradiente animado em CSS puro (sem vídeo; blobs amber/teal + grão SVG) + announce pill dark com dot pulsante (S1E1) + headline com promessa de tempo ("Growth B2B de verdade, em 10 minutos por semana" — ⚠️ cadência semanal pendente de validação) + captura de email inline + avatares + ticker de quotes (placeholders).
+- **Mega-menu**: painel contido 920px, 3 colunas (trilho › submenu › promo dark contextual), backdrop via `body:has()`.
+- **Sem utility strip**: topo reservado pra announcement bar nativa do Ghost; "Entrar" foi pro header. Seção stats+copy removida (redundante com a trust line do hero).
+- **Fundo neutro `#FAFAFA`** no lugar do Pub Cream `#F5F1E8` ("muito pastel") — override na camada do tema, escala inteira neutralizada (raised #FFF, void/sunken #EFEFEF/#F1F1F1). **Supersede parcialmente a paleta de fundos do AD-008** se confirmado no site todo.
+- **CTA final "o brinde"**: ato escuro full-bleed — marquee outline do ton-anchor, mesh neon, glow seguindo o ponteiro, form glassmorphism, carimbo âmbar com anel girando. **Exceção deliberada à regra do DS "dark nunca vive sozinho"** (a página anoitece no finale: biblioteca → brinde → footer).
+- **Acessibilidade (painel de críticos, workflow 3 lentes)**: botão primário = Growth Black sobre amber (8.6:1, antes 2.05:1 reprovado); token novo `--accent-amber-text #A87B30` pra texto amber em fundo claro; números íntegros (sem "+", referentes corretos).
+
+**Consequences:** tema `gc-site` gscan-clean é o design de referência pro site inteiro (Plano C migra as 21 páginas nele). Pendentes de conteúdo: depoimentos reais com nome (placeholders no ticker), fotos de membros nos avatares, validação da promessa de cadência. DS AD-008 ganhará atualização formal (fundos neutros + amber-text + exceção dark-finale) quando o Henrique bater o martelo pós-site no ar.
+
+---
+
+### AD-032: Ghost vai pro apex — site unificado com benchmark PMA (Source + DS AD-008)
+**Date:** 2026-06-11
+**Status:** Accepted (direção aprovada pelo Henrique; spec em draft pra detalhamento)
+
+**Context:** Henrique trouxe o Product Marketing Alliance (`productmarketingalliance.com` — Ghost 6.45 + Varnish + tema bespoke no domínio raiz) como benchmark e pediu pra "clonar template/páginas/recursos (de-para) e criar um tema Ghost suportado em cima, depois customizar". Decisão de fronteira: **não clonar o tema proprietário do PMA** (copyright + viraríamos clone visual) — mapear a **arquitetura de informação e features** (fatos funcionais, referência legítima) e construir tema próprio sobre o **Source** (tema oficial Ghost, MIT) vestido com o Growth Club Design System (AD-008). Hoje o Ghost vive em `growthclub.pro/content`; o site institucional (21 páginas) está no Cloudflare Pages no apex.
+
+**Decision:**
+- **Apex:** `growthclub.pro/` inteiro passa a ser Ghost. As 21 páginas do Pages migram pra dentro do tema (home/sobre custom templates; recursos/legais como Ghost pages; meetups como collection). Pages arquivado (não deletado) ≥30 dias pós-cutover.
+- **Escopo v1 de motores:** Meetups (listagem filtrável) + Content Hub (biblioteca filtrável) + Página de planos (Growth Hacker free + avulsos, **sem** tabela de tiers — Master/Founder seguem parqueados e fora do site). Home/Sobre/Contato de base. **Fora do v1:** quiz/trilha, periodic table, job board, salary calc, certificações, sub-alliances.
+- **DB no-sleep = keep-alive cron grátis** (Worker Cron → `/_gc/keepalive` com `SELECT 1` real; ping TCP não conta pro idle-detection do Aiven). Ressalva de fragilidade aceita; **edge cache é a rede de segurança** (anon cacheado + stale-while-revalidate).
+- **Edge cache no Worker** (Cloudflare Cache API) = equivalente funcional do Varnish do PMA: cacheia HTML GET de visitante anônimo, bypass pra membro logado e `/ghost/*`.
+- **Sequência em 3 sub-planos:** A (hardening infra — pré-requisito duro) → B (tema sobre Source + DS + 3 motores, construído em `/content`) → C (cutover apex + migração 21 páginas + redirects 301 `/content/*`→`/*`).
+
+**Consequences:**
+- Tema precisa **self-hostar o DS** (tokens/components CSS) — hoje o `gc-news` lê do Pages por same-origin; no apex o Ghost é a origem.
+- Risco de cutover (derrubar site vivo) mitigado por: Plano A obrigatório antes, cache quente, rollback = reverter route pro Pages. Email Google Workspace não afetado (é MX/DNS, não HTTP) — auditar `/.well-known` antes.
+- Spec: `docs/superpowers/specs/2026-06-11-ghost-apex-pma-benchmark-design.md`. Planos: `docs/superpowers/plans/` (A/B/C). Tema novo: `growth-club-newsletter/theme/gc-site` (base Source).
+- Pendências pré-Plano-A: (2) AI LIKE A PRO vira Ghost page ou segue externo; (3) confirmar arquivamento do Pages. Decisão (1) DB resolvida (keep-alive).
+
+---
+
 ### AD-031: Web analytics Tinybird no ar — datafiles deployados + 2º container de ingestão (traffic-analytics)
 **Date:** 2026-06-11
 **Status:** Accepted
