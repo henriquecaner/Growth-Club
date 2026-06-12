@@ -7,6 +7,16 @@
 
 ## Recent Decisions (ADR)
 
+### AD-035: Substack migrado + Growth Club federado no fediverso (ActivityPub via gateway oficial)
+**Date:** 2026-06-12
+**Status:** Done
+
+**Substack (fecha o Plano 3):** o importador one-click do admin falhou no serviço hospedado `migrate.ghost.org` (404/400 lado deles). Caminho executado: export ZIP + CSV do Substack (Henrique baixou) → `bin/import-substack.py` (Admin API): **23 posts** com slug/data/visibilidade originais (21 published/public + 2 drafts; tags `newsletter` + `#substack`) e **2.273 membros** (CSV convertido pro formato Ghost, upload `/members/upload/` 202 → job assíncrono, label `substack-import`, sem disparo de email). Gotcha de produção: User-Agent `python-urllib` leva 403/1010 do Bot Fight Mode do Cloudflare.
+
+**ActivityPub (fecha "resolve o network"):** o self-host do serviço em Cloudflare Containers foi construído por inteiro (schema 81 migrations no Aiven em database isolado + user MySQL dedicado; imagem oficial espelhada via skopeo pro registry CF; TLS no MySQL via preload Node injetando ssl no mysql2 — socat não serve: MySQL é STARTTLS) e o serviço ficou **comprovadamente saudável dentro do container** (boot 4s, ping interno OK), mas o caminho DO→container permaneceu black hole (achados no código da lib: estado `healthy` fantasma persistido no DO storage; `portReadyTimeoutMS` é orçamento de tentativas — 120s viram ~35min com probes pendurados; entrega inbound incompatível com qualquer bind testado). **Decisão: pivô pro gateway oficial hospedado `ap.ghost.org`** — default da Ghost pra self-hosters; os 3 paths (`/.well-known/webfinger`, `/.well-known/nodeinfo`, `/.ghost/activitypub/*`) viram proxy com `X-Forwarded-Host`. Toggle Network OFF→ON registrou o site. **Validado: webfinger/nodeinfo/ator 200 — `@index@growthclub.pro` existe no fediverso.** Limites do free (2k followers / 100 interações-dia) folgados pra Fase 1; container/migrations ficam no repo como rota de upgrade documentada.
+
+---
+
 ### AD-034: CUTOVER EXECUTADO — growthclub.pro inteiro é o Ghost (site unificado no ar)
 **Date:** 2026-06-11
 **Status:** Done (autorizado pelo Henrique: "cutover completo")
