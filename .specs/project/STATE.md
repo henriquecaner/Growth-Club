@@ -7,6 +7,16 @@
 
 ## Recent Decisions (ADR)
 
+### AD-036: RRM openaccess no ar + faxina do ActivityPub self-hosted
+**Date:** 2026-06-12
+**Status:** Done
+
+**RRM (fecha o Plano 4):** snippet `swg-basic.js` do Reader Revenue Manager (config `:openaccess`, publicação `CAow69bgCw`) injetado no `<head>` do tema `gc-site` via `default.hbs`, **só em `{{#is "post"}}`** — `type: "NewsArticle"` só é verdade semântica em artigos, não nas páginas institucionais. Nesta fase o RRM serve **aquisição** (prompt de signup com login Google 1-toque + elegibilidade Discover/News/Search), não monetização (Fase 2 usa outro product-id). Validado em produção: 1 ocorrência em post, 0 na home. Optei pelo tema em vez do Code Injection do admin pro snippet ficar versionado no git.
+
+**Faxina ActivityPub (fecha geladeira do AD-035):** removidos do Worker a classe `ActivityPubContainer`, o `AP_BOOT` (preload TLS) e os endpoints temporários (`/_gc/ap-bootlog`, `/_gc/kill-ap-old`, `/_gc/ap-ping`, `/_gc/restart-ap`); binding `ACTIVITYPUB` + entry de container + migration `v4` com `deleted_classes` (destrói os DOs com o estado `healthy` fantasma). Application órfã deletada (2 instâncias live encerradas), imagens `gc-activitypub` removidas do registry CF, secret `ACTIVITYPUB_MYSQL_USER_PASS` e bootlog do R2 apagados. A federação **permanece intacta** no proxy `ap.ghost.org`. **Bug latente corrigido na mesma passada:** o proxy AP usava `redirect:'follow'` que escaparia do Worker (o gateway responde `302` com `Location` absoluto na própria zona, e subrequest same-zone não reexecuta a route → cairia no origin errado) — trocado por follow manual reescrevendo o host de volta pro gateway (máx 3 hops). Achados por painel de revisão (4 lentes + refutação adversarial); user/database `activitypub` no Aiven ficam órfãos (drop manual opcional — não seguram conexão).
+
+---
+
 ### AD-035: Substack migrado + Growth Club federado no fediverso (ActivityPub via gateway oficial)
 **Date:** 2026-06-12
 **Status:** Done
