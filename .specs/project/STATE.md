@@ -7,6 +7,25 @@
 
 ## Recent Decisions (ADR)
 
+### AD-034: CUTOVER EXECUTADO — growthclub.pro inteiro é o Ghost (site unificado no ar)
+**Date:** 2026-06-11
+**Status:** Done (autorizado pelo Henrique: "cutover completo")
+
+**Context:** Conclusão do AD-032. Pré-requisitos prontos: Plano A no ar (keep-alive + edge cache), tema gc-site doc-compliant (auditoria 6 lentes), 17 conteúdos migrados como draft, Admin API key disponível.
+
+**Decision/Execution (3 fases, ~5 min de janela):**
+- **Fase 1 (Admin API, Ghost ainda em /content):** tema gc-site enviado (zip) e **ativado**; 11 pages + 6 posts **publicados** (S1E1 com `featured:true` → destaque da home); page `about` e post `coming-soon` (defaults) despublicados. Limitações de integração descobertas: `/settings/routes/yaml/` e `/settings/` são **session-only** (403 pra API tokens) → routes.yaml movido pro BOOT_SCRIPT (melhor: disco efêmero perderia upload manual a cada cold start) e **locale pt-br ficou manual**.
+- **Fase 2 (Worker):** rota `growthclub.pro/*` (Pages permanece deployado = rollback instantâneo removendo a rota); `PUBLIC_URL` apex; BOOT instala gc-site + escreve routes.yaml; endpoints internos com alias legado; **redirects 301** `/content/*`→`/*` (inclui `/content/ghost`→`/ghost` e tracking de email `/content/r/*`) e `/rss/`→`/recursos/rss/`; cache bypass na raiz; fix `x-gc-cache: HIT`.
+- **Fase 3:** restart (boot ~75s) + validação **14/14 verde**: home gc-site, motores /meetups/ e /recursos/, pages, permalink de collection, redirects, feed, sitemap, 404 com marca, admin.
+
+**Consequences:**
+- **Site institucional (Pages) fora do ar no apex** — arquivado como rollback ≥30 dias (AD-032). DNS/MX intocados (email Google OK).
+- **Admin mudou:** `growthclub.pro/ghost/` (o antigo /content/ghost redireciona).
+- Pendências do Henrique: locale pt-br (Settings → General → Publication language); revisar as 17 páginas publicadas (foram ao ar na conversão crua do HTML); quotes/avatares reais; navegação primária no admin (Meetups/Conteúdo/Planos).
+- Operação editorial nova: meetup que aconteceu ganha tag interna `#passado`; próximo meetup = `featured`. Announce do hero + stats editáveis em Design → Site-wide → homepage (custom settings).
+
+---
+
 ### AD-033: Design v1 do tema gc-site aprovado — mix PMA × Creator Science + exceções deliberadas ao DS
 **Date:** 2026-06-11
 **Status:** Accepted ("abravamos seguir assim" — Henrique)
