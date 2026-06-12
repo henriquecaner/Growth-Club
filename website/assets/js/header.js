@@ -34,7 +34,7 @@ class GcHeader extends HTMLElement {
               ${link('contato',  '/contato',             'Contato')}
             </div>
             <div class="nav-trailing">
-              <a class="nav-meetup-chip" href="/meetups/sp-s1-e1" aria-label="Próximo meetup: S1 E1, 9 de julho, São Paulo">
+              <a class="nav-meetup-chip" href="/meetups/sp-s1-e1" aria-label="S1·E1 / 9 JUL · SP — Próximo meetup">
                 <span class="chip-dot" aria-hidden="true"></span>
                 <span class="chip-label">S1·E1</span>
                 <span class="chip-sep" aria-hidden="true">/</span>

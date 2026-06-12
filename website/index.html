@@ -47,10 +47,10 @@
 
   <link rel="preload" href="/assets/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="/assets/fonts/Satoshi-Black.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260611">
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260611">
-  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260611">
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260611">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=20260612a">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260612a">
+  <link rel="stylesheet" href="/assets/css/chrome.css?v=20260612a">
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260612a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,7 +82,8 @@
         <h1 class="home-hero-h1">A <span class="home-hero-num">#1</span> Comunidade de Growth<br><em>Multidisciplinar</em> do Brasil.</h1>
         <p class="home-hero-sub">Somos uma comunidade de profissionais de marketing, vendas, sucesso de clientes, analytics, produtos e founders.</p>
         <form class="home-hero-form" action="/membro" method="get">
-          <input type="email" name="email" placeholder="seu melhor email" required>
+          <label for="hero-email" class="visually-hidden">Seu melhor e-mail</label>
+          <input type="email" id="hero-email" name="email" placeholder="seu melhor email" required autocomplete="email">
           <button type="submit" class="btn primary">Fazer parte</button>
         </form>
         <p class="home-hero-disclaimer">Sem spam. Sem cadência forçada. Aprovação por triagem.</p>
@@ -569,10 +570,10 @@
 
   <gc-footer data-cta="off" data-stats="off"></gc-footer>
 
-  <script src="/assets/js/header.js?v=20260611"></script>
-  <script src="/assets/js/footer.js?v=20260611"></script>
-  <script src="/assets/js/enhance.js?v=20260611" defer></script>
-  <script src="/assets/js/analytics.js?v=20260611"></script>
+  <script src="/assets/js/header.js?v=20260612a"></script>
+  <script src="/assets/js/footer.js?v=20260612a"></script>
+  <script src="/assets/js/enhance.js?v=20260612a" defer></script>
+  <script src="/assets/js/analytics.js?v=20260612a"></script>
   <script>
     // Hero email capture → /api/lead (abandono de carrinho) → redirect /membro?email=X
     (() => {
@@ -630,6 +631,6 @@
       });
     })();
   </script>
-  <!-- <script src="/assets/js/newsletter-form.js?v=20260611"></script> — desativado em 2026-05-18, form Substack removido (spec v1.1). Reativa quando sub-projeto do form de entrevista decidir reutilizar handler. -->
+  <!-- <script src="/assets/js/newsletter-form.js?v=20260612a"></script> — desativado em 2026-05-18, form Substack removido (spec v1.1). Reativa quando sub-projeto do form de entrevista decidir reutilizar handler. -->
 </body>
 </html>

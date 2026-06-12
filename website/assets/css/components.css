@@ -935,8 +935,8 @@ h1.page-title em {
   color: var(--fg-primary);
   font-weight: 500;
 }
-.prose p em.amber { color: var(--accent-amber); font-style: normal; }
-.prose p em.teal { color: var(--accent-teal); font-style: normal; }
+.prose p em.amber { color: var(--text-amber); font-style: normal; }
+.prose p em.teal { color: var(--text-teal); font-style: normal; }
 
 .prose blockquote {
   margin: 32px 0;
@@ -1713,7 +1713,7 @@ footer.gc-footer::before {
 .section-h2.is-large {
   font-size: clamp(32px, 4vw, 48px);
 }
-.section-h2 em { font-style: normal; color: var(--accent-amber); }
+.section-h2 em { font-style: normal; color: var(--text-amber); }
 
 /* ---- Eye-label inline → block helper ---- */
 .eye-label.is-block { display: block; margin-bottom: 16px; }
@@ -1860,8 +1860,8 @@ footer.gc-footer::before {
 }
 
 /* ---- Emphasis-color tokens (replaces inline em color) ---- */
-em.em-amber, .em-amber { color: var(--accent-amber); font-style: normal; }
-em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
+em.em-amber, .em-amber { color: var(--text-amber); font-style: normal; }
+em.em-teal,  .em-teal  { color: var(--text-teal);  font-style: normal; }
 
 /* ---- Card heading shorthand (split-two and similar) ---- */
 .card-h3 {
@@ -1871,8 +1871,8 @@ em.em-teal,  .em-teal  { color: var(--accent-teal);  font-style: normal; }
   letter-spacing: -0.02em;
   margin-bottom: 16px;
 }
-.card-h3.is-teal  { color: var(--accent-teal); }
-.card-h3.is-amber { color: var(--accent-amber); }
+.card-h3.is-teal  { color: var(--text-teal); }
+.card-h3.is-amber { color: var(--text-amber); }
 
 /* ---- Section section padding override ---- */
 .section.is-alt { background: var(--bg-void); border-top: 1px solid var(--border-subtle); }
@@ -2353,3 +2353,16 @@ html.gc-js [data-reveal].is-in {
 }
 .home-eligibility-list li:hover { transform: translateX(4px); }
 .home-eligibility-list li:hover .icon { color: var(--accent-amber); }
+
+/* ---- K · ACCESSIBILITY UTILITY — visually hidden content ------------------ */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}

@@ -154,7 +154,7 @@
 .nav-meetup-chip .chip-label {
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--fg-tertiary);
+  color: var(--fg-secondary);
 }
 .nav-meetup-chip .chip-sep {
   color: var(--fg-tertiary);
@@ -620,7 +620,7 @@ footer.gc-footer > .wrap {
   color: var(--fg-tertiary);
   max-width: 34ch;
 }
-.foot-col h4 {
+.foot-col h3 {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.12em;

@@ -53,7 +53,7 @@ class GcFooter extends HTMLElement {
             </div>
 
             <div class="foot-col">
-              <h4>Comunidade</h4>
+              <h3>Comunidade</h3>
               <ul>
                 <li><a href="/recursos/newsletter">Newsletter Substack</a></li>
                 <li><a href="/recursos/comunidade">WhatsApp Community</a></li>
@@ -65,7 +65,7 @@ class GcFooter extends HTMLElement {
             </div>
 
             <div class="foot-col">
-              <h4>Sobre</h4>
+              <h3>Sobre</h3>
               <ul>
                 <li><a href="/sobre">Manifesto</a></li>
                 <li><a href="/sobre#crew">Founder Crew</a></li>
@@ -75,7 +75,7 @@ class GcFooter extends HTMLElement {
             </div>
 
             <div class="foot-col">
-              <h4>Empresas</h4>
+              <h3>Empresas</h3>
               <ul>
                 <li><a href="/empresas#patrocinio">Patrocinar</a></li>
                 <li><a href="/empresas#vagas">Vagas</a></li>

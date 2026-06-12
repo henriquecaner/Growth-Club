@@ -77,7 +77,7 @@
 .home-logos-label {
   text-align: center;
   font-size: var(--fs-body-sm);
-  color: var(--fg-tertiary);
+  color: var(--fg-secondary);
   margin: 0 0 var(--space-6);
 }
 .home-logos-row {
@@ -1808,7 +1808,7 @@ dialog.gc-dialog .dialog-actions {
 .home-eligibility-foot {
   text-align: center;
   font-size: var(--fs-body-sm);
-  color: var(--fg-tertiary);
+  color: var(--fg-secondary);
   margin: 0;
 }
 @media (max-width: 720px) {
@@ -1827,7 +1827,7 @@ ul.home-logos-row {
   font-size: var(--fs-body);
   letter-spacing: var(--ls-tight);
   color: var(--fg-secondary);
-  opacity: .65;
+  opacity: .72;
   white-space: nowrap;
   transition: opacity var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
