@@ -1,11 +1,33 @@
 # STATE: Growth Club
-**Last Updated:** 2026-06-11
+**Last Updated:** 2026-06-14
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-037: Polish do site (navegação + faxina post/página) + descontinuação da integração Google/RRM
+**Date:** 2026-06-14
+**Status:** Done
+
+**Context:** Sessão de pendências do site pós-cutover (AD-034). Henrique tocou os itens manuais no admin do Ghost (locale, revisão de páginas, navegação) enquanto o agente executou via Admin API + deploy de tema.
+
+**Decisão / o que foi feito:**
+1. **Locale pt-BR** setado (Settings → Publication language).
+2. **Navegação primária** — 4 itens no admin (`Sobre /sobre/` · `Meetups /meetups/` · `Conteúdo /recursos/` · `Planos /planos/`). **Bug de tema corrigido:** o markup da nav vivia em `partials/gc-nav.hbs` com `{{#foreach navigation}}` cru, incluído via `{{> "gc-nav"}}` — o foreach iterava vazio porque só o helper `{{navigation}}` injeta a lista no contexto. Criado `partials/navigation.hbs` + trocado o foreach por `{{navigation}}`. Commit `8b97e44`.
+3. **Faxina de conteúdo** ("post é post, página é página") — 5 seeds `recurso-*` + 1 draft (`excluido-voce-da-comunidade`) convertidos de **post→página** (delete+recreate via Admin API; `type` é imutável nos endpoints REST). 4 lixos deletados (`about`, `coming-soon`, `teste-do-caner`, `f77`). Backups completos (lexical+html) em `growth-club-newsletter/migration-backups/` (commit `0734486`). Posts 31→22, Pages 12→17. Hub `/recursos/` deixou de listar os seeds.
+4. **Integração Google/RRM descontinuada (decisão do founder).** Avaliadas 3 rotas pra signup Google→Ghost: GIS custom (Worker valida JWT → cria Ghost member), CTA nativo do RRM, e Subscription Linking. **Todas descartadas.** Razões: (a) Ghost não tem login externo/SSO — Google só *cria* o member, não estabelece sessão (ainda manda magic link), então o ganho de "baixa fricção" é parcialmente ilusório; (b) RRM nativo criaria base de membros **paralela** ao Ghost (dois botões de signup, dois destinos); (c) Subscription Linking é Beta + server-side pesado, feito pra conteúdo pago (tier parqueado). Sem evidência de que fricção de signup seja gargalo (motor de aquisição comprovado = LinkedIn do Henrique). **O `swg-basic` do AD-036 (SEO/Discover) foi removido** do `default.hbs` a pedido do founder — site 100% nativo Ghost (commit `b886ae0`). **Não refazer sem evidência de que a fricção de cadastro está custando conversão.**
+
+**Correção de registro (drift no AD-030):** o AD-030/AD-027 documentam o email **transacional** via Cloudflare Email Sending (`hey@mail.growthclub.pro`). O código real do Worker (`src/index.js:92-109`) **consolidou tudo no Mailgun** (`hey@send.growthclub.pro`, `smtp.mailgun.org:465`) — o CF Email Sending só autoriza `@mail.`, dando `550` no welcome (que sai com sender `@send.` da newsletter). **Estado real: bulk + transacional, ambos via Mailgun `@send.growthclub.pro`.** O AD-030 está desatualizado nesse ponto.
+
+**Consequences:**
+- Navegação, conteúdo e tema sincronizados; site limpo de qualquer camada Google/RRM.
+- `growth-club-newsletter` (main): 3 commits — `8b97e44` (nav fix), `0734486` (backups), `b886ae0` (remoção RRM).
+- Remoção do `swg-basic` = perda da elegibilidade Google Discover/News (aceita pelo founder).
+- Reversibilidade: conteúdos em `migration-backups/`; RRM = `git revert b886ae0`.
+
+---
 
 ### AD-036: RRM openaccess no ar + faxina do ActivityPub self-hosted
 **Date:** 2026-06-12
