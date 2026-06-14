@@ -1020,6 +1020,14 @@ Catalogados em `docs/superpowers/specs/2026-04-22-growth-club-business-plan-desi
 
 ## Lessons Learned
 
+### L-006: Ghost pede variantes responsivas `/size/wN/` que o R2/ghos3 não gera
+**Context:** 2026-06-14, capas (feature images) dos posts apareciam quebradas **no site** mas OK no **admin**. Causa: o tema renderiza a feature image + srcset com as URLs de imagem responsiva do Ghost (`/content/images/size/w1200/...`), mas o storage é R2 via adapter `ghos3`, que **só guarda a original — não gera as variantes de tamanho**. A variante dava miss no R2, caía no redirect genérico `/content/*` → `/*` (do cutover AD-034) e virava `/images/size/...` → **404 text/plain** → `<img>` quebrado. O admin não quebra porque usa a URL original (sem `/size/`).
+**Problem:** Sintoma sistêmico e silencioso — afeta TODA feature image e TODO srcset de TODOS os posts no frontend, mas é invisível no admin (onde o editor trabalha). Fácil de não notar até alguém abrir o site logado-out.
+**Solution:** Fallback no Worker (`src/index.js`, commit `6ecff1d`): no GET de `/content/images/size/...` que dá miss no R2, fazer strip do prefixo `size/<spec>/(format/<x>/)?` e servir a **imagem original**. Puramente aditivo (só dispara no miss de `/size/`). Validado: 22/22 feature images via `/size/w1200/` → 200. **Detalhe de verificação:** o erro era um **301 (permanente)**, então browsers que já visitaram cacheiam o redirect — confirmar correção exige `Cmd+Shift+R` (hard-refresh), não F5; o `curl` (sem cache) mostra o estado real do servidor.
+**Aplicável a:** qualquer imagem nova no Ghost (capa ou corpo) — a correção é genérica e cobre futuras, mas se o serving de imagens do Worker for refatorado, preservar esse fallback. Relacionado a [[L-003]]/[[L-005]] (família de bugs de cache/serving no apex).
+
+---
+
 ### L-005: Cache mismatch vale pra JS de web components, não só CSS
 **Context:** 2026-06-11, deploy do AD-019 quebrou o mobile em produção ("nav estourando a largura da página"). Causa: `header.js`/`footer.js` eram servidos pelo Cloudflare Pages com `Cache-Control: max-age=14400` (4h) e **sem** `?v=` — celulares que já tinham visitado o site rodaram o `header.js` antigo (markup `.nav-links`/`.nav-cta` direto no `.nav-inner`) com o `chrome.css` novo (que só esconde `.nav-menu` no mobile). Resultado: 6 links + CTA expostos num viewport de 390px, `scrollWidth` 585px vs 390px.
 **Problem:** É o L-003 aplicado a JS — web components que geram markup são tão acoplados ao CSS quanto o próprio HTML, mas o cache busting cobria só os stylesheets.
