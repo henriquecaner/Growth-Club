@@ -1,16 +1,16 @@
 # Código de conduta · Growth Club
 
-> *Franco, com número, sem palco, com cerveja.*
+> *Especialista com especialista. Conversa entre pares. Sem teatro.*
 
 Este código é o pacto editorial do clube transformado em regra de convivência. Vale para a comunidade WhatsApp, meetups, livecast, newsletter, e este repositório no GitHub.
 
-A régua é única: discussão útil entre operadores que entregam. O resto é teatro, e teatro tem outros palcos.
+O princípio é único: discussão útil entre especialistas que entregam. O resto é teatro, e teatro tem outros palcos.
 
 ---
 
-## A régua é uma só
+## O dado vem junto
 
-*Se não tem número, não é Growth Club.*
+A curadoria do Growth Club não tem rótulo público (a régua "Se não tem número, não é Growth Club." foi aposentada em AD-016), mas a expectativa de convivência continua: contribuição forte traz evidência.
 
 Caso apresentado aqui (em issue, discussion, PR, comentário ou comunicação oficial) vem com evidência. CAC, LTV, MQL, pipeline, receita, ciclo, retenção, taxa de conversão, churn, NRR, qualquer métrica relevante. *"Funcionou bem"* não é argumento. *"Funcionou: CAC caiu 38% em 6 semanas"* é.
 
@@ -85,7 +85,7 @@ Este código se aplica a:
 Este código é uma adaptação radical de [Contributor Covenant](https://www.contributor-covenant.org), reescrito do zero para refletir o ton-anchor e o pacto editorial do Growth Club, ancorado em:
 
 - [`brand/voice/dos-and-donts.md`](../brand/voice/dos-and-donts.md)
-- [`brand/decisions/03-arquetipo-e-tom.md`](../brand/decisions/03-arquetipo-e-tom.md)
+- [`brand/decisions/05-archetype-multidisciplinar.md`](../brand/decisions/05-archetype-multidisciplinar.md)
 - [`brand/voice/manifesto.md`](../brand/voice/manifesto.md)
 - [`.specs/project/CONVENTIONS.md`](../.specs/project/CONVENTIONS.md)
 

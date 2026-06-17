@@ -2,9 +2,9 @@
 
 > Snapshot dos números que importam pra avaliação séria da comunidade. Atualizado mensalmente (ou após mudanças relevantes).
 >
-> Régua editorial: nenhum número decorativo. Cada métrica abaixo tem fonte e tem por que isso importa.
+> Critério: nenhum número decorativo. Cada métrica abaixo tem fonte e tem por que isso importa.
 
-Última atualização: 2026-04-28.
+Última atualização: 2026-06-16.
 Próxima atualização prevista: 2026-05-15 (pós-assinatura Founder Crew).
 
 ---
@@ -15,7 +15,7 @@ Próxima atualização prevista: 2026-05-15 (pós-assinatura Founder Crew).
 |---|---|---|---|
 | Newsletter Substack | 2.261 assinantes | 2019 | [`brgrowthclub.substack.com`](https://brgrowthclub.substack.com) |
 | Comunidade WhatsApp (total) | 715 membros | 2020 | Distribuído em 7 sub-grupos consolidados |
-| Core ativo (WhatsApp) | 391 operadores | 2024 | Subset que troca diariamente, validado em medição informal |
+| Core ativo (WhatsApp) | 391 especialistas | 2024 | Subset que troca diariamente, validado em medição informal |
 | Meetups realizados (presenciais) | 10+ edições | 2015 | Era Pré-S1 |
 | Workshops AI LIKE A PRO | Múltiplas edições | 2022 | Formato high-ticket, contínuo |
 
@@ -30,7 +30,7 @@ Próxima atualização prevista: 2026-05-15 (pós-assinatura Founder Crew).
 | Newsletter pública (Substack) | Semanal (terça) | Ativa desde 2019 |
 | Newsletter deep (paga) | Quinzenal, Fase 3 (jun/2027+) | Planejada |
 | Comunidade WhatsApp | Contínua, diária | Ativa |
-| Meetup presencial | A cada ~2 meses | Próximo: jun/2026 (S1E1 Barte) |
+| Meetup presencial | A cada ~2 meses | Próximo: 9 jul 2026 (S1E1 · CRMBonus) |
 | Livecast semanal | 1× por semana, patrocinado | Em ativação Fase 1 |
 | Workshop high-ticket | 2-4× por ano | Recorrente |
 

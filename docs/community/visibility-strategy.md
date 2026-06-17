@@ -10,13 +10,13 @@ Status: plano v1, 2026-04-28. A executar nos primeiros 90 dias da Cadeira 3.
 
 ## Princípio antes do plano
 
-A régua editorial vale dentro e fora do repo: *Se não tem número, não é Growth Club.* Star de growth-hack baseado em farm, RT bot ou cross-promo vazio quebra a régua e a gente perde mais do que ganha.
+O critério vale dentro e fora do repo: contribuição forte traz dado, não promessa (a régua nominal "Se não tem número, não é Growth Club." foi aposentada em AD-016, mas a curadoria continua via triagem). Star de growth-hack baseado em farm, RT bot ou cross-promo vazio quebra esse critério e a gente perde mais do que ganha.
 
 A meta é stars que vêm de leitura real do README, com contribuição implícita. Pessoa do mercado vê o repo, comenta no LinkedIn, vira pauta em outro grupo, alguém abre Discussion com caso novo. Star é só efeito colateral.
 
-Métrica primária: menções qualificadas no mercado (LinkedIn, podcasts de growth, threads de operadores conhecidos). ≥ 5 nas primeiras 8 semanas.
+Métrica primária: menções qualificadas no mercado (LinkedIn, podcasts de growth, threads de especialistas conhecidos). ≥ 5 nas primeiras 8 semanas.
 
-Métrica secundária: stars (≥10 até Barte S1E1, ≥50 no fim do ano 1).
+Métrica secundária: stars (≥10 até o S1E1 em 9 jul 2026, ≥50 no fim do ano 1).
 
 Métrica terciária: Discussions abertas por gente fora do core (≥3 nas primeiras 4 semanas).
 
@@ -41,7 +41,7 @@ KPI: ≥ 50 cliques no link do repo via UTM em cada peça.
 
 O quê: depois que o repo tiver README maduro, profile da org e primeiros casos com número, postar um Show HN com framing específico:
 
-> *"Show HN: Growth Club, building a B2B growth community in Brazil with full transparency (brand book, ADRs, financial reports)"*
+> *"Show HN: Growth Club, building Brazil's #1 multidisciplinary growth community with full transparency (brand book, ADRs, financial reports)"*
 
 Distribuição:
 
@@ -138,7 +138,7 @@ Reavaliar este documento quando:
 
 - Repo bater 50 stars (ajustar agressividade dos vetores).
 - Algum vetor falhar 2× em sequência (substituir por outro).
-- Aparecer vetor novo orgânico (TikTok? Threads? Bluesky?). Só se trouxer audiência relevante de operadores.
+- Aparecer vetor novo orgânico (TikTok? Threads? Bluesky?). Só se trouxer audiência relevante de especialistas.
 - Founder Crew #3 sair ou virar pago. Refazer com novo dono.
 
 Próxima revisão prevista: 2026-08-01, depois das primeiras 12 semanas de execução.

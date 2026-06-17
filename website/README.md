@@ -33,7 +33,7 @@ Detalhes completos no Anexo A do Acordo de Founder Crew (`docs/contracts/acordo-
 
 ## Lista de espera ativa enquanto site não sobe
 
-A captura de leads pro Meetup Growth SP · S1 · E1 · Barte (jun/2026) roda no Tally enquanto o site não está no ar:
+A captura de leads pro Meetup Growth SP · S1 · E1 · CRMBonus · 9 jul 2026 roda no Tally enquanto o site não está no ar:
 
 [`https://tally.so/r/BzLJO4`](https://tally.so/r/BzLJO4)
 

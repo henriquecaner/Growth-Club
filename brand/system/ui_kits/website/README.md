@@ -1,20 +1,22 @@
 # Growth Club — Marketing Website UI kit
 
+> ⚠️ **Reset AD-014 (2026-05-24):** este UI kit foi produzido antes do reset de marca. A copy que ele descreve abaixo (headline "Se não tem número...", ton-anchor "Franco, com número, sem palco, com cerveja.", manifesto Outlaw + Sage, citação "rataria") reflete a voz aposentada. O kit serve como referência de estrutura/CSS, não de copy. Posicionamento, arquétipo e voz vigentes estão em `brand/decisions/05-archetype-multidisciplinar.md` (Hero + Magician, "A #1 comunidade de Growth multidisciplinar do Brasil"). As descrições abaixo são deixadas intactas porque documentam o HTML como ele está nos arquivos.
+
 Landing institucional single-page com scroll longo + sub-page de manifesto.
 
 ## Estrutura
 
 - `index.html` — landing completa. Seções:
   - **Nav** sticky com blur (Sobre · Os 4 espaços · Meetups · Empresas)
-  - **Hero** com headline `"Se não tem número, não é Growth Club."` + gradiente radial Amber/Teal + 5 stats (2.261 subs, 715 ativos, 10+ meetups, 391 core, 11 anos)
+  - **Hero** — headline atual: `"A #1 comunidade de Growth multidisciplinar do Brasil."` (o HTML legado ainda traz a régua aposentada, AD-016) + gradiente radial Amber/Teal + 5 stats (2.261 subs, 715 ativos, 10+ meetups, 391 core, 11 anos)
   - **Problem** (4 cards: Palco · Guru · Networking · Patrocinado)
   - **Layers** — Os 4 espaços (Newsletter · WhatsApp · Meetup · Livecast)
   - **Timeline** — Roadmap 2026 (4 fases: marca, crew, meetup, master)
-  - **Manifesto big** — Ton-anchor "Franco, com número, sem palco, com cerveja."
+  - **Manifesto big** — seção de manifesto (o HTML legado traz o ton-anchor "Franco, com número, sem palco, com cerveja.", aposentado em AD-014)
   - **Quote** — "A rataria com nome pomposo continua. A gente continua chamando de rataria."
   - **CTA final** com radial Amber glow
   - **Footer** com colunas (Comunidade · Sobre · Empresas)
-- `sub-page.html` — Manifesto Outlaw + Sage. TOC sticky + 6 seções (Palco · Mesa · Régua · Outlaw+Sage · Cerveja · Crew).
+- `sub-page.html` — Manifesto (HTML legado descreve a voz Outlaw+Sage aposentada, AD-014). TOC sticky + 6 seções.
 
 ## Padrões usados
 

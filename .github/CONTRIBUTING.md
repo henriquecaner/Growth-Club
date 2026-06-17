@@ -1,6 +1,6 @@
 # Contribuindo com o Growth Club
 
-> Mesa de canto de um pub. Todo mundo pode sentar, desde que traga número.
+> Especialista com especialista. Conversa entre pares. Sem teatro.
 
 Este guia explica como contribuir com o Growth Club neste repositório. Antes de qualquer ação, leia o [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md). A régua é rígida e vale dentro e fora do GitHub.
 
@@ -10,7 +10,7 @@ Este guia explica como contribuir com o Growth Club neste repositório. Antes de
 
 | Perfil | O que pode fazer |
 |---|---|
-| Operador externo (não-membro) | Compartilhar caso com número via Discussion. Sugerir pauta de meetup. Reportar bug do site. Mandar PR em template ou copy. |
+| Especialista externo (não-membro) | Compartilhar caso com número via Discussion. Sugerir pauta de meetup. Reportar bug do site. Mandar PR em template ou copy. |
 | Growth Hacker (membership free) | Tudo do externo, mais acesso direto à régua editorial S1 nas Discussions. |
 | Founder Crew (Era Pré-S1, em construção) | Tudo do anterior, mais commit direto no repo, revisão de PRs externos e manutenção do escopo da cadeira. |
 | Mantenedor ([@henriquecaner](https://linkedin.com/in/henriquecaner)) | Merge final. Decisões de marca. ADRs em `STATE.md`. |
@@ -67,7 +67,7 @@ Antes de abrir PR de copy:
 
 - Lê [`brand/voice/dos-and-donts.md`](../brand/voice/dos-and-donts.md).
 - Confere o glossário em [`.specs/project/CONVENTIONS.md`](../.specs/project/CONVENTIONS.md).
-- Mantém ton-anchor: *"Franco, com número, sem palco, com cerveja."*
+- Mantém o pitch: *"Especialista com especialista. Conversa entre pares. Sem teatro."*
 
 ### 5. Adicionar template (PR)
 
@@ -120,7 +120,7 @@ Verifique [`.specs/project/CONVENTIONS.md`](../.specs/project/CONVENTIONS.md) an
 - Nome canônico da comunidade: `Growth Club` (informal), `The Growth Club` (formal restrito).
 - Tiers de membro: `Growth Hacker`, `Founder Member`, `Growth Hacker Master`. Formas exatas.
 - Meetups: `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]`.
-- Termos preferidos: `Operação`, `Mesa`, `Bandeira`, `Stack`, `Operador`, `Pipeline real`, `Carregar meta`.
+- Termos preferidos: `Operação`, `Mesa`, `Bandeira`, `Stack`, `Especialista`, `Pipeline real`, `Carregar meta`.
 - Termos vetados: `alavancar`, `disruptar`, `revolucionar`, `engajamento` (isolado), `growth hacker` (genérico, sem maiúscula).
 
 ### Issue e PR labels
@@ -136,7 +136,7 @@ Os labels canônicos do repositório:
 - `crew-only`. Escopo de Founder Crew exclusivamente.
 - `good-first-issue`. Boa pra primeira contribuição externa.
 - `stale`. Sem atividade há > 30 dias.
-- `era-pre-s1`. Relativo à Era Pré-S1 (até Barte S1E1).
+- `era-pre-s1`. Relativo à Era Pré-S1 (até o Meetup S1E1, CRMBonus · 9 jul 2026).
 
 ---
 

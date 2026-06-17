@@ -1,11 +1,11 @@
 # Sponsors · Media Kit · Growth Club
 
-> Patrocinar Growth Club é parar quem é de palco e ser ouvido por quem opera.
+> Patrocinar Growth Club é ser ouvido pela elite multidisciplinar do mercado de Growth do Brasil.
 >
 > Régua: zero contaminação editorial. Sponsor entra como patrocinador identificado, não como autor disfarçado.
 
 Última atualização: 2026-04-28.
-Próxima revisão: 2026-08-01 (após Barte S1E1).
+Próxima revisão: 2026-08-01 (após o Meetup S1E1 · CRMBonus · 9 jul 2026).
 
 ---
 
@@ -13,9 +13,9 @@ Próxima revisão: 2026-08-01 (após Barte S1E1).
 
 Patrocinador ICP do Growth Club:
 
-- Ferramentas B2B SaaS que operadores brasileiros já usam (`Clay`, `n8n`, `Apollo`, `Cursor`, `HubSpot`, `Pipedrive`, `RD Station`, `Zoho`, etc.).
+- Ferramentas SaaS que especialistas brasileiros já usam (`Clay`, `n8n`, `Apollo`, `Cursor`, `HubSpot`, `Pipedrive`, `RD Station`, `Zoho`, etc.).
 - Plataformas de RevOps, Sales Engineering ou Marketing Automation.
-- Consultorias de Growth que querem fortalecer relação com operadores que decidem.
+- Consultorias de Growth que querem fortalecer relação com especialistas que decidem.
 - Eventos paralelos que se beneficiam de exposição em comunidade adjacente.
 
 Patrocinador fora do ICP:
@@ -43,7 +43,7 @@ Patrocinador fora do ICP:
 
 ### 1. Patrocínio do Livecast semanal
 
-Formato: 1 livecast (45-60 min) com convidado operador real, host = Henrique. Patrocinador é mencionado no início e no fim, com 1 inserção do meio com produto demo (até 3 min).
+Formato: 1 livecast (45-60 min) com convidado especialista real, host = Henrique. Patrocinador é mencionado no início e no fim, com 1 inserção do meio com produto demo (até 3 min).
 
 Cadência disponível: 1 patrocinador por edição. 4 edições por mês.
 
@@ -72,7 +72,7 @@ Investimento: a negociar. Faixa de mercado: R$ 3k-8k por inserção.
 
 ### 3. Patrocínio de Meetup presencial
 
-Formato: cota de patrocínio do Meetup Growth. Venue, catering e produção. Logo na comunicação. 5 min de fala em abertura ou intervalo (sem palco principal, isso quebraria a régua de "sem palco").
+Formato: cota de patrocínio do Meetup Growth. Venue, catering e produção. Logo na comunicação. 5 min de fala em abertura ou intervalo (não a fala principal).
 
 Cadência: 1-2 patrocinadores principais por meetup.
 
@@ -148,10 +148,10 @@ Resposta: 7 dias úteis pra primeira call de 30 min sem compromisso. Eu mando me
 - [`audience-breakdown.md`](audience-breakdown.md). Perfil ICP da audiência por canal.
 - [`brand/voice/dos-and-donts.md`](../../brand/voice/dos-and-donts.md). Tom editorial do Growth Club (deve ser compatível com como você quer ser percebido).
 - [`STATE.md` AD-005](../../.specs/project/STATE.md). Política de transparência financeira (incluindo que patrocínios são reportados aos Founder Crew via DRE).
-- [`brand/decisions/03-arquetipo-e-tom.md`](../../brand/decisions/03-arquetipo-e-tom.md). Arquétipo `Outlaw + Sage` que define vibe da marca.
+- [`brand/decisions/05-archetype-multidisciplinar.md`](../../brand/decisions/05-archetype-multidisciplinar.md). Arquétipo `Hero + Magician` que define vibe da marca.
 
 ---
 
-> *Patrocinador que opera com a mesma régua tem amplificação real. Patrocinador que precisa de palco tem outras feiras.*
+> *Patrocinador que opera com a mesma régua tem amplificação real, direto pra elite multidisciplinar do mercado.*
 
 Mantenedor: Henrique Caner. Última atualização: 2026-04-28.

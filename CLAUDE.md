@@ -4,15 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project at a glance
 
-**Growth Club** — Brazilian community for B2B growth operators (founders, CROs, growth leads, devs doing growth, analysts, CS). Pre-existing organic assets since 2015; this repo is where it's being **professionalized** — not launched from zero.
+**Growth Club** — a **#1 comunidade de Growth multidisciplinar do Brasil**: profissionais de marketing, vendas, sucesso de clientes, analytics, produtos e founders (AD-015, reset 2026-05-24). NÃO é "comunidade B2B de operadores" — esse posicionamento estreito foi superado. Pre-existing organic assets since 2015; this repo is where it's being **professionalized** — not launched from zero.
 
-- **Domain:** `growthclub.pro`
-- **Relaunch event:** Meetup Growth SP · S1 · E1 · jun/2026 @ Barte (S1 = year 2026; E = edição)
+- **Domain:** `growthclub.pro` (site inteiro roda no Ghost `gc-site`, apex via Worker — AD-032/034)
+- **Relaunch event:** Meetup Growth SP · S1 · E1 · 9 jul 2026 @ CRMBonus (S1 = year 2026; E = edição). Barte parqueado, sem data.
 - **Pre-existing assets:** Substack (~2.261 subs desde 2019), WhatsApp Community (~715), core group (~391), 10+ meetups realizados, workshops AI LIKE A PRO
-- **Ton-anchor:** `"Franco, com número, sem palco, com cerveja."` (locked — see `brand/decisions/03-arquetipo-e-tom.md`)
-- **Archetype:** Outlaw + Sage (locked)
+- **Archetype:** **Hero + Magician** (locked — AD-014, reset 2026-05-24; see `brand/decisions/05-archetype-multidisciplinar.md`). Outlaw + Sage foi superado.
+- **Ton-anchor:** `"Somos remotos, criativos, gentis e engajados. Invista energia no seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."` (locked — AD-014). O ton-anchor antigo `"Franco, com número, sem palco, com cerveja."` foi **aposentado** (AD-014) — mas ainda aparece na `home.hbs` do Ghost (marquee/carimbo/welcome card), pendente remoção (AD-038 residual).
+- **Pegada:** **comunidade-first**, não newsletter-first. A newsletter é um entregável entre vários (WhatsApp, meetups, livecasts, workshops); todo membro — aprovado ou não pra camada curada de WhatsApp — recebe a newsletter (AD-038). Voz/padrão de referência: `growth-brazil.webflow.io` (AD-014).
 
-**Current date context:** estamos em 2026-04-28. Barte S1E1 é em jun/2026 (~5-6 semanas).
+**Current date context:** estamos em 2026-06-16. Meetup S1E1 é em 9 jul 2026 (~3 semanas).
 
 ## Repository status
 
@@ -31,7 +32,9 @@ This is **not** a greenfield scaffold. The project is mid-execution on the **Mar
 - ✅ **Chunk 5** (brand book consolidation) — substituído pelo `brand/system/README.md` como brand book vivo. Artifacts textuais antigos arquivados em `brand/legacy/`.
 - ✅ **Site v1 no ar (AD-006/007, 2026-05-17)** — `growthclub.pro` em produção no Cloudflare Pages com 17 páginas (home, sobre, empresas, membro, contato, meetups hub + LP S1E1, 5 recursos, 4 legais, 404). Stack HTML5 + Modern CSS + JS vanilla + web components `<gc-header>`/`<gc-footer>`. Design System AD-008 aplicado em todas. Próximo passo: Crew #1 entra pra evoluir/manter.
 - ✅ **AI LIKE A PRO híbrido (AD-009/010, 2026-05-17/18)** — produto pago em repo separado (`github.com/henriquecaner/ai-like-a-pro`, R$ 397, InfinitePay) + página de interesse in-site em `website/ai-like-a-pro/` (form Tally, Growth Club Design System). Footer link `/ai-like-a-pro/` resolve direto pela página in-site, sem Workers Routes.
-- ℹ️ **Cloudflare Pages é direct-upload, não Git-auto-deploy** — projeto `growth-club` (`growthclub.pro` + `growth-club.pages.dev`) sem integração Git. Deploys via `wrangler pages deploy website --project-name growth-club --branch main`. Push pro GitHub não dispara deploy automaticamente.
+- ⚠️ **O site agora roda no Ghost (`gc-site`), NÃO no Cloudflare Pages estático** — o cutover do apex foi AD-032/034 (jun/2026). O `website/*.html` (descrito acima) está **descontinuado** e superado pelos templates do tema; mantido só como referência de copy histórica (candidato a arquivamento — AD-038). A descrição "Site v1 no ar" acima é histórica.
+- ✅ **Institucionais = templates `page-{slug}.hbs` no tema (AD-038, 2026-06-16)** — `home.hbs` + `page-empresas/sobre/contato/planos.hbs` carregam a copy **versionada no repo** `growth-club-newsletter/theme/gc-site/`, ignorando o `{{content}}` do banco. Posicionamento multidisciplinar comunidade-first (AD-014/015) aplicado, voz `growth-brazil.webflow.io`. Deploy via `git archive theme/gc-site → R2 → POST /content/_gc/restart`. **Editar institucional = git + deploy do tema, não o editor do Ghost.** Fonte única da copy institucional = repo do tema.
+- ℹ️ **Cloudflare Pages (legado) era direct-upload, não Git-auto-deploy** — projeto `growth-club` sem integração Git. `wrangler pages deploy website ...`. Relevante só pro `website/` legado; o site vivo é o Ghost.
 - ✅ **Risco R-11 mitigado por absorção consciente:** Henrique decidiu absorver pessoalmente o gap de R$ 51.975. Princípio "sem promessa de dinheiro no curto prazo" se estende à narrativa Crew e à comunicação pública. Não há mitigação ativa de receita upfront.
 - ❌ **Application code** — zero. No `package.json`, no frameworks chosen. `.specs/project/STACK.md` is still placeholder.
 
@@ -75,13 +78,13 @@ Growth-Club/
 Trespassing these requires an explicit new ADR in `STATE.md`:
 
 1. **Canonical name:** `Growth Club` (informal), `The Growth Club` (formal). `BR Growth Club` aposentado. See `brand/decisions/02-nome-canonico.md`.
-2. **Archetype + ton-anchor:** Outlaw + Sage; `"Franco, com número, sem palco, com cerveja."`. See `brand/decisions/03-arquetipo-e-tom.md`.
-3. **Meetup naming:** `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]` (S1 = 2026). Primeiro evento oficial: `Meetup Growth SP · S1 · E1 · Revenue Operations com IA @ Barte (jun/2026)`.
-4. **Cultural rule #1 (editorial):** `Se não tem número, não é Growth Club.` Todo case/claim vem com métrica; post sem número → redirecionamento cordial.
+2. **Archetype + ton-anchor (reset AD-014, 2026-05-24):** **Hero + Magician** — aspiracional, inclusivo ("elite do mercado", "transformando o mercado"). Ton-anchor: `"Somos remotos, criativos, gentis e engajados. Invista energia no seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."` Outlaw + Sage e `"Franco, com número, sem palco, com cerveja."` foram **aposentados**. See `brand/decisions/05-archetype-multidisciplinar.md`.
+3. **Meetup naming:** `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]` (S1 = 2026). Primeiro evento oficial: `Meetup Growth SP · S1 · E1 @ CRMBonus · 9 jul 2026`. Barte parqueado, sem data.
+4. **Cultural rule #1 — APOSENTADA (AD-016, 2026-05-24):** a régua `"Se não tem número, não é Growth Club."` foi retirada; não há régua editorial nominal pública. A curadoria continua via triagem de candidatura, sem rótulo de filtro. O posicionamento multidisciplinar ("#1 comunidade", "elite do mercado") não comporta o filtro de número.
 5. **Pricing (Fase 1):** `Growth Hacker` (free, 12 meses de lock inicial pros primeiros 1.000). `Growth Hacker Master` R$ 990/ano (com tier early de R$ 690 para primeiros 100-200 pagantes). **`Founder Member` (R$ 2.079, 100 vagas) — PARQUEADO em AD-003 (2026-04-28)** até gatilho de retomada (marca v1 publicada + site no ar com captação ativa + ≥100 GH Master pagantes); pode voltar com formato diferente.
 6. **Founder Crew (AD-002, 2026-04-28):** 4ª categoria — operadores Era Pré-S1. **3 vagas fechadas** (Frontend / Designer+Vídeo / Community Manager-GitHub). **30% do líquido dividido por igual** entre preenchidos (10% cada com 3 vagas). Sem equity em Fase 1 (Caminho B — contrato de prestação de serviços com remuneração variável). Vínculo 3 anos condicional (90 dias entrega upfront + 6h/mês manutenção). **Sem perpetuidade:** Founder pode desligar por baixa performance ou problema cultural com 15 dias de cura por escrito. **Saída = perde tudo automaticamente** (revshare + crédito ativo). Termos completos em `STATE.md` AD-002.
 7. **Hospedagem operacional (AD-004, 2026-04-28):** Comunidade roda dentro do **CNPJ da Level Tech** em Fase 1. Spin-off futuro em CNPJ dedicado Growth Club (com Level Tech como holding) é gatilhado por: receita anual ≥ R$ 500k OU ≥ 200 GH Master pagantes OU captação externa relevante. Acordo de Founder Crew tem cláusula de cessão automática pra Nova Sociedade, sem conversão automática em equity.
-8. **Transparência financeira radical (AD-005, 2026-04-28):** Founder Crew recebe relatório financeiro **mensal** (12 primeiros meses) e depois **trimestral** com DRE simplificada da Comunidade, cálculo do líquido, Pool Crew e fração individual. Crew tem direito a contestar cálculos (right-to-audit-lite). Princípio editorial "Se não tem número, não é Growth Club" se estende internamente. Cláusula 7 e Anexo E do Acordo de Founder Crew.
+8. **Transparência financeira radical (AD-005, 2026-04-28):** Founder Crew recebe relatório financeiro **mensal** (12 primeiros meses) e depois **trimestral** com DRE simplificada da Comunidade, cálculo do líquido, Pool Crew e fração individual. Crew tem direito a contestar cálculos (right-to-audit-lite). O princípio de transparência radical (número aberto) se estende internamente, mesmo com a régua editorial pública aposentada (AD-016). Cláusula 7 e Anexo E do Acordo de Founder Crew.
 9. **Sem promessa de dinheiro no curto prazo (R-11 mitigado por absorção):** Henrique absorve pessoalmente o gap de R$ 51.975 do Founder Member parqueado. Não haverá pre-sale forçado nem mitigação agressiva. Princípio aplicável tanto à narrativa Crew quanto à comunicação pública.
 10. **Livecast patrocinado entra no MVP** (amigo com agência patrocina).
 

@@ -6,7 +6,7 @@
 
 **Ancoragem:**
 - Decisão 01 (`brand/decisions/01-bandeira-pirata.md`) — caveira + 2 ossos + tapa-olho + fundo preto
-- Decisão 03 (`brand/decisions/03-arquetipo-e-tom.md`) — Outlaw 60% + Sage 30-40%
+- ⚠️ **Reset AD-014 (2026-05-24):** arquétipo agora é **Hero + Magician** (`brand/decisions/05-archetype-multidisciplinar.md`); Outlaw+Sage / bandeira pirata viraram referência histórica. Este prompt usa a estética antiga — rever antes de gerar.
 - Visual: `brand/visual/logo-moodboard.md` (Direção 3 — Editorial / Emblem ⭐), `paleta-primaria.md`, `tipografia.md`
 
 ---

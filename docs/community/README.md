@@ -34,13 +34,12 @@
 
 ## Quem é o Growth Club
 
-Comunidade brasileira multidisciplinar de Growth B2B desde 2015. Operadores de marketing, vendas, sucesso de clientes, analytics, produtos e founders.
+A #1 comunidade de Growth multidisciplinar do Brasil, desde 2015. Especialistas de marketing, vendas, sucesso de clientes, analytics, produtos e founders.
 
-Régua nº 1: *Se não tem número, não é Growth Club.*
-Ton-anchor: *Franco, com número, sem palco, com cerveja.*
+Pitch: *Especialista com especialista. Conversa entre pares. Sem teatro.*
 
 ---
 
-> *Mesa de canto de um pub. Growth de verdade. Stack de verdade. Sem teatro.*
+> *Growth de verdade. Stack de verdade. Sem teatro.*
 
 Mantenedor: Henrique Caner. Última atualização: 2026-04-28.

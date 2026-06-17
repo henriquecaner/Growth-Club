@@ -1,6 +1,6 @@
 # GROWTH CLUB — Design System
 
-> **Franco, com número, sem palco, com cerveja.**
+> **A #1 comunidade de Growth multidisciplinar do Brasil.**
 
 Sistema de design **light-first** com dark mode **para seções estratégicas**. Adaptado a partir do Level Design System (mai/2026), com paleta e voz da Growth Club locked nas decisões de marca.
 
@@ -8,13 +8,13 @@ Sistema de design **light-first** com dark mode **para seções estratégicas**.
 
 ## A comunidade
 
-**Growth Club** é a comunidade brasileira de operadores de growth B2B — founders, CROs, growth leads, devs de growth, analistas, CS. Ativos orgânicos desde 2015 (Substack ~2.261 subs, WhatsApp Community ~715, 10+ meetups realizados). Estamos profissionalizando a operação rumo ao relançamento via **Meetup Growth SP · S1 · E1 · jun/2026 @ Barte**.
+**Growth Club** é a **#1 comunidade de Growth multidisciplinar do Brasil** — profissionais de marketing, vendas, sucesso de clientes, analytics, produtos e founders (AD-015). Ativos orgânicos desde 2015 (Substack ~2.261 subs, WhatsApp Community ~715, 10+ meetups realizados). Estamos profissionalizando a operação rumo ao relançamento via **Meetup Growth SP · S1 · E1 · 9 jul 2026 @ CRMBonus**.
 
-**Posicionamento:** anti-teatro de LinkedIn. Tom de operador que mostra número, não de palestrante. Outlaw (60%) + Sage (30%) + um pouco de Regular Guy (mesa de canto, cerveja no fim do dia).
+**Posicionamento (reset AD-014/015, 2026-05-24):** aspiracional e inclusivo — a elite multidisciplinar do mercado, "transformando o mercado". Comunidade-first (não newsletter-first). Arquétipo **Hero + Magician** (Outlaw + Sage aposentado).
 
-**Ton-anchor (locked, 2026-04-22):** `"Franco, com número, sem palco, com cerveja."`
+**Ton-anchor (locked, AD-014):** `"Somos remotos, criativos, gentis e engajados. Invista energia no seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."` (O antigo `"Franco, com número, sem palco, com cerveja."` foi aposentado.)
 
-**Regra editorial #1:** `"Se não tem número, não é Growth Club."`
+**Curadoria:** triagem de candidatura mantém o nível da comunidade, sem régua nominal pública (a régua "Se não tem número, não é Growth Club." foi aposentada em AD-016).
 
 ---
 
@@ -39,8 +39,8 @@ Aplica `[data-theme="dark"]` em `<section>` ou `<div>` específicas para criar *
 ```html
 <!-- Site institucional: hero dark → corpo light → CTA dark -->
 <section data-theme="dark" class="hero">
-  <h1>Se não tem número, não é Growth Club.</h1>
-  <p>A comunidade brasileira pros operadores que entregam.</p>
+  <h1>A #1 comunidade de Growth multidisciplinar do Brasil.</h1>
+  <p>Especialista com especialista. Conversa entre pares. Sem teatro.</p>
 </section>
 
 <section class="manifesto">
@@ -50,8 +50,8 @@ Aplica `[data-theme="dark"]` em `<section>` ou `<div>` específicas para criar *
 </section>
 
 <section class="cta-final" data-theme="dark">
-  <h2>Entra pra mesa de canto.</h2>
-  <button>Assinar a newsletter</button>
+  <h2>Faça parte da comunidade.</h2>
+  <button>Tornar-se membro</button>
 </section>
 ```
 
@@ -91,7 +91,7 @@ Aplica `[data-theme="dark"]` em `<section>` ou `<div>` específicas para criar *
 |---|---|
 | Paleta (Growth Black, Pirate Teal, Pub Cream, Smoke Gray, Amber Beer, Brick Red) | `brand/visual/paleta-primaria.md` |
 | Tipografia (display) | `brand/visual/tipografia.md` (Archivo Black SUPERSEDED por Satoshi em AD-006) |
-| Arquétipo + tom (Outlaw 60% + Sage 30% + Regular Guy 10%) | `brand/decisions/03-arquetipo-e-tom.md` |
+| Arquétipo + voz (Hero + Magician — AD-014) | `brand/decisions/05-archetype-multidisciplinar.md` |
 | Bandeira pirata / verde-água | `brand/decisions/01-bandeira-pirata.md` |
 | Nome canônico (Growth Club / The Growth Club) | `brand/decisions/02-nome-canonico.md` |
 
@@ -188,7 +188,7 @@ Dark não é um tema standalone — é um **treatment pontual** dentro de contex
 │   ├── colors-*.html            ← Paletas (accent, bg, fg, semantic, light-theme)
 │   ├── type-*.html              ← Display, scale, weights, mono, labels
 │   ├── copy-library.html        ← Voz, tom, casing, exemplos GC
-│   ├── voice-tone.html          ← DO / DON'T da voz Outlaw+Sage
+│   ├── voice-tone.html          ← DO / DON'T da voz Hero+Magician
 │   ├── elevation*.html          ← Shadows + glows
 │   ├── gradients*.html          ← Amber fade, Teal fade, architect (warm)
 │   ├── iconography*.html        ← 20 ícones Lucide
@@ -247,7 +247,7 @@ Use `ui_kits/website/index.html` como base — hero dark épico, seções light,
 
 ### Voz e tom
 
-**Operador, não palestrante.** O Growth Club fala como quem opera: número primeiro, narrativa depois. Sem promessa, sem palco, sem fórmula mágica.
+**Especialista, não palestrante.** O Growth Club fala como quem opera: número primeiro, narrativa depois. Sem promessa, sem teatro, sem fórmula mágica.
 
 **Princípios:**
 - Afirma com número, não promete. (`De 2.261 subs orgânicos em 7 anos, 715 ativos no WhatsApp.` ✓ — `A maior comunidade de growth do Brasil!` ✗)
@@ -266,25 +266,25 @@ Use `ui_kits/website/index.html` como base — hero dark épico, seções light,
 ### Casing
 
 - **Nome da comunidade em texto:** `Growth Club` (informal) ou `The Growth Club` (formal). Sempre capitalização normal — **não usar GROWTH CLUB caixa-alta** em prosa. O wordmark (logo) é minúsculo `growth club.` quando finalizado em vetor — distinção rígida: arte = minúscula, prosa = `Growth Club`.
-- **Meetups:** `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]`. S1 = 2026. Ex.: `Meetup Growth SP · S1 · E1 · Revenue Operations com IA @ Barte`.
-- **Headlines:** sentence case. `Se não tem número, não é Growth Club.` — não `Se Não Tem Número, Não É Growth Club`.
+- **Meetups:** `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]`. S1 = 2026. Ex.: `Meetup Growth SP · S1 · E1 · 9 jul 2026 @ CRMBonus`.
+- **Headlines:** sentence case. `A #1 comunidade de Growth multidisciplinar do Brasil.` — não `A #1 Comunidade De Growth Multidisciplinar Do Brasil`.
 - **Labels de UI:** UPPERCASE com letter-spacing `0.08em`. Apenas em eyebrows, chips, table headers. Usar com moderação.
 - **Botões:** sentence case. `Assinar a newsletter`, `Entrar no WhatsApp` — não `ASSINAR A NEWSLETTER`.
 
 ### Punctuação de marca
 
 - O **ponto final** depois do wordmark `growth club.` é parte da assinatura (renderizado em Amber Beer no design final). Em UI/copy de texto, escrever `Growth Club` sem ponto especial.
-- Em manifestos e headlines, travessão longo (`—`) é preferido a parênteses. Sinaliza pausa de raciocínio de operador. **Não abusar** — o humanizer skill regula.
+- Em manifestos e headlines, travessão longo (`—`) é preferido a parênteses. Sinaliza pausa de raciocínio de especialista. **Não abusar** — o humanizer skill regula.
 - Frases curtas. Ritmo de mensagem de WhatsApp, não de copywriter.
 
 ### Exemplos (cross-check com o ton-anchor)
 
 | ✓ Growth Club | ✗ Não Growth Club |
 |---|---|
-| "Se não tem número, não é Growth Club." | "Insights game-changers pro próximo nível!" 🚀 |
-| "Pirata que entrega — não que desfila." | "Pense fora da caixa, seja disruptivo" |
+| "Especialista com especialista. Conversa entre pares. Sem teatro." | "Insights game-changers pro próximo nível!" 🚀 |
+| "Quem entrega senta na mesa — quem desfila fica no palco." | "Pense fora da caixa, seja disruptivo" |
 | "De 2 reuniões semanais pra 8 em 60 dias. Sem contratar SDR." | "Resultados incríveis garantidos!" |
-| "Mesa de canto. Número no copo. Sem palco." | "Únase à nossa jornada de transformação." |
+| "A #1 comunidade de Growth multidisciplinar do Brasil." | "Únase à nossa jornada de transformação." |
 | "A rataria com nome pomposo continua." | "Conteúdo de altíssimo valor pros nossos members." |
 
 ---
@@ -390,7 +390,7 @@ Nunca pastel ou rainbow. Máximo 2 cores + fade.
 
 ### Animação
 
-Precisa e rápida. Operador, não bailarino.
+Precisa e rápida. Especialista, não bailarino.
 - **Easing padrão:** `cubic-bezier(0.2, 0.8, 0.2, 1)` (saída rápida, chegada suave)
 - **Durações:** 80ms (instant), 160ms (padrão), 240ms (médio), 400ms (transições de página)
 - **Sem bounces, overshoot, elastic.** Nada que pareça "fofo".
@@ -478,7 +478,7 @@ Este sistema descende do Level Design System. Tokens antigos foram **preservados
 
 1. **Logo oficial em vetor** — escada de bandeira pirata evoluída, prompts em `brand/visual/`. Substituir `assets/logo-*.svg` quando o Figma exportar.
 2. **Confirmar iconografia** — aceitar Lucide ou fornecer set proprietário em fase 2.
-3. **Tirar fotos reais** — meetups, mesa de canto, copo de cerveja, hands-on em laptop. Substituir stock placeholders no `ui_kits/website/`.
+3. **Tirar fotos reais** — meetups, pessoas trocando ideia, copo de cerveja, hands-on em laptop. Substituir stock placeholders no `ui_kits/website/`.
 4. **Ampliar voz em microcopy** — empty states, tooltips, confirmações — quando o site for ao ar.
 5. **Migrar tipografia produção** — atualizar `brand/visual/tipografia.md` documentando AD-006 (Satoshi substitui Archivo Black em display). Inter pode permanecer como backup web-safe em emails se houver fallback issues com Satoshi.
 
@@ -496,4 +496,4 @@ Este sistema descende do Level Design System. Tokens antigos foram **preservados
 | Mono | Roboto (mantida) | Roboto (mantida) | — |
 | Filosofia light-first | sim | sim | mantida |
 | Dark = section, não tema | sim | sim | mantida |
-| Voz | Builder, não vendedor (LEVEL B2B SaaS) | Operador, não palestrante (Outlaw+Sage, comunidade B2B growth) | locked em decisão 03 |
+| Voz | Builder, não vendedor (LEVEL B2B SaaS) | Especialista, não palestrante (Hero+Magician, #1 comunidade de Growth multidisciplinar) | locked em decisão 05 (AD-014) |

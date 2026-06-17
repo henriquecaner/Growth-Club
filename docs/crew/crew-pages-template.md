@@ -44,9 +44,9 @@ Status: [Ativo / em manutenção / em transição pra vaga paga]
 
 ---
 
-## Minha mesa de canto
+## Meu canto
 
-[Bio pessoal autoral, primeira pessoa, 200 palavras max. Tom livre, não precisa replicar exatamente o ton-anchor do Growth Club, mas não pode contradizê-lo. Sem palco motivacional, sem self-promo vazio.]
+[Bio pessoal autoral, primeira pessoa, 200 palavras max. Tom livre, não precisa replicar exatamente a voz do Growth Club, mas não pode contradizê-la. Sem palco motivacional, sem self-promo vazio.]
 
 ---
 
@@ -73,7 +73,7 @@ Status: [Ativo / em manutenção / em transição pra vaga paga]
 
 ### Régua editorial
 
-A subpágina autoral é uma extensão do Growth Club. Vale a régua: *Franco, com número, sem palco, com cerveja*.
+A subpágina autoral é uma extensão do Growth Club. Vale o pitch: *Especialista com especialista. Conversa entre pares. Sem teatro.*
 
 Se sua bio começar com "Apaixonado por growth e sempre buscando inovar com soluções disruptivas...", a página vira teatro e vai ser editada pelo mantenedor.
 

@@ -10,7 +10,7 @@ A pasta `brand/` é a **fonte de verdade única** sobre a marca Growth Club. Str
 
 | Pasta ou arquivo | O que tem | Status |
 |---|---|---|
-| [`decisions/`](decisions/) | 4 decisões locked: bandeira pirata, nome canônico, arquétipo + ton-anchor, arquitetura de marcas-filhas. | Travadas |
+| [`decisions/`](decisions/) | Decisões locked: bandeira pirata (histórica), nome canônico, **arquétipo + voz (Decisão 05 — Hero+Magician, 2026-05-24)**, arquitetura de marcas-filhas. Decisão 03 (Outlaw+Sage) arquivada em `legacy/`. | Travadas |
 | [`visual/`](visual/) | Paleta primária (com banner de rebalanceamento AD-008), tipografia (com banner SUPERSEDED AD-008), logo direction (moodboard + prompts Canva/Nano-Banana). | Em iteração; logo SVG final pending Figma |
 | [`voice/`](voice/) | Manifesto (3 versões), do's and don'ts, tom por canal, glossário. Pacto editorial. | Travado |
 | [`system/`](system/) | **Growth Club Design System** — implementação técnica. Tokens CSS, fontes Satoshi+Roboto self-hosted, 35+ preview cards, 5 templates IG/LinkedIn, ui_kit do site institucional, skill `growth-club-design` invocável via Claude Code. | Adotado em AD-008 (2026-05-17), base adaptada do Level Design System |
@@ -42,7 +42,7 @@ A pasta `brand/` é a **fonte de verdade única** sobre a marca Growth Club. Str
 | "Quero ver paleta e tipografia" | `system/colors_and_type.css` (canônica) + [`visual/paleta-primaria.md`](visual/paleta-primaria.md) e [`visual/tipografia.md`](visual/tipografia.md) (strategy) |
 | "Quero entender por que tem bandeira pirata" | [`decisions/01-bandeira-pirata.md`](decisions/01-bandeira-pirata.md) |
 | "Quero entender o nome canônico" | [`decisions/02-nome-canonico.md`](decisions/02-nome-canonico.md) |
-| "Quero entender arquétipo e tom" | [`decisions/03-arquetipo-e-tom.md`](decisions/03-arquetipo-e-tom.md) |
+| "Quero entender arquétipo e tom" | [`decisions/05-archetype-multidisciplinar.md`](decisions/05-archetype-multidisciplinar.md) (Decisão 03 antiga, Outlaw+Sage, em [`legacy/`](legacy/)) |
 | "Quero entender marcas-filhas (AI LIKE A PRO)" | [`decisions/04-arquitetura-de-marcas.md`](decisions/04-arquitetura-de-marcas.md) |
 | "Quero rodar o design system local" | `cd brand/system && npm run dev` |
 | "Quero ler o brand book antigo (v1 textual)" | [`legacy/`](legacy/) — só por curiosidade histórica, está superseder |
@@ -52,9 +52,9 @@ A pasta `brand/` é a **fonte de verdade única** sobre a marca Growth Club. Str
 ## Decisões travadas (não-negociáveis)
 
 1. **Nome canônico:** `Growth Club` (informal), `The Growth Club` (formal). `BR Growth Club` aposentado.
-2. **Arquétipo:** Outlaw (60%) + Sage (30%) + Regular Guy (10% tempero).
-3. **Ton-anchor:** *"Franco, com número, sem palco, com cerveja."*
-4. **Régua editorial nº 1:** *Se não tem número, não é Growth Club.*
+2. **Arquétipo (Decisão 05 / AD-014, 2026-05-24):** **Hero + Magician** — aspiracional, inclusivo ("elite do mercado", "transformando o mercado"). Outlaw + Sage **aposentado**.
+3. **Ton-anchor:** *"Somos remotos, criativos, gentis e engajados. Invista energia no seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."* O antigo *"Franco, com número, sem palco, com cerveja."* foi **aposentado** (AD-014).
+4. **Posicionamento (AD-015):** *"A #1 comunidade de Growth multidisciplinar do Brasil"* — marketing, vendas, CS, analytics, produtos e founders. A régua *"Se não tem número, não é Growth Club"* foi **aposentada** (AD-016); sem régua nominal pública.
 5. **Princípio fundacional:** queremos a maior comunidade, não o maior evento. A palavra "evento" não aparece sozinha.
 6. **Paleta + tipografia em produção:** Pub Cream `#F5F1E8` + Growth Black `#0A0A0A` + Amber Beer `#D4A24C` (CTA primário) + Pirate Teal `#4FB3A5` (acento secundário) + Smoke Gray `#8B847E` (metadados) + Brick Red `#B84A3E` (alerts). Tipografia: Satoshi + Roboto Mono. Adotado via AD-008.
 
@@ -78,4 +78,4 @@ Convenções completas (incluindo meetup naming, marcas-filhas, tiers de membro)
 
 > *Marca séria começa pelo manifesto. Fim do palco.*
 
-Mantenedor: Henrique Caner. Última atualização: 2026-05-17.
+Mantenedor: Henrique Caner. Última atualização: 2026-06-16.

@@ -2,7 +2,7 @@
 
 > **AI CONTEXT:** Regras operacionais que sobrevivem além de cada fase. Naming, glossário, padrões de uso. Mudanças aqui são raras e intencionais — dependem de ADR registrado em `STATE.md`.
 
-**Last Updated:** 2026-04-27
+**Last Updated:** 2026-06-16
 
 ---
 
@@ -39,7 +39,7 @@ Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]
 - Cidade vai sempre no nome.
 
 **Exemplos:**
-- `Meetup Growth SP · S1 · E1 · Revenue Operations com IA — na Barte`
+- `Meetup Growth SP · S1 · E1 · Revenue Operations com IA @ CRMBonus · 9 jul 2026`
 - `Meetup Growth RJ · S1 · E2 · [Tema]`
 - `Meetup Growth BH · S2 · E1 · [Tema]`
 
@@ -54,7 +54,7 @@ Quando um produto/grupo vira marca-filha, o lockup é:
 
 **Regras visuais:**
 - Logo da marca-filha **deriva** do master (compartilha paleta, tipografia, símbolo adaptado).
-- Marca-filha **não pode** ter personalidade visual que contradiga Outlaw/Sage.
+- Marca-filha **não pode** ter personalidade visual que contradiga Hero/Magician (AD-014).
 - Marca-filha v1: **AI LIKE A PRO** (única). Demais sub-grupos arquivados/consolidados de fato.
 
 ### Naming de workshops
@@ -102,7 +102,7 @@ Resumo operável. Lista completa (20 preferidos + 10 evitados + regras contextua
 | 5 | **Mesa** | Comunidade (em metáfora) |
 | 6 | **Bandeira** | Missão, valores |
 | 7 | **Stack** | Tecnologia, ferramentas |
-| 8 | **Operador** | Profissional de growth |
+| 8 | **Especialista** | Operador, profissional de growth |
 | 9 | **Número** | Métrica, KPI |
 | 10 | **Ciclo** | Sales cycle |
 | 11 | **Fechou** | Foi aprovado, converteu |
@@ -124,7 +124,7 @@ Resumo operável. Lista completa (20 preferidos + 10 evitados + regras contextua
 | 2 | Alavancar | Corporatês | Usar, aplicar, combinar |
 | 3 | Escalar exponencialmente | Pitch sem significado | "Crescer X% em Y meses" |
 | 4 | Engajamento (isolado) | Métrica de vaidade | Conversão, ativação, retenção |
-| 5 | Growth hacker (externo) | Confunde com tier | "Profissional de growth" |
+| 5 | Growth hacker (externo) | Confunde com tier | "Especialista" |
 | 6 | Hacks, dicas | Tom de guru | Padrão, mecânica, prática |
 | 7 | Prezado, atenciosamente | Formalidade morta | "E aí", "bora", "falou" |
 | 8 | "Evento" sozinho | Quebra não-negociável #1 | Nome do formato + comunidade |
@@ -146,18 +146,18 @@ Resumo operável. Lista completa (20 preferidos + 10 evitados + regras contextua
 
 Independente do canal:
 
-1. **Se não tem número, não é Growth Club.** Casos, claims, promessas — tudo com evidência.
+1. **Comunidade curada por gente que opera.** Caso vem com contexto e, quando dá, com número. (A régua nominal "Se não tem número, não é Growth Club" foi **aposentada** — AD-016.)
 2. **Se tá fácil demais de escrever, provavelmente tá fácil demais de ignorar.**
 
 Fonte: [brand/voice/tom-por-canal.md](../../brand/voice/tom-por-canal.md).
 
 ---
 
-## Ton-anchor
+## Ton-anchor (AD-014)
 
-> **"Franco, com número, sem palco, com cerveja."**
+> **"Somos remotos, criativos, gentis e engajados. Invista energia no seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."**
 
-Régua rápida (5-7 palavras). Se uma peça não cabe nesse anchor, não é Growth Club.
+O anchor antigo **"Franco, com número, sem palco, com cerveja."** foi aposentado (AD-014). Pitch curto pra peças: *"Especialista com especialista. Conversa entre pares. Sem teatro."*
 
 ---
 
@@ -181,7 +181,7 @@ Convenção pra nomes de arquivos e diretórios no repositório.
 ### Brand decisions
 
 - Prefixo numérico zero-padded de 2 dígitos: `01-`, `02-`, `03-`, `04-`.
-- Ex: `brand/decisions/03-arquetipo-e-tom.md`.
+- Ex: `brand/decisions/05-archetype-multidisciplinar.md`.
 
 ### ADRs
 

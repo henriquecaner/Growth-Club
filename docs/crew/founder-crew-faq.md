@@ -6,7 +6,7 @@
 
 ## O que é Founder Crew
 
-Categoria Era Pré-S1 criada em 2026-04 (registrada em [`STATE.md` AD-002](../../.specs/project/STATE.md)) pra remunerar 3 operadores que vão entregar as 3 frentes técnicas críticas até o relançamento (Meetup Growth SP · S1E1 · Barte, jun/2026):
+Categoria Era Pré-S1 criada em 2026-04 (registrada em [`STATE.md` AD-002](../../.specs/project/STATE.md)) pra remunerar 3 especialistas que vão entregar as 3 frentes técnicas críticas até o relançamento (Meetup Growth SP · S1E1 · CRMBonus · 9 jul 2026):
 
 1. Frontend (vibe coder). Site `growthclub.pro`.
 2. Designer e vídeo. Identidade aplicada nos canais e cortes do livecast.
@@ -111,7 +111,7 @@ Quando ocorrer spin-off em CNPJ Growth Club próprio (com Level Tech como holdin
 |---|---|
 | Revshare | 30% líquido dividido por 3 = 10% cada, mensal ou trimestral |
 | Crédito ativo no brand book | Era Pré-S1, com nome, cadeira, foto e link LinkedIn |
-| Apresentação no Meetup S1E1 (Barte) | ~5 min de palco com nome e escopo (acordado no anexo) |
+| Apresentação no Meetup S1E1 (CRMBonus) | ~5 min de palco com nome e escopo (acordado no anexo) |
 | Post dedicado no LinkedIn do Henrique | 1 carrossel apresentando você e o trabalho (acordado no anexo) |
 | Edição da newsletter dedicada à Crew | 1 edição apresentando os 3 (acordado no anexo, distribuição pra 2.261 subs) |
 | Subpágina autoral em `growthclub.pro/crew/[seu-slug]` | Case próprio, portfólio e contato (Cadeira 1 entrega; outras Crew herdam) |
@@ -147,7 +147,7 @@ A partir daí: call de 30 min, leitura cruzada do contrato (`docs/contracts/acor
 
 > Esse não é um job. É upside compartilhado pra quem topa construir junto numa janela específica (Era Pré-S1), com regras explícitas. Quem entra, entra com a cabeça aberta sobre o risco. Quem sai, sai sem rancor.
 >
-> *Franco, com número, sem palco, com cerveja.*
+> *Especialista com especialista. Conversa entre pares. Sem teatro.*
 
 ---
 

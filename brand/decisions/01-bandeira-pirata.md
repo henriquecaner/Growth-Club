@@ -4,6 +4,8 @@
 **Task:** 1.1 do plano `docs/superpowers/plans/2026-04-22-growth-club-brand-brief.md`
 **Ancoragem:** business plan §2.3 (pilar de marca preservado) + §3.2 (ângulo "Execução > Teatro", Outlaw/contrarian)
 
+> ⚠️ **Reset AD-014 (2026-05-24):** arquétipo agora Hero+Magician. A bandeira pirata fica como referência histórica, sem aplicação visual ativa (ver `brand/decisions/05-archetype-multidisciplinar.md`). O conteúdo abaixo documenta a exploração original.
+
 ---
 
 ## Evidência (estado atual + exploração)

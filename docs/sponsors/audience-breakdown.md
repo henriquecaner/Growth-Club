@@ -2,8 +2,8 @@
 
 > Perfil real da audiência por canal. Estimativas honestas baseadas em observação informal. Refinamento com dado quantitativo é tarefa Fase 2.
 
-Última atualização: 2026-04-28.
-Status do documento: v0.1, estimativas qualitativas, refinamento previsto após Barte S1E1 (jun/2026).
+Última atualização: 2026-06-16.
+Status do documento: v0.1, estimativas qualitativas, refinamento previsto após o S1E1 (CRMBonus · 9 jul 2026).
 
 ---
 
@@ -55,7 +55,7 @@ Geografia:
 
 ### Comunidade WhatsApp (715, com 391 no core)
 
-O core de 391 é mais sênior que a base da newsletter. Operadores que pegaram ingresso de meetup e ficaram ativos.
+O core de 391 é mais sênior que a base da newsletter. Especialistas que pegaram ingresso de meetup e ficaram ativos.
 
 | Característica | Core (391) | Total (715) |
 |---|---|---|
@@ -140,7 +140,7 @@ Ferramentas que aparecem em > 30% das discussões e menções (estimativa qualit
 
 ## Próximas atualizações esperadas
 
-- 2026-Q3 (pós-Barte S1E1). Primeira instrumentação oficial com analytics cross-canal.
+- 2026-Q3 (pós-S1E1, CRMBonus · 9 jul 2026). Primeira instrumentação oficial com analytics cross-canal.
 - 2027-Q1. Breakdown ICP refinado com dado real (Substack analytics, survey, segmentação WhatsApp).
 - 2027-Q3. Comparativo conversão real Growth Hacker para Master (após abertura Fase 3).
 

@@ -1,5 +1,5 @@
 # STACK: Growth Club
-**Last Updated:** 2026-05-17
+**Last Updated:** 2026-06-16
 
 > **AI CONTEXT:** This document is the authoritative source of truth for the project's scope, tech stack, and goals. DO NOT guess or hallucinate these details. Always refer to this document.
 
@@ -9,13 +9,13 @@
 
 ### Mission
 
-Profissionalização de uma comunidade brasileira de Growth B2B (operadores de growth, founders, CROs, growth leads, devs de growth, analistas, CS) com 11 anos de histórico orgânico. Materializa marca, site, modelo de receita e governança da Era S1 (a partir de 2026).
+Profissionalização da #1 comunidade de Growth multidisciplinar do Brasil (especialistas de marketing, vendas, sucesso de clientes, analytics, produtos e founders) com 11 anos de histórico orgânico. Materializa marca, site, modelo de receita e governança da Era S1 (a partir de 2026).
 
 ### Value Proposition
 
-- **For:** Operadores de growth B2B brasileiros que estão cansados de palco vazio, dashboard mentiroso e teatro de LinkedIn — querem trocar stack, número e cerveja com gente de verdade.
-- **Problem:** Falta um espaço sério, calibrado por evidência, onde a régua é "se não tem número, não é Growth Club" — em contraste com gurus de Instagram e comunidades genéricas.
-- **Solution:** Comunidade B2B curada, com newsletter deep (Substack), meetups com tema técnico, livecast patrocinado, workshops high-ticket e (futuro) tier pago Master.
+- **For:** Especialistas de Growth multidisciplinar (marketing, vendas, CS, analytics, produtos, founders) brasileiros que estão cansados de palco vazio, dashboard mentiroso e teatro de LinkedIn — querem trocar stack, número e ideia com gente de verdade.
+- **Problem:** Falta um espaço sério, calibrado por evidência e curado por triagem de candidatura — em contraste com gurus de Instagram e comunidades genéricas.
+- **Solution:** Comunidade multidisciplinar curada, com newsletter deep (Substack), meetups com tema técnico, livecast patrocinado, workshops high-ticket e (futuro) tier pago Master.
 
 ### In Scope (v1 — Era Pré-S1 e S1)
 

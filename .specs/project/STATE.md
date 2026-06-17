@@ -1,11 +1,35 @@
 # STATE: Growth Club
-**Last Updated:** 2026-06-14
+**Last Updated:** 2026-06-16
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-038: Institucionais viram templates `page-{slug}.hbs` + operacionalização do reset multidisciplinar (AD-014/015) no tema Ghost
+**Date:** 2026-06-16
+**Status:** Accepted (operacionaliza AD-014 + AD-015 + AD-016; avança B-001)
+
+**Context:** Deep review pedido pelo Henrique ("refatorei a copy do site e depois do Ghost meio que voltou pro que era antes"). Achado: divergência repo↔Ghost. A copy refinada (alinhada ao reset AD-014/015) vivia em `website/*.html` (Cloudflare Pages, descontinuado no cutover AD-034), enquanto a home do tema `gc-site` tinha sido reconstruída espelhando o PMA com pegada **newsletter-first** ("Growth B2B de verdade em 10 minutos por semana"), contradizendo AD-014/015. As páginas institucionais (sobre, empresas, contato) renderizavam `{{content}}` do banco via `page.hbs` — copy fora do versionamento. Causa-raiz do recuo: **`CLAUDE.md` e vários docs nunca foram sincronizados com AD-014/015/016** (ainda listavam Outlaw+Sage e "Franco, com número, sem palco, com cerveja" como locked), o que reintroduziu o posicionamento antigo na reconstrução do tema.
+
+**Decision:**
+1. **Institucionais = templates custom `page-{slug}.hbs`** no tema (padrão que `page-planos.hbs` já usava): copy embutida e versionada no repo, ignorando o `{{content}}` do banco. A Página-stub no Ghost só cria a rota. Criados `page-empresas.hbs`, `page-sobre.hbs`, `page-contato.hbs`; `page-planos.hbs` ajustado. **Fonte única da copy institucional = repo do tema** (`growth-club-newsletter/theme/gc-site/`). Encerra a divergência repo↔banco.
+2. **Home realinhada a AD-014/015:** hero "A #1 comunidade de Growth multidisciplinar do Brasil" + corpo "Formas de se envolver" (4 cards) + "O que você pode esperar?" (Newsletter / Lives & Q&A / Meetups / AMAs). Newsletter rebaixada a **um** entregável entre vários. Voz de referência `growth-brazil.webflow.io` reconfirmada como canônica (AD-014).
+3. **Nuance de membership:** a newsletter é **aberta** a todo membro; a comunidade no WhatsApp é **curada por aprovação**. "Todo membro — aprovado ou não — recebe a newsletter." Logo, a linguagem de triagem em `/recurso-comunidade` e `/membro-obrigado` está **correta** (não é regressão).
+4. **`website/*.html` oficialmente superado** pelos templates do tema — candidato a arquivamento (evitar como fonte de verdade futura).
+5. **Sincronização de docs (Fase 4 do reset, avança B-001):** `CLAUDE.md`, `brand/README.md`, `README.md` e docs internos (sponsors, community/start-here, founder-letter) atualizados nesta sessão pra refletir AD-014/015/016 (arquétipo Hero+Magician, ton-anchor novo, régua "sem número" aposentada, posicionamento multidisciplinar, termo "especialista").
+
+**Consequences:**
+- Deploy live e verificado (bypass-cache): `/`, `/empresas/`, `/sobre/`, `/contato/`, `/planos/`.
+- Editar institucional agora = git + deploy do tema (`git archive` → R2 → restart, ~2-3 min), não o editor do Ghost.
+- **RESIDUAL (flag aberto):** `home.hbs` ainda renderiza o ton-anchor **APOSENTADO** "Franco, com número, sem palco, com cerveja" (marquee, carimbo SVG, welcome card "O combinado") — conflita com AD-014. Preservado nesta sessão por engano (CLAUDE.md stale dizia "locked"); pendente decisão de remoção (afeta o desenho do bloco `gc-final-cta`).
+- 3 commits no repo `growth-club-newsletter` main (`8a8d5ed` empresas, `3c3958f` home hero, `1c0fd9b` lote sobre/contato/planos) — **pendente push**.
+- Nav: `/empresas/` e `/sobre/` podem não estar no mega-menu/footer — follow-up.
+
+**Reversibility:** templates versionados em git; reverter = remover os `page-*.hbs` + redeploy. Custo: 1 commit + deploy.
+
+---
 
 ### AD-037: Polish do site (navegação + faxina post/página) + descontinuação da integração Google/RRM
 **Date:** 2026-06-14

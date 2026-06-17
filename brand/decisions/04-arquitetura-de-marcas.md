@@ -26,7 +26,7 @@ Decisão afeta downstream: **logo** (Task 2.3 Step 5 — lockup com marca-filha)
 
 | # | Nome atual | Membros | Atividade (ativo/arquivado) | Tema/Propósito | Ação proposta | Nome pós-Fase-1 |
 |---|---|---|---|---|---|---|
-| 1 | GROWTH CLUB (grupo core) | 391 | Ativo (31 online) | Mesa de canto do pub — core da comunidade | **Core — mantém** | `Growth Club` |
+| 1 | GROWTH CLUB (grupo core) | 391 | Ativo (31 online) | Core da comunidade — troca entre especialistas | **Core — mantém** | `Growth Club` |
 | 2 | AI LIKE A PRO | ? | Ativo (segunda-feira) | Workshop/curso high-ticket (IA pra growth) | **Promove a marca-filha oficial** | `AI LIKE A PRO by Growth Club` |
 | 3 | Meetups de Growth | ? | Arquivada | Coordenação dos meetups presenciais | **Consolida no core** ou **reativa como sub-canal** | `Growth Club · Meetups` (se sub-canal) |
 | 4 | PLG BR | ? | Arquivada | Product-Led Growth Brasil | **Definir:** sub-canal temático OU arquiva | ? |
@@ -63,7 +63,7 @@ Quando um grupo/produto vira marca-filha (ação B), o lockup é:
 
 **Regras visuais:**
 - Logo da marca-filha **deriva** do lockup do Growth Club (compartilha paleta, tipografia, pode usar símbolo adaptado)
-- Marca-filha **não pode** ter personalidade visual que contradiga o arquétipo Outlaw/Sage do master
+- Marca-filha **não pode** ter personalidade visual que contradiga o arquétipo Hero/Magician do master (AD-014; o Outlaw/Sage anterior está aposentado)
 - Eye-patch/caveira do master pode reaparecer **estilizado** (não idêntico) no lockup da filha pra reforçar pertencimento
 
 ---

@@ -1,5 +1,7 @@
 # Paleta primária v2
 
+> ⚠️ **Reset AD-014 (2026-05-24):** arquétipo agora é Hero + Magician; "Outlaw + Sage" e a bandeira pirata viram referência histórica, sem aplicação visual ativa. Os HEX abaixo seguem válidos; as justificativas que citam Outlaw/Sage ou o ton-anchor aposentado ("Franco, com número, sem palco, com cerveja.") permanecem só como histórico de origem. Direção visual final é TBD. Ver `brand/decisions/05-archetype-multidisciplinar.md`.
+
 **Data:** 2026-05-17
 **Ancoragem:** AD-008 em `.specs/project/STATE.md` (rebalanceamento via adoção do Growth Club Design System) + decisões 01 (bandeira pirata: preto + verde-água preservados), 03 (Outlaw + Sage → tons densos, editoriais), manifesto "mesa de canto de um pub" (neutros quentes, cerveja).
 

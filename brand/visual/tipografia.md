@@ -17,6 +17,8 @@
 >
 > **Fonte canônica em produção:** `brand/system/colors_and_type.css` + `brand/system/fonts/`.
 
+> ⚠️ **Reset AD-014:** arquétipo agora Hero+Magician; as referências a Outlaw/Sage neste doc são históricas. As regras tipográficas seguem válidas (reset tipográfico é outro escopo).
+
 > **Status original:** proposta v1 pronta pra revisão no Figma.
 
 ---

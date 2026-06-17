@@ -1,6 +1,6 @@
 # Founder Crew · Era Pré-S1
 
-> Categoria nova criada em 2026-04 ([AD-002](../../.specs/project/STATE.md)) pra remunerar 3 operadores que entregam frentes técnicas críticas até o relançamento (Meetup Growth SP S1E1 Barte, jun/2026).
+> Categoria nova criada em 2026-04 ([AD-002](../../.specs/project/STATE.md)) pra remunerar 3 especialistas que entregam frentes técnicas críticas até o relançamento (Meetup Growth SP S1E1 · CRMBonus · 9 jul 2026).
 
 3 vagas abertas. Em recrutamento.
 

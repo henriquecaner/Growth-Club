@@ -6,6 +6,18 @@
 
 ---
 
+## 2026-06-16 · AD-038 · Institucionais viram templates — e a pegada volta pra comunidade
+
+Deep review de copy. A refatoração que tinha alinhado o site ao posicionamento multidisciplinar (AD-014/015) vivia nos HTMLs estáticos antigos. Quando o site migrou pro Ghost, a home foi reconstruída com outra pegada — newsletter-first, "growth B2B em 10 minutos por semana" — e as páginas institucionais passaram a servir o conteúdo cru do banco. Metade do site falava "comunidade multidisciplinar", a outra metade falava "assine a newsletter".
+
+A correção foi estrutural. As institucionais (sobre, empresas, contato, planos) agora são templates versionados no tema (`page-{slug}.hbs`), com a copy no repositório, não no banco — acabou a divergência entre o que estava versionado e o que estava no ar. A home voltou pra pegada de comunidade: "#1 comunidade de Growth multidisciplinar do Brasil", com os blocos "Formas de se envolver" e "O que você pode esperar?". A newsletter é um entregável entre vários; todo membro, aprovado ou não pra camada curada do WhatsApp, recebe a news.
+
+Achado de fundo: o `CLAUDE.md` e vários docs nunca tinham sido sincronizados com o reset de marca de maio (AD-014/015/016) — ainda listavam Outlaw+Sage e "Franco, com número, sem palco, com cerveja" como travados. Sincronizados nesta passada. Pendência: a home ainda mostra esse ton-anchor antigo (aposentado em AD-014); sai numa próxima.
+
+Referência: [`STATE.md` AD-038](.specs/project/STATE.md) · repo `growth-club-newsletter`.
+
+---
+
 ## 2026-06-10 · AD-024 · Uploads do Ghost no R2 — disco de container não guarda nada
 
 O primeiro upload real no admin durou menos que um restart de container: 404. Disco de Cloudflare Container é efêmero por design, e o Ghost grava uploads no filesystem. A correção foi um bucket R2 (`gc-news-images`) com o adapter S3 `ghos3`, cobrindo os três storages do Ghost: imagens, PDFs e arquivos de post. O Worker serve os uploads direto do R2, com cache de 1 ano, sem nem acordar o container.

@@ -5,7 +5,7 @@
 
 **Ancoragem:**
 - Decisão 01 (`brand/decisions/01-bandeira-pirata.md`) — bandeira pirata evoluída: caveira + 2 ossos + tapa-olho + fundo preto
-- Decisão 03 (`brand/decisions/03-arquetipo-e-tom.md`) — Outlaw 60% + Sage 30-40%, ton-anchor `"Franco, com número, sem palco, com cerveja."`
+- ⚠️ **Reset AD-014 (2026-05-24):** o arquétipo agora é **Hero + Magician** (`brand/decisions/05-archetype-multidisciplinar.md`); Outlaw+Sage e a bandeira pirata viraram referência histórica (sem aplicação visual ativa). Este prompt foi escrito sobre a estética antiga — **rever a direção do logo antes de gerar**.
 - Visual: `brand/visual/logo-moodboard.md` (Direção 3 — Editorial / Emblem ⭐), `paleta-primaria.md`, `tipografia.md`
 
 ---
@@ -15,7 +15,7 @@
 | Atributo | Valor |
 |---|---|
 | Marca | Growth Club (nome canônico — não usar "BR Growth Club" nem "The Growth Club" no logo padrão) |
-| Categoria | Comunidade brasileira de operadores B2B de Growth |
+| Categoria | #1 comunidade de Growth multidisciplinar do Brasil |
 | Arquétipo primário | Outlaw / Rebel — pirata, anti-teatro, contrarian |
 | Arquétipo secundário | Sage — curadoria, número, peso editorial |
 | Estética alvo | "Pirata Editorial / Emblem" — craft beer premium + revista editorial + pôster punk de boa qualidade |
@@ -157,7 +157,7 @@ Tagline `"Franco, com número, sem palco, com cerveja."` **não entra no logo** 
 | Growth Black | `#0A0A0A` | Silhueta da caveira, ossos, contorno do emblema, wordmark em fundo light |
 | Pub Cream | `#F5F1E8` | Fundo do logo em peças light, wordmark em fundo dark |
 | Pirate Teal | `#4FB3A5` | **Acento dentro do emblema** — tapa-olho, anel interno do emblema, ou highlight pontual. Nunca cobrir mais de 15% da peça |
-| Amber Beer | `#D4A24C` | Reserva — só usar em variantes especiais (ex: Founder Member badge, lockup S1E1 da Barte) |
+| Amber Beer | `#D4A24C` | Reserva — só usar em variantes especiais (ex: Founder Member badge, lockup S1E1) |
 
 **Combinações canônicas (default):**
 - Logo padrão: silhueta `#0A0A0A` + acento `#4FB3A5` sobre fundo `#F5F1E8`
@@ -237,7 +237,7 @@ Antes de declarar "logo travado":
 2. **Refinar no Figma solo** (Steps 1c-1e do plano `logo-moodboard.md` linha 124-156) — Iconify plugin acelera
 3. **Export final do Figma** — SVG minificado, PNG @1x/@2x/@3x, favicon 16×16
 
-Se você decidir que **só Canva é suficiente** (ex: pra v1 da pré-inscrição da Barte rodar até maio/2026), está ok — mas marca um débito técnico em `STATE.md` pra refazer o vetor antes da Fase 2 (Crescimento).
+Se você decidir que **só Canva é suficiente** (ex: pra v1 da pré-inscrição do meetup S1E1 rodar), está ok — mas marca um débito técnico em `STATE.md` pra refazer o vetor antes da Fase 2 (Crescimento).
 
 ---
 

@@ -1,5 +1,5 @@
 # ROADMAP: Growth Club
-**Last Updated:** 2026-05-17
+**Last Updated:** 2026-06-16
 
 > **AI CONTEXT:** High-level project milestones and timeline. Update status as features progress. Source of truth para detalhes: `docs/superpowers/specs/2026-04-22-growth-club-business-plan-design.md`.
 
@@ -10,7 +10,7 @@
 | Phase | Target | Status | Key Deliverable |
 |-------|--------|--------|-----------------|
 | **Fase 0:** Fundação estratégica | Abril/2026 | ✅ **DONE** | Business Plan Design v1.2 aprovado |
-| **Fase 1:** Consolidação e Public Launch | Maio-Junho/2026 | 📋 PLANNED | Site `growthclub.pro` + Meetup Growth SP S1E1 Barte |
+| **Fase 1:** Consolidação e Public Launch | Maio-Julho/2026 | 📋 PLANNED | Site `growthclub.pro` + Meetup Growth SP S1E1 (CRMBonus · 9 jul 2026) |
 | **Fase 2:** Crescimento ordenado | Jun/2026 — Jun/2027 | 📋 PLANNED | 5-10k Growth Hackers + Patrocínio Livecast + reavaliação do Founder Member parqueado (AD-003) |
 | **Fase 3:** Lock e monetização recorrente | Jun/2027+ | 📋 PLANNED | Growth Hacker Master R$ 990/ano · ≥ 120 pagantes (cenário central 3%) |
 
@@ -34,9 +34,9 @@ Detalhe completo em §7.2 do business plan design.
 ### Marcos desta fase
 - **Marca:** brand brief completo (brand book, paleta, tipografia, logo, tom/voz)
 - **Site:** `growthclub.pro` no ar com landing + formulário de aplicação + thank-you (executor: Founder Crew #1)
-- **Lançamento público:** Meetup Growth SP · S1E1 · Barte (1ª ou 2ª semana de junho/2026)
+- **Lançamento público:** Meetup Growth SP · S1E1 · CRMBonus · 9 jul 2026 (Barte parqueado pra edição futura)
 - **Operacional:** 3 Founder Crew preenchidos (AD-002) entregando site + identidade aplicada + repo público
-- **Comercial:** 150-250 ingressos vendidos para o Barte. **Founder Member tier parqueado em AD-003** — receita upfront de R$ 51.975 não conta no plano de caixa Barte S1E1 (ver risco R-11 em STATE.md).
+- **Comercial:** 150-250 ingressos vendidos para o S1E1 (CRMBonus · 9 jul 2026). **Founder Member tier parqueado em AD-003** — receita upfront de R$ 51.975 não conta no plano de caixa do S1E1 (ver risco R-11 em STATE.md).
 
 ### Must-have operacional
 - [ ] Brand brief entregue (sub-projeto "Marca")
@@ -47,12 +47,12 @@ Detalhe completo em §7.2 do business plan design.
 - [x] **Plan de implementação do site escrito (2026-05-17)** — `docs/superpowers/plans/`. Stack travada em AD-007.
 - [x] **Site `growthclub.pro` no ar (2026-05-18, AD-006/007)** — 17 páginas em produção via Cloudflare Pages. Executor revisado: **Henrique** (Crew #1 entra depois pra evoluir/manter). Antecipa meta original (era 2026-05-31).
 - [x] **Identidade aplicada em ≥3 templates (2026-05-17, AD-008)** — Growth Club Design System publicado em `brand/system/` com 35+ preview cards, 5 templates IG/LinkedIn, ui_kit do site. Executor revisado: **Henrique** (adaptação do Level Design System). Antecipa meta original (era 2026-06-15).
-- [ ] Repositório público no GitHub com README de venda (executor: Founder Crew #3) — meta: ≥10 stars até Barte S1E1
-- [ ] Automação ingresso → membership testada ≥ 2 semanas antes do Barte
+- [ ] Repositório público no GitHub com README de venda (executor: Founder Crew #3) — meta: ≥10 stars até o S1E1 (9 jul 2026)
+- [ ] Automação ingresso → membership testada ≥ 2 semanas antes do S1E1
 - [ ] Substack rebatizado editorialmente para "Growth Club"
 - [ ] Community WhatsApp padronizada sob "Growth Club" (sai "THE")
-- [ ] Régua editorial S1 ativada com mensagem pública
-- [ ] Meetup da Barte enquadrado como S1E1
+- [ ] Posicionamento S1 ativado com mensagem pública (régua editorial nominal aposentada em AD-016 — curadoria via triagem de candidatura)
+- [ ] Meetup S1E1 enquadrado (CRMBonus · 9 jul 2026; Barte parqueado)
 - [x] **R-11 mitigado por absorção consciente** (2026-04-28) — Henrique absorve gap de R$ 51.975 do Founder Member parqueado. Princípio "sem promessa de dinheiro no curto prazo".
 - [ ] Medição de overlap Substack ↔ Community (baseline oficial de emails únicos)
 - [ ] Política de Privacidade + opt-in LGPD por canal no checkout

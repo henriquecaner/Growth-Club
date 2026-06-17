@@ -1,7 +1,7 @@
 <!--
 Antes de mandar:
 1. Lê CONTRIBUTING.md e CODE_OF_CONDUCT.md.
-2. Confirma que o PR cabe na régua: "Franco, com número, sem palco, com cerveja."
+2. Confirma que o PR cabe no pitch: "Especialista com especialista. Conversa entre pares. Sem teatro."
 3. Se for mexer em copy, brand ou voice, confere CONVENTIONS.md (palavras vetadas, naming).
 -->
 
@@ -37,7 +37,7 @@ Como o revisor confirma que funciona?
 - [ ] Não introduz palavra vetada (`alavancar`, `disruptar`, `revolucionar`, `engajamento` solto, etc.). Vide [`CONVENTIONS.md`](../.specs/project/CONVENTIONS.md).
 - [ ] Naming dos tiers de membro respeitado (`Growth Hacker`, `Founder Member`, `Growth Hacker Master`). Formas exatas.
 - [ ] A palavra "evento" não aparece sozinha (sempre com "comunidade" e marca).
-- [ ] Se for copy: ton-anchor "Franco, com número, sem palco, com cerveja" passou no teste.
+- [ ] Se for copy: o pitch "Especialista com especialista. Conversa entre pares. Sem teatro." passou no teste.
 
 ## Checklist do contribuidor
 

@@ -2,27 +2,27 @@
 
 # Growth Club
 
-### Mesa de canto de um pub.<br>Growth de verdade. Stack de verdade. Sem teatro.
+### A #1 comunidade de Growth multidisciplinar do Brasil.<br>Especialista com especialista. Conversa entre pares. Sem teatro.
 
 <br>
 
-A maior comunidade multidisciplinar de Growth B2B do Brasil, desde 2015.
+A #1 comunidade de Growth multidisciplinar do Brasil, desde 2015.
 
 <br>
 
 [![Newsletter](https://img.shields.io/badge/Substack-2.261_subs_desde_2019-FF6719?style=for-the-badge&logo=substack&logoColor=white)](https://brgrowthclub.substack.com)
 [![Comunidade](https://img.shields.io/badge/WhatsApp-715_membros-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](#como-sentar-na-mesa)
-[![Core](https://img.shields.io/badge/Core-391_operadores-1f1f1f?style=for-the-badge)](#a-bandeira)
-[![Meetups](https://img.shields.io/badge/Meetups-10%2B_desde_2015-c00000?style=for-the-badge)](#meetup-growth-sp--s1--e1--barte)
+[![Core](https://img.shields.io/badge/Core-391_especialistas-1f1f1f?style=for-the-badge)](#a-bandeira)
+[![Meetups](https://img.shields.io/badge/Meetups-10%2B_desde_2015-c00000?style=for-the-badge)](#meetup-growth-sp--s1--e1--crmbonus)
 
 <br>
 
-Operadores de marketing, vendas, sucesso de clientes, analytics, produtos e founders.<br>
+Especialistas de marketing, vendas, sucesso de clientes, analytics, produtos e founders.<br>
 Do CEO ao dev. Do growth ao quebrado.
 
 <br>
 
-[Assinar a newsletter (free, semanal)](https://brgrowthclub.substack.com) · [Próximo meetup](#meetup-growth-sp--s1--e1--barte) · [Founder Crew aberto](#founder-crew--3-cadeiras-abertas-era-pré-s1)
+[Assinar a newsletter (free, semanal)](https://brgrowthclub.substack.com) · [Próximo meetup](#meetup-growth-sp--s1--e1--crmbonus) · [Founder Crew aberto](#founder-crew--3-cadeiras-abertas-era-pré-s1)
 
 </div>
 
@@ -44,20 +44,20 @@ Do CEO ao dev. Do growth ao quebrado.
 
 > Aqui não tem grupo fake, vitrine de LinkedIn ou palco de pitch.
 >
-> O Growth Club é a mesa especial de canto de um pub. A mesa que você olha e pensa: *"aquela galera ali sabe o que faz."* Não porque postou 10 prompts no LinkedIn hoje. Porque carregou meta na semana passada, com ou sem IA, com ou sem stack moderno.
+> O Growth Club é a mesa especial de um pub. A mesa que você olha e pensa: *"aquela galera ali sabe o que faz."* Não porque postou 10 prompts no LinkedIn hoje. Porque carregou meta na semana passada, com ou sem IA, com ou sem stack moderno.
 >
 > Aqui senta todo mundo: do CEO ao dev, do growth ao quebrado. Founder construindo do zero. CRO comandando operação de R$ 100M. Data scientist que automatizou o outbound. CS que virou máquina de retenção. Se você carrega responsabilidade por crescer alguma coisa, tem um lugar na mesa.
 >
-> A regra é uma: caso apresentado aqui vem com número. CAC, LTV, MQL, pipeline, receita, ciclo, retenção, o que for. Post sem número vira redirecionamento cordial: *"bota o dado que isso moveu, aí vira thread."*
+> A comunidade é multidisciplinar: marketing, vendas, sucesso de clientes, analytics, produtos e founders trocando contexto sobre o mesmo cliente, o mesmo funil, a mesma decisão de mercado.
 
 > [!NOTE]
-> **Régua editorial nº 1.** *Se não tem número, não é Growth Club.* Vale dentro do clube, nos meetups, na newsletter, neste repositório.
+> **Curadoria, não régua de número.** A régua *"Se não tem número, não é Growth Club"* foi aposentada (AD-016). A entrada na comunidade passa por triagem de candidatura — sem filtro editorial nominal.
 
 ---
 
 ## Quem fundou
 
-Henrique Caner é operador de Growth B2B e fundou a Level Tech.
+Henrique Caner é especialista de Growth e fundou a Level Tech.
 
 - Newsletter no Substack desde 2019, com 2.261 assinantes.
 - 10+ Meetups Growth organizados e curados na rua desde 2015 (`Era Pré-S1`).
@@ -84,10 +84,10 @@ Henrique Caner é operador de Growth B2B e fundou a Level Tech.
 
 ---
 
-## Meetup Growth SP · S1 · E1 · Barte
+## Meetup Growth SP · S1 · E1 · CRMBonus
 
-Quando: 1ª ou 2ª semana de junho/2026.<br>
-Onde: Barte, São Paulo.<br>
+Quando: 9 de julho de 2026.<br>
+Onde: CRMBonus, São Paulo.<br>
 Tema: Revenue Operations com IA. Não o que você viu no LinkedIn, o que tá rodando em pipeline real.<br>
 Quem senta na mesa: quem entrega na semana.
 
@@ -97,7 +97,7 @@ Quem senta na mesa: quem entrega na semana.
 
 🍺 [Lista de espera (Tally form)](https://tally.so/r/BzLJO4)
 
-Como funciona: capacidade limitada da Barte. Cadastros entram em fila por ordem. Quando lote abrir, você é convocado pela posição na lista (e-mail e WhatsApp) e tem 48h pra confirmar e pagar. Quem entra antes pega lote mais barato.
+Como funciona: capacidade limitada do espaço. Cadastros entram em fila por ordem. Quando lote abrir, você é convocado pela posição na lista (e-mail e WhatsApp) e tem 48h pra confirmar e pagar. Quem entra antes pega lote mais barato.
 
 > Site oficial `growthclub.pro` em construção pela Founder Crew (vide abaixo). A lista de espera roda no Tally enquanto o site não sobe.
 
@@ -154,7 +154,7 @@ Profissionaliza este repo:
 - GitHub Actions úteis.
 - Estratégia de visibilidade orgânica.
 
-Meta: ≥10 stars até Barte S1E1, ≥50 stars no ano 1.
+Meta: ≥10 stars até o Meetup S1E1 (CRMBonus · 9 jul 2026), ≥50 stars no ano 1.
 
 </td>
 </tr>
@@ -183,7 +183,7 @@ flowchart TD
 | Tier | Quem é | O que paga | Status |
 |---|---|---|---|
 | Growth Hacker | Qualquer um que vier por meetup ou newsletter. | Free (12 meses de lock pros 1.000 primeiros). | Aberto |
-| Founder Crew | Operadores que construíram a Era Pré-S1 com mão na massa. | Não paga, recebe revshare. | 3 vagas abertas |
+| Founder Crew | Especialistas que construíram a Era Pré-S1 com mão na massa. | Não paga, recebe revshare. | 3 vagas abertas |
 | Growth Hacker Master | Quem quer profissionalizar mais (premium pago recorrente). | R$ 990/ano (early R$ 690). | Abre jun/2027 |
 | Founder Member | Cota única de 100, 3 anos pré-pagos. | R$ 2.079. | Parqueado até retomada |
 
@@ -199,7 +199,7 @@ gantt
     Fundação estratégica (Business Plan v1.2)   :done, p0, 2026-04, 2w
     section Fase 1
     Marca v1 + Site + Founder Crew assinados    :active, p1a, 2026-04, 6w
-    Meetup Growth SP · S1E1 · Barte             :crit, p1b, 2026-06, 1w
+    Meetup Growth SP · S1E1 · CRMBonus          :crit, p1b, 2026-07, 1w
     Comunidade WhatsApp profissionalizada       :p1c, 2026-05, 8w
     section Fase 2
     Crescimento ordenado (5-10k Hackers, S1E2-3) :p2, 2026-06, 12M
@@ -214,9 +214,9 @@ Detalhe completo: [`ROADMAP.md`](.specs/project/ROADMAP.md). Decisões: [`STATE.
 
 ## Régua editorial pública
 
-Cinco regras que valem dentro do clube e neste repositório:
+Regras que valem dentro do clube e neste repositório:
 
-1. *Se não tem número, não é Growth Club.* Caso, claim, promessa, tudo com evidência. Post ou issue sem número vira redirecionamento cordial.
+1. Comunidade curada por gente que opera. A entrada passa por triagem de candidatura; caso vem com contexto e, quando dá, com número. (A régua nominal *"se não tem número, não é Growth Club"* foi aposentada — AD-016.)
 2. Toda discussão começa por quem operou. Teoria sem operação é ChatGPT, e a gente já tem no bolso.
 3. Stack é meio, não fim. Print de Cursor sem output de negócio não vira thread aqui.
 4. Atacar padrão é OK. Atacar pessoa nominal, nunca. Desagradável com carinho, com ideia, não com gente.
@@ -280,7 +280,7 @@ Founder Members (Era Pré-S1): parqueado até retomada.
 
 Antes de qualquer contribuição: leia o [CODE_OF_CONDUCT](.github/CODE_OF_CONDUCT.md). É o pacto editorial transformado em código de conduta, e a régua é:
 
-> *Franco, com número, sem palco, com cerveja.*
+> *Especialista com especialista. Conversa entre pares. Sem teatro.*
 
 ---
 
@@ -288,15 +288,15 @@ Antes de qualquer contribuição: leia o [CODE_OF_CONDUCT](.github/CODE_OF_CONDU
 
 [![Star History Chart](https://api.star-history.com/svg?repos=growthclub-pro/Growth-Club&type=Date)](https://star-history.com/#growthclub-pro/Growth-Club)
 
-> *Se você chegou até aqui, dá uma star. É o equivalente moderno de levantar a caneca pra mesa do canto.*
+> *Se você chegou até aqui, dá uma star. É o equivalente moderno de levantar a caneca pra mesa.*
 
 ---
 
 <div align="center">
 
-Growth Club. Comunidade brasileira de operadores de Growth B2B desde 2015.<br>
+Growth Club. A #1 comunidade de Growth multidisciplinar do Brasil desde 2015.<br>
 [`growthclub.pro`](https://growthclub.pro) · [Newsletter](https://brgrowthclub.substack.com) · [LinkedIn do Henrique](https://linkedin.com/in/henriquecaner)
 
-*Mesa de canto de um pub. Growth de verdade. Stack de verdade. Sem teatro.*
+*Especialista com especialista. Conversa entre pares. Sem teatro.*
 
 </div>

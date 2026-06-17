@@ -20,9 +20,9 @@ Não é solicitação de capital. É registro público da tese, da história, e 
 
 [INPUT NECESSÁRIO. Henrique.]
 
-Sugestão de prompt pra preencher (escreve em primeira pessoa, sem palco):
+Sugestão de prompt pra preencher (escreve em primeira pessoa, direto):
 
-> O que mudou no mercado de Growth B2B brasileiro nos últimos 18 meses que torna esse projeto mais necessário hoje do que era em 2015 ou em 2020? O que tá quebrando nas comunidades existentes? Que dado público você cita pra defender essa janela?
+> O que mudou no mercado de Growth brasileiro nos últimos 18 meses que torna esse projeto mais necessário hoje do que era em 2015 ou em 2020? O que tá quebrando nas comunidades existentes? Que dado público você cita pra defender essa janela?
 >
 > Limite sugerido: 2-3 parágrafos, 200 palavras, com pelo menos 2 números no texto.
 
@@ -64,9 +64,9 @@ Sugestão de prompt:
 
 Exemplo de estrutura possível:
 
-- Curadoria editorial radical (régua "se não tem número, não é Growth Club"). Leva tempo pra construir, espanta quem é de palco.
-- 11 anos de relação com operadores específicos. Base que não compra, recruta com tempo.
-- Marca de tom (`Outlaw + Sage`, *"Franco, com número, sem palco, com cerveja"*). Copiável em superfície, não em substância.
+- Curadoria editorial radical via triagem de candidatura. Leva tempo pra construir, filtra por substância.
+- 11 anos de relação com especialistas específicos. Base que não compra, recruta com tempo.
+- Marca de tom (`Hero + Magician`, *"Somos remotos, criativos, gentis e engajados. Invista energia em seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."*). Copiável em superfície, não em substância.
 - Transparência radical pública. Anti-fragilidade: quem copia tem que copiar tudo, incluindo o que dá trabalho.
 
 ---
@@ -90,7 +90,7 @@ Sugestão de prompt:
 - Bootstrapped, sem captação ativa. Henrique absorvendo gap de R$ 51.975 do Founder Member parqueado (R-11 mitigado conscientemente).
 - CNPJ: Comunidade roda dentro da Level Tech (recém-fundada). Spin-off em CNPJ Growth Club próprio quando atingir gatilhos (R$ 500k receita anual OU 200 GH Master OU captação). Registrado em [AD-004](../../.specs/project/STATE.md).
 - Core operacional: Founder solo até 2026-04. 3 cadeiras de Founder Crew abertas em recrutamento (Era Pré-S1).
-- Fase de execução: 1 (Consolidação e Public Launch), com Meetup Growth SP S1E1 Barte como milestone público (jun/2026).
+- Fase de execução: 1 (Consolidação e Public Launch), com Meetup Growth SP S1E1 @ CRMBonus como milestone público (9 jul 2026).
 - Tier premium em pausa: `Founder Member` parqueado até gatilho de retomada (marca v1, site no ar e ≥100 GH Master pagantes).
 
 ---

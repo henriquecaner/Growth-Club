@@ -2,7 +2,7 @@
 
 > Quem opera Growth Club hoje. Estado real, sem palco.
 
-Última atualização: 2026-04-28.
+Última atualização: 2026-06-16.
 
 ---
 
@@ -19,7 +19,7 @@ Histórico:
 - `AI LIKE A PRO by Growth Club`. Workshops high-ticket de IA aplicada a operações de growth (recorrente).
 - Histórico em operações B2B brasileiras carregando meta com IA, automação e ferramentas modernas.
 
-O que carrega: roadmap estratégico, brand book, decisões registradas como ADRs, revisão final de qualquer comunicação institucional, e relação direta com o core de 391 operadores.
+O que carrega: roadmap estratégico, brand book, decisões registradas como ADRs, revisão final de qualquer comunicação institucional, e relação direta com o core de 391 especialistas.
 
 LinkedIn: [linkedin.com/in/henriquecaner](https://linkedin.com/in/henriquecaner).
 Newsletter: [brgrowthclub.substack.com](https://brgrowthclub.substack.com).
@@ -31,7 +31,7 @@ Bio expandida: *[INPUT NECESSÁRIO. Henrique escreve em primeira pessoa, 200 pal
 
 ## Founder Crew · Era Pré-S1 (em recrutamento)
 
-> Categoria criada em 2026-04 ([AD-002](../../.specs/project/STATE.md)) pra remunerar 3 operadores que entregam frentes técnicas críticas via revshare contratual, sem participação societária. Vagas abertas: 3.
+> Categoria criada em 2026-04 ([AD-002](../../.specs/project/STATE.md)) pra remunerar 3 especialistas que entregam frentes técnicas críticas via revshare contratual, sem participação societária. Vagas abertas: 3.
 
 ### Cadeira 1. Frontend (vibe coder)
 
@@ -50,7 +50,7 @@ Bio expandida: *[INPUT NECESSÁRIO. Henrique escreve em primeira pessoa, 200 pal
 - Status: vaga aberta.
 - Escopo upfront (90 dias): README master de venda, estrutura de Issues e Discussions, GitHub Actions úteis, estratégia de visibilidade orgânica, e 10 issues ou discussions iniciais.
 - Manutenção contínua (6h/mês): triagem de issues, resposta em discussions, posts de milestone, manutenção da estratégia.
-- Meta: ≥10 stars até Barte S1E1 e ≥50 stars no ano 1.
+- Meta: ≥10 stars até o S1E1 (9 jul 2026) e ≥50 stars no ano 1.
 
 > Quando preenchido: nome, cargo profissional, LinkedIn, 2-3 frases de bio, foto.
 
@@ -70,7 +70,7 @@ Como aplicar: [`docs/crew/founder-crew-faq.md`](../crew/founder-crew-faq.md) tem
 
 > Hoje: nenhum advisory formal estruturado. Henrique consulta pares pontualmente quando faz sentido. Sem contrato, sem stipend, sem equity.
 >
-> Em Fase 2 e 3 (a partir de Q3/2026): possibilidade de estruturar advisory de 2-3 operadores do core pra trazer pressão construtiva sobre régua editorial e escolhas comerciais.
+> Em Fase 2 e 3 (a partir de Q3/2026): possibilidade de estruturar advisory de 2-3 especialistas do core pra trazer pressão construtiva sobre curadoria editorial e escolhas comerciais.
 
 ---
 
@@ -112,4 +112,4 @@ Spin-off futuro: quando Comunidade atingir gatilhos ([AD-004](../../.specs/proje
 
 > *Comunidade séria começa pelo time. Time sério não tem palco, tem operação.*
 
-Mantenedor: Henrique Caner. Última atualização: 2026-04-28.
+Mantenedor: Henrique Caner. Última atualização: 2026-06-16.

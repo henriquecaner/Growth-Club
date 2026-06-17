@@ -13,9 +13,9 @@ Hoje, esse arquivo só serve como template. Não tem efeito enquanto a org não 
 
 # Growth Club
 
-### Mesa de canto de um pub.<br>Growth de verdade. Stack de verdade. Sem teatro.
+### A #1 comunidade de Growth multidisciplinar do Brasil.<br>Growth de verdade. Stack de verdade. Sem teatro.
 
-Comunidade brasileira de operadores de Growth B2B desde 2015.<br>
+Comunidade brasileira de especialistas de Growth desde 2015 — marketing, vendas, sucesso de clientes, analytics, produtos e founders.<br>
 2.261 assinantes da newsletter · 715 na comunidade WhatsApp · 10+ meetups na rua.
 
 [`growthclub.pro`](https://growthclub.pro) · [Newsletter](https://brgrowthclub.substack.com) · [LinkedIn do Henrique](https://linkedin.com/in/henriquecaner)
@@ -30,7 +30,7 @@ Comunidade brasileira de operadores de Growth B2B desde 2015.<br>
 > Founder construindo do zero. CRO comandando operação de R$ 100M. Data scientist que automatizou outbound. CS que virou máquina de retenção.<br>
 > Se você carrega responsabilidade por crescer alguma coisa, tem um lugar na mesa.
 
-A regra é uma: caso apresentado aqui vem com número.
+Caso apresentado aqui vem com número. Curadoria por triagem, não por slogan.
 
 ---
 
@@ -45,7 +45,7 @@ A regra é uma: caso apresentado aqui vem com número.
 ## Próximo encontro
 
 Meetup Growth SP · S1 · E1 · Revenue Operations com IA.<br>
-Junho/2026, na Barte, em São Paulo.
+9 de julho de 2026, na CRMBonus, em São Paulo.
 
 Lista de espera em [`growthclub.pro`](https://growthclub.pro) (ou via [Tally](https://tally.so/r/BzLJO4) enquanto o site não sobe).
 
@@ -63,6 +63,6 @@ Lista de espera em [`growthclub.pro`](https://growthclub.pro) (ou via [Tally](ht
 
 <div align="center">
 
-*Franco, com número, sem palco, com cerveja.*
+*Especialista com especialista. Conversa entre pares. Sem teatro.*
 
 </div>

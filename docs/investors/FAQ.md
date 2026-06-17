@@ -2,7 +2,7 @@
 
 > 14 perguntas que investidor sério faz, com respostas honestas baseadas no estado real (2026-04-28).
 >
-> Tom: *Franco, com número, sem palco, com cerveja.* Mesmo aqui.
+> Tom: *Especialista com especialista. Conversa entre pares. Sem teatro.* Mesmo aqui.
 
 Status atual: bootstrapped, sem captação ativa, Henrique absorvendo gap operacional Fase 1 conscientemente.
 
@@ -12,15 +12,15 @@ Status atual: bootstrapped, sem captação ativa, Henrique absorvendo gap operac
 
 ### 1. Por que comunidade de Growth especificamente?
 
-Porque o mercado de Growth B2B brasileiro é multidisciplinar e fragmentado. Operadores sentam em fundamentos diferentes (RevOps, Marketing Ops, CS Ops, Analytics, Product-Led Growth) mas precisam pensar juntos. Comunidades atuais ou são vertical demais (só marketing, só RevOps) ou horizontais demais sem régua editorial.
+Porque o mercado de Growth brasileiro é multidisciplinar e fragmentado. Especialistas sentam em fundamentos diferentes (RevOps, Marketing Ops, CS Ops, Analytics, Product-Led Growth) mas precisam pensar juntos. Comunidades atuais ou são vertical demais (só marketing, só RevOps) ou horizontais demais, sem curadoria.
 
-A aposta do Growth Club é multidisciplinaridade com régua editorial radical. Quem opera, qualquer função, é bem-vindo. Quem postar sem número, é redirecionado.
+A aposta do Growth Club é multidisciplinaridade com curadoria séria. Quem cresce alguma coisa, qualquer função, é bem-vindo. A triagem de candidatura segura a qualidade, sem rótulo de filtro.
 
 ### 2. Por que aposta em comunidade vs. SaaS, mídia ou consultoria?
 
 Comunidade tem 3 vantagens estruturais que SaaS e mídia não têm:
 
-1. Compounding de relacionamento. Operador volta porque relação é ativa, não porque ferramenta é única.
+1. Compounding de relacionamento. Especialista volta porque relação é ativa, não porque ferramenta é única.
 2. Custo marginal de escala baixo. Adicionar 1.000 Growth Hackers free não custa nada material.
 3. Diversificação de receita. Meetups, workshops, patrocínio e premium tier reduzem dependência de um único modelo.
 
@@ -30,7 +30,7 @@ E 1 desvantagem clara: escalada é não-linear. Comunidade escala em momentos de
 
 Estimativa pública (a refinar):
 
-- Operadores de Growth B2B no Brasil: ~30-50k pessoas (estimativa baseada em LinkedIn search por cargos: Growth Lead, RevOps Manager, Growth Hacker, Demand Gen Manager, Sales Engineer, CS Lead, etc.).
+- Especialistas de Growth no Brasil: ~30-50k pessoas (estimativa baseada em LinkedIn search por cargos: Growth Lead, RevOps Manager, Growth Hacker, Demand Gen Manager, Sales Engineer, CS Lead, etc.).
 - Decisores de Growth (CRO, VP Sales, VP Marketing) em B2B: ~3-5k pessoas.
 - TAM premium addressable (Growth Hacker Master R$ 990/ano), assumindo 10% de penetração: 3-5k pagantes possíveis.
 
@@ -110,7 +110,7 @@ Quando spin-off ocorrer:
 
 Hoje: Henrique decide solo. Sem board. Sem advisory formal.
 
-Em Fase 2 e 3, com tração, vai estruturar advisory informal de 2-3 operadores do core (sem equity, sem stipend, só pra trazer pressão construtiva sobre régua editorial e escolhas comerciais).
+Em Fase 2 e 3, com tração, vai estruturar advisory informal de 2-3 especialistas do core (sem equity, sem stipend, só pra trazer pressão construtiva sobre curadoria e escolhas comerciais).
 
 ### 12. E em caso de afastamento do founder?
 
@@ -156,7 +156,7 @@ Nenhum desses é prioridade hoje.
 - R2. Engajamento free ≠ conversão paga. Médio, validar em Fase 3.
 - R3. Contaminação editorial por patrocínio. Baixo se régua editorial radical sustentar.
 - R6. Fragmentação da comunidade (sub-grupos não consolidados). Em mitigação Fase 1.
-- R-11. Cash flow Barte sem upfront. Henrique absorvendo conscientemente.
+- R-11. Cash flow do Meetup S1E1 sem upfront. Henrique absorvendo conscientemente.
 
 ### Por que parqueou Founder Member?
 
@@ -168,7 +168,7 @@ Retomada quando: marca v1 publicada, site no ar e ≥100 GH Master pagantes conf
 
 ## Como entrar em conversa
 
-Não estamos procurando investimento ativamente. Mas se você é fundo, family office ou anjo com tese explícita de comunidade B2B brasileira, conversa franca é bem-vinda, com a mesma régua editorial do clube.
+Não estamos procurando investimento ativamente. Mas se você é fundo, family office ou anjo com tese explícita de comunidade de Growth brasileira, conversa franca é bem-vinda, com a mesma curadoria do clube.
 
 DM no [LinkedIn do Henrique Caner](https://linkedin.com/in/henriquecaner) com:
 

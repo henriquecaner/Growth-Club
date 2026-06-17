@@ -48,7 +48,7 @@ Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]
 ```
 
 **Exemplos:**
-- `Meetup Growth SP · S1 · E1 · Revenue Operations com IA — na Barte`
+- `Meetup Growth SP · S1 · E1 · Revenue Operations com IA — na CRMBonus (9 jul 2026)`
 - `Meetup Growth RJ · S1 · E2 · [Tema]`
 - `Meetup Growth BH · S2 · E1 · [Tema]`
 

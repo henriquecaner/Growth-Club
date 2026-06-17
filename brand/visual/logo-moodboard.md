@@ -1,5 +1,7 @@
 # Logo — Moodboard e Direções Visuais (Task 2.3 Step 1a + 1b)
 
+> ⚠️ **Reset AD-014 (2026-05-24):** arquétipo agora é Hero + Magician; a bandeira pirata e o eixo Outlaw + Sage citados aqui viraram referência histórica, sem aplicação visual ativa. A direção do logo é TBD sob o novo arquétipo — este moodboard fica como registro da exploração anterior, não como brief vigente. Ver `brand/decisions/05-archetype-multidisciplinar.md`.
+
 **Task:** 2.3 Step 1a (moodboard) + 1b (escolha de direção) do plano
 **Ancoragem:** decisões 01 (bandeira pirata evoluída com tapa-olho + dois ossos + fundo preto), 03 (Outlaw primário + Sage secundário)
 
