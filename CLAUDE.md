@@ -7,13 +7,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Growth Club** — a **#1 comunidade de Growth multidisciplinar do Brasil**: profissionais de marketing, vendas, sucesso de clientes, analytics, produtos e founders (AD-015, reset 2026-05-24). NÃO é "comunidade B2B de operadores" — esse posicionamento estreito foi superado. Pre-existing organic assets since 2015; this repo is where it's being **professionalized** — not launched from zero.
 
 - **Domain:** `growthclub.pro` (site inteiro roda no Ghost `gc-site`, apex via Worker — AD-032/034)
-- **Relaunch event:** Meetup Growth SP · S1 · E1 · 9 jul 2026 @ CRMBonus (S1 = year 2026; E = edição). Barte parqueado, sem data.
+- **Relaunch event:** Meetup Growth SP · S1 · E1 — "IA para Growth e Vendas" · 23 jul 2026 @ CRMBonus (S1 = year 2026; E = edição). Painéis: "AI GTM Engineer é o novo Growth Hacker?" + "Criando agentes de IA para vendas B2B". Ingressos pagos via InfinitePay (escada de 4 lotes; ver AD-039). Barte parqueado, sem data.
 - **Pre-existing assets:** Substack (~2.261 subs desde 2019), WhatsApp Community (~715), core group (~391), 10+ meetups realizados, workshops AI LIKE A PRO
 - **Archetype:** **Hero + Magician** (locked — AD-014, reset 2026-05-24; see `brand/decisions/05-archetype-multidisciplinar.md`). Outlaw + Sage foi superado.
 - **Ton-anchor:** `"Somos remotos, criativos, gentis e engajados. Invista energia no seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."` (locked — AD-014). O ton-anchor antigo `"Franco, com número, sem palco, com cerveja."` foi **aposentado** (AD-014) — mas ainda aparece na `home.hbs` do Ghost (marquee/carimbo/welcome card), pendente remoção (AD-038 residual).
 - **Pegada:** **comunidade-first**, não newsletter-first. A newsletter é um entregável entre vários (WhatsApp, meetups, livecasts, workshops); todo membro — aprovado ou não pra camada curada de WhatsApp — recebe a newsletter (AD-038). Voz/padrão de referência: `growth-brazil.webflow.io` (AD-014).
 
-**Current date context:** estamos em 2026-06-16. Meetup S1E1 é em 9 jul 2026 (~3 semanas).
+**Current date context:** estamos em 2026-06-22. Meetup S1E1 é em 23 jul 2026 (~4 semanas).
 
 ## Repository status
 
@@ -79,7 +79,7 @@ Trespassing these requires an explicit new ADR in `STATE.md`:
 
 1. **Canonical name:** `Growth Club` (informal), `The Growth Club` (formal). `BR Growth Club` aposentado. See `brand/decisions/02-nome-canonico.md`.
 2. **Archetype + ton-anchor (reset AD-014, 2026-05-24):** **Hero + Magician** — aspiracional, inclusivo ("elite do mercado", "transformando o mercado"). Ton-anchor: `"Somos remotos, criativos, gentis e engajados. Invista energia no seu crescimento ao lado de Founders, VPs, CMOs e especialistas que estão transformando o mercado."` Outlaw + Sage e `"Franco, com número, sem palco, com cerveja."` foram **aposentados**. See `brand/decisions/05-archetype-multidisciplinar.md`.
-3. **Meetup naming:** `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]` (S1 = 2026). Primeiro evento oficial: `Meetup Growth SP · S1 · E1 @ CRMBonus · 9 jul 2026`. Barte parqueado, sem data.
+3. **Meetup naming:** `Meetup Growth [CIDADE] · S[ANO] · E[EDIÇÃO] · [TEMA]` (S1 = 2026). Primeiro evento oficial: `Meetup Growth SP · S1 · E1 @ CRMBonus · 23 jul 2026`. Barte parqueado, sem data.
 4. **Cultural rule #1 — APOSENTADA (AD-016, 2026-05-24):** a régua `"Se não tem número, não é Growth Club."` foi retirada; não há régua editorial nominal pública. A curadoria continua via triagem de candidatura, sem rótulo de filtro. O posicionamento multidisciplinar ("#1 comunidade", "elite do mercado") não comporta o filtro de número.
 5. **Pricing (Fase 1):** `Growth Hacker` (free, 12 meses de lock inicial pros primeiros 1.000). `Growth Hacker Master` R$ 990/ano (com tier early de R$ 690 para primeiros 100-200 pagantes). **`Founder Member` (R$ 2.079, 100 vagas) — PARQUEADO em AD-003 (2026-04-28)** até gatilho de retomada (marca v1 publicada + site no ar com captação ativa + ≥100 GH Master pagantes); pode voltar com formato diferente.
 6. **Founder Crew (AD-002, 2026-04-28):** 4ª categoria — operadores Era Pré-S1. **3 vagas fechadas** (Frontend / Designer+Vídeo / Community Manager-GitHub). **30% do líquido dividido por igual** entre preenchidos (10% cada com 3 vagas). Sem equity em Fase 1 (Caminho B — contrato de prestação de serviços com remuneração variável). Vínculo 3 anos condicional (90 dias entrega upfront + 6h/mês manutenção). **Sem perpetuidade:** Founder pode desligar por baixa performance ou problema cultural com 15 dias de cura por escrito. **Saída = perde tudo automaticamente** (revshare + crédito ativo). Termos completos em `STATE.md` AD-002.

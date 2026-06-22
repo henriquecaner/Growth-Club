@@ -7,6 +7,32 @@
 
 ## Recent Decisions (ADR)
 
+### AD-039: LP do Meetup S1E1 republicada no molde da Edição 2 — "IA para Growth e Vendas", escada de lotes, data 23 jul
+**Date:** 2026-06-22
+**Status:** Accepted (LP no ar via lista de espera; abertura de venda pendente dos 2 links InfinitePay)
+
+**Context:** Henrique pediu pra "lançar o meetup" e forneceu como referência canônica de copy/estrutura a página da **Edição 2** (`growthbrazil.notion.site`, exportada em MD). A LP `/meetups/sp-s1-e1/` já existia (post `#meetup`, featured, capa), mas com preço "A definir", CTA passivo de lista de espera, e — descoberto no processo — recaída de voz no registro **Outlaw aposentado** (AD-014/016). Data real consolidou de **9 jul → 23 jul 2026** (AD-019 registrava 9 jul, agora histórico).
+
+**Decision:**
+1. **Data 23 jul 2026 · 17:30–22h** (quinta) no auditório CRMBonus (Rua Minas Gerais, 316, 3º andar). Capacidade 70.
+2. **Tema da edição "IA para Growth e Vendas"** (substituiu "RevOps com IA", estreito demais pro multidisciplinar). Painel 1 "AI GTM Engineer é o novo Growth Hacker?", Painel 2 "Criando agentes de IA para vendas B2B" (2 painéis de 1h, sem "Se vira nos 30"). Naming **S1·E1 mantido** (locked) sobre o "Edição N" da Ed2.
+3. **Ingressos = escada de 4 lotes com FOMO** (preço sobe a cada lote esgotado, e não volta): individual **124 / 165 / 219 / 292**, dupla **198 / 264 / 351 / 467** (pack = 1,6× = 20% off por pessoa). Estoque 70 lugares (lotes de **20 / 30 / 10 / 10**); cada dupla consome 2 lugares. Lote 0 ativo, demais na escada. Virada de lote = manual ("no dedo").
+4. **Checkout = InfinitePay** (Barte segue parqueado). Publicada hoje com botões → `/membro` (lista de espera) **temporário**; trocar pelos 2 links InfinitePay do Lote 0 abre a venda real.
+5. **Voz realinhada ao reset** (AD-014/016): saiu o registro combativo ("abrindo o capô", "sem moderação de pergunta ensaiada"), entraram as frases canônicas da `/sobre/` ("Conversa entre pares, sem palco e sem hype"; "o que funcionou, o que não funcionou, e o número que prova"; blockquote "Profissional de Growth fala com profissional de Growth"). Passou pela skill `humanizer`.
+6. **Estrutura enxuta** (molde Ed2 sem andaimes vazios): ficha → sobre → agenda → ingressos → lineup (1 parágrafo honesto + régua dos 44) → espaço → FAQ → CTA. Galeria/cards de palestrante/chips de parceiro vazios cortados até ter conteúdo real.
+
+**Consequences:**
+- **Técnica:** a LP é o post `sp-s1-e1` (banco), não template. Conteúdo enviado via Admin API `?source=html` como **HTML card** (`kg-card`) contendo `<style>` scoped + `<div class="prose">` — herda o sistema `.prose` + tokens do tema (eyebrow teal, Satoshi, `<h2><em>` âmbar). CSS custom só pra ficha/timeline/escada. **Sem deploy de tema** (within-column; full-bleed exigiria template custom → Founder Crew #1).
+- **Fonte versionada:** `growth-club-newsletter/bin/meetup-sp-s1-e1.html` + deploy `bin/deploy-meetup-lp.mjs` (dry-run por default; `--go` publica; `LINK_IND`/`LINK_PACK` plugam o checkout). Editar a LP = editar a fonte + rodar o script.
+- **Verificado no ar** (bypass-cache): título, 4 lotes/preços, painéis, blockquote canônico, botões → /membro, zero resíduo Outlaw.
+- **Lição de processo (L-007):** preview de design tem que rodar na superfície real. Duas iterações erraram ("não combina com o site", "mobile quebrado") porque o artifact renderizava full-bleed com CSS paralelo; a correção foi inline do `screen.css` real + estrutura do `post.hbs` (coluna estreita).
+
+**Pendências (na mão do Henrique):** (a) 2 links InfinitePay do Lote 0 → trocam lista-espera por venda; (b) **announcement bar** da home "9 jul → 23 jul" (manual em Admin → Design; API dá 403 em theme settings); (c) validação mobile; (d) 3 anúncios (e-mail/LinkedIn/WhatsApp) — rascunho após os links.
+
+**Reversibility:** re-rodar o deploy com a fonte anterior, ou editar `bin/meetup-sp-s1-e1.html` + `--go`. Custo: 1 comando.
+
+---
+
 ### AD-038: Institucionais viram templates `page-{slug}.hbs` + operacionalização do reset multidisciplinar (AD-014/015) no tema Ghost
 **Date:** 2026-06-16
 **Status:** Accepted (operacionaliza AD-014 + AD-015 + AD-016; avança B-001)
