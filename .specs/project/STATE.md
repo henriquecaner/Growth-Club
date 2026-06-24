@@ -7,6 +7,15 @@
 
 ## Recent Decisions (ADR)
 
+### AD-043: Upgrade do Ghost 6.45 → 6.47 (habilita email sequences) + imagem pinada
+**Date:** 2026-06-24
+**Status:** Accepted (deployado e validado ao vivo: `content-version: v6.47`, todas as páginas-chave HTTP 200, Tinybird sincronizado)
+**Context:** Henrique perguntou se o recurso "Email sequences for new members" (changelog Ghost de 24/jun) já dava pra usar no `gc-site`. Diagnóstico: o recurso é o flag de Labs **"Automations (beta)"**, habilitado no Ghost **v6.47.0** (lançado 24/jun); o `gc-site` rodava **v6.45.0**, então o toggle não existia no Labs. Em paralelo, o admin mostrava banner **"Your theme has errors"** — gscan acusava `config.custom.meetup_cta_url` declarado no `package.json` sem nenhum `{{@custom}}` consumindo (chave órfã desde que a escada de 4 lotes — AD-039/040 — tornou o link único de ingresso obsoleto; o CTA do hero passou a rolar pra `#lotes`).
+**Decision:** (1) **Pinar a imagem** do `GhostContainer` no `wrangler.jsonc`: `docker.io/library/ghost:6-alpine` (flutuante) → `docker.io/library/ghost:6.47.0-alpine` (exata). Motivo (advisor): Cloudflare Containers pode cachear a imagem por tag e re-rolar a versão antiga num `wrangler deploy` com a mesma string — pinar força o re-pull E dá versão determinística (sem pulo surpresa pra uma 6.x futura). Bump de versão agora é deliberado. (2) **Remover** a chave órfã `meetup_cta_url` do `package.json` do tema + limpar o comentário em `post.hbs`. (3) Re-deployar os datafiles do **Tinybird** da tag v6.47 (endpoints `api_kpis`/`api_kpis_v2` mudaram — confirmado via `tb deploy --check`).
+**Runbook executado (ordem):** tarball do tema corrigido → R2 (AppleDouble-safe, `meetup_cta_url`=0 validado) · pin da imagem + commit · `wrangler deploy --dry-run` (válido) · `wrangler deploy` (conta Caner `c0ceab96`; migrations forward-only no MySQL Aiven) · poll até 6.47 (cold start ~3-4 min, 503 inicial normal: re-pull da imagem + migrations) · `tb --cloud deploy` (deployment #2 promovido) · validação (versão, páginas, analytics).
+**Caveats/lições:** Migrations 6.45→6.47 são **forward-only** — sem rollback de banco (o "rollback via Pages" do `wrangler.jsonc` só devolve o apex estático, não reverte o schema). Banner de erro de tema e disponibilidade do toggle "Automations" no Labs precisam de **confirmação no Admin UI** (endpoints `/themes/` e `/custom_theme_settings/` dão 403 com Admin API key — exigem staff session). **Todo bump futuro do Ghost exige re-sync dos datafiles do Tinybird da tag correspondente** (documentado no README do tema).
+**Repos tocados:** `growth-club-newsletter` (wrangler.jsonc pin, theme package.json/post.hbs, README) + este (`STATE.md`).
+
 ### AD-042: Sistema de checkout + captura de lead do Meetup (gc-checkout) — popup → InfinitePay → Notion → coleta de docs → obrigado
 **Date:** 2026-06-23
 **Status:** Accepted (deployado e testado ao vivo no que é testável; cadeia webhook+redirect aguarda 1 transação real)
