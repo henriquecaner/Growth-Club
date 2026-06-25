@@ -1063,6 +1063,15 @@ Grid da home muda de 3-col pra 4-col em desktop (responsivo: 2-col em tablet, 1-
 
 ## Active Blockers
 
+### B-002 (URGENTE — SITE FORA DO AR): Domínio `growthclub.pro` expirado, parqueado no name.com
+**Date opened:** 2026-06-24
+**Owner:** Henrique (pagamento — só ele tem acesso ao name.com)
+**Status:** Open — site, e-mail e checkout do meetup FORA DO AR até a renovação
+**Context:** `growthclub.pro` expirou em **2026-06-23** (registro de 1 ano feito em 2025-06-23, sem auto-renew com cartão válido). Em 2026-06-24 ~22:16 UTC o name.com resetou o DNS pro parking do Sedo (NS → name.com, A → `91.195.240.94`), e o apex passou a responder `HTTP 436` + `server: Parking/1.0`. Coincidiu com o upgrade do Ghost 6.47 (AD-043) no mesmo dia, mas é **independente** — o Cloudflare/Worker/container e o Ghost 6.47 estão intactos, só inalcançáveis enquanto o DNS estiver parqueado. RDAP confirma status `auto renew period` e expiração já empurrada pra 2027-06-23 (o registrar fronteou a renovação e cobra **$35.99**).
+**Impacto:** site público + e-mail (`hey@mail.growthclub.pro`, depende do DNS) + checkout/venda de ingresso do Meetup S1E1 (23 jul, ~4 semanas) todos fora do ar. Janela operacional bem mais curta que a janela do domínio.
+**Janela de recuperação (TLD `.pro` / Identity Digital, confirmar com name.com):** auto-renew grace ~45 dias ($35.99, preço normal, ~até início de agosto) → redemption ~30 dias (taxa de resgate cara, ~$80-200+) → pending delete → leilão. Domínio NÃO está perdido; só precisa pagar dentro da grace antes de virar resgate.
+**Resolução:** pagar os $35.99 no Renewal Center do name.com + restaurar o DNS pro Cloudflare (NS do Cloudflare da zona, ou o registro do apex anterior ao parking). Site volta sozinho no estado 6.47 quando o DNS propagar. Ligar auto-renew com cartão válido pra não repetir (quando o caixa permitir). Liga ao princípio R-11 / aperto de caixa.
+
 ### B-001 (URGENTE): Revisar TODA documentação oficial pro novo padrão 2026-05-25
 **Date opened:** 2026-05-25
 **Owner:** Henrique (revisão) + agente Claude (execução)
