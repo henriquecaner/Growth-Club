@@ -26,6 +26,32 @@ docs/research/private/
 # Exports brutos de cadastros / submissions (Tally, Substack, WhatsApp) — PII completo
 data-users/
 
+# Skills GCP DataCloud auto-instaladas (bundle externo via .datacloud_skills_manifest) — não são conteúdo do projeto
+.agents/skills/.datacloud_skills_manifest
+.agents/skills/accidental-data-loss-prevention/
+.agents/skills/bigquery-data-transfer-service/
+.agents/skills/building-data-apps/
+.agents/skills/data-autocleaning/
+.agents/skills/dataform-bigquery/
+.agents/skills/dbt-bigquery/
+.agents/skills/developing-with-bigquery/
+.agents/skills/discovering-gcp-data-assets/
+.agents/skills/federate-lakehouse-catalog/
+.agents/skills/gcloud-auth-verification/
+.agents/skills/gcp-composer-troubleshooting/
+.agents/skills/gcp-data-pipelines/
+.agents/skills/gcp-dataflow/
+.agents/skills/gcp-pipeline-orchestration/
+.agents/skills/gcp-pipeline-resource-provisioning/
+.agents/skills/gcp-spark/
+.agents/skills/managing-python-dependencies/
+.agents/skills/ml-best-practices/
+.agents/skills/notebook-guidance/
+.agents/skills/skill-repair/
+
+# Imagens soltas na raiz (protótipos de capa / brushes) — assets finais vão em brand/assets/, não na raiz
+/*.png
+
 # Stack futuro (quando tivermos código)
 node_modules/
 dist/
