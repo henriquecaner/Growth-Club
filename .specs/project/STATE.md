@@ -7,6 +7,21 @@
 
 ## Recent Decisions (ADR)
 
+### AD-047: Portal de inscrições + compra login-first via Ghost (Fase 2/3 do checkout)
+**Date:** 2026-06-26
+**Status:** Fase B (portal) Accepted e no ar; Fase C (login-first) implementada e commitada, deploy/cutover pendente (combinado com o Henrique)
+
+Pedido do Henrique: vincular as compras (order id) ao login do Ghost e entregar um portal persistente de gestão de inscrições, suportando múltiplas compras por pessoa. Plano: `docs/superpowers/plans/2026-06-26-login-first-portal-checkout.md`. Executado via subagent-driven (ledger em `.superpowers/sdd/progress.md`).
+
+**Viabilidade técnica confirmada empiricamente:** o cookie de sessão do Ghost não cruza subdomínio, então o portal vive no **apex** (página do tema). O JWT de membro do Ghost (`/members/api/session`) é validável, mas o JWKS do Ghost 6.47 tem chave **1024-bit** (bug conhecido) que `jose` rejeita — contornado validando a assinatura RS512 **na mão via Web Crypto** (`crypto.subtle`), confirmado funcionar. Cloudflare engole status 502/504 da Function (ver L-008), então erros de app usam 4xx.
+
+**Arquitetura entregue:**
+- **Fase A (infra):** conta Ghost garantida no pagamento (`subscribeMember` no webhook + save-docs, label "Comprou Meetup S1E1"); helper `verifyMemberJWT` (`gc-checkout/functions/_shared/ghost-members-jwt.js`).
+- **Fase B (portal, NO AR):** `findOrdersByEmail` (notion.js), endpoint `POST /minhas-compras` (valida JWT → orders), página `page-minhas-inscricoes.hbs` no apex (login Ghost + cards por order + link pra `/coletar`), link na `obrigado.html`. Página Ghost slug `minhas-inscricoes` publicada.
+- **Fase C (login-first, implementada, deploy pendente):** `/check-member`, popup multi-step (email → check → signin/signup magic link), estado preservado em `localStorage` pro round-trip do e-mail, retomada ao voltar logado, **fallback** pro popup direto se a Members API falhar (protege a venda). O Ghost moderno exige **integrity-token** no send-magic-link (implementado).
+
+**Cutover da Fase C** mexe no fluxo de venda ativo, então é deploy combinado (gc-checkout + tema) + teste e2e do magic link nos 3 caminhos, fora de pico. Pendente também: teste logado do portal (caminho feliz do JWT). Detalhes operacionais em [[project_meetup_checkout_system]].
+
 ### AD-046: Robustez do CRM do checkout — campos pós-pagamento, dedup, status Pago garantido
 **Date:** 2026-06-26
 **Status:** Accepted (implementado, deployado e validado ao vivo no `gc-checkout` + tema `gc-site`)
