@@ -7,6 +7,43 @@
 
 ## Recent Decisions (ADR)
 
+### AD-046: Robustez do CRM do checkout — campos pós-pagamento, dedup, status Pago garantido
+**Date:** 2026-06-26
+**Status:** Accepted (implementado, deployado e validado ao vivo no `gc-checkout` + tema `gc-site`)
+
+Refinamentos pedidos pelo Henrique após ver o CRM (base Notion "Meetup Growth") em uso, sobre a base do AD-045:
+
+1. **Campos de venda só aparecem quando Pago.** Lead Pendente grava só contato + cupom; `Valor pago`/`Tipo`/`Quantidade`/`Tipo Ingresso` entram quando o pagamento é confirmado. Pendente = lead que não converteu; Pago = comprador real.
+2. **Dedup de retentativa.** `create-checkout` reusa o lead Pendente da mesma pessoa pelo **e-mail** (decisão: só e-mail; telefone é chave instável — ver bug do auto-complete). Não duplica linha; preserva o `order`. `order_nsu` virou **lista** (cada retentativa anexa o nsu) e `findByOrderNsu` casa por `contains`, então pagamento de um link antigo ainda resolve a linha (evita paid-but-untracked).
+3. **Preenchimento no Pago, sem depender do formato do webhook.** Webhook preenche só `Valor pago` (de `paid_amount`); NÃO deriva quantidade (o item da dupla é `quantity:1`, indistinguível do individual — derivar causava mislabel). `save-docs` preenche `Quantidade`/`Tipo Ingresso` (sabe pelos convidados coletados) + `Tipo`.
+4. **Status Pago garantido em 3 travas:** webhook + `POST /confirm-paid {nsu}` no load da `/coletar` (chegar lá = pago, pois o InfinitePay só redireciona no sucesso) + `save-docs`. Limitação aceita pelo Henrique: pagar sem nunca preencher os docs deixa Quantidade/Tipo Ingresso vazios (ele faz followup por WhatsApp); o status Pago e o Valor ficam corretos.
+5. **Máscara WhatsApp** remove o DDI `55` que o auto-complete cola (12+ dígitos), corrigindo o `(55) ...` que virava DDD.
+6. **Link de carrinho pré-configurado:** a LP lê `?tipo=&lote=&q=&cupom=` e auto-abre o popup montado, pro Henrique mandar pra pessoas com o lote/tipo/quantidade/cupom já carregados.
+
+Dois bugs pegos em revisão adversarial (dupla mislabel via webhook; pagamento de link antigo órfão) foram corrigidos antes do deploy e validados ao vivo (dedup → 1 linha com nsus acumulados; webhook com nsu antigo → linha resolvida e Paga). Detalhes em [[project_meetup_checkout_system]].
+
+### AD-045: Venda de grupo (3+) com desconto automático + cupom de uso único no checkout do Meetup S1E1
+**Date:** 2026-06-26
+**Status:** Accepted (Fase 1 implementada, deployada e verificada ao vivo em `brgrowthclub.pro` + `checkout.brgrowthclub.pro`)
+
+**Contexto:** o checkout do meetup só vendia individual (`ind`) e pack de 2 (`dupla`), com preço travado no servidor e sem cupom. Surgiu a necessidade de vender pra grupos de 3+ (caso concreto de um amigo) e de dar cupons de desconto pontuais. A conversa evoluiu pra um escopo maior (login-first via Ghost, dados ricos persistidos, portal de convidados), mas a investigação confirmou duas paredes do Ghost 6.47 — é 100% **passwordless** (autenticar exige magic link por e-mail) e **não tem custom fields** (membro só tem `name`/`email`/`note`/`labels`). Decisões do usuário: login-first com desvio (aceita a fricção do magic link) e dados ricos no Notion. Spec/plano: `~/.claude/plans/zippy-enchanting-cook.md`.
+
+**Decisão — faseamento:**
+1. **Fase 1 (esta — DONE):** calculadora de grupo 3+ + cupom de uso único + coleta de N pessoas, no popup atual. Vende grupos end-to-end sem esperar reconstrução de fluxo. Lógica de preço/cupom é server-side, então sobrevive intacta às fases seguintes.
+2. **Fase 2 (roadmap):** fluxo de compra **login-first** via magic link nativo do Ghost (sem provedor de e-mail novo). Engenharia central: preservar o estado da compra no `localStorage` através do round-trip do e-mail e retomar via `?success=true` same-origin. Caveat: só o retorno `r=` same-origin é confirmado; não desenhar em torno de deep-link pós-magic-link.
+3. **Fase 3 (roadmap):** portal de convidados no apex, protegido pela sessão Ghost (dissolve token próprio + PII em URL).
+
+**Regras travadas (Fase 1):**
+- Desconto de grupo = **30% sobre o `ind` do lote vigente, por pessoa**, fixo pra qualquer grupo de 3+ (L0 = R$86,80/pessoa).
+- **Cupom** define um desconto **total acima de 30%** (substitui, não soma); rejeita ≤30%. **Uso único:** validado no `create-checkout`, "queima" (vira Usado) só no **pagamento confirmado** (webhook + save-docs, idempotentes).
+- Quantidade gravada no registro Notion do comprador no `create-checkout`. Dados ricos no Notion; Ghost = e-mail + nome + label.
+
+**Implementação:** repos `gc-checkout` (`catalog.js precoGrupo`, novo `coupons.js`, `create-checkout`, `checkout-webhook`, `save-docs`, `order-info`, `coletar.html`) e `growth-club-newsletter` (popup em `theme/gc-site/post.hbs`, conteúdo em `bin/meetup-sp-s1-e1.html`). Base Notion nova **"Cupons"** + props `Quantidade`/`Cupom` na base Meetup. Detalhes operacionais e pendência em [[project_meetup_checkout_system]] (memória).
+
+**Pendência (Henrique):** conectar a integração Notion "Growth Club - Meetup" à base Cupons (Connections) pra ativar cupons — grupo sem cupom já funciona 100%.
+
+**Lição associada (L-008):** Cloudflare Pages engole respostas com status 502/504 da Function (corpo JSON perdido, vira "error code: 502"); erro de aplicação que precisa entregar JSON ao front deve usar 4xx.
+
 ### AD-044: Restore de emergência growthclub.pro → brgrowthclub.pro (domínio expirou, sem caixa pra renovar)
 **Date:** 2026-06-25
 **Status:** Accepted (executado e validado ao vivo: site, email transacional, checkout no ar em `brgrowthclub.pro`)
@@ -1141,6 +1178,11 @@ Catalogados em `docs/superpowers/specs/2026-04-22-growth-club-business-plan-desi
 ---
 
 ## Lessons Learned
+
+### L-008: Cloudflare Pages engole respostas com status 502/504 da Function
+**Context:** 2026-06-26, ao adicionar o caminho de cupom no `create-checkout` (AD-045), o erro de "não consegui validar o cupom" retornava `new Response(json, { status: 502 })`. O navegador recebia `error code: 502` (text/plain, `server: cloudflare`), não o JSON da Function.
+**Problem:** o edge do Cloudflare **intercepta respostas com status 502/504 vindas da Pages Function** e substitui o corpo pela própria página de gateway (agravado por orange-to-orange, header `cf-connecting-o2o: 1`). O JSON `{error}` da Function nunca chega ao cliente, então o popup não conseguia mostrar a mensagem amigável. Confirmado via `wrangler pages deployment tail <id>`: log com `outcome: ok`, `exceptions: []`, `response.status: 502` — a Function rodou certo, o 502 foi escolha de código, e mesmo assim o corpo foi trocado.
+**Solution:** erro de aplicação que precisa entregar `{error}` ao front → usar **4xx (ex 400)**, que passa intacto. Reservar 502/504 só quando se QUER que o edge sirva o erro genérico (no `gc-checkout`, o 502 do InfinitePay é mantido de propósito pra o popup degradar pro link de fallback do ind/dupla). Memory file [[reference_cloudflare_pages_502]].
 
 ### L-007: A classe `.prose` do DS carrega drop-cap + `max-width:64ch` que quebram conteúdo estruturado
 **Context:** 2026-06-23, a LP do meetup ("O Bilhete") usava `<div class="prose">` no miolo (exigência do `deploy-meetup-lp.mjs`, que extrai `<style>` + `.prose`). Visualmente: letras gigantes arrancadas no meio do texto ("S"etores, "I"ndividual, "R"$) e cards estreitos com espaço morto à direita.
