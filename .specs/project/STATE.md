@@ -7,6 +7,19 @@
 
 ## Recent Decisions (ADR)
 
+### AD-048: E-mail de confirmação "bilhete" disparado no pagamento + entrega robusta + deliverability
+**Data:** 2026-06-26. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema), DNS Cloudflare.
+
+Evolução do e-mail transacional de confirmação (base Mailgun `send.brgrowthclub.pro`, commit anterior de398dd) após feedback do Henrique:
+
+- **Visual "bilhete" (commit c0a0681):** `email-templates.js` reescrito com header estilo bilhete da LP — corpo claro + canhoto escuro com picote, `S1 E1` em âmbar, grid Data/Horário/Local/Ingresso, barcode. Tabela bulletproof, mobile-first, `meta color-scheme=light` (anti dark-mode iOS). Botão WhatsApp estava com texto azul (cor de link default do cliente) → corrigido com `color:#FFFFFF` forçado + bgcolor na célula. Sem imagem externa (HTML sempre renderiza). Validado no iCloud real (caiu na CAIXA DE ENTRADA).
+- **Botão "Gerenciar minha inscrição" (commit 9f37ca2):** CTA âmbar primário → `/coletar?nsu=X` (tela de cadastro de entrada do pedido; grupo completa dados de quem entra, portaria precisa de CPF/RG). WhatsApp vira secundário. `nsu` (`MEETUP-ts-uuid8`) tem componente aleatório e já vivia na URL de redirect, sem exposição nova. Convidado não recebe esse botão.
+- **Disparo no PAGAMENTO APROVADO (commit e2a7994):** fecha o gap "pagou, fechou a aba sem preencher /coletar → nenhum e-mail". `checkout-webhook` passa a mandar o e-mail do comprador no pagamento, com **delay de 5s** (garante), `.ics` anexado, isolado em try/catch DEPOIS do markPaid (não pode quebrar a marcação Pago). **Dedup por `Valor pago`** (setado SÓ pelo webhook; `confirm-paid`/`save-docs` não setam valor) — re-entrega do webhook não reenvia. NÃO usa `Lifecycle` (o `confirm-paid` marca Pago no load do /coletar → daria falso positivo).
+- **Rede de segurança (commit 7de9851):** `save-docs` reenvia o e-mail do comprador só se `Valor pago` fresco === 0 (webhook não chegou). Entrega passa a ser estritamente superior: webhook entrega no pagamento, save-docs cobre se falhar, sem double-send (valor é a trava simétrica). Convidados continuam saindo do save-docs (só existem após a coleta), cada um com `.ics`.
+- **Verificado ao vivo:** o `setTimeout(5s)` dentro do `waitUntil` no Pages Functions sobrevive (tail mostrou `dt=5000ms | e-mail enviado`) — único primitivo que `node --check` não validava.
+- **Popup login-first (tema, commit newsletter 37482b7):** o form vira um alerta forte pós magic-link ("Confirma pelo e-mail") com o e-mail em destaque + botões abrir webmail (Gmail/Outlook/iCloud por domínio; corporativo → Gmail+Outlook) + aviso de spam. Substitui a caixinha verde discreta.
+- **Deliverability do magic link (diagnóstico, NÃO é misconfig):** headers do e-mail no spam mostraram **SPF=pass, DKIM=pass (`send.brgrowthclub.pro`), DMARC=pass** via Mailgun. Spam = reputação de domínio novo + conteúdo do template **core do Ghost** (emoji no assunto, URL com token crua). Mitigação: engajamento (marcar não-spam; o popup avisa) + warmup. **DMARC movido `p=none` → `p=quarantine`** (DNS, Workspace DKIM confirmado, seguro) — higiene + destrava BIMI; efeito direto no spam é modesto.
+
 ### AD-047: Portal de inscrições + compra login-first via Ghost (Fase 2/3 do checkout)
 **Date:** 2026-06-26
 **Status:** Fase B (portal) Accepted e no ar; Fase C (login-first) implementada e commitada, deploy/cutover pendente (combinado com o Henrique)
@@ -1193,6 +1206,12 @@ Catalogados em `docs/superpowers/specs/2026-04-22-growth-club-business-plan-desi
 ---
 
 ## Lessons Learned
+
+### L-009: Cloudflare Pages serve `index.html` com HTTP 200 em qualquer rota não-casada — verifique pelo BODY, não pelo status
+**Context:** 2026-06-26, ao remover um endpoint temporário (`functions/_test-webhook-email.js`) e re-deployar o `gc-checkout`, o `curl` continuava retornando `HTTP 200` pra `/_test-webhook-email` — inclusive na URL direta do deployment novo. Cheguei a concluir (errado) que o wrangler reusava um bundle de functions em cache e que minhas mudanças no webhook talvez não estivessem no ar.
+**Problem:** O Pages tem fallback estático estilo SPA: **toda rota sem Function casada serve o `index.html` com status 200**. Logo, `200` não distingue "Function existe e respondeu 200" de "Function não existe, caiu no `index.html`". Uma rota gibberish (`/rota-que-nao-existe-xyz`) também dava 200 — o tell.
+**Solution:** Verificar a EXISTÊNCIA/atualização de uma Function pelo **corpo da resposta**, não pelo status: função real retorna o JSON dela (`{"found":false}`), rota removida retorna `<!doctype html>...`. Confirmado que as Functions deployam corretamente e que o domínio de produção serve o deployment mais novo. Bônus: deployments antigos (`<hash>.gc-checkout-7yv.pages.dev`) seguem servindo o bundle antigo deles — um endpoint removido ainda responde por lá; `wrangler pages deployment delete <id> --force` pra eliminar de vez (não dá pra deletar o que tem alias de produção ativo).
+**Aplicável a:** qualquer verificação pós-deploy no `gc-checkout` (e no `website` legado). Relacionado a [[L-008]] (família de gotchas de Pages/edge).
 
 ### L-008: Cloudflare Pages engole respostas com status 502/504 da Function
 **Context:** 2026-06-26, ao adicionar o caminho de cupom no `create-checkout` (AD-045), o erro de "não consegui validar o cupom" retornava `new Response(json, { status: 502 })`. O navegador recebia `error code: 502` (text/plain, `server: cloudflare`), não o JSON da Function.
