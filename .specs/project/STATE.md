@@ -1,11 +1,27 @@
 # STATE: Growth Club
-**Last Updated:** 2026-06-23
+**Last Updated:** 2026-06-28
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-049: Hardening de integridade da venda do meetup + convenção de acompanhante
+**Data:** 2026-06-28. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema/conteúdo). **Plano:** `docs/superpowers/plans/2026-06-28-meetup-sales-hardening.md`.
+
+Ultra deep review da estrutura de venda (a pedido do Henrique) achou 4 críticos de integridade, todos no caminho vivo. **Baseline verificado ANTES de revisar:** `git fetch` (local == origin/main) + `curl` em produção byte-idêntico ao repo provaram que o código revisado é o que está no ar (evita revisar código morto). Fase 1 executada inline (tasks acopladas via `notion.js`) e **deployada da branch `sales-hardening`**:
+
+- **C1 — convidados idempotentes + cap (commit 6050ce5):** `save-docs` recriava convidados a cada submit (`createGuest` = sempre INSERT) e as 2 superfícies de "gerenciar" (botão do e-mail + portal) reentram no `/coletar` → duplicava em uso normal. Agora `upsertGuest` por índice (`order_nsu <nsu>-P<idx>`: existe → update, senão → create). Cap rejeita (400) se convidados+1 > qtd PAGA (snapshot `Pedido.q`), bloqueando tampering de `?q=`; degrada aberto se o snapshot faltar.
+- **C2 — e-mail duplicado (commit 5e90cdc):** o marcador de dedup (`Valor pago`) só era escrito pelo webhook, mas o `save-docs` também enviava sem marcar → webhook atrasado gerava 2 e-mails. Nova property `Confirmação enviada` (checkbox) checada+marcada por ambos (após envio OK); webhook re-checa após o sleep de 5s.
+- **C3 — guard de capacidade (commit 9afbde8):** `create-checkout` soma os assentos Pago (`contarAssentosVendidos`: Quantidade dos compradores, exclui convidados) e recusa se > `MEETUP_CAPACITY` (env, 70); degrada aberto se a contagem falhar. Copy "assento numerado" removida (não há sistema de assento).
+- **C4 — webhook valida valor, LOG-ONLY (commits 87d4c0f + 413fa0b):** `create-checkout` grava `Valor esperado`; o webhook LOGA divergência mas **NÃO rejeita** (pagamentos reais divergem do total "limpo" por cupom/arredondamento — ex.: Daniel pagou R$247,70 num grupo cujo cálculo limpo seria 260,40; rejeitar sem confirmar o payload do InfinitePay barraria venda legítima). Gate de status (4b) pendente do payload real.
+- **W2 — links InfinitePay legados removidos (commit newsletter a259d98):** os 8 hrefs `leveltech` (conta antiga) eram fallback de pagamento pra conta errada; o fluxo real é o checkout dinâmico via API (handle `level-tech`). Botões viram gatilho puro do popup; fallback mostra erro, não navega.
+- **W5 — cap de grupo unificado em 20** (server `MAX_GRUPO` = popup). Harness `node --test` (Node v25 nativo, zero deps) cobrindo preço/cap/contagem de forms.
+
+**Convenção de acompanhante (commit 88a7d12) — regra travada pelo Henrique:** acompanhante (convidado) NÃO é pagante. `createGuest` cria com `Tipo='Convidado do comprador'`, **`Lifecycle='Acompanhante'`** (sai da view "Pagos", que passa a mostrar só pagantes reais), **sem `Valor pago`**, **`Tipo Ingresso` herdado** do comprador (Grupo/Pack com 2), `order_nsu=<nsu>-P<idx>`, cruzamento no corpo (nota no convidado aponta o comprador; nota no comprador lista os convidados). Registros antigos corrigidos via API: Diogo Romero → Acompanhante/sem valor, Tiago Marvila → Convidado, e os nsus do grupo Canton (backfill manual pré-feature) normalizados pra `-P2/-P3`.
+
+**⚠️ PREÇO DE TESTE EM PRODUÇÃO (commits 7cb215c + newsletter 61804b9) — REVERTER ANTES DO EVENTO:** Lote 0 = R$1 ind / R$2 dupla / R$1 por pessoa grupo (`DESCONTO_GRUPO_PCT=0`), pra o Henrique testar os 4 tipos sem gastar. `git revert` dos 2 commits restaura R$124/198/30%. Apagar registros de teste do Notion depois.
 
 ### AD-048: E-mail de confirmação "bilhete" disparado no pagamento + entrega robusta + deliverability
 **Data:** 2026-06-26. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema), DNS Cloudflare.
