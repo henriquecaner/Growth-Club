@@ -1,5 +1,6 @@
 name = "growth-club"
-compatibility_date = "2026-05-17"
+compatibility_date = "2026-06-29"
+compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./website"
 
 [env.production]

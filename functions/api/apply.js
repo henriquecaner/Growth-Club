@@ -23,10 +23,9 @@ const NOTION_VERSION = "2022-06-28";
 const DEFAULT_DATABASE_ID = "36789cac-40bd-80d7-a900-fa0939b4d953";
 
 const ALLOWED_ORIGINS = new Set([
-  "https://growthclub.pro",
-  "https://www.growthclub.pro",
-  "https://growth-club.pages.dev",
-  "https://growth-club-site.pages.dev",
+  "https://brgrowthclub.pro",
+  "https://www.brgrowthclub.pro", // www redireciona pro apex via Cloudflare Redirect Rule
+  // growthclub.pro expirou em 23/jun/2026 (AD-044) — removido
 ]);
 
 // Multi-select whitelists (must match Notion DB options exactly)
