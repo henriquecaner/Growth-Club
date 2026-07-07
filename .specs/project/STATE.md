@@ -1,11 +1,21 @@
 # STATE: Growth Club
-**Last Updated:** 2026-06-28
+**Last Updated:** 2026-07-07
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-050: Migração do endpoint InfinitePay + alerta de escassez do Lote 0 na LP
+**Data:** 2026-07-07. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (conteúdo da LP).
+
+Dois pedidos do Henrique, um técnico e um de copy/conversão:
+
+- **Checkout na API errada de novo (commit gc-checkout 03ed14b):** o `create-checkout` seguia batendo no endpoint **legado** `api.infinitepay.io/invoices/public/checkout/links`, descontinuado pela InfinitePay (API nova vigente desde **01/06/2026**). Um e-mail com cara de phishing avisava da troca; **verificado em fontes independentes** (central de ajuda + docs InfinitePay + integrações da comunidade) antes de mexer em fluxo de pagamento — confirmado legítimo. O payload que o código já montava (`handle` + `items` + `order_nsu` + `redirect_url` + `webhook_url`) e o parse da resposta (`data.url`) **já eram compatíveis** com a API nova (alguém migrou o corpo antes e esqueceu a URL — daí o "novamente"). Fix = trocar a constante `INFINITEPAY_LINKS` para `https://api.checkout.infinitepay.io/links`. **Não testado ao vivo** (precisa de credencial/venda real) — validar com uma compra de ponta a ponta no deploy.
+- **Alerta de escassez do Lote 0 (commit newsletter 25925cf):** dois alertas `.gct-alert` na LP S1E1 com números reais (**15 de 20** vendidos, restam 5): banner logo abaixo do hero + alerta inline na área de ingressos (entre o cabeçalho e a grade de lotes). Copy honesta (não fabricada) — alinhada à transparência radical (AD-005). CSS fica no `<style>` publicado com o conteúdo (viaja atômico no `deploy-meetup-lp.mjs`, sem depender de deploy do tema), reusando os tokens `.gc-meetup--live` (`--amber`/`--ink`/`--ff-mono`). Verificado por screenshot local. **Números manuais:** ao virar o lote, atualizar/remover nos dois pontos do `bin/meetup-sp-s1-e1.html`.
+
+**Deploy pendente (Henrique):** `gc-checkout` (git → Pages) para o endpoint; `node bin/deploy-meetup-lp.mjs --go` para a LP.
 
 ### AD-049: Hardening de integridade da venda do meetup + convenção de acompanhante
 **Data:** 2026-06-28. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema/conteúdo). **Plano:** `docs/superpowers/plans/2026-06-28-meetup-sales-hardening.md`.
