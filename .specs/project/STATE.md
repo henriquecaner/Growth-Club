@@ -7,6 +7,15 @@
 
 ## Recent Decisions (ADR)
 
+### AD-051: Captura de lead antes do magic link — fecha buraco de funil do login-first
+**Data:** 2026-07-07. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema).
+
+Gatilho: o Henrique reportou que um amigo (Victor Palandi) preencheu o form de compra e abandonou, mas **não apareceu no Notion**. **Diagnóstico:** no fluxo login-first (AD-047), quem não está logado tem o pedido salvo só no `localStorage` do navegador e recebe um magic link; o `create-checkout` — **único lugar que gravava o lead "Pendente" no Notion** — só roda **depois** que a pessoa clica no magic link e volta logada (`tryResume → fireCheckout`). Abandonou no passo do e-mail = zero captura no servidor. O login-first introduziu um ponto de abandono mais cedo que o fluxo antigo (que capturava antes do pagamento) não previa. **Não há recuperação server-side do Victor** (dados só no navegador dele; adicionar manualmente).
+
+**Fix:** novo endpoint `gc-checkout/functions/capture-lead.js` grava o lead como Pendente (contato + snapshot `{q,lote,tipo,cupom}`) no submit do form, disparado fire-and-forget pelo popup (`post.hbs`, ramo não-logado, antes do magic link). Best-effort: sempre 200, nunca trava venda/magic link, degrada silencioso sem credencial Notion. Dedup por e-mail: o `create-checkout` reusa a mesma linha via `findPendingByEmail → updatePendingLead` quando a pessoa completa — sem duplicar. Sem env var nova (reusa `NOTION_TOKEN`/`NOTION_DATABASE_ID`). Testes do gc-checkout seguem 11/0. **Deploy pendente:** `gc-checkout` + tema.
+
+**L-010 (lição):** mudança de fluxo de captura (login-first) pode mover silenciosamente o ponto de abandono pra ANTES do único write de CRM. Ao inserir um gate novo antes de um checkout, garantir captura de lead no gate, não só no destino.
+
 ### AD-050: Migração do endpoint InfinitePay + alerta de escassez do Lote 0 na LP
 **Data:** 2026-07-07. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (conteúdo da LP).
 
