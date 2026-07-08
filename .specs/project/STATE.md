@@ -7,6 +7,23 @@
 
 ## Recent Decisions (ADR)
 
+### AD-052: E-mail de confirmação VIP (cortesia) + endpoint `/send-vip` reaproveitando o portal do comprador
+**Data:** 2026-07-08. **Repos:** `gc-checkout` (Functions).
+**Contexto:** Henrique criou a base Notion "Vips" (curadoria manual de ingressos cortesia pro Meetup S1E1). Pediu que todo VIP com `Aprovação VIP = Aprovado` receba um e-mail de confirmação parecido com o de compra ("Seu VIP pro Meetup de Growth tá confirmado"), com o **mesmo portal via botão** pra editar os dados de cadastro. Teste pro e-mail do Henrique antes do batch.
+**Decisão:**
+- **Linha espelho no Meetup Growth.** O portal `/coletar` é NSU-cêntrico (só opera sobre uma linha do database Meetup Growth achada por `order_nsu`). VIP não paga, então não tem NSU natural. Cada VIP aprovado ganha uma linha espelho no Meetup Growth com `order_nsu` sintético `VIP-<idDaPáginaVips>`, `Tipo=VIP` (opção já existente no schema), `Lifecycle=Pago`, `Tipo Ingresso=Individual`, `Quantidade=1`, e CPF/RG/LinkedIn/empresa copiados do formulário Vips. Isso faz o mesmo portal, `save-docs`, `.ics` e lista de portaria funcionarem sem código novo no `/coletar`.
+- **Endpoint desacoplado da base Vips.** `POST /send-vip?secret=<WEBHOOK_SECRET>` recebe os dados do VIP no body (não lê a base Vips), então a integração Notion do Worker **não precisa** estar conectada à base Vips, só à Meetup Growth. O orquestrador (Claude via Notion MCP) lê os aprovados e faz POST de cada um.
+- **Idempotente:** chave = `order_nsu` sintético. Se a linha já existe e `Confirmação enviada=true` (e não é `resend`), retorna `alreadySent` sem reenviar. Re-rodar o batch é seguro.
+- **VIPs contam como assento.** `Lifecycle=Pago` + `Tipo=VIP` entram no `contarAssentosVendidos` (guard de capacidade em `create-checkout`), o que é correto: VIP ocupa lugar real dos 70.
+- **Copy:** nova função `vipEmail()` reaproveita `ticketCard`/`corpoTexto`/`botao`. Badge "VIP confirmado", canhoto "Ingresso: VIP", pitch de cortesia. Parágrafo do portal deixa claro que os dados já estão com a gente (do formulário) e o botão é só pra ajustar. Passou pelo humanizer; sem em dash, sem middot (regras de voz).
+**Implementação:**
+- `functions/_shared/email-templates.js`: `export function vipEmail({ nome, cadastroUrl })`.
+- `functions/send-vip.js`: endpoint novo (secret via query param, 401 se errado).
+- `test/vip-email.test.js`: 5 testes travando subject/badge/portal/voz. Suíte 26/26.
+**Verificação:** teste e2e pro `henriquecaner@gmail.com` (Mailgun `delivered`, .ics anexado, portal resolve o NSU VIP, idempotência e 401 conferidos; linha de teste arquivada). Batch dos 7 aprovados: todos `delivered` no Mailgun.
+**Pendências conhecidas:** (a) o formulário Vips no Notion tem descrição com data/local errados ("27/07 av Paulista") vs. canônico (23/07 R. Minas Gerais 316) — corrigir o texto do form. (b) O `/coletar` não faz prefill de PII (por design), então o VIP que clicar no portal vê campos vazios; os dados já estão salvos na linha, o botão é opcional.
+**Aplicável a:** futuras edições (S1E2+) e a re-execução quando Henrique aprovar novos VIPs (rodar o batch de novo; já-enviados retornam `alreadySent`).
+
 ### AD-051: Lote 0 esgotado → rotação da escada + simplificação pra 2 botões por lote (mata "em dupla", grupo passa a valer de 2+)
 **Data:** 2026-07-08. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema `gc-site` + conteúdo LP).
 **Contexto:** O Lote 0 do Meetup S1E1 esgotou (sold out dos 20 primeiros lugares). Henrique pediu (a) rotacionar a escada e (b) simplificar a oferta: matar o tipo "em dupla" e reduzir o piso de grupo de 3 pra 2 pessoas, deixando **2 botões por lote** (Individual + Grupo de 2 ou mais).
