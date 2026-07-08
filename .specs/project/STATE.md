@@ -1,11 +1,40 @@
 # STATE: Growth Club
-**Last Updated:** 2026-06-28
+**Last Updated:** 2026-07-07
 
 > **AI CONTEXT:** Append-only log of decisions, blockers, risks, and lessons learned. Never overwrite past entries.
 
 ---
 
 ## Recent Decisions (ADR)
+
+### AD-051: Lote 0 esgotado → rotação da escada + simplificação pra 2 botões por lote (mata "em dupla", grupo passa a valer de 2+)
+**Data:** 2026-07-08. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema `gc-site` + conteúdo LP).
+**Contexto:** O Lote 0 do Meetup S1E1 esgotou (sold out dos 20 primeiros lugares). Henrique pediu (a) rotacionar a escada e (b) simplificar a oferta: matar o tipo "em dupla" e reduzir o piso de grupo de 3 pra 2 pessoas, deixando **2 botões por lote** (Individual + Grupo de 2 ou mais).
+**Decisão:**
+- **Escada linear:** L0 = `esgotado` (badge "Esgotado", preço riscado, sem botões); L1 = `ativo` ("Aberto agora", 30 lugares); L2 = `proximo` (já comprável); L3 = `futuro`.
+- **"Em dupla" aposentado da UI.** O piso de grupo cai de 3 pra 2, então quem vem em 2 cai nos **30% off por pessoa** (antes a dupla era ~20% off). Trade-off de margem confirmado explicitamente pelo Henrique: casal fica mais barato (ex. L1: R$ 115,50/pessoa vs R$ 132 que seria a dupla).
+- **Kill só na superfície:** o caminho de preço `dupla` (`precoDoLote('dupla')`, label no popup) foi **mantido defensivo** no backend/JS pra não quebrar abas cacheadas que ainda tenham o botão antigo (lição L-005, TTL de cache). Nenhum botão "Em dupla" é servido; só o fallback invisível sobrevive.
+**Implementação:**
+- `catalog.js`: `precoGrupo` aceita `q >= 2`; `tipoIngressoDeQtd(2)` agora = `'Grupo'` (era `'Pack com 2'`). `precoDoLote('dupla')` intacto.
+- `create-checkout.js` + `capture-lead.js`: threshold `isGrupo`/guard de quantidade de 3 → 2.
+- `bin/meetup-sp-s1-e1.html` (conteúdo): escada reescrita (4 estados), nota e FAQ de grupo "3 ou mais" → "2 ou mais", 2 botões por lote ativo/próximo.
+- `post.hbs` (tema): hero "Lote 0/a partir de R$ 124" → "Lote 1/R$ 165"; popup com `min="2"`/`value="2"`, `tipoLabel` grupo "2 ou mais", thresholds de `updateCalc`/`setGroup`/`autoOpen`/resume/submit de 3 → 2.
+- A tela `/coletar` **não mudou** (é dirigida por quantidade: grupo de 2 → 1 card de acompanhante).
+**Migração de URL da InfinitePay (mesmo deploy):** a InfinitePay avisou (e-mail 2026-07-08) que vai desativar as URLs antigas do Checkout Integrado. `create-checkout.js` migrado de `api.infinitepay.io/invoices/public/checkout/links` → **`api.checkout.infinitepay.io/links`** (payload e webhooks idênticos). Não usamos `payment_check`. Endpoint novo probado (HTTP 200 + URL válida handle `level-tech`) e verificado end-to-end na produção (`checkout.brgrowthclub.pro`), lead de teste arquivado no Notion. **Fallback estático dos botões ainda aponta pro handle velho `leveltech` (conta antiga) — pendência menor, só dispara sem-JS; ver AD-049 W2.**
+**Verificação:** 17/17 testes (grupo de 2 valido, `tipoIngressoDeQtd(2)='Grupo'`, contagem de acompanhantes intacta). Backend probado ao vivo (grupo qty=2 passa o gate sem efeito colateral). LP servida com `x-gc-bypass-cache` confirma: 4 estados de lote corretos, badges "Esgotado"/"Aberto agora", 2 botões por lote, 0 "Em dupla", hero Lote 1/R$ 165, popup `min="2"`. Deploy: `gc-checkout` via `wrangler pages deploy`; tema via tar → R2 → restart (`brgrowthclub.pro`); conteúdo via `deploy-meetup-lp.mjs --go`. Relacionado a [[AD-045]] (venda de grupo 3+, agora 2+) e [[AD-039]] (escada de lotes). Ajusta a Locked decision #5 (pricing) sem violá-la: só o meetup, sem mexer nos tiers da comunidade.
+
+### AD-050: Captura de lead no submit (estágio "Lead") — conserta o buraco de abandono do login-first
+**Data:** 2026-07-07. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema).
+**Sintoma:** Henrique reportou que várias pessoas começavam a compra do meetup mas não terminavam, e **não apareciam no Notion** (aba Pendentes com só 3 linhas).
+**Causa raiz (confirmada por evidência):** no fluxo login-first (AD-047), o registro Pendente no Notion só nasce em `create-checkout` — que, pra visitante **não-logado**, só roda **depois** do clique no magic link. Quem preenche o popup e não confirma o e-mail fica preso no `localStorage` do navegador (`gc_pending_order`, TTL 1h) e **nunca toca o Notion**. Query SQL na base provou que não havia estoque escondido em nenhuma view: 6 Pago + 3 Pendente + 5 Acompanhante, sem linhas órfãs. Os 6 Pago provam que o caminho de gravação funciona (`markPaidByNsu` só faz UPDATE, então cada Pago passou por Pendente antes).
+**Decisão:** persistir o lead no Notion no **submit do form** (server-side), com um Lifecycle novo **"Lead"** (cinza), distinto de Pendente. Funil vira 3 estágios: **Lead** (preencheu) → **Pendente** (foi ao InfinitePay) → **Pago**. A taxa Lead→Pendente passa a medir a fricção do magic link, que antes era cega.
+**Implementação:**
+- Novo endpoint `functions/capture-lead.js` — grava o Lead com dedup por e-mail, tolerante a falha, nunca 5xx (fire-and-forget do popup, em paralelo ao magic link).
+- `notion.js`: `findPendingByEmail` agora casa **Lead OU Pendente** (dedup entre estágios, prefere Pendente/mais recente); `updatePendingLead` ganha param opcional `lifecycle` pra **promover** sem rebaixar.
+- `create-checkout.js`: ao reusar a linha existente, promove **Lead → Pendente** (não duplica).
+- `post.hbs`: dispara `/capture-lead` no ramo não-logado, logo após salvar no localStorage.
+- Notion: opção "Lead" adicionada ao select Lifecycle + view "Leads" filtrada criada. Views Pendentes/Pagos intactas.
+**Verificação:** 16/16 testes (5 novos cobrindo dedup Lead+Pendente e no-downgrade). Smoke test ao vivo: capture-lead cria Lead (R$165, phone E164, snapshot); recaptura + create-checkout mantêm **1 linha** promovida a Pendente. Tema deployado, `/capture-lead` presente no HTML servido do LP (`x-gc-bypass-cache`). Deploy: `gc-checkout` via `wrangler pages deploy`; tema via git archive → R2 → restart. **Retrocompatível** (sem linhas Lead preexistentes, dedup se comporta idêntico ao anterior). Relacionado a [[AD-047]] (login-first) e AD-049 (hardening da venda).
 
 ### AD-049: Hardening de integridade da venda do meetup + convenção de acompanhante
 **Data:** 2026-06-28. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema/conteúdo). **Plano:** `docs/superpowers/plans/2026-06-28-meetup-sales-hardening.md`.
