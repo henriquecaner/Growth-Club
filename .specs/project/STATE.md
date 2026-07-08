@@ -23,6 +23,17 @@
 **Migração de URL da InfinitePay (mesmo deploy):** a InfinitePay avisou (e-mail 2026-07-08) que vai desativar as URLs antigas do Checkout Integrado. `create-checkout.js` migrado de `api.infinitepay.io/invoices/public/checkout/links` → **`api.checkout.infinitepay.io/links`** (payload e webhooks idênticos). Não usamos `payment_check`. Endpoint novo probado (HTTP 200 + URL válida handle `level-tech`) e verificado end-to-end na produção (`checkout.brgrowthclub.pro`), lead de teste arquivado no Notion. **Fallback estático dos botões ainda aponta pro handle velho `leveltech` (conta antiga) — pendência menor, só dispara sem-JS; ver AD-049 W2.**
 **Verificação:** 17/17 testes (grupo de 2 valido, `tipoIngressoDeQtd(2)='Grupo'`, contagem de acompanhantes intacta). Backend probado ao vivo (grupo qty=2 passa o gate sem efeito colateral). LP servida com `x-gc-bypass-cache` confirma: 4 estados de lote corretos, badges "Esgotado"/"Aberto agora", 2 botões por lote, 0 "Em dupla", hero Lote 1/R$ 165, popup `min="2"`. Deploy: `gc-checkout` via `wrangler pages deploy`; tema via tar → R2 → restart (`brgrowthclub.pro`); conteúdo via `deploy-meetup-lp.mjs --go`. Relacionado a [[AD-045]] (venda de grupo 3+, agora 2+) e [[AD-039]] (escada de lotes). Ajusta a Locked decision #5 (pricing) sem violá-la: só o meetup, sem mexer nos tiers da comunidade.
 
+**Hardening pós deep-review (2026-07-08, mesmo dia):** um code-review em high effort (workflow, 20 agentes, verify adversarial) achou 8 defeitos, todos corrigidos e deployados:
+1. `capture-lead` não pisa mais no snapshot de um Pendente vivo — se `findPendingByEmail` (alargado no AD-050) casar um Pendente, só enriquece contato; `updatePendingLead` só toca `Cupom` quando o campo é passado (`undefined` = preserva). Evitava zerar cupom/quantidade de um pedido de grupo em andamento.
+2. Guard de lote vigente (`LOTES_VENDAVEIS = {1,2}`) no `create-checkout` — aba cacheada do L0 esgotado ou `?lote=0` era vendável a R$124; agora recusa.
+3. `email-templates.js` grupo `>=3`→`>=2` — grupo de 2 não recebia a copy de cadastro do acompanhante.
+4. Dupla aposentada de vez: `precoDoLote('dupla')`→null + `LOTES.dupla` removido + `autoOpen`/label da dupla fora do `post.hbs`. Antes um `?tipo=dupla` cobrava R$264 (mais caro que o grupo de 2, R$231).
+5. Fallback de quantidade conhece "Grupo" (`notion.js` getLeadByNsu/findOrdersByEmail) — Grupo com Pedido corrompido caía em qtd=1.
+6. Fallback `#ingressos` dos botões sem `target="_blank"` (abria aba em branco).
+7. Rótulo "Grupo" para qtd 2 fica coerente (resolvido por #4).
+8. Default morto `'Pack com 2'` no `createGuest`→`'Grupo'`.
+Verificação: 21/21 testes; guards probados ao vivo (lote 0 e dupla recusados sem efeito colateral). Deploy: gc-checkout + tema + conteúdo.
+
 ### AD-050: Captura de lead no submit (estágio "Lead") — conserta o buraco de abandono do login-first
 **Data:** 2026-07-07. **Repos:** `gc-checkout` (Functions), `growth-club-newsletter` (tema).
 **Sintoma:** Henrique reportou que várias pessoas começavam a compra do meetup mas não terminavam, e **não apareciam no Notion** (aba Pendentes com só 3 linhas).
