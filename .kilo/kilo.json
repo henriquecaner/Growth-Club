@@ -1,0 +1,13 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "mcp": {
+    "cloudflare": {
+      "type": "local",
+      "command": [
+        "npx",
+        "mcp-remote",
+        "https://builds.mcp.cloudflare.com/sse"
+      ]
+    }
+  }
+}
